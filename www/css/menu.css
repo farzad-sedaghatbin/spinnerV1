@@ -1,0 +1,181 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+}
+.page-background{
+  background: url('../img/back.jpg') no-repeat;
+  background-size: cover;
+}
+.container .row {
+  margin-left: -.75rem;
+  margin-right: -.75rem;
+}
+.upgrade-ico {
+  position: absolute;
+  top: 14px;
+  right: 10px;
+  min-width: 56px;
+  min-height: 56px;
+  background: url(../img/upgrade_btn_static.png) no-repeat;
+  background-size: contain;
+}
+.font-yellow, .font-yellow span, span.font-yellow {
+  color: #dea010;
+}
+span.font-36 {
+  font-size: 36px;
+}
+.coins-total span {
+  vertical-align: top;
+}
+.coins-ico {
+  margin-top: 7px;
+  margin-right: 10px;
+}
+.coins-total {
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  background-color: transparent;
+  line-height: 100px;
+}
+.row {
+  margin-top: 120px;
+}
+.rate-button {
+  text-align: left;
+  padding-left: 50px;
+  min-width: 150px;
+  min-height: 50px;
+  background: url(../img/btn_active.png) no-repeat;
+  background-size: contain;
+  border: none;
+}
+.row .col.s12 {
+  height: 40px;
+  text-align: center;
+  background: tomato;
+  width: 100%;
+  line-height: 35px;
+  color: white;
+}
+.row .col.s6 {
+  width: 50%;
+  left: auto;
+  right: auto;
+  max-height: 50px;
+  text-align: center;
+  color: white;
+}
+.row .col.s3 {
+  width: 25%;
+  left: auto;
+  right: auto;
+  max-height: 50px;
+  text-align: center;
+  color: white;
+}
+.col.grid-example {
+  margin: 7px 0;
+  text-align: left;
+  font-size: 28px;
+  color: white;
+  padding: 0;
+}
+.row .col {
+  float: left;
+  box-sizing: border-box;
+  padding: 0 .75rem;
+  min-height: 1px;
+}
+
+.circle-menu {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 50px auto;
+  background: white;
+}
+
+.circle-menu ul {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  margin: 50px;
+  padding: 0;
+  list-style: none;
+  border-radius: 50%;                                   /*  THIS IS IMPORTANT  */
+  overflow: hidden;                                     /*  THIS IS IMPORTANT  */
+}
+
+.circle-menu .center{
+  position: absolute;
+  top: 195px;
+  left: 195px;
+  z-index: 1000;
+  border: 5px solid #34495e;
+  border-radius: 50%;
+  box-shadow: 0 0 3px #ccc;
+}
+/* Make each list item right corner to center of the menu */
+.circle-menu li {
+  position: absolute;
+  top: -10px;                                            /*  THIS IS IMPORTANT  */
+  left: -10px;                                           /*  THIS IS IMPORTANT  */
+  width: 160px;
+  height: 160px;
+  transform-origin: 100% 100%;                           /*  THIS IS IMPORTANT  */
+  overflow: hidden;                                      /*  THIS IS IMPORTANT  */
+}
+/*   rotate deg = 360deg / count-of-item  (360/6=60deg);
+     skew deg = 90deg - [rotate deg]
+       each li rotate deg = rotate deg * li-number;
+*/
+.circle-menu li:nth-child(1) {
+  transform: rotate(0deg) skew(30deg);
+}
+.circle-menu li:nth-child(2) {
+  transform: rotate(60deg) skew(30deg);
+}
+.circle-menu li:nth-child(3) {
+  transform: rotate(120deg) skew(30deg);
+}
+.circle-menu li:nth-child(4) {
+  transform: rotate(180deg) skew(30deg);
+}
+.circle-menu li:nth-child(5) {
+  transform: rotate(240deg) skew(30deg);
+}
+.circle-menu li:nth-child(6) {
+  transform: rotate(300deg) skew(30deg);
+}
+/* backflip content */
+.circle-menu li a{
+  display: block;
+  width: 160px;
+  height: 160px;
+  margin-top: 40px;                                     /*  THIS IS IMPORTANT  */
+  margin-left: 40px;                                    /*  THIS IS IMPORTANT  */
+  background: rgba(241, 196, 15, 0.5) url('monitor-4x.png') no-repeat 50% 40%;
+  transform: skew(-30deg) rotate(-60deg);               /*  THIS IS IMPORTANT  */
+  transition: background-color 0.5s;
+}
+
+.circle-menu li:nth-child(even) a {
+  background-color: rgba(241, 196, 15, 0.75);
+}
+
+.circle-menu li a:hover {
+  background-color: rgba(241, 196, 15, 1);
+}
+
+/* Icons */
+
+[class^="icon-"]:before {
+  position: absolute;
+  font-size: 3em;
+  bottom: 50%;
+  right: 35%;
+  color: rgba(240, 240, 240, 1);
+}
