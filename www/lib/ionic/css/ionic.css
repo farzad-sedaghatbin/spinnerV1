@@ -3498,7 +3498,7 @@ ion-infinite-scroll {
     overflow-x: hidden;
     overflow-y: scroll; }
   .overflow-scroll .scroll {
-    position: static;
+    position: absolute;
     height: 100%;
     -webkit-transform: translate3d(0, 0, 0); }
 

@@ -4,8 +4,36 @@ html, body {
   background: #f5f5f5;
 }
 .page-background{
-  background: url('../img/back.jpg') no-repeat;
+  background: url('../img/background.jpg') no-repeat;
   background-size: cover;
+}
+.button-large {
+  border: none;
+  min-width: 290px;
+  min-height: 100px;
+  display: block;
+  color: #FFF;
+  font-size: 55px;
+  line-height: 90px;
+}
+span.upgrade-level {
+  color: white;
+}
+.button-upgrade-wrapper {
+  margin: 0 auto 40px;
+  padding: 8px 20px 8px;
+}
+.button-upgrade-wrapper {
+  max-width: 330px;
+  min-width: 330px;
+  overflow: hidden;
+  border-radius: 70px;
+  padding: 20px;
+  text-align: center;
+  height: 200px;
+}
+.font-60 {
+  font-size: 60px;
 }
 .container .row {
   margin-left: -.75rem;

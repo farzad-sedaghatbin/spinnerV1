@@ -111,7 +111,7 @@ button:focus {
 .spins-counter {
     position: absolute;
     top: 140px;
-    left: 10px;
+    left: 100px;
     padding: 0;
     min-width: 447px;
     min-height: 107px;

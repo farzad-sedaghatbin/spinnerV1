@@ -29,10 +29,20 @@ angular.module('starter', ['ionic','starter.controllers'])
         controller: 'HomeCtrl',
         templateUrl: 'home.html'
       })
+      .state('login', {
+        url: '/login',
+        controller: 'LoginCtrl',
+        templateUrl: 'login.html'
+      })
       .state('board', {
         url: '/board',
         controller: 'BoardCtrl',
         templateUrl: 'board.html'
+      })
+      .state('buy', {
+        url: '/buy',
+        controller: 'BuyCtrl',
+        templateUrl: 'buy.html'
       });
     $urlRouterProvider.otherwise('/home');
   });

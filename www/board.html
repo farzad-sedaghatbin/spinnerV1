@@ -1,15 +1,14 @@
 <ion-view>
   <ion-content scroll="false" class="page-background">
-    <nav class="circle-menu" style="background: none">
-      <div class="center"></div>
-      <ul>
-        <li><a href="spinner/spinner.html" class="icon-gist-secret"></a></li>
-        <li><a href="motor/www.gameeapp.com/game/kAHVRl.html" class="icon-hubot"></a></li>
-        <li><a href="space/www.gameeapp.com/game/ibBTDViUP.html" class="icon-hourglass"></a></li>
-        <li><a href="ninja/www.gameeapp.com/game/G1oy49taR.html" class="icon-light-bulb"></a></li>
-        <li><a href="puzzle/www.gameeapp.com/game/FGM7TVW2Ma.html" class="icon-squirrel"></a></li>
-        <li><a href="car/www.gameeapp.com/game/oFfW2omiW.html" class="icon-law"></a></li>
-      </ul>
-    </nav>
+    <a class="coins-total ui-text" style="left: 0" href="/">
+      <img class="coins-ico" src="img/back.png" style="width: 56px"/>
+    </a>
+    <!--<circle menuFunHandler="menuHander(data);" config="circularMenuConfig"></circle>-->
+    <div class=cicular_wrapper>
+      <div class="m">
+        <div class="btn trigger" ng-click="toglefun()"><span class="line" ></span></div>
+        <div class="rotater" ng-repeat="imageObj in config.submenus" ng-click="menufun($index+1);"><a href="{{imageObj.adr}}" class="btn btn-icon"><i ng-if="!imageObj.img" class="{{imageObj.menuicon}}"></i><img ng-src="{{imageObj.img}}"> </img></a></div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

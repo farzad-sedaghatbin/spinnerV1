@@ -1,0 +1,44 @@
+<html>
+<head>
+  <script src="lib/ionic/js/jquery-2.2.4.min.js"></script>
+  <script src="lib/ionic/js/jquery.circliful.min.js"></script>
+  <link href="lib/ionic/css/jquery.circliful.css" rel="stylesheet">
+</head>
+<body style="background: url('img/background.jpg');background-size: contain;">
+<a class="coins-total ui-text" style="left: 0" href="/">
+  <img class="coins-ico" src="img/back.png" style="width: 156px"/>
+</a>
+<section class="container">
+  <div class="row">
+  </div>
+</section>
+<script type="text/javascript">
+  $(document).ready(function () {
+    for (i = 0; i < 5; i++) {
+      var outer = $('<div />', {
+        "class": 'col-lg-2'
+      });
+      var inner = $('<div />', {
+        "id": i
+      });
+      outer.append(inner);
+      $(".row").append(outer);
+      $("#"+i).circliful({
+        animation: 1,
+        animationStep: 6,
+        foregroundBorderWidth: 5,
+        backgroundBorderWidth: 1,
+        percent: 80,
+        noPercentageSign:true,
+        replacePercentageByText:'503',
+        iconColor: '#3498DB',
+        text: '2641',
+        textColor:'#ffffff',
+        iconSize: '40',
+        iconPosition: 'middle'
+      });
+    }
+  });
+</script>
+</body>
+</html>

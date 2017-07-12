@@ -17,12 +17,17 @@
 
 
 <body ontouchstart="">
-
+<script type="text/javascript">
+  function home() {
+    window.location.href = "/";
+    return false;
+  }
+</script>
 <div class="preloader main">
 	<div class="inner">
 		<div class="icon"></div>
 		<div class="type"></div>
-        <div class="claim">Social gaming, endless fun!</div>
+        <div class="claim">بازیهای ما خیلی خوبه</div>
 	</div>
 	<div class="loading_bar"></div>
 </div>
@@ -181,7 +186,9 @@
 
 
 		<div id="canvasWrap">
-
+      <a class="coins-total ui-text" style="left: 0;position: absolute" onclick="return parent.home();">
+        <img class="coins-ico" src="/img/back.png" style="width: 56px"/>
+      </a>
 			<!-- Your score on the top /-->
 			<div class="your_score v2">
 				<div class="this_border">Score: <span class="totalScore">0</span></div>
