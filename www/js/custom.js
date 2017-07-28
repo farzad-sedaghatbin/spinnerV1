@@ -15,7 +15,7 @@ function loading() {
 function stopLoading(){
   $(".omid_spinner").remove();
 }
-function myAlert() {
+function alert() {
   bootbox.dialog({
     message: '<p style="color: black;direction: rtl;text-align: right">Please wait while we do something...</p>',
     closeButton:false,
