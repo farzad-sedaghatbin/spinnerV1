@@ -1,0 +1,14 @@
+<ion-view>
+  <ion-content scroll="false" class="page-background">
+    <a class="coins-total ui-text" style="left: 0" href="/">
+      <img class="coins-ico" src="img/back.png" style="width: 56px"/>
+    </a>
+    <!--<circle menuFunHandler="menuHander(data);" config="circularMenuConfig"></circle>-->
+    <div class=cicular_wrapper>
+      <div class="m">
+        <div class="btn trigger" ng-click="toglefun()"><span class="line" ></span></div>
+        <div class="rotater" ng-repeat="imageObj in config.submenus" ng-click="menufun($index+1);"><a href="{{imageObj.adr}}" class="btn btn-icon"><i ng-if="!imageObj.img" class="{{imageObj.menuicon}}"></i><img ng-src="{{imageObj.img}}"> </img></a></div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

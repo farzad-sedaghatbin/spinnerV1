@@ -1,0 +1,342 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+}
+.bar-stable.bar.bar-header{
+  background: burlywood url(../img/header.png) no-repeat;
+  background-size: 100% 100%;
+
+}
+.menu_head.bar.bar-stable{
+  background: url(../img/menu-up.png) no-repeat;
+  background-size: contain;
+  height:170px;
+  display:inline-block;
+  text-align:center
+}
+.menu_app{
+  top:170px;
+  background: url(../img/menu.jpg) no-repeat;
+  background-size: 100% 100%;
+
+}
+.menu_head img{
+  width:90px;
+  height: 90px;
+  border-radius: 90px;
+  margin: 0 auto;
+  border: 2px solid #fff;
+  margin-top:20px;
+}
+.menu_head p{
+  color:#fff;
+  font-size:15px;
+  padding-top:10px;
+}
+.menu_app .item{
+  background:none;
+  border:none;
+  color:#fff;
+  text-align:center;
+  font-size:14px;
+}
+.menu_app .item-complex .item-content{
+  background:none;
+  padding:15px;
+}
+.menu_app img{
+  width:24px;
+  margin:0 auto;
+  display:block;
+  margin-bottom:10px;
+}
+.error-message {
+  padding: 3px 20px 3px 5px;
+  margin: 0;
+  color: #d62d20;
+  font-size: 16px;
+  text-align: right;
+}
+::-webkit-input-placeholder { /* Chrome */
+   direction: rtl !important;
+ }
+:-ms-input-placeholder { /* IE 10+ */
+  direction: rtl !important;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  direction: rtl !important;
+}
+:-moz-placeholder { /* Firefox 4 - 18 */
+  direction: rtl !important;
+}
+.loginBg{
+
+  background: rgba(73,155,234,1);
+  background: -moz-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 45%, rgba(73,155,234,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(73,155,234,1)), color-stop(45%, rgba(32,124,229,1)), color-stop(100%, rgba(73,155,234,1)));
+  background: -webkit-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 45%, rgba(73,155,234,1) 100%);
+  background: -o-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 45%, rgba(73,155,234,1) 100%);
+  background: -ms-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 45%, rgba(73,155,234,1) 100%);
+  background: linear-gradient(to right, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 45%, rgba(73,155,234,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#499bea', GradientType=1 );
+
+}
+
+.app-logo{ max-width:100px; margin:auto; background-repeat:no-repeat;background-position:center;}
+.top-content { padding-top: 10vh;  text-align: center;   }
+.loginButton{ padding-bottom:0px;}
+.remvoeBP{ padding-bottom:0px;}
+.removePM{ margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; }
+
+#menuLinks .list .item{ border-color:#479CF7;}
+#menuLinks .list .item a{ background:#387EF5; color:#fff;}
+.page-background{
+  background: url('../img/background.jpg') no-repeat;
+  background-size: cover;
+}
+.button-large {
+  border: none;
+  min-width: 290px;
+  min-height: 100px;
+  display: block;
+  color: #FFF;
+  font-size: 55px;
+  line-height: 90px;
+}
+span.upgrade-level {
+  color: white;
+}
+.button-upgrade-wrapper {
+  margin: 0 auto 40px;
+  padding: 8px 20px 8px;
+}
+.button-upgrade-wrapper {
+  max-width: 330px;
+  min-width: 330px;
+  overflow: hidden;
+  border-radius: 70px;
+  padding: 20px;
+  text-align: center;
+  height: 200px;
+}
+.font-60 {
+  font-size: 60px;
+}
+.container .row {
+  margin-left: -.75rem;
+  margin-right: -.75rem;
+}
+.upgrade-ico {
+  position: absolute;
+  top: 14px;
+  right: 10px;
+  min-width: 56px;
+  min-height: 56px;
+  background: url(../img/upgrade_btn_static.png) no-repeat;
+  background-size: contain;
+}
+.font-yellow, .font-yellow span, span.font-yellow {
+  color: #dea010;
+}
+span.font-36 {
+  font-size: 36px;
+}
+.coins-total span {
+  vertical-align: top;
+}
+.coins-ico {
+  margin-top: 7px;
+  margin-right: 10px;
+}
+.coins-total {
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  background-color: transparent;
+  line-height: 100px;
+}
+.row {
+  height: 70px;
+  margin-top: 100px;
+}
+.rate-button {
+  text-align: center;
+  min-width: 100%;
+  min-height: 100%;
+  background: url(../img/name.png) no-repeat;
+  background-size: 100% 100%;
+  border: none;
+  color: white;
+}
+.rate{
+  line-height: 60px;
+  background: url(../img/rate.png) no-repeat center;
+  background-size: contain;
+}
+.battlefield{
+  line-height: 60px;
+  background: url(../img/battlefield.png) no-repeat center;
+  background-size: contain;
+}
+.shelf{
+  line-height: 60px;
+  background: url(../img/shelf.png) no-repeat center;
+  background-size: contain;
+  box-shadow: 0 8px 6px -6px black;
+  height: 30px;
+}
+.row .col.s12 {
+  height: 70px;
+  text-align: center;
+  background: url(../img/sign.png) no-repeat center;
+  background-size: contain;
+  line-height: 70px;
+  color: white;
+  font-size: x-large;
+}
+.blue-button{
+  line-height: 70px;
+  background: url(../img/button1.png) no-repeat center;
+  background-size: contain;
+}
+.red-button{
+  line-height: 70px;
+  background: url(../img/red-button.png) no-repeat center;
+  background-size: contain;
+}
+.gold-button{
+  line-height: 70px;
+  background: url(../img/league.png) no-repeat center;
+  background-size: contain;
+}
+.row .col.s6 {
+  width: 50%;
+  max-height: 50px;
+  text-align: center;
+  color: white;
+}
+.row .col.s4 {
+  width: 33.3333%;
+  min-height: 70px;
+  text-align: center;
+  color: white;
+}
+.row .col.s3 {
+  width: 25%;
+  min-height: 70px;
+  text-align: center;
+  color: white;
+}
+.row .col.s2 {
+  width: 16.6666%;
+  min-height: 70px;
+  text-align: center;
+  color: white;
+}
+.col.grid-example {
+  margin: 7px 0;
+  text-align: left;
+  font-size: 28px;
+  color: white;
+  padding: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.row .col {
+  float: left;
+  box-sizing: border-box;
+  padding: 0 .75rem;
+  min-height: 1px;
+}
+
+.circle-menu {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 50px auto;
+  background: white;
+}
+
+.circle-menu ul {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  margin: 50px;
+  padding: 0;
+  list-style: none;
+  border-radius: 50%;                                   /*  THIS IS IMPORTANT  */
+  overflow: hidden;                                     /*  THIS IS IMPORTANT  */
+}
+
+.circle-menu .center{
+  position: absolute;
+  top: 195px;
+  left: 195px;
+  z-index: 1000;
+  border: 5px solid #34495e;
+  border-radius: 50%;
+  box-shadow: 0 0 3px #ccc;
+}
+/* Make each list item right corner to center of the menu */
+.circle-menu li {
+  position: absolute;
+  top: -10px;                                            /*  THIS IS IMPORTANT  */
+  left: -10px;                                           /*  THIS IS IMPORTANT  */
+  width: 160px;
+  height: 160px;
+  transform-origin: 100% 100%;                           /*  THIS IS IMPORTANT  */
+  overflow: hidden;                                      /*  THIS IS IMPORTANT  */
+}
+/*   rotate deg = 360deg / count-of-item  (360/6=60deg);
+     skew deg = 90deg - [rotate deg]
+       each li rotate deg = rotate deg * li-number;
+*/
+.circle-menu li:nth-child(1) {
+  transform: rotate(0deg) skew(30deg);
+}
+.circle-menu li:nth-child(2) {
+  transform: rotate(60deg) skew(30deg);
+}
+.circle-menu li:nth-child(3) {
+  transform: rotate(120deg) skew(30deg);
+}
+.circle-menu li:nth-child(4) {
+  transform: rotate(180deg) skew(30deg);
+}
+.circle-menu li:nth-child(5) {
+  transform: rotate(240deg) skew(30deg);
+}
+.circle-menu li:nth-child(6) {
+  transform: rotate(300deg) skew(30deg);
+}
+/* backflip content */
+.circle-menu li a{
+  display: block;
+  width: 160px;
+  height: 160px;
+  margin-top: 40px;                                     /*  THIS IS IMPORTANT  */
+  margin-left: 40px;                                    /*  THIS IS IMPORTANT  */
+  background: rgba(241, 196, 15, 0.5) url('monitor-4x.png') no-repeat 50% 40%;
+  transform: skew(-30deg) rotate(-60deg);               /*  THIS IS IMPORTANT  */
+  transition: background-color 0.5s;
+}
+
+.circle-menu li:nth-child(even) a {
+  background-color: rgba(241, 196, 15, 0.75);
+}
+
+.circle-menu li a:hover {
+  background-color: rgba(241, 196, 15, 1);
+}
+
+/* Icons */
+
+[class^="icon-"]:before {
+  position: absolute;
+  font-size: 3em;
+  bottom: 50%;
+  right: 35%;
+  color: rgba(240, 240, 240, 1);
+}

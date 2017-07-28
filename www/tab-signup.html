@@ -1,0 +1,36 @@
+<div class="tabs-striped  tabs-background-positive tabs-color-light">
+  <div class="tabs">
+    <a class="tab-item " href="#/login"><i class="icon ion-unlocked"></i> Login </a>
+    <a class="tab-item active" href="#/signup"> <i class="icon ion-person"></i> Sing Up </a>
+  </div>
+</div>
+
+<ion-view view-title="Sign Up" class="loginBg" hide-nav-bar="true">
+  <ion-content class="padding">
+
+    <div class="row responsive-sm padding remvoeBP">
+      <div class="col">
+        <div class="app-logo"><img src="img/logo.png"></div>
+
+        <div class="list list-inset removePM">
+          <label class="item item-input"><input id="username" type="text" placeholder="نام کاربری"> </label>
+          <label class="item item-input"><input id="tel" type="text" placeholder="شماره همراه"> </label>
+          <label class="item item-input"><input id="pass" type="password" placeholder="کلمه عبور"> </label>
+        </div>
+
+        <div style="text-align: right;margin-bottom: 15px;margin-top: 10px">
+          <button style="background-color: transparent;right: 5%;width: 52px;height: 52px;background-image: url('{{avatar}}');background-size: 52px 52px;border-radius: 50%"
+                  class="button button-fab expanded button-energized-900"></button>
+          <button ng-click="selectAvatar()" style="width: 52px;height: 52px;background-size: 52px 52px;background: url('/img/logo.png') center;border-radius: 50%"
+                  class="button button-fab expanded button-energized-900"></button>
+        </div>
+
+
+        <div class="loginButton" ng-click="signUp()">
+          <button class="button ion-person button-block button-balanced"> ثبت نام</button>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

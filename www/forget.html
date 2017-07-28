@@ -1,0 +1,77 @@
+<ion-view view-title="Sign In" class="loginBg" hide-nav-bar="true">
+  <!-- <ion-nav-title><img src="img/logo.png" width="40"></ion-nav-title> -->
+
+  <ion-content class="padding">
+    <form name="forgetForm" ng-show="!forgetPassCodeForm" novalidate ng-submit="submit(username)">
+      <div class="row responsive-sm padding remvoeBP">
+        <label class="item item-input"><input type="text" id="username" name="username" ng-model="username"
+                                              ng-maxlength="60" class="myText" placeholder="نام کاربری"
+                                              required
+                                              style="text-align: center;padding-right: 30px;background: transparent;border-color: rgb(255,215,198)">
+        </label>
+      </div>
+      <div class="error-message myText" ng-show="forgetForm.username.$error.maxlength && forgetForm.username.$touched">
+        برای فیلد نام کاربری حداکثر 60 کاراکتر وارد کنید
+      </div>
+      <div class="padding removePM">
+        <div class="col">
+          <button type="submit" ng-disabled="forgetForm.$invalid" class=" button-positive button button-block">ثبت
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <form name="confirmForm" ng-show="forgetPassCodeForm" novalidate ng-submit="confirm(code,password)">
+      <div class="padding-top" style="padding-top: 70px">
+        <div class="list list-inset removePM">
+          <label class="item item-input"><input type="text" id="code" name="code" ng-model="code" ng-maxlength="20"
+                                                class="myText" placeholder="کد"
+                                                required
+                                                style="text-align: center;padding-right: 30px;background: transparent;border-color: rgb(255,215,198)">
+          </label>
+        </div>
+        <div class="error-message myText" ng-show="confirmForm.code.$error.maxlength && confirmForm.code.$touched">برای
+          فیلد کد حداکثر 20 کاراکتر وارد کنید
+        </div>
+      </div>
+      <div class="padding-top">
+        <div class="list list-inset removePM">
+          <label class="item item-input"><input type="password" id="password" name="password" ng-model="password"
+                                                class="myText" ng-minlength="6" ng-maxlength="50"
+                                                placeholder="کلمه عبور جدید"
+                                                required
+                                                style="text-align: center;padding-right: 30px;background: transparent;border-color: rgb(255,215,198)"
+                                                ng-change="checkPassword(confirmForm,password,confirmPass)">
+          </label>
+        </div>
+        <div class="error-message myText"
+             ng-show="confirmForm.password.$error.minlength && confirmForm.password.$touched">&#1576;&#1585;&#1575;&#1740;&#32;&#1601;&#1740;&#1604;&#1583;&#32;&#1705;&#1604;&#1605;&#1607;&#32;&#1593;&#1576;&#1608;&#1585;&#32;&#1581;&#1583;&#1575;&#1602;&#1604;&#32;&#54;&#32;&#1705;&#1575;&#1585;&#1575;&#1705;&#1578;&#1585;&#32;&#1608;&#1575;&#1585;&#1583;&#32;&#1705;&#1606;&#1740;&#1583;</div>
+        <div class="error-message myText"
+             ng-show="confirmForm.password.$error.maxlength && confirmForm.password.$touched">برای فیلد کلمه عبور حداکثر
+          50 کاراکتر وارد کنید
+        </div>
+      </div>
+      <div class="padding-top">
+        <div class="list list-inset removePM">
+          <label class="item item-input"><input type="password" id="confirmPass" name="confirmPass"
+                                                ng-model="confirmPass" class="myText"
+                                                style="text-align: center;padding-right: 30px;background: transparent;border-color: rgb(255,215,198)"
+                                                placeholder="تکرار کلمه عبور جدید"
+                                                ng-change="checkPassword(confirmForm,password,confirmPass)" required>
+          </label>
+        </div>
+        <div class="error-message myText"
+             ng-show="confirmForm.confirmPass.$error.validity && confirmForm.confirmPass.$touched">&#1601;&#1740;&#1604;&#1583;&#32;&#1578;&#1705;&#1585;&#1575;&#1585;&#32;&#1705;&#1604;&#1605;&#1607;&#32;&#1593;&#1576;&#1608;&#1585;&#32;&#1576;&#1575;&#32;&#1705;&#1604;&#1605;&#1607;&#32;&#1593;&#1576;&#1608;&#1585;&#32;&#1576;&#1575;&#1740;&#1583;&#32;&#1576;&#1585;&#1575;&#1576;&#1585;&#32;&#1576;&#1575;&#1588;&#1583;</div>
+      </div>
+      <div class="padding removePM">
+        <div class="col">
+          <button type="submit" ng-disabled="confirmForm.$invalid" class=" button-positive button button-block">ورود
+          </button>
+        </div>
+      </div>
+    </form>
+    <div class="padding removePM">
+      <div class="col"><a class=" button-positive button button-block" href="#/login">ورود</a></div>
+    </div>
+  </ion-content>
+</ion-view>
