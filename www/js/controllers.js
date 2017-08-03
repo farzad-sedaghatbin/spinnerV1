@@ -34,7 +34,10 @@ angular.module('starter.controllers', [])
     $scope.me = "img/PNG/A01.png";
     $scope.other = "img/PNG/A02.png";
     $scope.isLeague = function () {
-      return true;
+      return false;
+    };
+    $scope.coining = function () {
+      $state.go("app.coining");
     };
     $scope.training = function () {
       $state.go("app.board");
@@ -148,7 +151,71 @@ angular.module('starter.controllers', [])
   })
   .controller('BuyCtrl', function ($scope, $state) {
   })
+  .controller('TableCtrl', function ($scope, $state,$ionicSideMenuDelegate) {
+    $ionicSideMenuDelegate.canDragContent(false)
+  })
+  .controller('InvitationCtrl', function ($scope, $state) {
+  })
+  .controller('WheelCtrl', function ($scope, $state) {
+    $scope.spin = function(index) {
+      var count = $(".triangle").length;
+      var $spinner = $(".spinneromid");
+      var value = index >= 0 ? index : parseInt(Math.random() * count);
+      var preffix = "index-";
+      $spinner.toggleClass("spin");
+      $spinner[0].className = $spinner[0].className.replace(
+        new RegExp("(^|\\s)" + preffix + "\\S+", "g"),
+        ""
+      );
+      $spinner.addClass(preffix + value);
+    };
+  })
+  .controller('CoiningCtrl', function ($scope, $state) {
+    $scope.goHome = function () {
+      $state.go("app.home")
+    };
+    $scope.wheel = function () {
+      $state.go("app.wheel");
+    };
+    $scope.invitation = function () {
+      $state.go("app.invitation");
+    };
+    $scope.tapsell = function () {
+      tapsell.requestAd(null, false, function(result){
+        if(result['action']=='onAdAvailable')
+        {
+          tapsell.showAd(result['adId'], true, true, tapsell_rotation_locked_portrait , false);
+          tapsell.setRewardCallback(function (result){
+            if(result['action']=='onAdShowFinished')
+            {
+              if (result['completed'] && result['rewarded']){
+                alert("karbare dayus aya hal kardi ba tabligh?")
+              }
+            }
+          });
+        }
+        else if( result['action']=='onNoAdAvailable' )
+        {
+
+        }
+        else if( result['action']=='onNoNetwork' )
+        {
+
+        }
+        else if( result['action']=='onError' )
+        {
+
+        }
+        else if(result['action']=='onExpiring')
+        {
+
+        }
+      });
+    }
+  })
   .controller('BattlefieldCtrl', function ($scope, $state) {
+    $scope.me = "img/PNG/A01.png";
+    $scope.other = "img/PNG/A02.png";
     var fiveSeconds = new Date().getTime() + 6000;
     $('#clock').countdown(fiveSeconds, {elapse: true})
       .on('update.countdown', function (event) {

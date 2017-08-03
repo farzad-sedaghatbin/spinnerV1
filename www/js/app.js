@@ -7,6 +7,7 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
+    tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -71,6 +72,42 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         url: '/forget',
         controller: 'ForgetCtrl',
         templateUrl: 'forget.html'
+      })
+      .state('app.coining', {
+        url: '/coining',
+        views: {
+          'menuContent': {
+            templateUrl: 'coining.html',
+            controller: 'CoiningCtrl'
+          }
+        }
+      })
+      .state('app.wheel', {
+        url: '/wheel',
+        views: {
+          'menuContent': {
+            templateUrl: 'wheel.html',
+            controller: 'WheelCtrl'
+          }
+        }
+      })
+      .state('app.invitation', {
+        url: '/invitation',
+        views: {
+          'menuContent': {
+            templateUrl: 'invitation.html',
+            controller: 'InvitationCtrl'
+          }
+        }
+      })
+      .state('app.table', {
+        url: '/table',
+        views: {
+          'menuContent': {
+            templateUrl: 'table.html',
+            controller: 'TableCtrl'
+          }
+        }
       })
       .state('buy', {
         url: '/buy',

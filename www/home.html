@@ -1,105 +1,129 @@
-<ion-view>
-  <ion-content class="has-header page-background">
-    <div style="padding-bottom: 90px">
-    <div class="coins-total ui-text"><img class="coins-ico" src="img/coin.png"><span
-      class="font-36 font-yellow">0</span>
-    </div>
-    <!--<div class="upgrade-ico" ng-click="avatar()"></div>-->
-    <!--<a class="upgrade-ico" href="ranks.html" style="right: 80px"></a>-->
+<ion-view hide-nav-bar="true">
+  <ion-content class="page-background">
+    <nav class="menu-omid">
+      <input type="checkbox" href="#" class="menu-open-omid" name="menu-open" id="menu-open"/>
+      <label class="menu-open-button" for="menu-open">
+        <span class="hamburger hamburger-1"></span>
+        <span class="hamburger hamburger-2"></span>
+        <span class="hamburger hamburger-3"></span>
+      </label>
+      <a href="#" class="menu-item-omid"> <i class="ion-person-add"></i> </a>
+      <a href="#" class="menu-item-omid"> <i class="ion-locked"></i> </a>
+      <a href="#" class="menu-item-omid"> <i class="ion-log-in"></i> </a>
+    </nav>
+    <!-- filters -->
+    <svg width="5px" height="5px">
+      <defs>
+        <filter id="shadowed-goo">
 
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+          <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
+          <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2" result="shadow" />
+          <feOffset in="shadow" dx="1" dy="1" result="shadow" />
+          <feBlend in2="shadow" in="goo" result="goo" />
+          <feBlend in2="goo" in="SourceGraphic" result="mix" />
+        </filter>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+          <feBlend in2="goo" in="SourceGraphic" result="mix" />
+        </filter>
+      </defs>
+    </svg>
 
-    <div class="row" style="height: 70px;margin-top: 80px">
-      <div class="col grid-example s12">
-        نا تمام ها
-      </div>
-    </div>
-    <div class="row" style="margin-bottom: 10px;">
-      <div class="col grid-example s3" style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-        <img style="width: 52px;margin-top: 8px" src="{{me}}">
-      </div>
-      <div class="col grid-example s3 rate" style="margin-right: 5px">
-        2000
-      </div>
-      <div class="col grid-example s3 rate" style="margin-left: 5px">
-        51
-      </div>
-      <div class="col grid-example s3" style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-        <img style="width: 52px;margin-top: 8px" src="{{other}}">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col grid-example s6" style="">
-        <button class="rate-button">من</button>
-      </div>
-      <div class="col grid-example s6" style="">
-        <button class="rate-button">قلی</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col grid-example s4 battlefield" ng-click="battlefield()">
-        بازی هامون
-      </div>
-    </div>
+    <button ng-click="coining()" class="fab">♥</button>
 
-    <!--<div class="row" style="padding-top: 20px">-->
+    <div class="myText">
+      <div class="row" style="margin-top: 0;height: 120px;margin-left: 50%">
+        <div class="col grid-example s3 board" style="max-width: 25%;right: 25%;position: absolute;height: 100px;">
+          <div style="line-height: 35px;color: black">امید</div>
+          <div style="line-height: 25px;color: black"> سکه : 135</div>
+          <div style="line-height: 15px;color: black"> رتبه : 125</div>
+        </div>
+        <div class="col grid-example s3" style="background: url(img/pic.png) no-repeat center;background-size: contain;max-width: 25%;right: 0;position: absolute;"
+             ng-click="training()">
+          <img style="width: 48px;margin-top: 18px" src="{{me}}">
+        </div>
+      </div>
+      <!--<div class="upgrade-ico" ng-click="avatar()"></div>-->
+      <!--<a class="upgrade-ico" href="ranks.html" style="right: 80px"></a>-->
+
+      <div class="row" style="margin-bottom: 50px">
+        <div ng-show="!isLeague()" class="row">
+          <div class="col grid-example s6 blue-button"
+               ng-click="training()">
+            تمرین میکنم
+          </div>
+          <div class="col grid-example s6 red-button">
+            حریف میطلبم
+          </div>
+        </div>
+        <div ng-show="isLeague()" class="row">
+          <div class="col grid-example s4 blue-button" style="font-size: large"
+               ng-click="training()">
+            تمرین میکنم
+          </div>
+          <div class="col grid-example s4 green-button" style="font-size: large">
+            لیگ
+          </div>
+          <div class="col grid-example s4 red-button" style="font-size: large">
+            حریف میطلبم
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col grid-example s12"
+             style="text-align: left;background-position-x: left;background-size: 25% 100%;font-size: small">
+          نا تمام ها
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 10px;">
+        <div class="col grid-example s3"
+             style="background: url(img/pic.png) no-repeat center;background-size: contain;">
+          <img style="width: 48px;margin-top: 8px" src="{{other}}">
+        </div>
+        <div class="col grid-example s3 rate-button" style="margin-right: 5px">
+          قلی
+        </div>
+        <div class="col grid-example s3 rate" style="margin-left: 5px">
+          <div style="line-height: 35px">2 - 0</div>
+          <div style="line-height: 25px">جلوست</div>
+        </div>
+        <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield()">
+          بازی هامون
+        </div>
+      </div>
+
+      <!--<div class="row" style="padding-top: 20px">-->
       <!--<div class="col grid-example s4 shelf" style="min-height: 30px;">-->
       <!--</div>-->
-    <!--</div>-->
+      <!--</div>-->
 
 
-    <div class="row" style="height: 70px;margin-top: 70px">
-      <div class="col grid-example s12">
-        تمام شده ها
+      <div class="row">
+        <div class="col grid-example s12"
+             style="text-align: left;background-position-x: left;background-size: 25% 100%;font-size: small">
+          تمام شده ها
+        </div>
       </div>
-    </div>
-    <div class="row" style="margin-bottom: 10px;">
-      <div class="col grid-example s3" style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-        <img style="width: 52px;margin-top: 8px" src="{{me}}">
+      <div class="row" style="margin-bottom: 10px;">
+        <div class="col grid-example s3"
+             style="background: url(img/pic.png) no-repeat center;background-size: contain;">
+          <img style="width: 48px;margin-top: 8px" src="{{other}}">
+        </div>
+        <div class="col grid-example s3 rate-button" style="margin-right: 5px">
+          دیوث
+        </div>
+        <div class="col grid-example s3 rate" style="margin-left: 5px">
+          <div style="line-height: 35px">3 - 2</div>
+          <div style="line-height: 25px">برد</div>
+        </div>
+        <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield()">
+          بازی هامون
+        </div>
       </div>
-      <div class="col grid-example s3 rate" style="margin-right: 5px">
-        1500
-      </div>
-      <div class="col grid-example s3 rate" style="margin-left: 5px">
-        200
-      </div>
-      <div class="col grid-example s3" style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-        <img style="width: 52px;margin-top: 8px" src="{{other}}">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col grid-example s6" style="">
-        <button class="rate-button">من</button>
-      </div>
-      <div class="col grid-example s6" style="">
-        <button class="rate-button">حسین</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col grid-example s4 battlefield" ng-click="battlefield()">
-        بازی هامون
-      </div>
-    </div>
     </div>
   </ion-content>
-    <div ng-show="!isLeague()" class="row" style="position: fixed;bottom: 0;width: 100%;background: burlywood">
-      <div class="col grid-example s6 blue-button"
-           ng-click="training()">
-        تمرین میکنم
-      </div>
-      <div class="col grid-example s6 red-button" >
-        حریف میطلبم
-      </div>
-    </div>
-    <div ng-show="isLeague()" class="row" style="position: fixed;bottom: 0;width: 100%;background: burlywood">
-      <div class="col grid-example s4 blue-button" style="font-size: large"
-           ng-click="training()">
-        تمرین میکنم
-      </div>
-      <div class="col grid-example s4 gold-button" style="color: darkmagenta;">
-        لیگ
-      </div>
-      <div class="col grid-example s4 red-button" style="font-size: large">
-        حریف میطلبم
-      </div>
-    </div>
 </ion-view>
