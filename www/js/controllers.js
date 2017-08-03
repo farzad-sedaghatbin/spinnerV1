@@ -171,12 +171,12 @@ angular.module('starter.controllers', [])
   .controller('TableCtrl', function ($scope, $state,$ionicSideMenuDelegate) {
     $ionicSideMenuDelegate.canDragContent(false)
   })
-  .controller('InvitationCtrl', function ($scope, $state) {
+  .controller('InvitationCtrl', function ($scope, $state,$ionicHistory) {
     $scope.goBack = function () {
-      $state.go("coining");
+      $ionicHistory.goBack();
     }
   })
-  .controller('WheelCtrl', function ($scope, $state) {
+  .controller('WheelCtrl', function ($scope, $state,$ionicHistory) {
     $scope.spin = function(index) {
       var count = $(".triangle").length;
       var $spinner = $(".spinneromid");
@@ -190,12 +190,12 @@ angular.module('starter.controllers', [])
       $spinner.addClass(preffix + value);
     };
     $scope.goBack = function () {
-      $state.go("coining");
+      $ionicHistory.goBack();
     }
   })
-  .controller('CoiningCtrl', function ($scope, $state) {
+  .controller('CoiningCtrl', function ($scope, $state,$ionicHistory) {
     $scope.goBack = function () {
-      $state.go("app.home")
+      $ionicHistory.goBack();
     };
     $scope.wheel = function () {
       $state.go("wheel");
@@ -250,7 +250,7 @@ angular.module('starter.controllers', [])
         }
       });
   })
-  .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService) {
+  .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService,$ionicHistory) {
     $scope.doLogin = function () {
       var username = $("#username");
       var pass = $("#pass");
@@ -284,10 +284,10 @@ angular.module('starter.controllers', [])
         });
     }
     $scope.goBack = function () {
-      $state.go("app.home")
+      $ionicHistory.goBack();
     }
   })
-  .controller('ForgetCtrl', function ($scope, $state,menuService,$http,$ionicPopup) {
+  .controller('ForgetCtrl', function ($scope, $state,menuService,$http,$ionicPopup,$ionicHistory) {
     $scope.submit = function (username) {
       menuService.startLoading();
       var signUpUrl = "http://192.168.1.12:8080/api/1/forget";
@@ -349,10 +349,10 @@ angular.module('starter.controllers', [])
       form.confirmPass.$setValidity("validity", !result);
     };
     $scope.goBack = function () {
-      $state.go("app.home")
+      $ionicHistory.goBack();
     }
   })
-  .controller('SignupCtrl', function ($scope, $ionicModal,menuService,$ionicPopup,$http,$state,$rootScope) {
+  .controller('SignupCtrl', function ($scope, $ionicModal,menuService,$ionicPopup,$http,$state,$rootScope,$ionicHistory) {
     $scope.avatar = 'img/PNG/anon.png';
     $scope.tiles = ['/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png','/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png'];
     var rowSize = Math.ceil($scope.tiles.length / 3);
@@ -405,7 +405,7 @@ angular.module('starter.controllers', [])
         });
     };
     $scope.goBack = function () {
-      $state.go("app.home");
+      $ionicHistory.goBack();
     }
   });
 
