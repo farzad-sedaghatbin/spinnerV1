@@ -30,11 +30,30 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('HomeCtrl', function ($scope, $state, $ionicModal) {
+  .controller('HomeCtrl', function ($scope, $state, $ionicModal,$rootScope) {
     $scope.me = "img/PNG/A01.png";
     $scope.other = "img/PNG/A02.png";
     $scope.isLeague = function () {
       return false;
+    };
+    var isOperationOpen = false;
+    $scope.operations = function () {
+      if (isOperationOpen){
+        $("#ranks").css("transform", "translate3d(0, 0, 0)");
+        isOperationOpen = false;
+      } else {
+        $("#ranks").css("transform", "translate3d(40.18543px, 50.2491px, 0)");
+        isOperationOpen = true;
+      }
+    }
+    $scope.register = function () {
+      $state.go("signup")
+    };
+    $scope.changePass = function () {
+      $state.go("login")
+    };
+    $scope.forgetPass = function () {
+      $state.go("forget")
     };
     $scope.coining = function () {
       $state.go("app.coining");
@@ -260,6 +279,9 @@ angular.module('starter.controllers', [])
           menuService.stopLoading();
         });
     }
+    $scope.goBack = function () {
+      $state.go("app.home")
+    }
   })
   .controller('ForgetCtrl', function ($scope, $state,menuService,$http,$ionicPopup) {
     $scope.submit = function (username) {
@@ -322,6 +344,9 @@ angular.module('starter.controllers', [])
       $scope.result = result;
       form.confirmPass.$setValidity("validity", !result);
     };
+    $scope.goBack = function () {
+      $state.go("app.home")
+    }
   })
   .controller('SignupCtrl', function ($scope, $ionicModal,menuService,$ionicPopup,$http,$state,$rootScope) {
     $scope.avatar = 'img/PNG/anon.png';
@@ -375,5 +400,8 @@ angular.module('starter.controllers', [])
           menuService.stopLoading();
         });
     };
+    $scope.goBack = function () {
+      $state.go("app.home");
+    }
   });
 

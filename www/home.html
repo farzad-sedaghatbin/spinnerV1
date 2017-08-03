@@ -7,9 +7,9 @@
         <span class="hamburger hamburger-2"></span>
         <span class="hamburger hamburger-3"></span>
       </label>
-      <a href="#" class="menu-item-omid"> <i class="ion-person-add"></i> </a>
-      <a href="#" class="menu-item-omid"> <i class="ion-locked"></i> </a>
-      <a href="#" class="menu-item-omid"> <i class="ion-log-in"></i> </a>
+      <a ng-click="register()" class="menu-item-omid"> <i class="ion-person-add"></i> </a>
+      <a ng-click="changePass()" class="menu-item-omid"> <i class="ion-locked"></i> </a>
+      <a ng-click="forgetPass()" class="menu-item-omid"> <i class="ion-log-in"></i> </a>
     </nav>
     <!-- filters -->
     <svg width="5px" height="5px">
@@ -31,8 +31,17 @@
         </filter>
       </defs>
     </svg>
-
-    <button ng-click="coining()" class="fab">♥</button>
+    <nav class="menu-omid" ng-click="operations()">
+      <input type="checkbox" href="#" class="menu-open-omid" name="my-menu-open" id="my-menu-open"/>
+      <label class="menu-open-button" for="my-menu-open" style="top: 80px;">
+        <span class="hamburger hamburger-1"></span>
+        <span class="hamburger hamburger-2"></span>
+        <span class="hamburger hamburger-3"></span>
+      </label>
+      <a ng-click="register()" class="menu-item-omid" style="top: 80px;"> <i class="ion-person-add"></i> </a>
+      <a id="ranks" ng-click="changePass()" class="menu-item-omid" style="top: 80px;"> <i class="ion-locked"></i> </a>
+    </nav>
+    <!--<button ng-click="coining()" class="fab">♥</button>-->
 
     <div class="myText">
       <div class="row" style="margin-top: 0;height: 120px;margin-left: 50%">
@@ -75,7 +84,7 @@
 
       <div class="row">
         <div class="col grid-example s12"
-             style="text-align: left;background-position-x: left;background-size: 25% 100%;font-size: small">
+             style="text-align: left;background-position-x: left;background-size: 25% 100%;font-size: small;margin-left: 20px">
           نا تمام ها
         </div>
       </div>
@@ -104,7 +113,7 @@
 
       <div class="row">
         <div class="col grid-example s12"
-             style="text-align: left;background-position-x: left;background-size: 25% 100%;font-size: small">
+             style="text-align: left;background-position-x: left;background-size: 25% 100%;font-size: small;margin-left: 20px">
           تمام شده ها
         </div>
       </div>

@@ -61,12 +61,12 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
       .state('login', {
         url: '/login',
         controller: 'LoginCtrl',
-        templateUrl: 'tab-signin.html'
+        templateUrl: 'login.html'
       })
       .state('signup', {
         url: '/signup',
         controller: 'SignupCtrl',
-        templateUrl: 'tab-signup.html'
+        templateUrl: 'signup.html'
       })
       .state('forget', {
         url: '/forget',

@@ -248,6 +248,11 @@ span.font-36 {
   background: url(../img/board.png) no-repeat center;
   background-size: contain;
 }
+.mytitle{
+  line-height: 70px;
+  background: url(../img/title.png) no-repeat center;
+  background-size: contain;
+}
 .red-button{
   line-height: 70px;
   background: url(../img/red-button.png) no-repeat center;
