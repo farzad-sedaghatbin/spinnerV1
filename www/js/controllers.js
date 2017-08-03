@@ -36,16 +36,6 @@ angular.module('starter.controllers', [])
     $scope.isLeague = function () {
       return false;
     };
-    var isOperationOpen = false;
-    $scope.operations = function () {
-      if (isOperationOpen){
-        $("#ranks").css("transform", "translate3d(0, 0, 0)");
-        isOperationOpen = false;
-      } else {
-        $("#ranks").css("transform", "translate3d(40.18543px, 50.2491px, 0)");
-        isOperationOpen = true;
-      }
-    }
     $scope.register = function () {
       $state.go("signup")
     };

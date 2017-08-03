@@ -71,8 +71,9 @@
 }
 
 .menu-omid {
+  z-index: 100;
   position: absolute;
-  left: 60px;
+  left: 110px;
   margin-left: -190px;
   padding-top: 20px;
   padding-left: 190px;
@@ -81,7 +82,7 @@
   box-sizing: border-box;
   font-size: 20px;
   text-align: left;
-  top: 0px;
+  top: 10px;
 }
 
 .menu-item-omid:hover {
@@ -142,13 +143,13 @@
   -webkit-transition-duration: 160ms;
   transition-duration: 160ms;
   -webkit-transform: translate3d(114.42548px, 11.48084px, 0);
-  transform: translate3d(60.42548px, 5px, 0);
+  transform: translate3d(60.42548px, -15px, 0);
 }
 .menu-open-omid:checked ~ .menu-item-omid:nth-child(4) {
   -webkit-transition-duration: 240ms;
   transition-duration: 240ms;
   -webkit-transform: translate3d(77.18543px, 85.2491px, 0);
-  transform: translate3d(50.18543px, 55.2491px, 0);
+  transform: translate3d(45.18543px, 33.2491px, 0);
 }
 .menu-open-omid:checked ~ .menu-item-omid:nth-child(5) {
   -webkit-transition-duration: 320ms;
@@ -160,13 +161,13 @@
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
   -webkit-transform: translate3d(-77.04956px, 85.37192px, 0);
-  transform: translate3d(-77.04956px, 85.37192px, 0);
+  transform: translate3d(-45.04956px, 33.37192px, 0);
 }
 .menu-open-omid:checked ~ .menu-item-omid:nth-child(7) {
   -webkit-transition-duration: 480ms;
   transition-duration: 480ms;
   -webkit-transform: translate3d(-114.40705px, 11.66307px, 0);
-  transform: translate3d(-114.40705px, 11.66307px, 0);
+  transform: translate3d(-60.40705px, -15px, 0);
 }
 
 
