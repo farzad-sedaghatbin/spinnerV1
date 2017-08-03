@@ -73,32 +73,20 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         controller: 'ForgetCtrl',
         templateUrl: 'forget.html'
       })
-      .state('app.coining', {
+      .state('coining', {
         url: '/coining',
-        views: {
-          'menuContent': {
-            templateUrl: 'coining.html',
-            controller: 'CoiningCtrl'
-          }
-        }
+        controller: 'CoiningCtrl',
+        templateUrl: 'coining.html'
       })
-      .state('app.wheel', {
+      .state('wheel', {
         url: '/wheel',
-        views: {
-          'menuContent': {
-            templateUrl: 'wheel.html',
-            controller: 'WheelCtrl'
-          }
-        }
+        controller: 'WheelCtrl',
+        templateUrl: 'wheel.html'
       })
-      .state('app.invitation', {
+      .state('invitation', {
         url: '/invitation',
-        views: {
-          'menuContent': {
-            templateUrl: 'invitation.html',
-            controller: 'InvitationCtrl'
-          }
-        }
+        controller: 'InvitationCtrl',
+        templateUrl: 'invitation.html'
       })
       .state('app.table', {
         url: '/table',

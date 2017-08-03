@@ -193,21 +193,25 @@ span.font-36 {
   text-align: right !important;
 }
 .coining1{
+  margin-top: 50px;
   line-height: 60px;
   background: url(../img/1.png) no-repeat center;
   background-size: contain;
 }
 .coining2{
+  margin-top: 20px;
   line-height: 60px;
   background: url(../img/2.png) no-repeat center;
   background-size: contain;
 }
 .coining3{
+  margin-top: 20px;
   line-height: 60px;
   background: url(../img/3.png) no-repeat center;
   background-size: contain;
 }
 .coining4{
+  margin-top: 20px;
   line-height: 60px;
   background: url(../img/4.png) no-repeat center;
   background-size: contain;

@@ -46,7 +46,7 @@ angular.module('starter.controllers', [])
       $state.go("forget")
     };
     $scope.coining = function () {
-      $state.go("app.coining");
+      $state.go("coining");
     };
     $scope.training = function () {
       $state.go("app.board");
@@ -164,6 +164,9 @@ angular.module('starter.controllers', [])
     $ionicSideMenuDelegate.canDragContent(false)
   })
   .controller('InvitationCtrl', function ($scope, $state) {
+    $scope.goBack = function () {
+      $state.go("coining");
+    }
   })
   .controller('WheelCtrl', function ($scope, $state) {
     $scope.spin = function(index) {
@@ -178,16 +181,19 @@ angular.module('starter.controllers', [])
       );
       $spinner.addClass(preffix + value);
     };
+    $scope.goBack = function () {
+      $state.go("coining");
+    }
   })
   .controller('CoiningCtrl', function ($scope, $state) {
-    $scope.goHome = function () {
+    $scope.goBack = function () {
       $state.go("app.home")
     };
     $scope.wheel = function () {
-      $state.go("app.wheel");
+      $state.go("wheel");
     };
     $scope.invitation = function () {
-      $state.go("app.invitation");
+      $state.go("invitation");
     };
     $scope.tapsell = function () {
       tapsell.requestAd(null, false, function(result){
