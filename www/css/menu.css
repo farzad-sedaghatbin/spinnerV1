@@ -216,6 +216,30 @@ span.font-36 {
   background: url(../img/4.png) no-repeat center;
   background-size: contain;
 }
+.row1{
+  margin-top: 50px;
+  line-height: 60px;
+  background: url(../img/row1.png) no-repeat center;
+  background-size: contain;
+}
+.row3{
+  margin-top: 20px;
+  line-height: 60px;
+  background: url(../img/row3.png) no-repeat center;
+  background-size: contain;
+}
+.row2{
+  margin-top: 20px;
+  line-height: 60px;
+  background: url(../img/row2.png) no-repeat center;
+  background-size: contain;
+}
+.row4{
+  margin-top: 20px;
+  line-height: 60px;
+  background: url(../img/row4.png) no-repeat center;
+  background-size: contain;
+}
 .emtiaz{
   line-height: 60px;
   background: url(../img/emtiaz.png) no-repeat center;
@@ -225,13 +249,6 @@ span.font-36 {
   line-height: 60px;
   background: url(../img/battlefield.png) no-repeat center;
   background-size: contain;
-}
-.shelf{
-  line-height: 60px;
-  background: url(../img/shelf.png) no-repeat center;
-  background-size: contain;
-  box-shadow: 0 8px 6px -6px black;
-  height: 30px;
 }
 .row .col.s12 {
   height: 70px;

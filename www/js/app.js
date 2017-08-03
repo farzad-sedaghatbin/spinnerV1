@@ -88,6 +88,11 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         controller: 'InvitationCtrl',
         templateUrl: 'invitation.html'
       })
+      .state('ranks', {
+        url: '/ranks',
+        controller: 'RanksCtrl',
+        templateUrl: 'ranks.html'
+      })
       .state('app.table', {
         url: '/table',
         views: {

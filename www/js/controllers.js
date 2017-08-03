@@ -36,6 +36,9 @@ angular.module('starter.controllers', [])
     $scope.isLeague = function () {
       return false;
     };
+    $scope.ranks = function () {
+      $state.go("ranks")
+    };
     $scope.register = function () {
       $state.go("signup")
     };
@@ -159,6 +162,11 @@ angular.module('starter.controllers', [])
     }
   })
   .controller('BuyCtrl', function ($scope, $state) {
+  })
+  .controller('RanksCtrl', function ($scope, $state,$ionicHistory) {
+    $scope.goBack = function () {
+      $ionicHistory.goBack();
+    }
   })
   .controller('TableCtrl', function ($scope, $state,$ionicSideMenuDelegate) {
     $ionicSideMenuDelegate.canDragContent(false)
