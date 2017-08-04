@@ -40,23 +40,15 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
           }
         }
       })
-      .state('app.board', {
+      .state('board', {
         url: '/board',
-        views: {
-          'menuContent': {
-            templateUrl: 'board.html',
-            controller: 'BoardCtrl'
-          }
-        }
+        controller: 'BoardCtrl',
+        templateUrl: 'board.html'
       })
-      .state('app.battlefield', {
+      .state('battlefield', {
         url: '/battlefield',
-        views: {
-          'menuContent': {
-            templateUrl: 'battlefield.html',
-            controller: 'BattlefieldCtrl'
-          }
-        }
+        controller: 'BattlefieldCtrl',
+        templateUrl: 'battlefield.html'
       })
       .state('login', {
         url: '/login',

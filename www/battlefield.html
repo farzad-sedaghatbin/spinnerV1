@@ -1,10 +1,24 @@
 <ion-view>
   <ion-content class="page-background" id="HomeController">
     <div class="myText">
-    <div class="row">
-    <div style="color: whitesmoke;width: 100%;text-align: right" id="clock"></div>
-    </div>
-    <div class="row" style="margin-bottom: 10px;">
+      <div class="row">
+        <a class="col grid-example s6" style="text-align: left" ng-click="goBack()">
+          <img class="coins-ico" src="img/back.jpg" style="width: 56px"/>
+        </a>
+        <a class="col grid-example s6 mytitle">
+          آوردگاه
+        </a>
+      </div>
+      <div class="row" style="margin-bottom: 20px;margin-top: 20px">
+          <div class="col grid-example s6 blue-button"
+               ng-click="training()">
+            طسلیم شو
+          </div>
+          <div class="col grid-example s6 red-button">
+            بازی کن
+          </div>
+      </div>
+    <div class="row" style="margin-bottom: 10px">
       <div class="col grid-example s3" style="background: url(img/pic.png) no-repeat center;background-size: contain;">
         <img style="width: 48px;margin-top: 8px" src="{{me}}">
       </div>

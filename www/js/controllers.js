@@ -52,16 +52,16 @@ angular.module('starter.controllers', [])
       $state.go("coining");
     };
     $scope.training = function () {
-      $state.go("app.board");
+      $state.go("board");
     };
     $scope.buy = function () {
       $state.go("buy")
     };
     $scope.battlefield = function () {
-      $state.go("app.battlefield");
+      $state.go("battlefield");
     };
   })
-  .controller('BoardCtrl', function ($scope, $timeout) {
+  .controller('BoardCtrl', function ($scope, $timeout,$ionicHistory) {
     var root = true;
     $scope.config = {
       status: false,
@@ -160,6 +160,9 @@ angular.module('starter.controllers', [])
           break;
       }
     }
+    $scope.goBack = function () {
+      $ionicHistory.goBack();
+    }
   })
   .controller('BuyCtrl', function ($scope, $state) {
   })
@@ -236,7 +239,7 @@ angular.module('starter.controllers', [])
       });
     }
   })
-  .controller('BattlefieldCtrl', function ($scope, $state) {
+  .controller('BattlefieldCtrl', function ($scope, $state,$ionicHistory) {
     $scope.me = "img/PNG/A01.png";
     $scope.other = "img/PNG/A02.png";
     var fiveSeconds = new Date().getTime() + 6000;
@@ -249,6 +252,9 @@ angular.module('starter.controllers', [])
           $this.html(event.strftime('وقت باقیمانده: <span>%H:%M:%S</span>'));
         }
       });
+    $scope.goBack = function () {
+      $ionicHistory.goBack();
+    }
   })
   .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService,$ionicHistory) {
     $scope.doLogin = function () {
