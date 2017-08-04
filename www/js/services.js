@@ -1,7 +1,7 @@
 var app = angular.module('starter.services', []);
 
 app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http) {
-  var db = openDatabase('mydb', '1.0', 'Test DB', 1024 * 1024);
+  var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
   var startLoading = function () {
     $ionicLoading.show({
       showBackdrop: true,

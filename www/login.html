@@ -6,17 +6,25 @@
           <img class="coins-ico" src="img/back.jpg" style="width: 56px"/>
         </a>
         <a class="col grid-example s6 mytitle">
-         ورود
+          ورود
         </a>
       </div>
+      <form ng-submit="doLogin()">
+        <div class="row" style="margin-top: 20%">
+          <input id="username" type="text" placeholder="نام کاربری"
+                 style="background: url(img/input1.png);width: 100%;height: 100%;background-size: 100% 100%;margin-left: 30px;margin-right: 30px;padding-left: 40px;padding-right: 10px">
+        </div>
 
-      <div class="row" style="margin-top: 50%">
-        <input type="text" placeholder="نام کاربری" style="background: url(img/input1.png);width: 100%;height: 100%;background-size: 100% 100%;margin-left: 30px;margin-right: 30px;padding-left: 40px;padding-right: 10px">
-      </div>
+        <div class="row" style="margin-top: 10%">
+          <input id="pass" type="password" placeholder="کلمه عبور"
+                 style="background: url(img/input1.png);width: 100%;height: 100%;background-size: 100% 100%;margin-left: 30px;margin-right: 30px;padding-left: 40px;padding-right: 10px">
+        </div>
 
-      <div class="row gold-button" style="font-size: large;text-align: center;display: block;line-height: 60px;margin-top: 10%">
-        ثبت
-      </div>
+        <button type="submit" class="row gold-button"
+             style="font-size: large;text-align: center;display: block;line-height: 60px;margin-top: 10%;border: none">
+          ثبت
+        </button>
+      </form>
     </div>
   </ion-content>
 </ion-view>

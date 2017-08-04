@@ -30,11 +30,14 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('HomeCtrl', function ($scope, $state, $ionicModal,$rootScope) {
+  .controller('HomeCtrl', function ($scope, $state, $ionicModal,$rootScope,menuService,$http) {
     $scope.me = "img/PNG/A01.png";
     $scope.other = "img/PNG/A02.png";
     $scope.isLeague = function () {
       return false;
+    };
+    $scope.challenge = function () {
+      $state.go("battlefield");
     };
     $scope.ranks = function () {
       $state.go("ranks")
@@ -61,7 +64,7 @@ angular.module('starter.controllers', [])
       $state.go("battlefield");
     };
   })
-  .controller('BoardCtrl', function ($scope, $timeout,$ionicHistory) {
+  .controller('BoardCtrl', function ($scope, $timeout,$ionicHistory,menuService,$http) {
     var root = true;
     $scope.config = {
       status: false,
@@ -112,28 +115,21 @@ angular.module('starter.controllers', [])
       myEl.toggleClass("active");
       $timeout(function () {
         myEl.toggleClass('omid');
-      }, 500)
+      }, 500);
       switch (s) {
         case 1:
-          $scope.config = {
-            status: false,
-            submenus: [
-              {menuicon: 'icon ion-social-twitter', img: '', adr: 'spinner/spinner.html'},
-              {menuicon: 'icon ion-social-facebook', img: '', adr: 'motor/www.gameeapp.com/game/kAHVRl.html'},
-              {menuicon: 'icon ion-social-googleplus', img: '', adr: 'space/www.gameeapp.com/game/ibBTDViUP.html'},
-              {
-                menuicon: 'icon ion-social-whatsapp-outline',
-                img: '',
-                adr: 'ninja/www.gameeapp.com/game/G1oy49taR.html'
-              },
-              {
-                menuicon: 'icon ion-social-buffer-outline',
-                img: '',
-                adr: 'puzzle/www.gameeapp.com/game/FGM7TVW2Ma.html'
-              },
-              {menuicon: 'icon ion-social-windows', img: '', adr: 'car/www.gameeapp.com/game/oFfW2omiW.html'}
-            ]
-          }
+          menuService.startLoading();
+          var url = "https://dagala.cfapps.io/api/1/games";
+          $http.post(url, "1").success(function (data, status, headers, config) {
+            $scope.config.submenus = [];
+            $(data).each(function (index, value) {
+              $scope.config.submenus.push({menuicon: value.icon, adr: value.url})
+            });
+            menuService.stopLoading();
+          }).catch(function (err) {
+            menuService.myHandleError(err, true);
+            menuService.stopLoading();
+          });
           break;
         case 2:
           console.log('facebook');
@@ -239,7 +235,45 @@ angular.module('starter.controllers', [])
       });
     }
   })
-  .controller('BattlefieldCtrl', function ($scope, $state,$ionicHistory) {
+  .controller('BattlefieldCtrl', function ($scope, $state,$ionicHistory,menuService,$timeout,$http,$rootScope,$location) {
+    $scope.$on( "$ionicView.enter", function( scopes, states ) {
+     $timeout(function () {
+       menuService.startLoading();
+       var url = "https://dagala.cfapps.io/api/1/requestGame";
+       $http.post(url).success(function (data, status, headers, config) {
+         $rootScope.data = data;
+         menuService.stopLoading();
+       }).catch(function (err) {
+         // menuService.myHandleError(err, true);
+         menuService.stopLoading();
+       });
+     },700)
+    });
+    $scope.play = function () {
+      if ($rootScope.data.first){
+        $state.go("board");
+      } else {
+        menuService.startLoading();
+        $location.path($rootScope.data.gameId);
+      }
+    };
+    $scope.loadMoreData = function () {
+      $timeout( function() {
+        var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+        db.transaction(function (tx) {
+          tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
+            var len = results.rows.length, i, result = '';
+            if (!results.rows || results.rows.length == 0) {
+              result = null;
+            } else {
+              result = results.rows.item(0).val;
+            }
+            alert(result)
+          }, null);
+        });
+        $scope.$broadcast('scroll.refreshComplete');
+      }, 1000);
+    };
     $scope.me = "img/PNG/A01.png";
     $scope.other = "img/PNG/A02.png";
     var fiveSeconds = new Date().getTime() + 6000;
@@ -258,13 +292,13 @@ angular.module('starter.controllers', [])
   })
   .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService,$ionicHistory) {
     $scope.doLogin = function () {
-      var username = $("#username");
-      var pass = $("#pass");
+      var username = $("#username").val();
+      var pass = $("#pass").val();
       if (!username || !pass)
         return;
       menuService.startLoading();
       delete $http.defaults.headers.common.Authorization;
-      var url = "http://192.168.1.12:8080/api/1/user_authenticate";
+      var url = "https://dagala.cfapps.io/api/1/user_authenticate";
       var data = {
         username: username,
         password: pass,
@@ -279,16 +313,16 @@ angular.module('starter.controllers', [])
           token:data.token
         };
         $http.defaults.headers.common.Authorization = data.token;
-        var user = JSON.stringify($rootScope.user);
         menuService.getDb().transaction(function (tx) {
-          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["user", user]);
+          tx.executeSql('DELETE FROM MYGAME');
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["user", JSON.stringify($rootScope.user)]);
         });
-        $state.go("home");
+        $state.go("app.home");
       }).catch(function (err) {
           menuService.myHandleError(err, true);
           menuService.stopLoading();
         });
-    }
+    };
     $scope.goBack = function () {
       $ionicHistory.goBack();
     }

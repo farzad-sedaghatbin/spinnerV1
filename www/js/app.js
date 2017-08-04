@@ -7,7 +7,7 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-    tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
+    // tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -48,7 +48,8 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
       .state('battlefield', {
         url: '/battlefield',
         controller: 'BattlefieldCtrl',
-        templateUrl: 'battlefield.html'
+        templateUrl: 'battlefield.html',
+        reload: true
       })
       .state('login', {
         url: '/login',
@@ -100,26 +101,7 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         templateUrl: 'buy.html'
       });
     $urlRouterProvider.otherwise(function ($injector,$location) {
-      var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
-      db.transaction(function (tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS MYGAME (name , val)');
-        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="user"', [], function (tx, results) {
-          var len = results.rows.length, i, result = '';
-          if (!results.rows || results.rows.length == 0) {
-            result = null;
-          } else {
-            result = results.rows.item(0).log;
-          }
-          setUser(result)
-        }, null);
-      });
-      var setUser = function (result) {
-        if (!result) {
-          $location.path("/login")
-        } else {
-          $location.path("/app/home")
-        }
-      };
+      $location.path("/app/home");
     });
   });
 app.run(function ($rootScope,$http) {
@@ -131,7 +113,7 @@ app.run(function ($rootScope,$http) {
       if (!results.rows || results.rows.length == 0) {
         result = null;
       } else {
-        result = results.rows.item(0).log;
+        result = results.rows.item(0).val;
       }
       setUser(result)
     }, null);
