@@ -162,7 +162,8 @@ angular.module('starter.controllers', [])
       } else {
         menuService.startLoading();
         if($rootScope.isTrain){
-          $location.path(url);
+          clearDB();
+          changeUrl(url);
         } else {
           var serverUrl = "https://dagala.cfapps.io/api/1/createGame";
           $http.post(serverUrl,$rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
@@ -177,16 +178,19 @@ angular.module('starter.controllers', [])
             // menuService.myHandleError(err, true);
             menuService.stopLoading();
             reset();
-            menuService.getDb().transaction(function (tx) {
-              tx.executeSql('DELETE FROM MYGAME WHERE name="score"',[],function (tx, results) {
-              });
-            });
+            clearDB();
           });
         }
       }
     };
     function changeUrl(url) {
       window.location.assign(url);
+    }
+    function clearDB() {
+      menuService.getDb().transaction(function (tx) {
+        tx.executeSql('DELETE FROM MYGAME WHERE name="score"',[],function (tx, results) {
+        });
+      });
     }
     $scope.goBack = function () {
       $ionicHistory.goBack();
