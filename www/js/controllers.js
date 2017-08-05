@@ -43,13 +43,13 @@ angular.module('starter.controllers', [])
               menuService.startLoading();
               var serverUrl = "http://192.168.1.157:8080/api/1/endGame";
               $http.post(serverUrl, vals[0] + "," + vals[1] + "," + vals[2]).success(function (data, status, headers, config) {
-                tx.executeSql('DELETE FROM MYGAME WHERE name="score"');
                 menuService.stopLoading();
               }).catch(function (err) {
-                menuService.myHandleError(err, true);
+                // menuService.myHandleError(err, true);
                 menuService.stopLoading();
               });
             }
+            tx.executeSql('DELETE FROM MYGAME WHERE name="score"');
           }
         }, null);
       });
@@ -262,9 +262,9 @@ angular.module('starter.controllers', [])
     $scope.$on( "$ionicView.enter", function( scopes, states ) {
      $timeout(function () {
        menuService.startLoading();
-       var url = "http://192.168.1.157:8080/api/1/requestGame";
-       $http.post(url).success(function (data, status, headers, config) {
-         $rootScope.battle = data;
+       var url = "http://192.168.1.157:8080/api/1/detailGame";
+       $http.post(url,"17").success(function (data, status, headers, config) {
+         $rootScope.battle2 = data;
          menuService.stopLoading();
        }).catch(function (err) {
          // menuService.myHandleError(err, true);

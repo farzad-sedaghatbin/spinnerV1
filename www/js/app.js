@@ -110,7 +110,7 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
       $location.path("/app/home");
     });
   });
-app.run(function ($rootScope,$http) {
+app.run(function ($rootScope,$http,$interval) {
   var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
   db.transaction(function (tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS MYGAME (name , val)');
@@ -129,7 +129,14 @@ app.run(function ($rootScope,$http) {
       $rootScope.user = JSON.parse(result);
       $http.defaults.headers.common['Authorization'] = $rootScope.user.token;
     }
-  }
+  };
+  $interval(function () {
+    var url = "http://192.168.1.157:8080/api/1/refresh";
+    $http.post(url).success(function (data, status, headers, config) {
+    }).catch(function (err) {
+      // menuService.myHandleError(err, true);
+    });
+  }, 1000);
 });
 app.config(function ($httpProvider) {
   $httpProvider.interceptors.push('authHttpResponseInterceptor');
