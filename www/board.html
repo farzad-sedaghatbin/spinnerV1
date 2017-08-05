@@ -12,7 +12,7 @@
     <div class=cicular_wrapper>
       <div class="m">
         <div class="btn trigger" ng-click="toglefun()"><span class="line" ></span></div>
-        <div class="rotater" ng-repeat="imageObj in config.submenus" ng-click="menufun($index+1);"><a style="text-align: center;line-height: 70px;" href="{{imageObj.adr}}" class="btn btn-icon"><i style="color: white;font-size: xx-large" class="{{imageObj.menuicon}}"></i></a></div>
+        <div class="rotater" ng-repeat="imageObj in config.submenus" ng-click="menufun($index+1,imageObj.id,imageObj.adr);"><a style="text-align: center;line-height: 70px;" class="btn btn-icon"><i style="color: white;font-size: xx-large" class="{{imageObj.menuicon}}"></i></a></div>
       </div>
     </div>
   </ion-content>
