@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('starter', ['ionic','starter.controllers','starter.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$http,$rootScope) {
   $ionicPlatform.ready(function() {
     // tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -21,6 +21,38 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    var prepareUser = function (result) {
+      if (result) {
+        $rootScope.gamer = JSON.parse(result);
+        $http.defaults.headers.common['Authorization'] = $rootScope.gamer.token;
+      }
+      var url = "https://dagala.cfapps.io/api/1/refresh";
+      $http.post(url).success(function (data, status, headers, config) {
+        $rootScope.gamer = data;
+      }).catch(function (err) {
+        // menuService.myHandleError(err, true);
+      });
+    };
+    var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+    db.transaction(function (tx) {
+      tx.executeSql('CREATE TABLE IF NOT EXISTS MYGAME (name , val)');
+      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="user"', [], function (tx, results) {
+        var len = results.rows.length, i, result = '';
+        if (!results.rows || results.rows.length == 0) {
+          result = null;
+        } else {
+          result = results.rows.item(0).val;
+        }
+        prepareUser(result)
+      }, null);
+    });
+    // $interval(function () {
+    //   var url = "https://dagala.cfapps.io/api/1/refresh";
+    //   $http.post(url).success(function (data, status, headers, config) {
+    //   }).catch(function (err) {
+    //     // menuService.myHandleError(err, true);
+    //   });
+    // }, 1000);
   });
 })
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -110,34 +142,6 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
       $location.path("/app/home");
     });
   });
-app.run(function ($rootScope,$http,$interval) {
-  var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
-  db.transaction(function (tx) {
-    tx.executeSql('CREATE TABLE IF NOT EXISTS MYGAME (name , val)');
-    tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="user"', [], function (tx, results) {
-      var len = results.rows.length, i, result = '';
-      if (!results.rows || results.rows.length == 0) {
-        result = null;
-      } else {
-        result = results.rows.item(0).val;
-      }
-      setUser(result)
-    }, null);
-  });
-  var setUser = function (result) {
-    if (result) {
-      $rootScope.user = JSON.parse(result);
-      $http.defaults.headers.common['Authorization'] = $rootScope.user.token;
-    }
-  };
-  $interval(function () {
-    var url = "http://192.168.1.157:8080/api/1/refresh";
-    $http.post(url).success(function (data, status, headers, config) {
-    }).catch(function (err) {
-      // menuService.myHandleError(err, true);
-    });
-  }, 1000);
-});
 app.config(function ($httpProvider) {
   $httpProvider.interceptors.push('authHttpResponseInterceptor');
 });

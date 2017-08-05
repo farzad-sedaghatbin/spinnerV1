@@ -18,18 +18,19 @@
       <defs>
         <filter id="shadowed-goo">
 
-          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-          <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
-          <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2" result="shadow" />
-          <feOffset in="shadow" dx="1" dy="1" result="shadow" />
-          <feBlend in2="shadow" in="goo" result="goo" />
-          <feBlend in2="goo" in="SourceGraphic" result="mix" />
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"/>
+          <feGaussianBlur in="goo" stdDeviation="3" result="shadow"/>
+          <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2"
+                         result="shadow"/>
+          <feOffset in="shadow" dx="1" dy="1" result="shadow"/>
+          <feBlend in2="shadow" in="goo" result="goo"/>
+          <feBlend in2="goo" in="SourceGraphic" result="mix"/>
         </filter>
         <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-          <feBlend in2="goo" in="SourceGraphic" result="mix" />
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"/>
+          <feBlend in2="goo" in="SourceGraphic" result="mix"/>
         </filter>
       </defs>
     </svg>
@@ -40,10 +41,11 @@
       <div class="row" style="margin-top: 0;height: 120px;margin-left: 50%">
         <div class="col grid-example s3 board" style="max-width: 25%;right: 25%;position: absolute;height: 100px;">
           <div style="line-height: 35px;color: black">امید</div>
-          <div style="line-height: 25px;color: black"> سکه : 135</div>
-          <div style="line-height: 15px;color: black"> رتبه : 125</div>
+          <div style="line-height: 25px;color: black"> سکه : {{gamer.coins}}</div>
+          <div style="line-height: 15px;color: black"> رتبه : {{gamer.rating}}</div>
         </div>
-        <div class="col grid-example s3" style="background: url(img/pic.png) no-repeat center;background-size: contain;max-width: 25%;right: 0;position: absolute;"
+        <div class="col grid-example s3"
+             style="background: url(img/pic.png) no-repeat center;background-size: contain;max-width: 25%;right: 0;position: absolute;"
              ng-click="training()">
           <img style="width: 48px;margin-top: 18px" src="{{me}}">
         </div>
@@ -75,55 +77,57 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col grid-example s12"
-             style="text-align: left;background-position-x: left;background-size: 25% 100%;font-size: small;margin-left: 20px">
-          نا تمام ها
+      <div ng-if="gamer.halfGame.length > 0">
+        <div class="row">
+          <div class="col grid-example s12"
+               style="text-align: left;background-position-x: left;background-size: 25% 100%;font-size: small;margin-left: 20px">
+            نا تمام ها
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;" ng-repeat="row in gamer.halfGame">
+          <div class="col grid-example s3"
+               style="background: url(img/pic.png) no-repeat center;background-size: contain;">
+            <img style="width: 48px;margin-top: 8px" src="{{other}}">
+          </div>
+          <div class="col grid-example s3 rate-button" style="margin-right: 5px">
+            {{row.user}}
+          </div>
+          <div class="col grid-example s3 rate" style="margin-left: 5px">
+            <div style="line-height: 35px">2 - 0</div>
+            <div style="line-height: 25px">{{row.status}}</div>
+          </div>
+          <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield()">
+            جزییات
+          </div>
         </div>
       </div>
-      <div class="row" style="margin-bottom: 10px;">
-        <div class="col grid-example s3"
-             style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-          <img style="width: 48px;margin-top: 8px" src="{{other}}">
-        </div>
-        <div class="col grid-example s3 rate-button" style="margin-right: 5px">
-          قلی
-        </div>
-        <div class="col grid-example s3 rate" style="margin-left: 5px">
-          <div style="line-height: 35px">2 - 0</div>
-          <div style="line-height: 25px">جلوست</div>
-        </div>
-        <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield()">
-          بازی هامون
-        </div>
-      </div>
-
       <!--<div class="row" style="padding-top: 20px">-->
       <!--<div class="col grid-example s4 shelf" style="min-height: 30px;">-->
       <!--</div>-->
       <!--</div>-->
 
-
-      <div class="row">
-        <div class="col grid-example s12"
-             style="text-align: left;background-position-x: left;background-size: 25% 100%;font-size: small;margin-left: 20px">
-          تمام شده ها
+      <div ng-if="gamer.fullGame.length > 0">
+        <div class="row">
+          <div class="col grid-example s12"
+               style="text-align: left;background-position-x: left;background-size: 25% 100%;font-size: small;margin-left: 20px">
+            تمام شده ها
+          </div>
         </div>
-      </div>
-      <div class="row" style="margin-bottom: 10px;">
-        <div class="col grid-example s3"
-             style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-          <img style="width: 48px;margin-top: 8px" src="{{other}}">
-        </div>
-        <div class="col grid-example s3 rate-button" style="margin-right: 5px">
-          دیوث
-        </div>
-        <div class="col grid-example s3 rate" style="margin-left: 5px">
-          <div style="line-height: 35px">3 - 2</div>
-          <div style="line-height: 25px">برد</div>
-        </div>
-        <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield()">
-          بازی هامون
+        <div class="row" style="margin-bottom: 10px;" ng-repeat="row in gamer.fullGame">
+          <div class="col grid-example s3"
+               style="background: url(img/pic.png) no-repeat center;background-size: contain;">
+            <img style="width: 48px;margin-top: 8px" src="{{other}}">
+          </div>
+          <div class="col grid-example s3 rate-button" style="margin-right: 5px">
+            {{row.user}}
+          </div>
+          <div class="col grid-example s3 rate" style="margin-left: 5px">
+            <div style="line-height: 35px">3 - 2</div>
+            <div style="line-height: 25px">{{row.status}}</div>
+          </div>
+          <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield()">
+            جزییات
+          </div>
         </div>
       </div>
     </div>

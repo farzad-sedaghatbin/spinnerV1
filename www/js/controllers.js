@@ -41,7 +41,7 @@ angular.module('starter.controllers', [])
             var vals = results.rows.item(0).val.split(",");
             if (vals && vals[2]) {
               menuService.startLoading();
-              var serverUrl = "http://192.168.1.157:8080/api/1/endGame";
+              var serverUrl = "https://dagala.cfapps.io/api/1/endGame";
               $http.post(serverUrl, vals[0] + "," + vals[1] + "," + vals[2]).success(function (data, status, headers, config) {
                 menuService.stopLoading();
               }).catch(function (err) {
@@ -88,19 +88,26 @@ angular.module('starter.controllers', [])
   })
   .controller('BoardCtrl', function ($scope, $timeout,$ionicHistory,menuService,$http,$rootScope,$location) {
     var root = true;
-    $scope.config = {
-      status: false,
-      submenus: [
-        {menuicon: 'icon ion-social-twitter', img: '', adr: 'javascript:;'},
-        {menuicon: 'icon ion-social-facebook', img: '', adr: 'javascript:;'},
-        {menuicon: 'icon ion-social-googleplus', img: '', adr: 'javascript:;'},
-        {menuicon: 'icon ion-social-github', img: '', adr: 'javascript:;'},
-        {menuicon: 'icon ion-social-whatsapp-outline', img: '', adr: 'javascript:;'},
-        {menuicon: 'icon ion-social-buffer-outline', img: '', adr: 'javascript:;'},
-        {menuicon: 'icon ion-social-windows', img: '', adr: 'javascript:;'},
-        {menuicon: 'icon ion-social-html5', img: '', adr: 'javascript:;'}
+    function rootConfig() {
+      $scope.config = {
+        status: false,
+        submenus: [
+          {menuicon: 'icon ion-social-twitter', img: '', adr: 'javascript:;'},
+          {menuicon: 'icon ion-social-facebook', img: '', adr: 'javascript:;'},
+          {menuicon: 'icon ion-social-googleplus', img: '', adr: 'javascript:;'},
+          {menuicon: 'icon ion-social-github', img: '', adr: 'javascript:;'},
+          {menuicon: 'icon ion-social-whatsapp-outline', img: '', adr: 'javascript:;'},
+          {menuicon: 'icon ion-social-buffer-outline', img: '', adr: 'javascript:;'},
+          {menuicon: 'icon ion-social-windows', img: '', adr: 'javascript:;'},
+          {menuicon: 'icon ion-social-html5', img: '', adr: 'javascript:;'}
 
-      ]
+        ]
+      }
+    }
+    rootConfig();
+    function reset() {
+      root = true;
+      rootConfig();
     }
     $scope.toglefun = function ($config) {
       var myEl = angular.element(document.querySelector('.m'));
@@ -140,7 +147,7 @@ angular.module('starter.controllers', [])
       if (root){
         root = false;
         menuService.startLoading();
-        var serverUrl = "http://192.168.1.157:8080/api/1/games";
+        var serverUrl = "https://dagala.cfapps.io/api/1/games";
         $http.post(serverUrl, s).success(function (data, status, headers, config) {
           $scope.config.submenus = [];
           $(data).each(function (index, value) {
@@ -150,13 +157,14 @@ angular.module('starter.controllers', [])
         }).catch(function (err) {
           menuService.myHandleError(err, true);
           menuService.stopLoading();
+          reset();
         });
       } else {
         menuService.startLoading();
         if($rootScope.isTrain){
           $location.path(url);
         } else {
-          var serverUrl = "http://192.168.1.157:8080/api/1/createGame";
+          var serverUrl = "https://dagala.cfapps.io/api/1/createGame";
           $http.post(serverUrl,$rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
             menuService.getDb().transaction(function (tx) {
               tx.executeSql('DELETE FROM MYGAME WHERE name="score"',[],function (tx, results) {
@@ -168,6 +176,7 @@ angular.module('starter.controllers', [])
           }).catch(function (err) {
             // menuService.myHandleError(err, true);
             menuService.stopLoading();
+            reset();
             menuService.getDb().transaction(function (tx) {
               tx.executeSql('DELETE FROM MYGAME WHERE name="score"',[],function (tx, results) {
               });
@@ -259,13 +268,15 @@ angular.module('starter.controllers', [])
     }
   })
   .controller('BattlefieldCtrl', function ($scope, $state,$ionicHistory,menuService,$timeout,$http,$rootScope,$location) {
+    $scope.loaded = false;
     $scope.$on( "$ionicView.enter", function( scopes, states ) {
      $timeout(function () {
        menuService.startLoading();
-       var url = "http://192.168.1.157:8080/api/1/detailGame";
+       var url = "https://dagala.cfapps.io/api/1/detailGame";
        $http.post(url,"17").success(function (data, status, headers, config) {
-         $rootScope.battle2 = data;
+         $rootScope.battle = data;
          menuService.stopLoading();
+         $scope.loaded = true;
        }).catch(function (err) {
          // menuService.myHandleError(err, true);
          menuService.stopLoading();
@@ -315,13 +326,16 @@ angular.module('starter.controllers', [])
     }
   })
   .controller('NewgameCtrl', function ($scope, $state,$ionicHistory,menuService,$timeout,$http,$rootScope,$location) {
+    $rootScope.battle;
+    $scope.loaded = false;
     $scope.$on( "$ionicView.enter", function( scopes, states ) {
      $timeout(function () {
        menuService.startLoading();
-       var url = "http://192.168.1.157:8080/api/1/requestGame";
+       var url = "https://dagala.cfapps.io/api/1/requestGame";
        $http.post(url).success(function (data, status, headers, config) {
          $rootScope.battle = data;
          menuService.stopLoading();
+         $scope.loaded = true;
        }).catch(function (err) {
          // menuService.myHandleError(err, true);
          menuService.stopLoading();
@@ -377,7 +391,7 @@ angular.module('starter.controllers', [])
         return;
       menuService.startLoading();
       delete $http.defaults.headers.common.Authorization;
-      var url = "http://192.168.1.157:8080/api/1/user_authenticate";
+      var url = "https://dagala.cfapps.io/api/1/user_authenticate";
       var data = {
         username: username,
         password: pass,
