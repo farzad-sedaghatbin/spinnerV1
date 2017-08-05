@@ -179,6 +179,13 @@ span.font-36 {
   border: none;
   color: white;
 }
+.unknown {
+  text-align: center;
+  background: url(../img/q.png) no-repeat;
+  background-size: 100% 100%;
+  border: none;
+  color: white;
+}
 .rate{
   line-height: 60px;
   background: url(../img/rate.png) no-repeat center;

@@ -51,6 +51,12 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         templateUrl: 'battlefield.html',
         reload: true
       })
+      .state('newgame', {
+        url: '/newgame',
+        controller: 'NewgameCtrl',
+        templateUrl: 'newgame.html',
+        reload: true
+      })
       .state('login', {
         url: '/login',
         controller: 'LoginCtrl',

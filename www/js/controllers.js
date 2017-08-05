@@ -37,7 +37,7 @@ angular.module('starter.controllers', [])
       return false;
     };
     $scope.challenge = function () {
-      $state.go("battlefield");
+      $state.go("newgame");
     };
     $scope.ranks = function () {
       $state.go("ranks")
@@ -236,6 +236,61 @@ angular.module('starter.controllers', [])
     }
   })
   .controller('BattlefieldCtrl', function ($scope, $state,$ionicHistory,menuService,$timeout,$http,$rootScope,$location) {
+    $scope.$on( "$ionicView.enter", function( scopes, states ) {
+     $timeout(function () {
+       menuService.startLoading();
+       var url = "https://dagala.cfapps.io/api/1/requestGame";
+       $http.post(url).success(function (data, status, headers, config) {
+         $rootScope.data = data;
+         menuService.stopLoading();
+       }).catch(function (err) {
+         // menuService.myHandleError(err, true);
+         menuService.stopLoading();
+       });
+     },700)
+    });
+    $scope.play = function () {
+      if ($rootScope.data.first){
+        $state.go("board");
+      } else {
+        menuService.startLoading();
+        $location.path($rootScope.data.gameId);
+      }
+    };
+    $scope.loadMoreData = function () {
+      $timeout( function() {
+        var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+        db.transaction(function (tx) {
+          tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
+            var len = results.rows.length, i, result = '';
+            if (!results.rows || results.rows.length == 0) {
+              result = null;
+            } else {
+              result = results.rows.item(0).val;
+            }
+            alert(result)
+          }, null);
+        });
+        $scope.$broadcast('scroll.refreshComplete');
+      }, 1000);
+    };
+    $scope.me = "img/PNG/A01.png";
+    $scope.other = "img/PNG/A02.png";
+    var fiveSeconds = new Date().getTime() + 6000;
+    $('#clock').countdown(fiveSeconds, {elapse: true})
+      .on('update.countdown', function (event) {
+        var $this = $(this);
+        if (event.elapsed) {
+          $this.html(event.strftime('وقتت تموم شد'));
+        } else {
+          $this.html(event.strftime('وقت باقیمانده: <span>%H:%M:%S</span>'));
+        }
+      });
+    $scope.goBack = function () {
+      $ionicHistory.goBack();
+    }
+  })
+  .controller('NewgameCtrl', function ($scope, $state,$ionicHistory,menuService,$timeout,$http,$rootScope,$location) {
     $scope.$on( "$ionicView.enter", function( scopes, states ) {
      $timeout(function () {
        menuService.startLoading();
