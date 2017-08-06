@@ -76,8 +76,9 @@ angular.module('starter.controllers', [])
       $state.go("coining");
     };
     $scope.training = function () {
-      $rootScope.isTrain = true;
-      $state.go("board");
+      loading();
+      // $rootScope.isTrain = true;
+      // $state.go("board");
     };
     $scope.buy = function () {
       $state.go("buy")
