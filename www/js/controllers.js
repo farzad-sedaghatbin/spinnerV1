@@ -152,14 +152,15 @@ angular.module('starter.controllers', [])
       }
 
     };
-    $scope.menufun = function (s, id, url) {
-      var myEl = angular.element(document.querySelector('.m'));
-      myEl.toggleClass("active");
-      $timeout(function () {
-        myEl.toggleClass('omid');
-      }, 500);
+    var active = false;
+    $scope.menufun = function (s) {
       if (root) {
         root = false;
+        var myEl = angular.element(document.querySelector('.m'));
+        myEl.toggleClass("active");
+        $timeout(function () {
+          myEl.toggleClass('omid');
+        }, 500);
         menuService.startLoading();
         var serverUrl = "https://dagala.cfapps.io/api/1/games";
         $http.post(serverUrl, s).success(function (data, status, headers, config) {
@@ -174,27 +175,57 @@ angular.module('starter.controllers', [])
           reset();
         });
       } else {
-        menuService.startLoading();
-        if ($rootScope.isTrain) {
-          clearDB();
-          changeUrl(url);
-        } else {
-          var serverUrl = "https://dagala.cfapps.io/api/1/createGame";
-          $http.post(serverUrl, $rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
-            menuService.getDb().transaction(function (tx) {
-              tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
-                tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", $rootScope.battle.gameId + "," + id], function (tx, results) {
-                  changeUrl(url);
-                });
-              });
-            });
-          }).catch(function (err) {
-            // menuService.myHandleError(err, true);
-            menuService.stopLoading();
-            reset();
-            clearDB();
+        s = s-1;
+        if (!active) {
+          $('#object1' + s).css({
+            'background-color': 'green',
+            'transform': 'translate(15px, -45px)',
+            'pointerEvents':'auto'
+          });
+          $('#object2'+s).css({
+            'background-color': 'green',
+            'transform': 'translate(15px,75px)',
+            'pointerEvents':'auto'
+          });
+          $(".text"+s).show(700);
+        }
+      else {
+          $(".text"+s).hide(700);
+          $('#object1' + s).css({
+            'background-color': 'transparent',
+            'transform': 'none',
+            'pointerEvents':'none'
+          });
+          $('#object2'+s).css({
+            'background-color': 'transparent',
+            'transform': 'none',
+            'pointerEvents':'none'
           });
         }
+        active = !active;
+      }
+    };
+    $scope.start = function (id, url) {
+      menuService.startLoading();
+      if ($rootScope.isTrain) {
+        clearDB();
+        changeUrl(url);
+      } else {
+        var serverUrl = "https://dagala.cfapps.io/api/1/createGame";
+        $http.post(serverUrl, $rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
+          menuService.getDb().transaction(function (tx) {
+            tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
+              tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", $rootScope.battle.gameId + "," + id], function (tx, results) {
+                changeUrl(url);
+              });
+            });
+          });
+        }).catch(function (err) {
+          // menuService.myHandleError(err, true);
+          menuService.stopLoading();
+          reset();
+          clearDB();
+        });
       }
     };
     function changeUrl(url) {

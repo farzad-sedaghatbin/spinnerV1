@@ -201,3 +201,47 @@
 .fab:hover {
   background-color: #ff4060;
 }
+.radial-menu {
+  top: 15px;
+  left: 15px;
+  position: fixed;
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  border-radius: 50%;
+  z-index: 20;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+.menu-item1 {
+  width: 40px;
+  height: 40px;
+  background-color: dimGray;
+  border-radius: 50%;
+  position: absolute;
+  color: white;
+  text-align: center;
+  line-height: 40px;
+  z-index: 30;
+  transition: all 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+}
+.menu-item2 {
+  width: 40px;
+  height: 40px;
+  background-color: dimGray;
+  border-radius: 50%;
+  position: absolute;
+  color: white;
+  text-align: center;
+  line-height: 40px;
+  z-index: 30;
+  transition: all 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550) .2s;
+}
+.myshadow{
+  -webkit-filter: url("#shadowed-goo");
+  filter: url("#shadowed-goo");
+}
+
+
