@@ -55,7 +55,7 @@ angular.module('starter.controllers', [])
       });
     });
     $scope.refresh = function () {
-      $rootScope.initGamer(true,$scope);
+      $rootScope.initGamer(true, $scope);
     };
     $scope.isLeague = function () {
       return false;
@@ -84,11 +84,11 @@ angular.module('starter.controllers', [])
     };
     $scope.help = function () {
       $ionicModal.fromTemplateUrl('help.html', {
-          scope: $scope
-        }).then(function (modal) {
-          $rootScope.modal = modal;
-          modal.show();
-        });
+        scope: $scope
+      }).then(function (modal) {
+        $rootScope.modal = modal;
+        modal.show();
+      });
     };
     $scope.buy = function () {
       $state.go("buy")
@@ -152,7 +152,7 @@ angular.module('starter.controllers', [])
       }
 
     };
-    var active = false;
+    var index=null;
     $scope.menufun = function (s) {
       if (root) {
         root = false;
@@ -175,34 +175,49 @@ angular.module('starter.controllers', [])
           reset();
         });
       } else {
-        s = s-1;
-        if (!active) {
-          $('#object1' + s).css({
+        if (index == null) {
+          index = s - 1;
+          $('#object1' + index).css({
             'background-color': 'green',
             'transform': 'translate(15px, -45px)',
-            'pointerEvents':'auto'
+            'pointerEvents': 'auto'
           });
-          $('#object2'+s).css({
+          $('#object2' + index).css({
             'background-color': 'green',
             'transform': 'translate(15px,75px)',
-            'pointerEvents':'auto'
+            'pointerEvents': 'auto'
           });
-          $(".text"+s).show(700);
+          $(".text" + index).show(500);
         }
-      else {
-          $(".text"+s).hide(700);
-          $('#object1' + s).css({
+        else {
+          $(".text" + index).hide(500);
+          $('#object1' + index).css({
             'background-color': 'transparent',
             'transform': 'none',
-            'pointerEvents':'none'
+            'pointerEvents': 'none'
           });
-          $('#object2'+s).css({
+          $('#object2' + index).css({
             'background-color': 'transparent',
             'transform': 'none',
-            'pointerEvents':'none'
+            'pointerEvents': 'none'
           });
+          if (s - 1 != index){
+            index = s - 1;
+            $('#object1' + index).css({
+              'background-color': 'green',
+              'transform': 'translate(15px, -45px)',
+              'pointerEvents': 'auto'
+            });
+            $('#object2' + index).css({
+              'background-color': 'green',
+              'transform': 'translate(15px,75px)',
+              'pointerEvents': 'auto'
+            });
+            $(".text" + index).show(500);
+          } else {
+            index = null;
+          }
         }
-        active = !active;
       }
     };
     $scope.start = function (id, url) {
@@ -318,7 +333,7 @@ angular.module('starter.controllers', [])
       var url = "https://dagala.cfapps.io/api/1/detailGame";
       $http.post(url, "17").success(function (data, status, headers, config) {
         $rootScope.battle = data;
-        if (data.status == "2"){
+        if (data.status == "2") {
           $scope.myTurn = "";
           $scope.hisTurn = "نوبتشه";
         } else {
@@ -392,6 +407,7 @@ angular.module('starter.controllers', [])
           $scope.$broadcast('scroll.refreshComplete');
       });
     }
+
     $scope.$on("$ionicView.enter", function (scopes, states) {
       $timeout(function () {
         menuService.startLoading();
@@ -407,7 +423,7 @@ angular.module('starter.controllers', [])
       // }
     };
     $scope.refresh = function () {
-        loadData(true);
+      loadData(true);
     };
     $scope.me = "img/PNG/A01.png";
     $scope.other = "img/PNG/A02.png";
