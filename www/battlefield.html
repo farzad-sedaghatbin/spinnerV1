@@ -1,6 +1,6 @@
 <ion-view>
   <ion-content class="page-background" id="HomeController">
-    <ion-refresher on-refresh="loadMoreData()" refreshing-icon="" pulling-icon="">
+    <ion-refresher on-refresh="refresh()">
 
     </ion-refresher>
     <div class="myText">
@@ -12,48 +12,57 @@
           آوردگاه
         </a>
       </div>
+      <div class="myhelp">
+        راهنما
+      </div>
+      <div id="clock" style="position: absolute;top: 110px;right: 30px;color: white"></div>
       <div ng-if="loaded">
-        <div class="row" style="margin-bottom: 20px;margin-top: 20px">
+        <div class="row" style="margin-bottom: 20px;margin-top: 0">
           <div class="col grid-example s6 blue-button"
                ng-click="training()">
             طسلیم شو
           </div>
-          <div class="col grid-example s6 red-button" ng-click="play()">
+          <div ng-if="myTurn" class="col grid-example s6 red-button" ng-click="play()">
             بازی کن
+          </div>
+          <div ng-if="!myTurn" class="col grid-example s6 red-button" ng-click="dontPlay()">
+            نوبت حریفه
           </div>
         </div>
         <div class="row" style="margin-bottom: 10px">
           <div class="col grid-example s3"
                style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-            <img style="width: 48px;margin-top: 8px" src="{{me}}">
+            <img style="width: 48px;margin-top: 8px" src="{{gamer.avatar}}">
           </div>
           <div class="col grid-example s3 rate" style="margin-right: 5px">
-            1500
+            {{battle.score}}
           </div>
           <div class="col grid-example s3 rate" style="margin-left: 5px">
-            200
+            {{battle.user.score}}
           </div>
           <div class="col grid-example s3"
                style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-            <img style="width: 48px;margin-top: 8px" src="{{other}}">
+            <img style="width: 48px;margin-top: 8px" src="{{battle.user.avatar}}">
           </div>
         </div>
         <div class="row">
           <div class="col grid-example s6 rate-button" style="margin-left: 40px;margin-right: 40px">
-            من
+            <div style="line-height: 75px;color: black;height: 30px">من</div>
+            <div style="line-height: 55px;color: red">{{myTurn}}</div>
           </div>
           <div class="col grid-example s6 rate-button" style="margin-left: 40px;margin-right: 40px">
-            حسین
+            <div style="line-height: 75px;color: black;height: 30px">{{battle.user.user}}</div>
+            <div style="line-height: 55px;color: red">{{hisTurn}}</div>
           </div>
         </div>
 
-        <div class="row" style="margin-top: 30px" ng-repeat="row in battle">
+        <div class="row" style="margin-top: 30px" ng-repeat="row in battle.gameDTOS">
           <div class="col grid-example s3 emtiaz">
-            {{row.firstScore}}
+            {{row.myScore}}
           </div>
           <div class="col grid-example s3"
                style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-            <img style="width: 48px;margin-top: 8px" src="{{icon}}">
+            <img style="width: 48px;margin-top: 8px" src="{{row.icon}}">
           </div>
           <div class="col grid-example s3 emtiaz">
             {{row.secondScore}}

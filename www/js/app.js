@@ -21,17 +21,24 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    $rootScope.initGamer = function (refresh,scope) {
+      var url = "https://dagala.cfapps.io/api/1/refresh";
+      $http.post(url).success(function (data, status, headers, config) {
+        $rootScope.gamer = data;
+        if (refresh)
+            scope.$broadcast('scroll.refreshComplete');
+      }).catch(function (err) {
+        // menuService.myHandleError(err, true);
+        if (refresh)
+          scope.$broadcast('scroll.refreshComplete');
+      });
+    };
     var prepareUser = function (result) {
       if (result) {
         $rootScope.gamer = JSON.parse(result);
         $http.defaults.headers.common['Authorization'] = $rootScope.gamer.token;
       }
-      var url = "https://dagala.cfapps.io/api/1/refresh";
-      $http.post(url).success(function (data, status, headers, config) {
-        $rootScope.gamer = data;
-      }).catch(function (err) {
-        // menuService.myHandleError(err, true);
-      });
+      $rootScope.initGamer();
     };
     var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
     db.transaction(function (tx) {

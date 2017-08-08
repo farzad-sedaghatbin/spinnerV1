@@ -2,7 +2,7 @@ function loading() {
   var parent = $("<div></div>");
   parent.addClass("omid_spinner");
   var spinner = $("<div></div>");
-  spinner.addClass("spinner");
+  spinner.addClass("myspinner");
   var dot1 = $("<div></div>");
   dot1.addClass("dot1");
   var dot2 = $("<div></div>");
