@@ -82,7 +82,7 @@
   box-sizing: border-box;
   font-size: 20px;
   text-align: left;
-  top: 10px;
+  top: 35px;
 }
 
 .menu-item-omid:hover {
@@ -108,6 +108,10 @@
 .menu-item-omid:nth-child(7) {
   -webkit-transition-duration: 310ms;
   transition-duration: 310ms;
+}
+.menu-item-omid:nth-child(8) {
+  -webkit-transition-duration: 370ms;
+  transition-duration: 370ms;
 }
 
 .menu-open-button {
@@ -142,32 +146,38 @@
 .menu-open-omid:checked ~ .menu-item-omid:nth-child(3) {
   -webkit-transition-duration: 160ms;
   transition-duration: 160ms;
-  -webkit-transform: translate3d(114.42548px, 11.48084px, 0);
+  -webkit-transform: translate3d(60.42548px, -15px, 0);
   transform: translate3d(60.42548px, -15px, 0);
 }
 .menu-open-omid:checked ~ .menu-item-omid:nth-child(4) {
   -webkit-transition-duration: 240ms;
   transition-duration: 240ms;
-  -webkit-transform: translate3d(77.18543px, 85.2491px, 0);
+  -webkit-transform: translate3d(45.18543px, 33.2491px, 0);
   transform: translate3d(45.18543px, 33.2491px, 0);
 }
 .menu-open-omid:checked ~ .menu-item-omid:nth-child(5) {
   -webkit-transition-duration: 320ms;
   transition-duration: 320ms;
-  -webkit-transform: translate3d(0.09158px, 114.99996px, 0);
+  -webkit-transform: translate3d(0.09158px, 55.99996px, 0);
   transform: translate3d(0.09158px, 55.99996px, 0);
 }
 .menu-open-omid:checked ~ .menu-item-omid:nth-child(6) {
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
-  -webkit-transform: translate3d(-77.04956px, 85.37192px, 0);
+  -webkit-transform: translate3d(-45.04956px, 33.37192px, 0);
   transform: translate3d(-45.04956px, 33.37192px, 0);
 }
 .menu-open-omid:checked ~ .menu-item-omid:nth-child(7) {
   -webkit-transition-duration: 480ms;
   transition-duration: 480ms;
-  -webkit-transform: translate3d(-114.40705px, 11.66307px, 0);
+  -webkit-transform: translate3d(-60.40705px, -15px, 0);
   transform: translate3d(-60.40705px, -15px, 0);
+}
+.menu-open-omid:checked ~ .menu-item-omid:nth-child(8) {
+  -webkit-transition-duration: 560ms;
+  transition-duration: 560ms;
+  -webkit-transform: translate3d(0.40705px, -50px, 0);
+  transform: translate3d(0.40705px, -50px, 0);
 }
 
 
@@ -191,3 +201,47 @@
 .fab:hover {
   background-color: #ff4060;
 }
+.radial-menu {
+  top: 15px;
+  left: 15px;
+  position: fixed;
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  border-radius: 50%;
+  z-index: 20;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+.menu-item1 {
+  width: 40px;
+  height: 40px;
+  background-color: dimGray;
+  border-radius: 50%;
+  position: absolute;
+  color: white;
+  text-align: center;
+  line-height: 40px;
+  z-index: 30;
+  transition: all 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+}
+.menu-item2 {
+  width: 40px;
+  height: 40px;
+  background-color: dimGray;
+  border-radius: 50%;
+  position: absolute;
+  color: white;
+  text-align: center;
+  line-height: 40px;
+  z-index: 30;
+  transition: all 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550) .2s;
+}
+.myshadow{
+  -webkit-filter: url("#shadowed-goo");
+  filter: url("#shadowed-goo");
+}
+
+

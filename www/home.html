@@ -1,5 +1,9 @@
 <ion-view hide-nav-bar="true">
   <ion-content class="page-background">
+    <ion-refresher on-refresh="refresh()" pulling-text="Pull to refresh..."
+                   refreshing-text="Refreshing!">
+
+    </ion-refresher>
     <nav class="menu-omid">
       <input type="checkbox" href="#" class="menu-open-omid" name="menu-open" id="menu-open"/>
       <label class="menu-open-button" for="menu-open">
@@ -12,6 +16,7 @@
       <a ng-click="forgetPass()" style="font-size: xx-small" class="menu-item-omid myText"> بازیابی رمز </a>
       <a ng-click="coining()" style="font-size: 8px" class="menu-item-omid myText"> سکه خواری </a>
       <a ng-click="ranks()" style="font-size: x-small" class="menu-item-omid myText"> خفن ها </a>
+      <a ng-click="help()" style="font-size: x-small" class="menu-item-omid myText"> راهنما </a>
     </nav>
     <!-- filters -->
     <svg width="5px" height="5px">
@@ -35,8 +40,6 @@
       </defs>
     </svg>
 
-    <!--<button ng-click="coining()" class="fab">♥</button>-->
-
     <div class="myText">
       <div class="row" style="margin-top: 0;height: 120px;margin-left: 50%">
         <div class="col grid-example s3 board" style="max-width: 25%;right: 25%;position: absolute;height: 100px;">
@@ -53,8 +56,14 @@
       <!--<div class="upgrade-ico" ng-click="avatar()"></div>-->
       <!--<a class="upgrade-ico" href="ranks.html" style="right: 80px"></a>-->
 
-      <div class="row" style="margin-bottom: 50px">
-        <div ng-show="!isLeague()" class="row">
+      <div class="row" style="margin-top: 30px">
+        <article class="notepad">
+          <p>This is zombie ipsum reversus ab viral inferno, nam rick </p>
+        </article>
+      </div>
+
+      <div class="row" style="margin-bottom: 50px;margin-top: 0">
+        <div ng-show="!isLeague()" class="row" style="margin-top: 0">
           <div class="col grid-example s6 blue-button"
                ng-click="training()">
             تمرین میکنم
@@ -63,7 +72,7 @@
             حریف میطلبم
           </div>
         </div>
-        <div ng-show="isLeague()" class="row">
+        <div ng-show="isLeague()" class="row" style="margin-top: 0">
           <div class="col grid-example s4 blue-button" style="font-size: large"
                ng-click="training()">
             تمرین میکنم
@@ -80,23 +89,23 @@
       <div ng-if="gamer.halfGame.length > 0">
         <div class="row">
           <div class="col grid-example s12"
-               style="text-align: left;background-position-x: left;background-size: 25% 100%;font-size: small;margin-left: 20px">
+               style="text-align: left;background-position-x: left;background-size: 25% 100%;font-size: small;margin-left: 20px;padding-left: 7%">
             نا تمام ها
           </div>
         </div>
         <div class="row" style="margin-bottom: 10px;" ng-repeat="row in gamer.halfGame">
           <div class="col grid-example s3"
                style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-            <img style="width: 48px;margin-top: 8px" src="{{other}}">
+            <img style="width: 48px;margin-top: 8px" src="{{row.second.avatar}}">
           </div>
           <div class="col grid-example s3 rate-button" style="margin-right: 5px">
-            {{row.user}}
+            {{row.second.user}}
           </div>
           <div class="col grid-example s3 rate" style="margin-left: 5px">
-            <div style="line-height: 35px">2 - 0</div>
+            <div style="line-height: 35px">{{row.score}}</div>
             <div style="line-height: 25px">{{row.status}}</div>
           </div>
-          <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield()">
+          <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield(row.gameId,false)">
             جزییات
           </div>
         </div>
@@ -109,23 +118,23 @@
       <div ng-if="gamer.fullGame.length > 0">
         <div class="row">
           <div class="col grid-example s12"
-               style="text-align: left;background-position-x: left;background-size: 25% 100%;font-size: small;margin-left: 20px">
+               style="text-align: left;background-position-x: left;background-size: 25% 100%;font-size: small;margin-left: 20px;padding-left: 7%">
             تمام شده ها
           </div>
         </div>
         <div class="row" style="margin-bottom: 10px;" ng-repeat="row in gamer.fullGame">
           <div class="col grid-example s3"
                style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-            <img style="width: 48px;margin-top: 8px" src="{{other}}">
+            <img style="width: 48px;margin-top: 8px" src="{{row.second.avatar}}">
           </div>
           <div class="col grid-example s3 rate-button" style="margin-right: 5px">
-            {{row.user}}
+            {{row.second.user}}
           </div>
           <div class="col grid-example s3 rate" style="margin-left: 5px">
-            <div style="line-height: 35px">3 - 2</div>
+            <div style="line-height: 35px">{{row.score}}</div>
             <div style="line-height: 25px">{{row.status}}</div>
           </div>
-          <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield()">
+          <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield(row.gameId,true)">
             جزییات
           </div>
         </div>

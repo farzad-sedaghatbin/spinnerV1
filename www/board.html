@@ -1,5 +1,25 @@
 <ion-view>
   <ion-content scroll="false" class="page-background">
+    <svg width="5px" height="5px">
+      <defs>
+        <filter id="shadowed-goo">
+
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"/>
+          <feGaussianBlur in="goo" stdDeviation="3" result="shadow"/>
+          <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2"
+                         result="shadow"/>
+          <feOffset in="shadow" dx="1" dy="1" result="shadow"/>
+          <feBlend in2="shadow" in="goo" result="goo"/>
+          <feBlend in2="goo" in="SourceGraphic" result="mix"/>
+        </filter>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"/>
+          <feBlend in2="goo" in="SourceGraphic" result="mix"/>
+        </filter>
+      </defs>
+    </svg>
     <div class="row">
       <a class="col grid-example s6" style="text-align: left" ng-click="goBack()">
         <img class="coins-ico" src="img/back.jpg" style="width: 56px"/>
@@ -12,7 +32,15 @@
     <div class=cicular_wrapper>
       <div class="m">
         <div class="btn trigger" ng-click="toglefun()"><span class="line" ></span></div>
-        <div class="rotater" ng-repeat="imageObj in config.submenus" ng-click="menufun($index+1,imageObj.id,imageObj.adr);"><a style="text-align: center;line-height: 70px;" class="btn btn-icon"><i style="color: white;font-size: xx-large" class="{{imageObj.menuicon}}"></i></a></div>
+        <div class="rotater" ng-repeat="imageObj in config.submenus" ng-click="menufun($index+1);">
+          <div style="height: 100px;width: 100px">
+          <a style="text-align: center;line-height: 70px;" class="btn btn-icon myshadow">
+            <div ng-click="ranks(imageObj.id)" id="{{ 'object1' + $index }}" class="menu-item1" style="background-color:transparent;pointer-events: none"><span style="display: none" class="{{ 'text' + $index }}">رکوردها</span></div>
+            <div ng-click="start(imageObj.id,imageObj.adr)" id="{{ 'object2' + $index }}" class="menu-item2" style="background-color:transparent;pointer-events: none"><span style="display: none" class="{{ 'text' + $index }}">شروع</span></div>
+            <i style="color: white;font-size: xx-large" class="{{imageObj.menuicon}}"></i>
+          </a>
+          </div>
+        </div>
       </div>
     </div>
   </ion-content>

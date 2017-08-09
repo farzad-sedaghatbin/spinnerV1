@@ -21,30 +21,73 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-    var prepareUser = function (result) {
-      if (result) {
-        $rootScope.gamer = JSON.parse(result);
-        $http.defaults.headers.common['Authorization'] = $rootScope.gamer.token;
-      }
+    $rootScope.saveGamer = function (data) {
+      $rootScope.gamer = data;
+      var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+      db.transaction(function (tx) {
+        tx.executeSql('DELETE FROM MYGAME WHERE name="gamer"',[],function (tx, results) {
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["gamer", JSON.stringify($rootScope.gamer)]);
+        });
+      });
+    };
+    $rootScope.initGamer = function () {
+      var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+      db.transaction(function (tx) {
+        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="gamer"',[],function (tx, results) {
+          var len = results.rows.length, i, result = '';
+          if (results.rows && results.rows.length != 0) {
+            $rootScope.gamer = JSON.parse(results.rows.item(0).val);
+          }
+        });
+      });
+    };
+    $rootScope.refreshGamer = function (refresh,scope) {
       var url = "https://dagala.cfapps.io/api/1/refresh";
       $http.post(url).success(function (data, status, headers, config) {
-        $rootScope.gamer = data;
+        $rootScope.saveGamer(data);
+        if (refresh)
+            scope.$broadcast('scroll.refreshComplete');
       }).catch(function (err) {
         // menuService.myHandleError(err, true);
+        if (refresh)
+          scope.$broadcast('scroll.refreshComplete');
       });
+    };
+    var prepareUser = function (result) {
+      if (result) {
+        $rootScope.gamerInfo = JSON.parse(result);
+        $http.defaults.headers.common['Authorization'] = $rootScope.gamerInfo.token;
+        $rootScope.initGamer();
+      } else {
+        var url = "https://dagala.cfapps.io/api/1/tempUser";
+        $http.post(url).success(function (data, status, headers, config) {
+          $rootScope.gamerInfo = data;
+          $http.defaults.headers.common['Authorization'] = data.token;
+          var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+          db.transaction(function (tx) {
+            tx.executeSql('DELETE FROM MYGAME',[],function (tx, results) {
+              tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["user", JSON.stringify($rootScope.gamerInfo)]);
+            });
+          });
+          $rootScope.saveGamer({avatar:null,coins:0,gem:0,level:1,newLevel:false,perGameCoins:0,rating:0,score:0});
+        }).catch(function (err) {
+          // menuService.myHandleError(err, true);
+        });
+      }
     };
     var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
     db.transaction(function (tx) {
-      tx.executeSql('CREATE TABLE IF NOT EXISTS MYGAME (name , val)');
-      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="user"', [], function (tx, results) {
-        var len = results.rows.length, i, result = '';
-        if (!results.rows || results.rows.length == 0) {
-          result = null;
-        } else {
-          result = results.rows.item(0).val;
-        }
-        prepareUser(result)
-      }, null);
+      tx.executeSql('CREATE TABLE IF NOT EXISTS MYGAME (name , val)',[],function (tx, results) {
+        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="user"', [], function (tx, results) {
+          var len = results.rows.length, i, result = '';
+          if (!results.rows || results.rows.length == 0) {
+            result = null;
+          } else {
+            result = results.rows.item(0).val;
+          }
+          prepareUser(result)
+        }, null);
+      });
     });
     // $interval(function () {
     //   var url = "https://dagala.cfapps.io/api/1/refresh";

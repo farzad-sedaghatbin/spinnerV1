@@ -40,12 +40,12 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http) 
       $ionicPopup.alert({
         title: '<span class="myText">بروزرسانی</span>',
         template: '<div class="myText" style="padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">    <div style="direction: rtl;padding-top: 20px;line-height: 3em">' +
-        '<span class="myText">لطفا برنامه را بروزرسانی کنید</span></div>'+
-        '<div ng-show="!isAndroid()" style="direction: rtl;padding-top: 20px;line-height: 3em"><i class="icon ion-checkmark" style="color: #F06A21;font-size: medium"></i>'+
-        '<a style="color: #F06A21;text-decoration: none" class="myText" href="https://goo.gl/Xqzk1X">اپل استور</a></div>'+
-        '<div ng-show="isAndroid()" style="direction: rtl;padding-top: 20px;line-height: 3em"><i class="icon ion-checkmark" style="color: #F06A21;font-size: medium"></i>'+
-        '<a style="color: #F06A21;text-decoration: none" class="myText" href="https://goo.gl/IzDMd3">گوگل پلی</a></div>'+
-        '<div ng-show="isAndroid()" style="direction: rtl;padding-top: 20px;line-height: 3em"><i class="icon ion-checkmark" style="color: #F06A21;font-size: medium"></i>'+
+        '<span class="myText">لطفا برنامه را بروزرسانی کنید</span></div>' +
+        '<div ng-show="!isAndroid()" style="direction: rtl;padding-top: 20px;line-height: 3em"><i class="icon ion-checkmark" style="color: #F06A21;font-size: medium"></i>' +
+        '<a style="color: #F06A21;text-decoration: none" class="myText" href="https://goo.gl/Xqzk1X">اپل استور</a></div>' +
+        '<div ng-show="isAndroid()" style="direction: rtl;padding-top: 20px;line-height: 3em"><i class="icon ion-checkmark" style="color: #F06A21;font-size: medium"></i>' +
+        '<a style="color: #F06A21;text-decoration: none" class="myText" href="https://goo.gl/IzDMd3">گوگل پلی</a></div>' +
+        '<div ng-show="isAndroid()" style="direction: rtl;padding-top: 20px;line-height: 3em"><i class="icon ion-checkmark" style="color: #F06A21;font-size: medium"></i>' +
         '<a style="color: #F06A21;text-decoration: none" class="myText" href="https://goo.gl/Duh3Mn">کافه بازار</a></div></div>'
       }).then(function (res) {
         navigator.app.exitApp();
@@ -56,6 +56,15 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http) 
       $cordovaToast.showShortBottom('خطا در ارتباط با سرور');
     }
   };
+  var myMessage = function (msg,title) {
+    $ionicPopup.alert({
+      title: title ? title : '',
+      template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">' + msg + '</div>',
+      buttons: [
+        {text: '<span class="myText">باشه</span>'}
+      ]
+    });
+  };
   var getDb = function () {
     return db;
   };
@@ -63,7 +72,8 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http) 
     startLoading: startLoading,
     stopLoading: stopLoading,
     myHandleError: myHandleError,
-    getDb: getDb
+    getDb: getDb,
+    myMessage: myMessage
   };
 })
   .service('authHttpResponseInterceptor', ['$q', function ($q) {
