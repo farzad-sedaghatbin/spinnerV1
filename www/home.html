@@ -105,7 +105,7 @@
             <div style="line-height: 35px">{{row.score}}</div>
             <div style="line-height: 25px">{{row.status}}</div>
           </div>
-          <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield()">
+          <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield(row.gameId,false)">
             جزییات
           </div>
         </div>
@@ -134,7 +134,7 @@
             <div style="line-height: 35px">{{row.score}}</div>
             <div style="line-height: 25px">{{row.status}}</div>
           </div>
-          <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield()">
+          <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield(row.gameId,true)">
             جزییات
           </div>
         </div>

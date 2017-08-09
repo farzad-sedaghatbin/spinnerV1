@@ -22,7 +22,7 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
       StatusBar.styleDefault();
     }
     $rootScope.initGamer = function (refresh,scope) {
-      var url = "https://dagala.cfapps.io/api/1/refresh";
+      var url = "http://192.168.160.172:8080/api/1/refresh";
       $http.post(url).success(function (data, status, headers, config) {
         $rootScope.gamer = data;
         if (refresh)
@@ -35,8 +35,8 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
     };
     var prepareUser = function (result) {
       if (result) {
-        $rootScope.gamer = JSON.parse(result);
-        $http.defaults.headers.common['Authorization'] = $rootScope.gamer.token;
+        $rootScope.gamerInfo = JSON.parse(result);
+        $http.defaults.headers.common['Authorization'] = $rootScope.gamerInfo.token;
       }
       $rootScope.initGamer();
     };

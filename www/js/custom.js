@@ -15,27 +15,4 @@ function loading() {
 function stopLoading(){
   $(".omid_spinner").remove();
 }
-function myAlert() {
-  bootbox.dialog({
-    message: '<p style="color: black;direction: rtl;text-align: right">Please wait while we do something...</p>',
-    closeButton:false,
-    buttons:{
-      alert:{
-        label:"Ok"
-      }
-    }
-  });
-}
-function myPost() {
-  var request = $.ajax({
-    url: "http://spinnerv1.cfapps.io/api/1/signup",
-    type: "POST",
-    data: {username:"omid",password:"123"}
-  });
-  request.done(function(msg) {
-    alert("sdfsdf")
-  });
-  request.fail(function(jqXHR, textStatus) {
-    alert( "Request failed: " + textStatus );
-  });
-}
+

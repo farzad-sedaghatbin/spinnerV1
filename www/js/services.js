@@ -56,9 +56,9 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http) 
       $cordovaToast.showShortBottom('خطا در ارتباط با سرور');
     }
   };
-  var myMessage = function (msg) {
+  var myMessage = function (msg,title) {
     $ionicPopup.alert({
-      title: '',
+      title: title ? title : '',
       template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">' + msg + '</div>',
       buttons: [
         {text: '<span class="myText">باشه</span>'}

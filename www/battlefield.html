@@ -15,11 +15,11 @@
       <div class="myhelp">
         راهنما
       </div>
-      <div id="clock" style="position: absolute;top: 110px;right: 30px;color: white"></div>
+      <div ng-if="!isEnded" id="clock" style="position: absolute;top: 110px;right: 30px;color: white"></div>
       <div ng-if="loaded">
-        <div class="row" style="margin-bottom: 20px;margin-top: 0">
+        <div ng-if="!isEnded" class="row" style="margin-bottom: 20px;margin-top: 0">
           <div class="col grid-example s6 blue-button"
-               ng-click="training()">
+               ng-click="taslim()">
             طسلیم شو
           </div>
           <div ng-if="myTurn" class="col grid-example s6 red-button" ng-click="play()">

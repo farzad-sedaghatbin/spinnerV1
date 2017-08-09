@@ -9,39 +9,17 @@
           خفن ها
         </a>
       </div>
-      <div class="row row1" style="background-size: 300px">
-        <div class="col grid-example s6 coining-text-right" style="font-size: large">
-          30 سکه
+      <div ng-repeat="row in ranks.users" class="row row1" style="background: url('img/{{row.index}}.png') no-repeat center;background-size: 80% 140px">
+        <div class="col grid-example s4 coining-text-right" style="font-size: large">
+          {{row.score}}
         </div>
-        <div class="col grid-example s6 coining-text-left" style="color: darkmagenta;">
-          تماشای ویدیو
+        <div class="col grid-example s4 coining-text-left" style="color: darkmagenta;">
+         {{row.user}}
         </div>
-      </div>
-      <div class="row row2" style="background-size: 300px" ng-click="wheel()">
-        <div class="col grid-example s6 coining-text-right" style="font-size: large">
-          20 سکه
-        </div>
-        <div class="col grid-example s6 coining-text-left" style="color: darkmagenta;">
-          گردونه شانسی
+        <div class="col grid-example s4" style="margin-top: 0">
+          <img style="width: 48px;margin-right: 28px" src="{{row.avatar}}">
         </div>
       </div>
-      <div class="row row3" style="background-size: 300px" ng-click="invitation()">
-        <div class="col grid-example s6 coining-text-right" style="font-size: large">
-          40 سکه
-        </div>
-        <div class="col grid-example s6 coining-text-left" style="color: darkmagenta;">
-          معرفی به دوستان
-        </div>
-      </div>
-      <div class="row row4" style="background-size: 300px" ng-click="invitation()">
-        <div class="col grid-example s6 coining-text-right" style="font-size: large">
-          40 سکه
-        </div>
-        <div class="col grid-example s6 coining-text-left" style="color: darkmagenta;">
-          معرفی به دوستان
-        </div>
-      </div>
-
     </div>
   </ion-content>
 </ion-view>
