@@ -26,7 +26,9 @@
   <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
 </div>
 <script type="text/javascript">
-  window.addEventListener('popstate', function (event) {
+  history.pushState(null, null, location.href);
+  window.addEventListener('popstate', function(event) {
+    history.pushState(null, null, location.href);
     window.location = "/";
   });
 </script>
