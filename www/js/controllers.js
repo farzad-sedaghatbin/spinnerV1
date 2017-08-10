@@ -157,7 +157,12 @@ angular.module('starter.controllers', [])
 
     rootConfig();
     function reset() {
-      root = true;
+      var myEl = angular.element(document.querySelector('.m'));
+      myEl.toggleClass('omid');
+      $timeout(function () {
+        root = true;
+        myEl.toggleClass('active');
+      }, 500);
       rootConfig();
     }
 
@@ -201,7 +206,7 @@ angular.module('starter.controllers', [])
         }, 500);
         menuService.startLoading();
         var serverUrl = "https://dagala.cfapps.io/api/1/games";
-        $http.post(serverUrl, s).success(function (data, status, headers, config) {
+        $http.post(serverUrl, s+1).success(function (data, status, headers, config) {
           $scope.config.submenus = [];
           $(data).each(function (index, value) {
             $scope.config.submenus.push({menuicon: value.icon, adr: value.url, id: value.id})
