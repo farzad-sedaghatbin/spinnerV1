@@ -96,6 +96,7 @@ angular.module('starter.controllers', [])
       return false;
     };
     $scope.challenge = function () {
+      $rootScope.isTrain = false;
       $state.go("newgame");
     };
     $scope.ranks = function () {
