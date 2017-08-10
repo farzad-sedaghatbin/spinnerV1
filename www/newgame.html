@@ -23,25 +23,20 @@
         </div>
       </div>
 
-      <div class="row" style="margin-top: 60px" ng-if="battle.second">
-        <div class="col grid-example s3" style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-          <img style="width: 48px;margin-top: 8px" src="{{battle.second.avatar}}">
-        </div>
-        <div class="col grid-example s6 rate-button" style="margin-right: 30px">
-          {{battle.second.user}}
-        </div>
-        <div class="col grid-example s3 unknown" style="margin-left: 40px;margin-right: 40px">
-        </div>
-      </div>
-
       <div class="row" style="margin-top: 60px">
         <div class="col grid-example s3" style="background: url(img/pic.png) no-repeat center;background-size: contain;">
           <img style="width: 48px;margin-top: 8px" src="{{gamer.avatar}}">
         </div>
-        <div class="col grid-example s6 rate-button" style="margin-right: 30px">
+        <div class="col grid-example s3 rate-button" style="margin-right: 30px">
           شما
         </div>
-        <div class="col grid-example s3 unknown" ng-if="!battle.second" style="margin-left: 40px;margin-right: 40px">
+        <div ng-if="battle.second" class="col grid-example s3" style="background: url(img/pic.png) no-repeat center;background-size: contain;">
+          <img style="width: 48px;margin-top: 8px" src="{{battle.second.avatar}}">
+        </div>
+        <div ng-if="battle.second" class="col grid-example s3 rate-button" style="margin-right: 30px">
+          {{battle.second.user}}
+        </div>
+        <div ng-if="!battle.second" class="col grid-example s6 unknown" style="margin-left: 40px;margin-right: 40px">
         </div>
       </div>
       </div>

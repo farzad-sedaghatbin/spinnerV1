@@ -598,16 +598,13 @@ angular.module('starter.controllers', [])
       var data = {
         username: username,
         password: pass,
-        rememberMe: false
+        rememberMe: true
       };
       $http.post(url, data).success(function (data, status, headers, config) {
-        $rootScope.username = data.username;
         $http.defaults.headers.common.Authorization = data.token;
-        $rootScope.gamerInfo = {username: data.username, token: data.token};
-        menuService.getDb().transaction(function (tx) {
-          tx.executeSql('DELETE FROM MYGAME');
-          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["user", JSON.stringify($rootScope.gamerInfo)]);
-        });
+        $rootScope.gamerInfo = {username: data.username,pass:data.password,token: data.token};
+        $rootScope.saveGamerInfo();
+        $rootScope.saveGamer();
         $state.go("app.home");
       }).catch(function (err) {
         menuService.myHandleError(err, true);
@@ -721,12 +718,15 @@ angular.module('starter.controllers', [])
             });
             menuService.stopLoading();
           } else {
-            $rootScope.username = data.username;
             $ionicPopup.alert({
               title: '<span class="myText">پیام</span>',
               template: '<div class="myText" style="text-align: right">ثبت نام با شما با موفقیت انجام شد</div>'
             });
             $(".popup").css("width", "90%");
+            $rootScope.gamerInfo.username = data.username;
+            $rootScope.gamerInfo.pass = data.password;
+            $rootScope.saveGamerInfo();
+            $rootScope.saveGamer($rootScope.gamer);
             $state.go("menuless.login");
             menuService.stopLoading();
           }

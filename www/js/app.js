@@ -53,6 +53,14 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
           scope.$broadcast('scroll.refreshComplete');
       });
     };
+    $rootScope.saveGamerInfo = function () {
+      var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+      db.transaction(function (tx) {
+        tx.executeSql('DELETE FROM MYGAME',[],function (tx, results) {
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["user", JSON.stringify($rootScope.gamerInfo)]);
+        });
+      });
+    };
     var prepareUser = function (result) {
       if (result) {
         $rootScope.gamerInfo = JSON.parse(result);
@@ -62,13 +70,9 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         var url = "https://dagala.cfapps.io/api/1/tempUser";
         $http.post(url).success(function (data, status, headers, config) {
           $rootScope.gamerInfo = data;
+          $rootScope.gamerInfo.pass = data.username;
           $http.defaults.headers.common['Authorization'] = data.token;
-          var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
-          db.transaction(function (tx) {
-            tx.executeSql('DELETE FROM MYGAME',[],function (tx, results) {
-              tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["user", JSON.stringify($rootScope.gamerInfo)]);
-            });
-          });
+          $rootScope.saveGamerInfo();
           $rootScope.saveGamer({avatar:null,coins:0,gem:0,level:1,newLevel:false,perGameCoins:0,rating:0,score:0});
         }).catch(function (err) {
           // menuService.myHandleError(err, true);
