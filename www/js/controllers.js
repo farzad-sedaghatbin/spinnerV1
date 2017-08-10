@@ -191,7 +191,7 @@ angular.module('starter.controllers', [])
 
     };
     var index = null;
-    $scope.menufun = function (s) {
+    $scope.menufun = function (s,id, url) {
       if (root) {
         root = false;
         var myEl = angular.element(document.querySelector('.m'));
@@ -213,37 +213,9 @@ angular.module('starter.controllers', [])
           reset();
         });
       } else {
-        if (index == null) {
-          index = s - 1;
-          $("#a" + index).animate({
-            height: '60px',
-            width: '60px'
-          }, 300);
-          $("#i" + index).css("line-height", "60px");
-          whichgoo(s);
-          $(".text" + index).show(500);
-        }
-        else {
-          $(".text" + index).hide(500);
-          $('#object1' + index).css({
-            'background-color': 'transparent',
-            'transform': 'none',
-            'pointerEvents': 'none'
-          });
-          $('#object2' + index).css({
-            'background-color': 'transparent',
-            'transform': 'none',
-            'pointerEvents': 'none'
-          });
-          $("#a" + index).delay(300).animate({
-            height: '70px',
-            width: '70px'
-          }, 300);
-          $("#i" + index).delay(100).animate({
-            'line-height': '70px'
-          }, 300);
-          if (s - 1 != index) {
-            index = s - 1;
+        if ($rootScope.isTrain) {
+          if (index == null) {
+            index = s;
             $("#a" + index).animate({
               height: '60px',
               width: '60px'
@@ -251,9 +223,41 @@ angular.module('starter.controllers', [])
             $("#i" + index).css("line-height", "60px");
             whichgoo(s);
             $(".text" + index).show(500);
-          } else {
-            index = null;
           }
+          else {
+            $(".text" + index).hide(500);
+            $('#object1' + index).css({
+              'background-color': 'transparent',
+              'transform': 'none',
+              'pointerEvents': 'none'
+            });
+            $('#object2' + index).css({
+              'background-color': 'transparent',
+              'transform': 'none',
+              'pointerEvents': 'none'
+            });
+            $("#a" + index).delay(300).animate({
+              height: '70px',
+              width: '70px'
+            }, 300);
+            $("#i" + index).delay(100).animate({
+              'line-height': '70px'
+            }, 300);
+            if (s != index) {
+              index = s;
+              $("#a" + index).animate({
+                height: '60px',
+                width: '60px'
+              }, 300);
+              $("#i" + index).css("line-height", "60px");
+              whichgoo(s);
+              $(".text" + index).show(500);
+            } else {
+              index = null;
+            }
+          }
+        } else {
+          $scope.start(id,url);
         }
       }
     };
