@@ -57,9 +57,9 @@
       <!--<div class="upgrade-ico" ng-click="avatar()"></div>-->
       <!--<a class="upgrade-ico" href="ranks.html" style="right: 80px"></a>-->
 
-      <div class="row" style="margin-top: 30px">
+      <div ng-if="gamerInfo.isGuest" class="row" style="margin-top: 30px">
         <article class="notepad">
-          <p>This is zombie ipsum reversus ab viral inferno, nam rick </p>
+          <p style="text-align: right;direction: rtl">لطفا ثبت نام کنید یا با حساب ساخته شده وارد شوید. در صورت ثبت نام امتیازات حساب مهمان منتقل خواهد شد</p>
         </article>
       </div>
 
@@ -104,7 +104,7 @@
           </div>
           <div class="col grid-example s3 rate" style="margin-left: 5px">
             <div style="line-height: 35px">{{row.score}}</div>
-            <div style="line-height: 25px">{{row.status}}</div>
+            <div style="line-height: 25px;font-size: smaller">{{row.status}}</div>
           </div>
           <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield(row.gameId,false)">
             جزییات
@@ -133,7 +133,7 @@
           </div>
           <div class="col grid-example s3 rate" style="margin-left: 5px">
             <div style="line-height: 35px">{{row.score}}</div>
-            <div style="line-height: 25px">{{row.status}}</div>
+            <div style="line-height: 25px;font-size: smaller">{{row.status}}</div>
           </div>
           <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield(row.gameId,true)">
             جزییات

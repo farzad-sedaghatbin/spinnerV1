@@ -71,6 +71,7 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         $http.post(url).success(function (data, status, headers, config) {
           $rootScope.gamerInfo = data;
           $rootScope.gamerInfo.pass = data.username;
+          $rootScope.gamerInfo.isGuest = true;
           $http.defaults.headers.common['Authorization'] = data.token;
           $rootScope.saveGamerInfo();
           $rootScope.saveGamer({avatar:null,coins:0,gem:0,level:1,newLevel:false,perGameCoins:0,rating:0,score:0});

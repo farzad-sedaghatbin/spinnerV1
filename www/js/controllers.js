@@ -602,7 +602,7 @@ angular.module('starter.controllers', [])
       };
       $http.post(url, data).success(function (data, status, headers, config) {
         $http.defaults.headers.common.Authorization = data.token;
-        $rootScope.gamerInfo = {username: data.username,pass:data.password,token: data.token};
+        $rootScope.gamerInfo = {username: data.username,pass:data.password,token: data.token,isGuest: false};
         $rootScope.saveGamerInfo();
         $rootScope.saveGamer();
         $state.go("app.home");
@@ -725,6 +725,7 @@ angular.module('starter.controllers', [])
             $(".popup").css("width", "90%");
             $rootScope.gamerInfo.username = data.username;
             $rootScope.gamerInfo.pass = data.password;
+            $rootScope.gamerInfo.isGuest = false;
             $rootScope.saveGamerInfo();
             $rootScope.saveGamer($rootScope.gamer);
             $state.go("menuless.login");
