@@ -269,17 +269,29 @@ angular.module('starter.controllers', [])
     };
     function whichgoo(s) {
       switch (s) {
-        case 1:
+        case 0:
           gooyi(58, 39, 7, 65);
+          break;
+        case 1:
+          gooyi(35,-42,-25,-36);
           break;
         case 2:
           gooyi(35,-42,-25,-36);
           break;
         case 3:
-          gooyi(-15,-43,40,-41);
+          gooyi(-35,45,30,62);
           break;
         case 4:
+          gooyi(-35,-25,30,-45);
+          break;
+        case 5:
           gooyi(-35,45,30,62);
+          break;
+        case 6:
+          gooyi(58, 39, 7, 65);
+          break;
+        case 7:
+          gooyi(65,25,51,-30);
           break;
 
       }
