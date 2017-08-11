@@ -97,6 +97,7 @@ angular.module('starter.controllers', [])
     };
     $scope.challenge = function () {
       $rootScope.isTrain = false;
+      $rootScope.callService = true;
       $state.go("newgame");
     };
     $scope.ranks = function () {
@@ -563,6 +564,7 @@ angular.module('starter.controllers', [])
       var url = "https://dagala.cfapps.io/api/1/requestGame";
       $http.post(url).success(function (data, status, headers, config) {
         $rootScope.battle = data;
+        $rootScope.callService = false;
         menuService.stopLoading();
         $scope.loaded = true;
         if (refresh)
@@ -577,8 +579,10 @@ angular.module('starter.controllers', [])
 
     $scope.$on("$ionicView.enter", function (scopes, states) {
       $timeout(function () {
-        menuService.startLoading();
-        loadData(false);
+        if ($rootScope.callService) {
+          menuService.startLoading();
+          loadData(false);
+        }
       }, 700)
     });
     $scope.play = function () {
@@ -588,9 +592,6 @@ angular.module('starter.controllers', [])
       // } else {
       $state.go("board");
       // }
-    };
-    $scope.refresh = function () {
-      loadData(true);
     };
     $scope.me = "img/PNG/A01.png";
     $scope.other = "img/PNG/A02.png";
