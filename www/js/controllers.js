@@ -587,6 +587,8 @@ angular.module('starter.controllers', [])
     }
   })
   .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory) {
+    $scope.username;
+    $scope.pass;
     $scope.doLogin = function () {
       var username = $("#username").val();
       var pass = $("#pass").val();
@@ -683,6 +685,9 @@ angular.module('starter.controllers', [])
   .controller('SignupCtrl', function ($scope, $ionicModal, menuService, $ionicPopup, $http, $state, $rootScope, $ionicHistory) {
     $scope.avatar = 'img/PNG/anon.png';
     $scope.tiles = ['/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png', '/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png'];
+    $scope.username;
+    $scope.pass;
+    $scope.tel;
     var rowSize = Math.ceil($scope.tiles.length / 3);
     $scope.rows = [];
     for (var i = 0; i < rowSize; i++) {
@@ -707,7 +712,8 @@ angular.module('starter.controllers', [])
         username: $("#username"),
         mobile: $("#tel"),
         password: $("#pass"),
-        avatar: $scope.avatar
+        avatar: $scope.avatar,
+        tempUser : $rootScope.gamerInfo.username
       };
       $http.post(signUpUrl, data)
         .success(function (suc) {

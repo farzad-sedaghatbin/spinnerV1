@@ -19,9 +19,9 @@
       <div class="error-message myText" ng-show="forgetForm.username.$error.maxlength && forgetForm.username.$touched">
         برای فیلد نام کاربری حداکثر 60 کاراکتر وارد کنید
       </div>
-      <div class="row gold-button" style="font-size: large;text-align: center;display: block;line-height: 60px;margin-top: 10%">
+      <button type="submit" ng-disabled="forgetForm.$invalid" class="row gold-button" style="font-size: large;text-align: center;display: block;line-height: 60px;margin-top: 10%;border: none">
         ثبت
-      </div>
+      </button>
     </form>
 
     <form name="confirmForm" ng-show="forgetPassCodeForm" novalidate ng-submit="confirm(code,password)">
@@ -59,7 +59,7 @@
       </div>
       <div class="padding removePM">
         <div class="col">
-          <button type="submit" ng-disabled="confirmForm.$invalid" class=" button-positive button button-block">ورود
+          <button type="submit" ng-disabled="confirmForm.$invalid" class="row red-button" style="font-size: large;text-align: center;display: block;line-height: 60px;margin-top: 10%;border: none">ورود
           </button>
         </div>
       </div>
