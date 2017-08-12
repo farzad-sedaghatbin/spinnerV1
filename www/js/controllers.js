@@ -38,7 +38,7 @@ angular.module('starter.controllers', [])
         tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
           var len = results.rows.length, i, result = '';
           if (results.rows && results.rows.length != 0) {
-            if (results.rows.item(0).val){
+            if (results.rows.item(0).val) {
               tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
                 var len = results.rows.length, i, result = '';
                 if (results.rows && results.rows.length != 0) {
@@ -55,7 +55,7 @@ angular.module('starter.controllers', [])
                       menuService.stopLoading();
                     });
                   } else {
-                    var url = "http://192.168.160.172:8080/api/1/refresh";
+                    var url = "https://dagala.cfapps.io/api/1/refresh";
                     $http.post(url).success(function (data, status, headers, config) {
                       $rootScope.saveGamer(data);
                       checkLevel(false);
@@ -63,7 +63,7 @@ angular.module('starter.controllers', [])
                       // menuService.myHandleError(err, true);
                     });
                   }
-                  tx.executeSql('DELETE FROM MYGAME WHERE name="score"',[],function (tx, results) {
+                  tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
                     tx.executeSql('DELETE FROM MYGAME WHERE name="wasInGame"');
                   });
                 }
@@ -72,15 +72,15 @@ angular.module('starter.controllers', [])
           }
         })
       });
-      if ($rootScope.timedOut){
+      if ($rootScope.timedOut) {
         $rootScope.timedOut = false;
         checkLevel(true);
       }
     });
     function checkLevel(isCallingFromTimeout) {
-      if (isCallingFromTimeout){
-        if ($rootScope.gamer.newLevel){
-          menuService.myMessage("New Level : " + $rootScope.gamer.level,"وقت بازی تمام شد");
+      if (isCallingFromTimeout) {
+        if ($rootScope.gamer.newLevel) {
+          menuService.myMessage("New Level : " + $rootScope.gamer.level, "وقت بازی تمام شد");
         } else {
           menuService.myMessage("وقت بازی تمام شد");
         }
@@ -88,6 +88,7 @@ angular.module('starter.controllers', [])
         menuService.myMessage("New Level : " + $rootScope.gamer.level);
       }
     }
+
     $scope.refresh = function () {
       $rootScope.refreshGamer(true, $scope);
     };
@@ -95,6 +96,8 @@ angular.module('starter.controllers', [])
       return false;
     };
     $scope.challenge = function () {
+      $rootScope.isTrain = false;
+      $rootScope.callService = true;
       $state.go("newgame");
     };
     $scope.ranks = function () {
@@ -128,7 +131,7 @@ angular.module('starter.controllers', [])
     $scope.buy = function () {
       $state.go("buy")
     };
-    $scope.battlefield = function (gameId,isEnded) {
+    $scope.battlefield = function (gameId, isEnded) {
       $rootScope.rowId = gameId;
       $rootScope.isEnded = isEnded;
       $state.go("battlefield");
@@ -156,7 +159,12 @@ angular.module('starter.controllers', [])
 
     rootConfig();
     function reset() {
-      root = true;
+      var myEl = angular.element(document.querySelector('.m'));
+      myEl.toggleClass('omid');
+      $timeout(function () {
+        root = true;
+        myEl.toggleClass('active');
+      }, 500);
       rootConfig();
     }
 
@@ -189,8 +197,8 @@ angular.module('starter.controllers', [])
       }
 
     };
-    var index=null;
-    $scope.menufun = function (s) {
+    var index = null;
+    $scope.menufun = function (s,id, url) {
       if (root) {
         root = false;
         var myEl = angular.element(document.querySelector('.m'));
@@ -200,7 +208,7 @@ angular.module('starter.controllers', [])
         }, 500);
         menuService.startLoading();
         var serverUrl = "https://dagala.cfapps.io/api/1/games";
-        $http.post(serverUrl, s).success(function (data, status, headers, config) {
+        $http.post(serverUrl, s+1).success(function (data, status, headers, config) {
           $scope.config.submenus = [];
           $(data).each(function (index, value) {
             $scope.config.submenus.push({menuicon: value.icon, adr: value.url, id: value.id})
@@ -212,57 +220,102 @@ angular.module('starter.controllers', [])
           reset();
         });
       } else {
-        if (index == null) {
-          index = s - 1;
-          $('#object1' + index).css({
-            'background-color': 'green',
-            'transform': 'translate(15px, -45px)',
-            'pointerEvents': 'auto'
-          });
-          $('#object2' + index).css({
-            'background-color': 'green',
-            'transform': 'translate(15px,75px)',
-            'pointerEvents': 'auto'
-          });
-          $(".text" + index).show(500);
-        }
-        else {
-          $(".text" + index).hide(500);
-          $('#object1' + index).css({
-            'background-color': 'transparent',
-            'transform': 'none',
-            'pointerEvents': 'none'
-          });
-          $('#object2' + index).css({
-            'background-color': 'transparent',
-            'transform': 'none',
-            'pointerEvents': 'none'
-          });
-          if (s - 1 != index){
-            index = s - 1;
+        if ($rootScope.isTrain) {
+          if (index == null) {
+            index = s;
+            $("#a" + index).animate({
+              height: '60px',
+              width: '60px'
+            }, 300);
+            $("#i" + index).css("line-height", "60px");
+            whichgoo(s);
+            $(".text" + index).show(500);
+          }
+          else {
+            $(".text" + index).hide(500);
             $('#object1' + index).css({
-              'background-color': 'green',
-              'transform': 'translate(15px, -45px)',
-              'pointerEvents': 'auto'
+              'background-color': 'transparent',
+              'transform': 'none',
+              'pointerEvents': 'none'
             });
             $('#object2' + index).css({
-              'background-color': 'green',
-              'transform': 'translate(15px,75px)',
-              'pointerEvents': 'auto'
+              'background-color': 'transparent',
+              'transform': 'none',
+              'pointerEvents': 'none'
             });
-            $(".text" + index).show(500);
-          } else {
-            index = null;
+            $("#a" + index).delay(300).animate({
+              height: '70px',
+              width: '70px'
+            }, 300);
+            $("#i" + index).delay(100).animate({
+              'line-height': '70px'
+            }, 300);
+            if (s != index) {
+              index = s;
+              $("#a" + index).animate({
+                height: '60px',
+                width: '60px'
+              }, 300);
+              $("#i" + index).css("line-height", "60px");
+              whichgoo(s);
+              $(".text" + index).show(500);
+            } else {
+              index = null;
+            }
           }
+        } else {
+          $scope.start(id,url);
         }
       }
     };
+    function whichgoo(s) {
+      switch (s) {
+        case 0:
+          gooyi(58, 39, 7, 65);
+          break;
+        case 1:
+          gooyi(35,-42,-25,-36);
+          break;
+        case 2:
+          gooyi(35,-42,-25,-36);
+          break;
+        case 3:
+          gooyi(-35,45,30,62);
+          break;
+        case 4:
+          gooyi(-35,-25,30,-45);
+          break;
+        case 5:
+          gooyi(-35,45,30,62);
+          break;
+        case 6:
+          gooyi(58, 39, 7, 65);
+          break;
+        case 7:
+          gooyi(65,25,51,-30);
+          break;
+
+      }
+    }
+    function gooyi(x1, y1, x2, y2) {
+      $('#object1' + index).css({
+        'background-color': 'green',
+        'transform': 'translate(' + x1 + 'px, ' + y1 + 'px)',
+        'pointerEvents': 'auto'
+      });
+      $('#object2' + index).css({
+        'background-color': 'green',
+        'transform': 'translate(' + x2 + 'px,' + y2 + 'px)',
+        'pointerEvents': 'auto'
+      });
+    }
+
     $scope.start = function (id, url) {
       menuService.startLoading();
       if ($rootScope.isTrain) {
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
-            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "true,"+id+","+$rootScope.gamerInfo.token+",0"], function (tx, results) {
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "true," + id + "," + $rootScope.gamerInfo.token + ",0"], function (tx, results) {
               changeUrl(url);
             });
           });
@@ -272,7 +325,7 @@ angular.module('starter.controllers', [])
         $http.post(serverUrl, $rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
           menuService.getDb().transaction(function (tx) {
             tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
-              tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "false,"+$rootScope.battle.gameId + "," + id + ",0"], function (tx, results) {
+              tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "false," + $rootScope.battle.gameId + "," + id + ",0"], function (tx, results) {
                 changeUrl(url);
               });
             });
@@ -298,11 +351,11 @@ angular.module('starter.controllers', [])
   })
   .controller('BuyCtrl', function ($scope, $state) {
   })
-  .controller('RanksCtrl', function ($scope, $state, $ionicHistory,menuService,$http,$rootScope) {
+  .controller('RanksCtrl', function ($scope, $state, $ionicHistory, menuService, $http, $rootScope) {
     $scope.$on("$ionicView.enter", function (scopes, states) {
       menuService.startLoading();
       var url;
-      if ($rootScope.selectedGame != null){
+      if ($rootScope.selectedGame != null) {
         $http.post("https://dagala.cfapps.io/api/1/records", $rootScope.selectedGame).success(function (data, status, headers, config) {
           $scope.ranks = data;
           menuService.stopLoading();
@@ -389,9 +442,9 @@ angular.module('starter.controllers', [])
   .controller('BattlefieldCtrl', function ($scope, $state, $ionicHistory, menuService, $timeout, $http, $rootScope, $location) {
     $scope.loaded = false;
     function loadData(refresh) {
-      var url = "http://192.168.160.172:8080/api/1/detailGame";
+      var url = "https://dagala.cfapps.io/api/1/detailGame";
       $http.post(url, $rootScope.rowId).success(function (data, status, headers, config) {
-        if (!$rootScope.isEnded){
+        if (!$rootScope.isEnded) {
           processTiming(data)
         } else {
           showResults(data);
@@ -405,38 +458,45 @@ angular.module('starter.controllers', [])
           $scope.$broadcast('scroll.refreshComplete');
       });
     }
+
     function processTiming(data) {
-      if (data.timeLeft <= 0) {
-        callTimeoutService();
-      } else {
+      if ($rootScope.isEnded) {
         showResults(data);
-        var fiveSeconds = new Date().getTime() + data.timeLeft;
-        $('#clock').countdown(fiveSeconds, {elapse: true})
-          .on('update.countdown', function (event) {
-            var $this = $(this);
-            if (event.elapsed) {
-              $this.html(event.strftime('وقتت تموم شد'));
-              callTimeoutService();
-            } else {
-              $this.html(event.strftime('وقت باقیمانده: <span>%H:%M:%S</span>'));
-            }
-          });
+      } else {
+        if (data.timeLeft <= 0) {
+          callTimeoutService();
+        } else {
+          if (data.status == "2") {
+            $scope.myTurn = "";
+            $scope.hisTurn = "نوبتشه";
+          } else {
+            $scope.myTurn = "نوبتته";
+            $scope.hisTurn = "";
+          }
+          showResults(data);
+          var fiveSeconds = new Date().getTime() + data.timeLeft;
+          $('#clock').countdown(fiveSeconds, {elapse: true})
+            .on('update.countdown', function (event) {
+              var $this = $(this);
+              if (event.elapsed) {
+                $this.html(event.strftime('وقتت تموم شد'));
+                callTimeoutService();
+              } else {
+                $this.html(event.strftime('وقت باقیمانده: <span>%H:%M:%S</span>'));
+              }
+            });
+        }
       }
     }
+
     function showResults(data) {
       $rootScope.battle = data;
-      if (data.status == "2") {
-        $scope.myTurn = "";
-        $scope.hisTurn = "نوبتشه";
-      } else {
-        $scope.myTurn = "نوبتته";
-        $scope.hisTurn = "";
-      }
       menuService.stopLoading();
       $scope.loaded = true;
     }
+
     function callTimeoutService() {
-      $http.post("http://192.168.160.172:8080/api/1/timeOut",$rootScope.rowId).success(function (data, status, headers, config) {
+      $http.post("https://dagala.cfapps.io/api/1/timeOut", $rootScope.rowId).success(function (data, status, headers, config) {
         $rootScope.saveGamer(data);
         $rootScope.timedOut = true;
         $state.go("app.home");
@@ -446,6 +506,7 @@ angular.module('starter.controllers', [])
         menuService.stopLoading();
       });
     }
+
     $scope.$on("$ionicView.enter", function (scopes, states) {
       $timeout(function () {
         menuService.startLoading();
@@ -453,9 +514,9 @@ angular.module('starter.controllers', [])
       }, 700)
     });
     $scope.play = function () {
-      if ($rootScope.battle.gameDTOS.length == 2){
+      if ($rootScope.battle.gameDTOS.length == 2) {
         menuService.startLoading();
-        var url = "http://192.168.160.172:8080/api/1/stopGame";
+        var url = "https://dagala.cfapps.io/api/1/stopGame";
         $http.post(url, $rootScope.rowId).success(function (data, status, headers, config) {
           $rootScope.saveGamer(data);
           menuService.stopLoading();
@@ -477,7 +538,7 @@ angular.module('starter.controllers', [])
     };
     $scope.taslim = function () {
       menuService.startLoading();
-      var url = "http://192.168.160.172:8080/api/1/stopGame";
+      var url = "https://dagala.cfapps.io/api/1/stopGame";
       $http.post(url, $rootScope.rowId).success(function (data, status, headers, config) {
         $rootScope.saveGamer(data);
         menuService.stopLoading();
@@ -503,6 +564,7 @@ angular.module('starter.controllers', [])
       var url = "https://dagala.cfapps.io/api/1/requestGame";
       $http.post(url).success(function (data, status, headers, config) {
         $rootScope.battle = data;
+        $rootScope.callService = false;
         menuService.stopLoading();
         $scope.loaded = true;
         if (refresh)
@@ -517,8 +579,10 @@ angular.module('starter.controllers', [])
 
     $scope.$on("$ionicView.enter", function (scopes, states) {
       $timeout(function () {
-        menuService.startLoading();
-        loadData(false);
+        if ($rootScope.callService) {
+          menuService.startLoading();
+          loadData(false);
+        }
       }, 700)
     });
     $scope.play = function () {
@@ -529,9 +593,6 @@ angular.module('starter.controllers', [])
       $state.go("board");
       // }
     };
-    $scope.refresh = function () {
-      loadData(true);
-    };
     $scope.me = "img/PNG/A01.png";
     $scope.other = "img/PNG/A02.png";
     $scope.goBack = function () {
@@ -539,6 +600,8 @@ angular.module('starter.controllers', [])
     }
   })
   .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory) {
+    $scope.username;
+    $scope.pass;
     $scope.doLogin = function () {
       var username = $("#username").val();
       var pass = $("#pass").val();
@@ -550,16 +613,13 @@ angular.module('starter.controllers', [])
       var data = {
         username: username,
         password: pass,
-        rememberMe: false
+        rememberMe: true
       };
       $http.post(url, data).success(function (data, status, headers, config) {
-        $rootScope.username = data.username;
         $http.defaults.headers.common.Authorization = data.token;
-        $rootScope.gamerInfo = {username:data.username,token:data.token};
-        menuService.getDb().transaction(function (tx) {
-          tx.executeSql('DELETE FROM MYGAME');
-          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["user", JSON.stringify($rootScope.gamerInfo)]);
-        });
+        $rootScope.gamerInfo = {username: data.username,pass:data.password,token: data.token,isGuest: false};
+        $rootScope.saveGamerInfo();
+        $rootScope.saveGamer();
         $state.go("app.home");
       }).catch(function (err) {
         menuService.myHandleError(err, true);
@@ -638,6 +698,9 @@ angular.module('starter.controllers', [])
   .controller('SignupCtrl', function ($scope, $ionicModal, menuService, $ionicPopup, $http, $state, $rootScope, $ionicHistory) {
     $scope.avatar = 'img/PNG/anon.png';
     $scope.tiles = ['/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png', '/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png'];
+    $scope.username;
+    $scope.pass;
+    $scope.tel;
     var rowSize = Math.ceil($scope.tiles.length / 3);
     $scope.rows = [];
     for (var i = 0; i < rowSize; i++) {
@@ -662,7 +725,8 @@ angular.module('starter.controllers', [])
         username: $("#username"),
         mobile: $("#tel"),
         password: $("#pass"),
-        avatar: $scope.avatar
+        avatar: $scope.avatar,
+        tempUser : $rootScope.gamerInfo.username
       };
       $http.post(signUpUrl, data)
         .success(function (suc) {
@@ -673,12 +737,16 @@ angular.module('starter.controllers', [])
             });
             menuService.stopLoading();
           } else {
-            $rootScope.username = data.username;
             $ionicPopup.alert({
               title: '<span class="myText">پیام</span>',
               template: '<div class="myText" style="text-align: right">ثبت نام با شما با موفقیت انجام شد</div>'
             });
             $(".popup").css("width", "90%");
+            $rootScope.gamerInfo.username = data.username;
+            $rootScope.gamerInfo.pass = data.password;
+            $rootScope.gamerInfo.isGuest = false;
+            $rootScope.saveGamerInfo();
+            $rootScope.saveGamer($rootScope.gamer);
             $state.go("menuless.login");
             menuService.stopLoading();
           }
