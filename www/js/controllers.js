@@ -33,6 +33,7 @@ angular.module('starter.controllers', [])
   .controller('HomeCtrl', function ($scope, $state, $ionicModal, $rootScope, menuService, $http) {
     $scope.me = "img/PNG/A01.png";
     $scope.other = "img/PNG/A02.png";
+    $rootScope.homeURL = window.location.href;
     $scope.$on("$ionicView.enter", function (scopes, states) {
       menuService.getDb().transaction(function (tx) {
         tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
@@ -51,7 +52,7 @@ angular.module('starter.controllers', [])
                       menuService.stopLoading();
                       checkLevel(false);
                     }).catch(function (err) {
-                      // menuService.myHandleError(err, true);
+                      // menuService.myHandleError(err);
                       menuService.stopLoading();
                     });
                   } else {
@@ -60,7 +61,7 @@ angular.module('starter.controllers', [])
                       $rootScope.saveGamer(data);
                       checkLevel(false);
                     }).catch(function (err) {
-                      // menuService.myHandleError(err, true);
+                      // menuService.myHandleError(err);
                     });
                   }
                   tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
@@ -210,12 +211,12 @@ angular.module('starter.controllers', [])
         var serverUrl = "https://dagala.cfapps.io/api/1/games";
         $http.post(serverUrl, s+1).success(function (data, status, headers, config) {
           $scope.config.submenus = [];
+          menuService.stopLoading();
           $(data).each(function (index, value) {
             $scope.config.submenus.push({menuicon: value.icon, adr: value.url, id: value.id})
           });
-          menuService.stopLoading();
         }).catch(function (err) {
-          menuService.myHandleError(err, true);
+          menuService.myHandleError(err);
           menuService.stopLoading();
           reset();
         });
@@ -315,23 +316,17 @@ angular.module('starter.controllers', [])
       if ($rootScope.isTrain) {
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
-            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "true," + id + "," + $rootScope.gamerInfo.token + ",0"], function (tx, results) {
-              changeUrl(url);
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "true," + id + "," + $rootScope.gamerInfo.token + ",0,"+$rootScope.homeURL], function (tx, results) {
+              $rootScope.changeUrl(url);
             });
           });
         });
       } else {
         var serverUrl = "https://dagala.cfapps.io/api/1/createGame";
         $http.post(serverUrl, $rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
-          menuService.getDb().transaction(function (tx) {
-            tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
-              tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "false," + $rootScope.battle.gameId + "," + id + ",0"], function (tx, results) {
-                changeUrl(url);
-              });
-            });
-          });
+          $rootScope.goToGame(url,data);
         }).catch(function (err) {
-          // menuService.myHandleError(err, true);
+          // menuService.myHandleError(err);
           menuService.stopLoading();
           reset();
         });
@@ -341,10 +336,6 @@ angular.module('starter.controllers', [])
       $rootScope.selectedGame = id;
       $state.go("ranks");
     };
-    function changeUrl(url) {
-      window.location.assign(url);
-    }
-
     $scope.goBack = function () {
       $ionicHistory.goBack();
     }
@@ -360,7 +351,7 @@ angular.module('starter.controllers', [])
           $scope.ranks = data;
           menuService.stopLoading();
         }).catch(function (err) {
-          // menuService.myHandleError(err, true);
+          // menuService.myHandleError(err);
           menuService.stopLoading();
         });
       } else {
@@ -368,7 +359,7 @@ angular.module('starter.controllers', [])
           $scope.ranks = data;
           menuService.stopLoading();
         }).catch(function (err) {
-          // menuService.myHandleError(err, true);
+          // menuService.myHandleError(err);
           menuService.stopLoading();
         });
       }
@@ -380,12 +371,27 @@ angular.module('starter.controllers', [])
   .controller('TableCtrl', function ($scope, $state, $ionicSideMenuDelegate) {
     $ionicSideMenuDelegate.canDragContent(false)
   })
-  .controller('InvitationCtrl', function ($scope, $state, $ionicHistory) {
+  .controller('InvitationCtrl', function ($scope, $state, $ionicHistory,$http,$rootScope,menuService) {
+    $scope.username;
+    $scope.submit = function () {
+      menuService.startLoading();
+      $http.post("https://dagala.cfapps.io/api/1/inviteFriend", $("#username").val()).success(function (data, status, headers, config) {
+        menuService.stopLoading();
+        if(data == "404"){
+          menuService.myMessage("نام کاربری اشتباه می باشد")
+        } else if (data =="200"){
+          menuService.myMessage("امتیاز معرف شما ثبت شد")
+        }
+      }).catch(function (err) {
+        // menuService.myHandleError(err);
+        menuService.stopLoading();
+      });
+    };
     $scope.goBack = function () {
       $ionicHistory.goBack();
     }
   })
-  .controller('WheelCtrl', function ($scope, $state, $ionicHistory) {
+  .controller('WheelCtrl', function ($scope, $state, $ionicHistory,menuService,$http,$rootScope) {
     $scope.spin = function (index) {
       var count = $(".triangle").length;
       var $spinner = $(".spinneromid");
@@ -397,6 +403,11 @@ angular.module('starter.controllers', [])
         ""
       );
       $spinner.addClass(preffix + value);
+      $http.post("https://dagala.cfapps.io/api/1/rouletteWheel", value).success(function (data, status, headers, config) {
+        $rootScope.gamer.coins += value;
+      }).catch(function (err) {
+        // menuService.myHandleError(err);
+      });
     };
     $scope.goBack = function () {
       $ionicHistory.goBack();
@@ -452,7 +463,7 @@ angular.module('starter.controllers', [])
         if (refresh)
           $scope.$broadcast('scroll.refreshComplete');
       }).catch(function (err) {
-        // menuService.myHandleError(err, true);
+        // menuService.myHandleError(err);
         menuService.stopLoading();
         if (refresh)
           $scope.$broadcast('scroll.refreshComplete');
@@ -502,7 +513,7 @@ angular.module('starter.controllers', [])
         $state.go("app.home");
         menuService.stopLoading();
       }).catch(function (err) {
-        // menuService.myHandleError(err, true);
+        // menuService.myHandleError(err);
         menuService.stopLoading();
       });
     }
@@ -514,21 +525,25 @@ angular.module('starter.controllers', [])
       }, 700)
     });
     $scope.play = function () {
-      if ($rootScope.battle.gameDTOS.length == 2) {
+      if ($rootScope.battle.url && $rootScope.battle.status == "1") {
         menuService.startLoading();
-        var url = "https://dagala.cfapps.io/api/1/stopGame";
-        $http.post(url, $rootScope.rowId).success(function (data, status, headers, config) {
-          $rootScope.saveGamer(data);
-          menuService.stopLoading();
-          $state.go("app.home");
+        var serverUrl = "https://dagala.cfapps.io/api/1/joinGame";
+        $http.post(serverUrl, $rootScope.battle.gameId + "," + $rootScope.battle.gameDTOS[$rootScope.battle.gameDTOS.length-1].challengeId).success(function (data, status, headers, config) {
+          $rootScope.goToGame(data.lastUrl,data.challengeId)
         }).catch(function (err) {
-          // menuService.myHandleError(err, true);
+          // menuService.myHandleError(err);
           menuService.stopLoading();
         });
-      } else if ($rootScope.battle.first) {
+      } else if ($rootScope.battle.url && $rootScope.battle.status == "3"){
         menuService.startLoading();
-        $location.path($rootScope.battle.gameId);
-      } else {
+        var serverUrl = "https://dagala.cfapps.io/api/1/joinGame";
+        $http.post(serverUrl, $rootScope.battle.gameId + "," + $rootScope.battle.url).success(function (data, status, headers, config) {
+          $rootScope.goToGame(data.lastUrl,data.challengeId)
+        }).catch(function (err) {
+          // menuService.myHandleError(err);
+          menuService.stopLoading();
+        });
+      } else if (!$rootScope.battle.url && $rootScope.battle.status == "1") {
         $rootScope.isTrain = false;
         $state.go("board");
       }
@@ -544,7 +559,7 @@ angular.module('starter.controllers', [])
         menuService.stopLoading();
         $state.go("app.home");
       }).catch(function (err) {
-        // menuService.myHandleError(err, true);
+        // menuService.myHandleError(err);
         menuService.stopLoading();
       });
     };
@@ -564,13 +579,18 @@ angular.module('starter.controllers', [])
       var url = "https://dagala.cfapps.io/api/1/requestGame";
       $http.post(url).success(function (data, status, headers, config) {
         $rootScope.battle = data;
+        if ($rootScope.second != null && $rootScope.battle.second.user == $rootScope.gamerInfo.user){
+          var swap = $rootScope.battle.first;
+          $rootScope.battle.first = $rootScope.battle.second;
+          $rootScope.battle.second = swap;
+        }
         $rootScope.callService = false;
         menuService.stopLoading();
         $scope.loaded = true;
         if (refresh)
           $scope.$broadcast('scroll.refreshComplete');
       }).catch(function (err) {
-        // menuService.myHandleError(err, true);
+        // menuService.myHandleError(err);
         menuService.stopLoading();
         if (refresh)
           $scope.$broadcast('scroll.refreshComplete');
@@ -586,12 +606,19 @@ angular.module('starter.controllers', [])
       }, 700)
     });
     $scope.play = function () {
-      // if (!$rootScope.battle.first){
-      //   menuService.startLoading();
-      //   $location.path($rootScope.data.gameId);
-      // } else {
+      if ($rootScope.battle.second != null){
+        menuService.startLoading();
+        var serverUrl = "https://dagala.cfapps.io/api/1/joinGame";
+        $http.post(serverUrl, $rootScope.battle.gameId + "," + $rootScope.battle.challengeList[$rootScope.battle.challengeList.length-1].id).success(function (data, status, headers, config) {
+          $rootScope.goToGame(data.lastUrl,data.challengeId)
+        }).catch(function (err) {
+          // menuService.myHandleError(err);
+          menuService.stopLoading();
+          reset();
+        });
+      } else {
       $state.go("board");
-      // }
+      }
     };
     $scope.me = "img/PNG/A01.png";
     $scope.other = "img/PNG/A02.png";
@@ -605,21 +632,20 @@ angular.module('starter.controllers', [])
     $scope.doLogin = function () {
       var username = $("#username").val();
       var pass = $("#pass").val();
-      if (!username || !pass)
-        return;
       menuService.startLoading();
       delete $http.defaults.headers.common.Authorization;
       var url = "https://dagala.cfapps.io/api/1/user_authenticate";
-      var data = {
+      var d = {
         username: username,
         password: pass,
         rememberMe: true
       };
-      $http.post(url, data).success(function (data, status, headers, config) {
+      $http.post(url, d).success(function (data, status, headers, config) {
         $http.defaults.headers.common.Authorization = data.token;
-        $rootScope.gamerInfo = {username: data.username,pass:data.password,token: data.token,isGuest: false};
+        $rootScope.gamerInfo = {user: d.username,pass:d.password,token: data.token,isGuest: false};
         $rootScope.saveGamerInfo();
-        $rootScope.saveGamer();
+        data.token = null;
+        $rootScope.saveGamer(data);
         $state.go("app.home");
       }).catch(function (err) {
         menuService.myHandleError(err, true);
@@ -630,23 +656,16 @@ angular.module('starter.controllers', [])
       $ionicHistory.goBack();
     }
   })
-  .controller('ForgetCtrl', function ($scope, $state, menuService, $http, $ionicPopup, $ionicHistory) {
+  .controller('ForgetCtrl', function ($scope, $state, menuService, $http, $ionicHistory) {
     $scope.submit = function (username) {
       menuService.startLoading();
       var signUpUrl = "https://dagala.cfapps.io/api/1/forget";
       $http.post(signUpUrl, username)
         .success(function (suc) {
           if (suc == "201") {
-            $ionicPopup.alert({
-              title: '<span class="myText">خطا</span>',
-              template: '<div class="myText" style="text-align: right">نام کاربری اشتباه می باشد</div>'
-            });
+            menuService.myMessage("نام کاربری اشتباه می باشد","خطا");
           } else {
-            $ionicPopup.alert({
-              title: '<span class="myText">پیام</span>',
-              template: '<div class="myText" style="text-align: right;direction: rtl">کد مورد نیاز برای تغییر کلمه عبور پیامک شد</div>'
-            });
-            $(".popup").css("width", "90%");
+            menuService.myMessage("کد مورد نیاز برای تغییر کلمه عبور پیامک شد");
             $scope.forgetPassCodeForm = true;
           }
           menuService.stopLoading();
@@ -662,24 +681,14 @@ angular.module('starter.controllers', [])
         .success(function (suc) {
           menuService.stopLoading();
           if (suc == "200") {
-            $ionicPopup.alert({
-              title: '<span class="myText">پیام</span>',
-              template: '<div class="myText" style="text-align: right;direction: rtl">کلمه عبور با موفقیت تغییر کرد</div>'
-            });
+            menuService.myMessage("کلمه عبور با موفقیت تغییر کرد");
             $state.go("login");
           } else if (suc == "301") {
-            $ionicPopup.alert({
-              title: '<span class="myText">پیام</span>',
-              template: '<div class="myText" style="text-align: right;direction: rtl">خطا در عملیات. لطفا مجددا تلاش کنید</div>'
-            });
+            menuService.myMessage("خطا در عملیات. لطفا مجددا تلاش کنید","خطا");
             $state.go("login");
           } else {
-            $ionicPopup.alert({
-              title: '<span class="myText">پیام</span>',
-              template: '<div class="myText" style="text-align: right;direction: rtl">کد اشتباه می باشد</div>'
-            });
+            menuService.myMessage("کد اشتباه می باشد","خطا");
           }
-          $(".popup").css("width", "90%");
         })
         .error(function (err) {
           menuService.myHandleError(err);
@@ -695,7 +704,7 @@ angular.module('starter.controllers', [])
       $ionicHistory.goBack();
     }
   })
-  .controller('SignupCtrl', function ($scope, $ionicModal, menuService, $ionicPopup, $http, $state, $rootScope, $ionicHistory) {
+  .controller('SignupCtrl', function ($scope, $ionicModal, menuService, $http, $state, $rootScope, $ionicHistory) {
     $scope.avatar = 'img/PNG/anon.png';
     $scope.tiles = ['/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png', '/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png'];
     $scope.username;
@@ -721,30 +730,24 @@ angular.module('starter.controllers', [])
     $scope.signUp = function (form) {
       menuService.startLoading();
       var signUpUrl = "https://dagala.cfapps.io/api/1/signup";
-      var data = {
-        username: $("#username"),
-        mobile: $("#tel"),
-        password: $("#pass"),
+      var d = {
+        username: $("#username").val(),
+        mobile: $("#tel").val(),
+        password: $("#pass").val(),
         avatar: $scope.avatar,
-        tempUser : $rootScope.gamerInfo.username
+        tempUser : $rootScope.gamerInfo.user
       };
-      $http.post(signUpUrl, data)
-        .success(function (suc) {
-          if (suc == "201") {
-            $ionicPopup.alert({
-              title: '<span class="myText">خطا</span>',
-              template: '<div class="myText" style="text-align: right">کاربر دیگری با نام کاربری شما قبلا ثبت نام کرده</div>'
-            });
+      $http.post(signUpUrl, d)
+        .success(function (data, status, headers, config) {
+          if (data == "400") {
+            menuService.myMessage("کاربر دیگری با این نام کاربری قبلا ثبت نام کرده","خطا");
             menuService.stopLoading();
           } else {
-            $ionicPopup.alert({
-              title: '<span class="myText">پیام</span>',
-              template: '<div class="myText" style="text-align: right">ثبت نام با شما با موفقیت انجام شد</div>'
-            });
-            $(".popup").css("width", "90%");
-            $rootScope.gamerInfo.username = data.username;
-            $rootScope.gamerInfo.pass = data.password;
+            menuService.myMessage("ثبت نام شما با موفقیت انجام شد");
+            $rootScope.gamerInfo.user = d.username;
+            $rootScope.gamerInfo.pass = d.password;
             $rootScope.gamerInfo.isGuest = false;
+            $rootScope.gamerInfo.token = data.token;
             $rootScope.saveGamerInfo();
             $rootScope.saveGamer($rootScope.gamer);
             $state.go("menuless.login");
