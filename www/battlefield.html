@@ -12,10 +12,10 @@
           آوردگاه
         </a>
       </div>
-      <div class="myhelp">
-        راهنما
+      <div class="myhelp" style="width:100%;background-size: 72px 72px;background-position-x: left;">
+        <div style="width: 72px;float: left;">راهنما</div>
+        <div style="width: 60%;float: right;margin-top: 30px;display: none" id="clock"></div>
       </div>
-      <div ng-if="!isEnded" id="clock" style="position: absolute;top: 110px;right: 30px;color: white"></div>
       <div ng-if="loaded">
         <div ng-if="!isEnded" class="row" style="margin-bottom: 20px;margin-top: 0">
           <div class="col grid-example s6 blue-button"

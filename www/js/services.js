@@ -1,46 +1,42 @@
 var app = angular.module('starter.services', []);
 
-app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http) {
+app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$rootScope) {
   var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
   var startLoading = function () {
-    $ionicLoading.show({
-      showBackdrop: true,
-      hideOnStateChange: true,
-      template: '<ion-spinner icon="lines"></ion-spinner>'
-    });
+    myLoading();
   };
   var stopLoading = function () {
-    $ionicLoading.hide();
+    myStopLoading();
   };
   var myHandleError = function (err, isFromLogin) {
     if (err == 401) {
       if (isFromLogin) {
-        $ionicPopup.alert({
-          title: '',
-          template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">نام کاربری یا رمز عبور اشتباه می باشد</div>',
-          buttons: [
-            {text: '<span class="myText">ok</span>'}
-          ]
-        });
+        myMessage("نام کاربری یا رمز عبور اشتباه می باشد","خطا");
       } else {
-        delete $http.defaults.headers.common.Authorization;
-        getDb().transaction(function (tx) {
-          tx.executeSql('DELETE FROM ANIJUU WHERE name != ?', ["adv"]);
-        });
-        $ionicPopup.alert({
-          title: '<span class="myText">پیام</span>',
-          template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">لطفا مجددا اطلاعات حساب خود را وارد نمایید</div>'
+        var url = "https://dagala.cfapps.io/api/1/user_authenticate";
+        var d = {
+          username: $rootScope.gamerInfo.user,
+          password: $rootScope.gamerInfo.pass,
+          rememberMe: true
+        };
+        $http.post(url, d).success(function (data, status, headers, config) {
+          delete $http.defaults.headers.common.Authorization;
+          $http.defaults.headers.common.Authorization = data.token;
+          $rootScope.gamerInfo = {user: d.username,pass:d.password,token: data.token,isGuest: false};
+          $rootScope.saveGamerInfo();
+          myMessage("لطفا مجددا عملیات مورد نظر خود را اجرا کنید");
+        }).catch(function (err) {
+          myMessage("لطفا مجددا اطلاعات حساب خود را وارد نمایید","خطا");
+          $state.go("login");
         });
       }
-      $(".popup").css("width", "90%");
-      $state.go("login");
     } else if (err && err.status == 0) {
       $cordovaToast.showShortBottom('لطفا اتصال اینترنت خود را بررسی کنید');
     } else if (err && err.status == 418) {
       $ionicPopup.alert({
         title: '<span class="myText">بروزرسانی</span>',
         template: '<div class="myText" style="padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">    <div style="direction: rtl;padding-top: 20px;line-height: 3em">' +
-        '<span class="myText">لطفا برنامه را بروزرسانی کنید</span></div>' +
+        '<span class="myText">لطفا بازی را بروزرسانی کنید</span></div>' +
         '<div ng-show="!isAndroid()" style="direction: rtl;padding-top: 20px;line-height: 3em"><i class="icon ion-checkmark" style="color: #F06A21;font-size: medium"></i>' +
         '<a style="color: #F06A21;text-decoration: none" class="myText" href="https://goo.gl/Xqzk1X">اپل استور</a></div>' +
         '<div ng-show="isAndroid()" style="direction: rtl;padding-top: 20px;line-height: 3em"><i class="icon ion-checkmark" style="color: #F06A21;font-size: medium"></i>' +
@@ -57,13 +53,15 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http) 
     }
   };
   var myMessage = function (msg,title) {
+    var t = title ? title : '';
     $ionicPopup.alert({
-      title: title ? title : '',
+      title: '<span class="myText">'+t+'</span>',
       template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">' + msg + '</div>',
       buttons: [
         {text: '<span class="myText">باشه</span>'}
       ]
     });
+    $(".popup").css("width", "90%");
   };
   var getDb = function () {
     return db;

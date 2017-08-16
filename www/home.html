@@ -43,10 +43,10 @@
     <div class="myText">
       <div class="row" style="margin-top: 0;height: 120px;margin-left: 50%">
         <div class="col grid-example s3 board" style="max-width: 25%;right: 25%;position: absolute;height: 100px;">
-          <div style="line-height: 30px;color: black">امید</div>
-          <div style="line-height: 20px;color: black"> سکه : {{gamer.coins}}</div>
-          <div style="line-height: 15px;color: black"> رتبه : {{gamer.rating}}</div>
-          <div style="line-height: 20px;color: black">سطح : {{gamer.level}}</div>
+          <div style="line-height: 30px;color: black">{{gamerInfo.user}}</div>
+          <div style="line-height: 20px;color: black;text-align: right"> سکه : {{gamer.coins}}</div>
+          <div style="line-height: 15px;color: black;text-align: right"> رتبه : {{gamer.rating}}</div>
+          <div style="line-height: 20px;color: black;text-align: right">سطح : {{gamer.level}}</div>
         </div>
         <div class="col grid-example s3"
              style="background: url(img/pic.png) no-repeat center;background-size: contain;max-width: 25%;right: 0;position: absolute;"
@@ -95,12 +95,14 @@
           </div>
         </div>
         <div class="row" style="margin-bottom: 10px;" ng-repeat="row in gamer.halfGame">
-          <div class="col grid-example s3"
+          <div ng-if="row.second.user" class="col grid-example s3"
                style="background: url(img/pic.png) no-repeat center;background-size: contain;">
             <img style="width: 48px;margin-top: 8px" src="{{row.second.avatar}}">
           </div>
-          <div class="col grid-example s3 rate-button" style="margin-right: 5px">
+          <div ng-if="row.second.user" class="col grid-example s3 rate-button" style="margin-right: 5px">
             {{row.second.user}}
+          </div>
+          <div ng-if="!row.second.user" class="col grid-example s6 unknown" style="margin-left: 40px;margin-right: 10px">
           </div>
           <div class="col grid-example s3 rate" style="margin-left: 5px">
             <div style="line-height: 35px">{{row.score}}</div>

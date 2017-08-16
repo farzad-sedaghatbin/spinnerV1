@@ -21,9 +21,24 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    $rootScope.isAndroid = function () {
+      return ionic.Platform.isAndroid();
+    };
+    var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+    $rootScope.goToGame = function (url, challengeId){
+      db.transaction(function (tx) {
+        tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "false," + $rootScope.battle.gameId + "," + challengeId + ",0,"+$rootScope.homeURL], function (tx, results) {
+            $rootScope.changeUrl(url);
+          });
+        });
+      });
+    };
+    $rootScope.changeUrl = function (url){
+      window.location.assign(url);
+    };
     $rootScope.saveGamer = function (data) {
       $rootScope.gamer = data;
-      var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
       db.transaction(function (tx) {
         tx.executeSql('DELETE FROM MYGAME WHERE name="gamer"',[],function (tx, results) {
           tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["gamer", JSON.stringify($rootScope.gamer)]);
@@ -31,7 +46,6 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
       });
     };
     $rootScope.initGamer = function () {
-      var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
       db.transaction(function (tx) {
         tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="gamer"',[],function (tx, results) {
           var len = results.rows.length, i, result = '';
@@ -54,7 +68,6 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
       });
     };
     $rootScope.saveGamerInfo = function () {
-      var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
       db.transaction(function (tx) {
         tx.executeSql('DELETE FROM MYGAME',[],function (tx, results) {
           tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["user", JSON.stringify($rootScope.gamerInfo)]);
@@ -70,7 +83,7 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         var url = "https://dagala.cfapps.io/api/1/tempUser";
         $http.post(url).success(function (data, status, headers, config) {
           $rootScope.gamerInfo = data;
-          $rootScope.gamerInfo.pass = data.username;
+          $rootScope.gamerInfo.pass = data.user;
           $rootScope.gamerInfo.isGuest = true;
           $http.defaults.headers.common['Authorization'] = data.token;
           $rootScope.saveGamerInfo();
@@ -80,7 +93,6 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         });
       }
     };
-    var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
     db.transaction(function (tx) {
       tx.executeSql('CREATE TABLE IF NOT EXISTS MYGAME (name , val)',[],function (tx, results) {
         tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="user"', [], function (tx, results) {

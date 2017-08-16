@@ -37,7 +37,7 @@
           <a id="{{'a' + $index}}" style="text-align: center;line-height: 70px;" class="btn btn-icon myshadow">
             <div ng-click="ranks(imageObj.id)" id="{{ 'object1' + $index }}" class="menu-item1" style="background-color:transparent;pointer-events: none"><span style="display: none" class="{{ 'text' + $index }}">رکوردها</span></div>
             <div ng-click="start(imageObj.id,imageObj.adr)" id="{{ 'object2' + $index }}" class="menu-item2" style="background-color:transparent;pointer-events: none"><span style="display: none" class="{{ 'text' + $index }}">شروع</span></div>
-            <i id="{{'i' + $index}}" style="color: white;font-size: xx-large" class="{{imageObj.menuicon}}"></i>
+            <i id="{{'i' + $index}}" style="color: white;" ng-style="imageObj.style" class="{{imageObj.menuicon}}">{{imageObj.text}}</i>
           </a>
           </div>
         </div>
