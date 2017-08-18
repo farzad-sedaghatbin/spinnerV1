@@ -118,6 +118,10 @@ angular.module('starter.controllers', [])
       return false;
     };
     $scope.challenge = function () {
+      if($rootScope.gamer.coins < $rootScope.gamer.perGameCoins){
+        menuService.myMessage("سکه های شما کافی نیست. برای بدست آوردن سکه به قسمت سکه خواری در منو مراجعه کنید.","خطا");
+        return;
+      }
       $rootScope.isTrain = false;
       $rootScope.callService = true;
       $state.go("newgame");
