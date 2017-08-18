@@ -27,6 +27,17 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
           myMessage("لطفا مجددا عملیات مورد نظر خود را اجرا کنید");
         }).catch(function (err) {
           myMessage("لطفا مجددا اطلاعات حساب خود را وارد نمایید","خطا");
+          getDb().transaction(function (tx) {
+            tx.executeSql('DELETE FROM MYGAME WHERE name="gamer"',[],function (tx, results) {
+              var url = "https://dagala.cfapps.io/api/1/tempUser";
+              $http.post(url).success(function (data, status, headers, config) {
+                $http.defaults.headers.common['Authorization'] = data.token;
+                data.pass = data.user;
+                $rootScope.saveGamer(data);
+              }).catch(function (err) {
+              });
+            });
+          });
           $state.go("login");
         });
       }
