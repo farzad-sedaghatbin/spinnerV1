@@ -123,7 +123,7 @@ angular.module('starter.controllers', [])
         return;
       }
       if ($rootScope.gamer.halfGame.length == 5){
-        menuService.myMessage("شما به سقف تعداد بازی روزانه رسیده اید.","خطا");
+        menuService.myMessage("شما به سقف تعداد بازی نیمه تمام رسیده اید.","خطا");
         return;
       }
       $ionicPopup.alert({
