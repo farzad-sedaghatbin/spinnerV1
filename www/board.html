@@ -34,7 +34,7 @@
         <div class="btn trigger" ng-click="toglefun()"><span class="line" ></span></div>
         <div class="rotater" ng-repeat="imageObj in config.submenus" ng-click="menufun($index,imageObj.id,imageObj.adr);">
           <div style="height: 100px;width: 100px">
-          <a id="{{'a' + $index}}" ng-style="imageObj.style2" style="text-align: center;line-height: 70px;" class="btn btn-icon myshadow">
+          <a id="{{'a' + $index}}" style="text-align: center;line-height: 70px;" ng-class="{myDisable : imageObj.style2}" class="btn btn-icon myshadow">
             <div ng-click="ranks(imageObj.id)" id="{{ 'object1' + $index }}" class="menu-item1" style="background-color:transparent;pointer-events: none"><span style="display: none" class="{{ 'text' + $index }}">رکوردها</span></div>
             <div ng-click="start(imageObj.id,imageObj.adr)" id="{{ 'object2' + $index }}" class="menu-item2" style="background-color:transparent;pointer-events: none"><span style="display: none" class="{{ 'text' + $index }}">شروع</span></div>
             <i id="{{'i' + $index}}" style="color: white;" ng-style="imageObj.style" class="{{imageObj.menuicon}}">{{imageObj.text}}</i>

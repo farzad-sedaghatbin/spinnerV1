@@ -200,10 +200,10 @@ angular.module('starter.controllers', [])
         $scope.config = {
           status: true,
           submenus: [
-            {menuicon: '', adr: 'javascript:;', text: 'فکری', style: {"font-size": "large"}, id: '1',style2:{"background":"rgba(49, 154, 49, 0.75)","pointer-events":"auto"}},
-            {menuicon: '', adr: 'javascript:;', text: 'اکشن', style: {"font-size": "large"}, id: '2',style2:{"background":"rgba(49, 154, 49, 0.75)","pointer-events":"auto"}},
-            {menuicon: '', adr: 'javascript:;', text: 'فرار', style: {"font-size": "large"}, id: '3',style2:{"background":"rgba(49, 154, 49, 0.75)","pointer-events":"auto"}},
-            {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: '4',style2:{"background":"rgba(49, 154, 49, 0.75)","pointer-events":"auto"}}
+            {menuicon: '', adr: 'javascript:;', text: 'فکری', style: {"font-size": "large"}, id: '1',style2:false},
+            {menuicon: '', adr: 'javascript:;', text: 'اکشن', style: {"font-size": "large"}, id: '2',style2:false},
+            {menuicon: '', adr: 'javascript:;', text: 'فرار', style: {"font-size": "large"}, id: '3',style2:false},
+            {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: '4',style2:false}
           ]
         };
       }, 300)
