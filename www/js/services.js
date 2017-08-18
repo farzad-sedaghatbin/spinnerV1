@@ -15,8 +15,8 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
       } else {
         var url = "https://dagala.cfapps.io/api/1/user_authenticate";
         var d = {
-          username: $rootScope.gamerInfo.user,
-          password: $rootScope.gamerInfo.pass,
+          username: $rootScope.gamer.user,
+          password: $rootScope.gamer.pass,
           rememberMe: true
         };
         $http.post(url, d).success(function (data, status, headers, config) {

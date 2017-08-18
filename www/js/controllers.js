@@ -317,7 +317,7 @@ angular.module('starter.controllers', [])
       if ($rootScope.isTrain) {
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
-            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "true," + id + "," + $rootScope.gamerInfo.token + ",0," + $rootScope.homeURL], function (tx, results) {
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "true," + id + "," + $rootScope.gamer.token + ",0," + $rootScope.homeURL], function (tx, results) {
               $rootScope.changeUrl(url);
             });
           });
@@ -590,7 +590,7 @@ angular.module('starter.controllers', [])
       var url = "https://dagala.cfapps.io/api/1/requestGame";
       $http.post(url).success(function (data, status, headers, config) {
         $rootScope.battle = data;
-        if ($rootScope.battle.second != null && $rootScope.battle.second.user == $rootScope.gamerInfo.user) {
+        if ($rootScope.battle.second != null && $rootScope.battle.second.user == $rootScope.gamer.user) {
           var swap = $rootScope.battle.first;
           $rootScope.battle.first = $rootScope.battle.second;
           $rootScope.battle.second = swap;
@@ -748,7 +748,7 @@ angular.module('starter.controllers', [])
         mobile: $("#tel").val(),
         password: $("#pass").val(),
         avatar: $scope.avatar,
-        tempUser: $rootScope.gamerInfo.user
+        tempUser: $rootScope.gamer.user
       };
       $http.post(signUpUrl, d)
         .success(function (data, status, headers, config) {
