@@ -31,8 +31,6 @@ angular.module('starter.controllers', [])
   })
 
   .controller('HomeCtrl', function ($scope, $state, $ionicModal, $rootScope, menuService, $http) {
-    $scope.me = "img/PNG/A01.png";
-    $scope.other = "img/PNG/A02.png";
     $rootScope.homeURL = window.location.href;
     $scope.$on("$ionicView.enter", function (scopes, states) {
       menuService.getDb().transaction(function (tx) {
@@ -89,7 +87,30 @@ angular.module('starter.controllers', [])
         menuService.myMessage("New Level : " + $rootScope.gamer.level);
       }
     }
-
+    $scope.tiles = ['/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png', '/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png'];
+    var rowSize = Math.ceil($scope.tiles.length / 3);
+    $scope.rows = [];
+    for (var i = 0; i < rowSize; i++) {
+      $scope.rows.push($scope.tiles.slice(i * 3, (i + 1) * 3));
+    }
+    $scope.selectAvatar = function () {
+      $ionicModal.fromTemplateUrl('avatars.html', {
+        scope: $scope
+      }).then(function (modal) {
+        $rootScope.modal = modal;
+        modal.show();
+      });
+    };
+    $scope.selected = function (url) {
+      $rootScope.gamer.avatar = url;
+      $rootScope.modal.hide();
+      var serverUrl = "https://dagala.cfapps.io/api/1/changeAvatar";
+      $http.post(serverUrl, url).success(function (data, status, headers, config) {
+        $rootScope.saveGamer($rootScope.gamer);
+      }).catch(function (err) {
+        // menuService.myHandleError(err);
+      });
+    };
     $scope.refresh = function () {
       $rootScope.refreshGamer(true, $scope);
     };
@@ -635,9 +656,7 @@ angular.module('starter.controllers', [])
       };
       $http.post(url, d).success(function (data, status, headers, config) {
         $http.defaults.headers.common.Authorization = data.token;
-        $rootScope.gamerInfo = {user: d.username, pass: d.password, token: data.token, isGuest: false};
-        $rootScope.saveGamerInfo();
-        data.token = null;
+        data.pass = d.password;
         $rootScope.saveGamer(data);
         menuService.stopLoading();
         $state.go("app.home");
@@ -699,7 +718,7 @@ angular.module('starter.controllers', [])
     }
   })
   .controller('SignupCtrl', function ($scope, $ionicModal, menuService, $http, $state, $rootScope, $ionicHistory) {
-    $scope.avatar = 'img/PNG/anon.png';
+    $scope.avatar = 'img/default.png';
     $scope.tiles = ['/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png', '/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png'];
     $scope.username;
     $scope.pass;
@@ -738,11 +757,9 @@ angular.module('starter.controllers', [])
             menuService.stopLoading();
           } else {
             menuService.myMessage("ثبت نام شما با موفقیت انجام شد");
-            $rootScope.gamerInfo.user = d.username;
-            $rootScope.gamerInfo.pass = d.password;
-            $rootScope.gamerInfo.isGuest = false;
-            $rootScope.gamerInfo.token = data.token;
-            $rootScope.saveGamerInfo();
+            $rootScope.gamer.user = d.username;
+            $rootScope.gamer.pass = d.password;
+            $rootScope.gamer.token = data.token;
             $rootScope.saveGamer($rootScope.gamer);
             $state.go("menuless.login");
             menuService.stopLoading();

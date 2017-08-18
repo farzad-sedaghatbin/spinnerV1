@@ -22,8 +22,8 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
         $http.post(url, d).success(function (data, status, headers, config) {
           delete $http.defaults.headers.common.Authorization;
           $http.defaults.headers.common.Authorization = data.token;
-          $rootScope.gamerInfo = {user: d.username,pass:d.password,token: data.token,isGuest: false};
-          $rootScope.saveGamerInfo();
+          data.pass = d.password;
+          $rootScope.saveGamer(data);
           myMessage("لطفا مجددا عملیات مورد نظر خود را اجرا کنید");
         }).catch(function (err) {
           myMessage("لطفا مجددا اطلاعات حساب خود را وارد نمایید","خطا");
