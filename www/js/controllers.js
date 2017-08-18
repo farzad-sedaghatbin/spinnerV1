@@ -122,6 +122,10 @@ angular.module('starter.controllers', [])
         menuService.myMessage("سکه های شما کافی نیست. برای بدست آوردن سکه به قسمت سکه خواری در منو مراجعه کنید.","خطا");
         return;
       }
+      if ($rootScope.gamer.halfGame.length == 5){
+        menuService.myMessage("شما به سقف تعداد بازی روزانه رسیده اید.","خطا");
+        return;
+      }
       $ionicPopup.alert({
         title: '<span class="myText">توجه</span>',
         template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی '+$rootScope.gamer.perGameCoins+' سکه از شما کم می شود، تمایل دارید؟</div>',

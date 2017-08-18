@@ -20,7 +20,7 @@
         <div ng-if="!isEnded" class="row" style="margin-bottom: 20px;margin-top: 0">
           <div class="col grid-example s6 blue-button"
                ng-click="taslim()">
-            طسلیم شو
+            تسلیم شو
           </div>
           <div ng-if="myTurn" class="col grid-example s6 red-button" ng-click="play()">
             بازی کن
@@ -34,7 +34,7 @@
                style="background: url(img/pic.png) no-repeat center;background-size: contain;">
             <img style="width: 48px;margin-top: 8px" src="{{gamer.avatar}}">
           </div>
-          <div class="col grid-example s3 rate" style="margin-right: 5px">
+          <div ng-if="battle.user.user" class="col grid-example s3 rate" style="margin-right: 5px">
             {{battle.score}}
           </div>
           <div ng-if="battle.user.user" class="col grid-example s3 rate" style="margin-left: 5px">
