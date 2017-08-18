@@ -46,7 +46,7 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
       });
     };
     $rootScope.refreshGamer = function (refresh,scope) {
-      var url = "https://dagala.cfapps.io/api/1/refresh";
+      var url = "http://192.168.1.157:8080/api/1/refresh";
       $http.post(url).success(function (data, status, headers, config) {
         data.pass = $rootScope.gamer.pass;
         data.token = $rootScope.gamer.token;
@@ -64,7 +64,7 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         $rootScope.gamer = JSON.parse(result);
         $http.defaults.headers.common['Authorization'] = $rootScope.gamer.token;
       } else {
-        var url = "https://dagala.cfapps.io/api/1/tempUser";
+        var url = "http://192.168.1.157:8080/api/1/tempUser";
         $http.post(url).success(function (data, status, headers, config) {
           $http.defaults.headers.common['Authorization'] = data.token;
           data.pass = data.user;
@@ -88,7 +88,7 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
       });
     });
     // $interval(function () {
-    //   var url = "https://dagala.cfapps.io/api/1/refresh";
+    //   var url = "http://192.168.1.157:8080/api/1/refresh";
     //   $http.post(url).success(function (data, status, headers, config) {
     //   }).catch(function (err) {
     //     // menuService.myHandleError(err, true);
