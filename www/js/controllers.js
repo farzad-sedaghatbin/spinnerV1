@@ -494,7 +494,7 @@ angular.module('starter.controllers', [])
       if ($rootScope.isEnded) {
         showResults(data);
       } else {
-        if (data.timeLeft <= 0) {
+        if (data.timeLeft != null && data.timeLeft <= 0) {
           callTimeoutService();
         } else {
           if (data.status == "2") {
@@ -577,7 +577,11 @@ angular.module('starter.controllers', [])
       }
     };
     $scope.dontPlay = function () {
-      menuService.myMessage("نوبت حریفته، بازیش که تموم شد نوبت تو میشه")
+      if ($rootScope.battle.user.user == null){
+        menuService.myMessage("هنوز حریفی برای شما انتخاب نشده");
+      } else {
+        menuService.myMessage("نوبت حریفته، بازیش که تموم شد نوبت تو میشه");
+      }
     };
     $scope.taslim = function () {
       menuService.startLoading();
