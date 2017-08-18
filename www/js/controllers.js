@@ -30,7 +30,7 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('HomeCtrl', function ($scope, $state, $ionicModal, $rootScope, menuService, $http) {
+  .controller('HomeCtrl', function ($scope, $state, $ionicModal, $rootScope, menuService, $http,$ionicPopup) {
     $rootScope.homeURL = window.location.href;
     $scope.$on("$ionicView.enter", function (scopes, states) {
       menuService.getDb().transaction(function (tx) {
@@ -122,9 +122,20 @@ angular.module('starter.controllers', [])
         menuService.myMessage("سکه های شما کافی نیست. برای بدست آوردن سکه به قسمت سکه خواری در منو مراجعه کنید.","خطا");
         return;
       }
-      $rootScope.isTrain = false;
-      $rootScope.callService = true;
-      $state.go("newgame");
+      $ionicPopup.alert({
+        title: '<span class="myText">توجه</span>',
+        template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی '+$rootScope.gamer.perGameCoins+' سکه از شما کم می شود، تمایل دارید؟</div>',
+        buttons: [
+          {text: '<span class="myText">باشه</span>',
+            onTap: function(e) {
+              $rootScope.isTrain = false;
+              $rootScope.callService = true;
+              $state.go("newgame");
+            }
+          },
+          {text: '<span class="myText">نه</span>'}
+        ]
+      });
     };
     $scope.ranks = function () {
       $rootScope.selectedGame = null;

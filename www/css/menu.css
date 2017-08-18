@@ -495,7 +495,7 @@ span.font-36 {
   background-position: right;
   background-repeat: repeat-y, repeat-y, repeat;
   background-size: 48px 48px, 48px 48px, 24px 24px;
-  padding: 4px 64px 4px 4px;
+  padding: 4px 25px 4px 4px;
 }
 .popup-buttons .button{
   background: url(../img/red-button.png) no-repeat;
