@@ -158,6 +158,7 @@ angular.module('starter.controllers', [])
       $state.go("coining");
     };
     $scope.training = function () {
+      $rootScope.battle = null;
       $rootScope.isTrain = true;
       $state.go("board");
     };
@@ -199,10 +200,10 @@ angular.module('starter.controllers', [])
         $scope.config = {
           status: true,
           submenus: [
-            {menuicon: '', adr: 'javascript:;', text: 'فکری', style: {"font-size": "large"}, id: '1'},
-            {menuicon: '', adr: 'javascript:;', text: 'اکشن', style: {"font-size": "large"}, id: '2'},
-            {menuicon: '', adr: 'javascript:;', text: 'فرار', style: {"font-size": "large"}, id: '3'},
-            {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: '4'}
+            {menuicon: '', adr: 'javascript:;', text: 'فکری', style: {"font-size": "large"}, id: '1',style2:{"background":"rgba(49, 154, 49, 0.75)","pointer-events":"auto"}},
+            {menuicon: '', adr: 'javascript:;', text: 'اکشن', style: {"font-size": "large"}, id: '2',style2:{"background":"rgba(49, 154, 49, 0.75)","pointer-events":"auto"}},
+            {menuicon: '', adr: 'javascript:;', text: 'فرار', style: {"font-size": "large"}, id: '3',style2:{"background":"rgba(49, 154, 49, 0.75)","pointer-events":"auto"}},
+            {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: '4',style2:{"background":"rgba(49, 154, 49, 0.75)","pointer-events":"auto"}}
           ]
         };
       }, 300)
@@ -225,7 +226,7 @@ angular.module('starter.controllers', [])
       if (root) {
         menuService.startLoading();
         var serverUrl = "http://192.168.1.157:8080/api/1/games";
-        $http.post(serverUrl, id).success(function (data, status, headers, config) {
+        $http.post(serverUrl, $rootScope.isTrain ? "train" : $rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
           menuService.stopLoading();
           $scope.config.submenus = data;
           root = false;
