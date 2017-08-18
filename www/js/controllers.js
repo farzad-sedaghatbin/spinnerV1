@@ -196,9 +196,9 @@ angular.module('starter.controllers', [])
           status: true,
           submenus: [
             {menuicon: '', adr: 'javascript:;', text: 'فکری', style: {"font-size": "large"}, id: '1'},
-            {menuicon: '', adr: 'javascript:;', text: 'اکشن', style: {"font-size": "large"}, id: '1'},
-            {menuicon: '', adr: 'javascript:;', text: 'فرار', style: {"font-size": "large"}, id: '1'},
-            {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: '1'}
+            {menuicon: '', adr: 'javascript:;', text: 'اکشن', style: {"font-size": "large"}, id: '2'},
+            {menuicon: '', adr: 'javascript:;', text: 'فرار', style: {"font-size": "large"}, id: '3'},
+            {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: '4'}
           ]
         };
       }, 300)
@@ -652,6 +652,11 @@ angular.module('starter.controllers', [])
     $scope.me = "img/PNG/A01.png";
     $scope.other = "img/PNG/A02.png";
     $scope.goBack = function () {
+      var serverUrl = "https://dagala.cfapps.io/api/1/cancelGame";
+      $http.post(serverUrl, $rootScope.battle.gameId).success(function (data, status, headers, config) {
+      }).catch(function (err) {
+        // menuService.myHandleError(err);
+      });
       $ionicHistory.goBack();
     }
   })
