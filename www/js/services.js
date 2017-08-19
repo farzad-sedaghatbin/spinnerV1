@@ -23,6 +23,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
           delete $http.defaults.headers.common.Authorization;
           $http.defaults.headers.common.Authorization = data.token;
           data.pass = d.password;
+          data.user = d.username;
           $rootScope.saveGamer(data);
           myMessage("لطفا مجددا عملیات مورد نظر خود را اجرا کنید");
         }).catch(function (err) {
