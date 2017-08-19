@@ -2,8 +2,10 @@
   <ion-content class="page-background" id="HomeController">
     <div class="myText">
       <div class="row">
-        <a class="col grid-example s6" style="text-align: left" ng-click="goBack()">
-          <img class="coins-ico" src="img/back.jpg" style="width: 56px"/>
+        <a class="col grid-example s6" ng-click="goBack()">
+          <div class="myhelp" style="position: absolute;left: 0">
+            انصراف
+          </div>
         </a>
         <a class="col grid-example s6 mytitle">
           آوردگاه
@@ -13,29 +15,32 @@
         راهنما
       </div>
       <div ng-if="loaded">
-      <div class="row" style="margin-bottom: 20px;margin-top: 40px">
-        <div class="col grid-example s12 blue-button i" style="background: url('img/button1.png') no-repeat center;background-size: 180px 60px;font-size: large;"
-             ng-click="play()">
-          بازی کن
+        <div class="row" style="margin-bottom: 20px;margin-top: 40px">
+          <div class="col grid-example s12 blue-button i"
+               style="background: url('img/button1.png') no-repeat center;background-size: 180px 60px;font-size: large;"
+               ng-click="play()">
+            بازی کن
+          </div>
         </div>
-      </div>
 
-      <div class="row" style="margin-top: 60px">
-        <div class="col grid-example s3" style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-          <img style="width: 48px;margin-top: 8px" src="{{gamer.avatar}}">
+        <div class="row" style="margin-top: 60px">
+          <div class="col grid-example s3"
+               style="background: url(img/pic.png) no-repeat center;background-size: contain;">
+            <img style="width: 48px;margin-top: 8px" src="{{gamer.avatar}}">
+          </div>
+          <div class="col grid-example s3 rate-button" style="margin-right: 30px">
+            شما
+          </div>
+          <div ng-if="battle.second" class="col grid-example s3 rate-button" style="margin-left: 30px">
+            {{battle.second.user}}
+          </div>
+          <div ng-if="battle.second" class="col grid-example s3"
+               style="background: url(img/pic.png) no-repeat center;background-size: contain;">
+            <img style="width: 48px;margin-top: 8px" src="{{battle.second.avatar}}">
+          </div>
+          <div ng-if="!battle.second" class="col grid-example s6 unknown" style="margin-left: 40px;margin-right: 40px">
+          </div>
         </div>
-        <div class="col grid-example s3 rate-button" style="margin-right: 30px">
-          شما
-        </div>
-        <div ng-if="battle.second" class="col grid-example s3 rate-button" style="margin-left: 30px">
-          {{battle.second.user}}
-        </div>
-        <div ng-if="battle.second" class="col grid-example s3" style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-          <img style="width: 48px;margin-top: 8px" src="{{battle.second.avatar}}">
-        </div>
-        <div ng-if="!battle.second" class="col grid-example s6 unknown" style="margin-left: 40px;margin-right: 40px">
-        </div>
-      </div>
       </div>
     </div>
   </ion-content>

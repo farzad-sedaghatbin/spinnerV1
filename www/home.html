@@ -42,22 +42,24 @@
 
     <div class="myText">
       <div class="row" style="margin-top: 0;height: 120px;margin-left: 50%">
-        <div class="col grid-example s3 board" style="max-width: 25%;right: 25%;position: absolute;height: 100px;">
-          <div style="line-height: 30px;color: black">{{gamerInfo.user}}</div>
-          <div style="line-height: 20px;color: black"> سکه : {{gamer.coins}}</div>
-          <div style="line-height: 15px;color: black"> رتبه : {{gamer.rating}}</div>
-          <div style="line-height: 20px;color: black">سطح : {{gamer.level}}</div>
+        <div class="col grid-example s3 board" style="max-width: 25%;right: 25%;position: absolute;height: 130px;">
+          <div style="line-height: 30px;color: black">{{gamer.user}}</div>
+          <div style="line-height: 20px;color: black;text-align: right"> سکه : {{gamer.coins}}</div>
+          <div style="line-height: 15px;color: black;text-align: right"> رتبه : {{gamer.rating}}</div>
+          <div style="line-height: 20px;color: black;text-align: right">سطح : {{gamer.level}}</div>
+          <div style="line-height: 20px;color: black;text-align: right">الماس : {{gamer.gem}}</div>
+          <div style="line-height: 20px;color: black;text-align: right">امتیاز : {{gamer.score}}</div>
         </div>
         <div class="col grid-example s3"
              style="background: url(img/pic.png) no-repeat center;background-size: contain;max-width: 25%;right: 0;position: absolute;"
-             ng-click="training()">
-          <img style="width: 48px;margin-top: 18px" src="{{me}}">
+             ng-click="selectAvatar()">
+          <img style="width: 48px;margin-top: 18px;border-radius: 50%" src="{{gamer.avatar}}">
         </div>
       </div>
       <!--<div class="upgrade-ico" ng-click="avatar()"></div>-->
       <!--<a class="upgrade-ico" href="ranks.html" style="right: 80px"></a>-->
 
-      <div ng-if="gamerInfo.isGuest" class="row" style="margin-top: 30px">
+      <div ng-if="gamer.isGuest" class="row" style="margin-top: 30px">
         <article class="notepad">
           <p style="text-align: right;direction: rtl">لطفا ثبت نام کنید یا با حساب ساخته شده وارد شوید. در صورت ثبت نام امتیازات حساب مهمان منتقل خواهد شد</p>
         </article>
@@ -95,18 +97,19 @@
           </div>
         </div>
         <div class="row" style="margin-bottom: 10px;" ng-repeat="row in gamer.halfGame">
-          <div ng-if="row.second" class="col grid-example s3"
+          <div ng-if="row.second.user" class="col grid-example s3"
                style="background: url(img/pic.png) no-repeat center;background-size: contain;">
             <img style="width: 48px;margin-top: 8px" src="{{row.second.avatar}}">
           </div>
-          <div ng-if="row.second" class="col grid-example s3 rate-button" style="margin-right: 5px">
+          <div ng-if="row.second.user" class="col grid-example s3 rate-button" style="margin-right: 5px">
             {{row.second.user}}
           </div>
-          <div ng-if="!row.second" class="col grid-example s6 unknown" style="margin-left: 40px;margin-right: 10px">
+          <div ng-if="!row.second.user" class="col grid-example s6 unknown" style="margin-left: 40px;margin-right: 10px">
           </div>
           <div class="col grid-example s3 rate" style="margin-left: 5px">
             <div style="line-height: 35px">{{row.score}}</div>
-            <div style="line-height: 25px;font-size: smaller">{{row.status}}</div>
+            <div style="line-height: 5px;font-size: smaller">{{row.scoreStatus}}</div>
+            <div style="line-height: 25px;font-size: xx-small">{{row.status}}</div>
           </div>
           <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield(row.gameId,false)">
             جزییات

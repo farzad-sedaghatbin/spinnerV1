@@ -13,9 +13,24 @@
 
 <body ontouchstart="">
 <script type="text/javascript">
-  function home() {
-    window.location.href = "/";
-    return false;
+  var url = location.href;
+  var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+  db.transaction(function (tx) {
+    tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
+      var len = results.rows.length, i, result = '';
+      if (results.rows && results.rows.length != 0) {
+        var a = results.rows.item(0).val.split(",");
+        url = a[4];
+      }
+    });
+  });
+  history.pushState(null, null, location.href);
+  window.addEventListener('popstate', function(event) {
+    history.pushState(null, location.href);
+    window.location = url;
+  });
+  function goHome() {
+    window.location = url;
   }
 </script>
 <div class="preloader main">
@@ -189,9 +204,6 @@
 <!-- Gamee for mobile phone /-->
 <div id="gameeMobile" class="FourArrows">
 		<div id="canvasWrap">
-      <a class="coins-total ui-text" style="left: 0;position: absolute" onclick="return parent.home();">
-        <img class="coins-ico" src="/img/back.png" style="width: 56px"/>
-      </a>
 			<!-- Your score on the top /-->
 			<div class="your_score v2">
 				<div class="this_border">Score: <span class="totalScore">0</span></div>
@@ -264,11 +276,15 @@
 
 				<div class="cLayout play" id="play">
 					<div id="control-play" class="control"></div>
-				</div>
+          <div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
+
+        </div>
 
 				<div class="cLayout resume">
 					<div id="control-resume" class="control"></div>
-				</div>
+          <div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
+
+        </div>
 
 				<div class="cLayout FourArrows" id="controller">
 					<div class="inner">

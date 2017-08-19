@@ -1,4 +1,4 @@
-function loading() {
+function myLoading() {
   var parent = $("<div></div>");
   parent.addClass("omid_spinner");
   var spinner = $("<div></div>");
@@ -12,7 +12,7 @@ function loading() {
   spinner.append(dot2);
   $("body").append(parent);
 }
-function stopLoading(){
+function myStopLoading(){
   $(".omid_spinner").remove();
 }
 
