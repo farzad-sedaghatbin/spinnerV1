@@ -4,10 +4,10 @@
 }
 
 .menu-item-omid, .menu-open-button {
-  background: green;
+  background: #6da76d;
   border-radius: 100%;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   margin-left: -40px;
   position: absolute;
   top: 20px;
@@ -82,7 +82,7 @@
   box-sizing: border-box;
   font-size: 20px;
   text-align: left;
-  top: 35px;
+  top: 45px;
 }
 
 .menu-item-omid:hover {
@@ -176,8 +176,8 @@
 .menu-open-omid:checked ~ .menu-item-omid:nth-child(8) {
   -webkit-transition-duration: 560ms;
   transition-duration: 560ms;
-  -webkit-transform: translate3d(-16px, -48px, 0);
-  transform: translate3d(-16px, -48px, 0);
+  -webkit-transform: translate3d(-32px, -58px, 0);
+  transform: translate3d(-32px, -58px, 0);
 }
 
 
