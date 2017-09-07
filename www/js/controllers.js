@@ -46,6 +46,8 @@ angular.module('starter.controllers', [])
                     menuService.startLoading();
                     var serverUrl = "https://dagala.cfapps.io/api/1/endGame";
                     $http.post(serverUrl, vals[1] + "," + vals[2] + "," + vals[3]).success(function (data, status, headers, config) {
+                      data.pass = $rootScope.gamer.pass;
+                      data.token = $rootScope.gamer.token;
                       $rootScope.saveGamer(data);
                       menuService.stopLoading();
                       checkLevel(false);
@@ -56,6 +58,8 @@ angular.module('starter.controllers', [])
                   } else {
                     var url = "https://dagala.cfapps.io/api/1/refresh";
                     $http.post(url).success(function (data, status, headers, config) {
+                      data.pass = $rootScope.gamer.pass;
+                      data.token = $rootScope.gamer.token;
                       $rootScope.saveGamer(data);
                       checkLevel(false);
                     }).catch(function (err) {
@@ -226,7 +230,7 @@ angular.module('starter.controllers', [])
       if (root) {
         menuService.startLoading();
         var serverUrl = "https://dagala.cfapps.io/api/1/games";
-        $http.post(serverUrl, $rootScope.isTrain ? "train" : $rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
+        $http.post(serverUrl, $rootScope.isTrain ? "train" + "," + id : $rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
           menuService.stopLoading();
           $scope.config.submenus = data;
           root = false;
@@ -538,6 +542,8 @@ angular.module('starter.controllers', [])
 
     function callTimeoutService() {
       $http.post("https://dagala.cfapps.io/api/1/timeOut", $rootScope.rowId).success(function (data, status, headers, config) {
+        data.pass = $rootScope.gamer.pass;
+        data.token = $rootScope.gamer.token;
         $rootScope.saveGamer(data);
         $rootScope.timedOut = true;
         $state.go("app.home");
@@ -592,6 +598,8 @@ angular.module('starter.controllers', [])
       menuService.startLoading();
       var url = "https://dagala.cfapps.io/api/1/stopGame";
       $http.post(url, $rootScope.rowId).success(function (data, status, headers, config) {
+        data.pass = $rootScope.gamer.pass;
+        data.token = $rootScope.gamer.token;
         $rootScope.saveGamer(data);
         menuService.stopLoading();
         $state.go("app.home");
@@ -705,6 +713,7 @@ angular.module('starter.controllers', [])
       $http.post(url, d).success(function (data, status, headers, config) {
         $http.defaults.headers.common.Authorization = data.token;
         data.pass = d.password;
+        data.user = d.username;
         $rootScope.saveGamer(data);
         menuService.stopLoading();
         $state.go("app.home");
