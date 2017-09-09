@@ -183,7 +183,7 @@ angular.module('starter.controllers', [])
       $state.go("battlefield");
     };
   })
-  .controller('BoardCtrl', function ($scope, $timeout, $ionicHistory, menuService, $http, $rootScope, $state) {
+  .controller('BoardCtrl', function ($scope, $timeout, $ionicHistory, menuService, $http, $rootScope, $state,$ionicModal) {
     var root = true;
 
     function renderRoot() {
@@ -359,7 +359,13 @@ angular.module('starter.controllers', [])
     };
     $scope.ranks = function (id) {
       $rootScope.selectedGame = id;
-      $state.go("ranks");
+      $ionicModal.fromTemplateUrl('ranks.html', {
+        scope: $scope
+      }).then(function (modal) {
+        $rootScope.modal = modal;
+        modal.show();
+      });
+      // $state.go("ranks");
     };
     $scope.goBack = function () {
       $ionicHistory.goBack();
@@ -477,6 +483,13 @@ angular.module('starter.controllers', [])
 
         }
       });
+    }
+    $scope.buy = function () {
+      inappbilling.getPurchases(function (data) {
+        alert(data[0].productId)
+      },function (e) {
+        alert(e)
+      })
     }
   })
   .controller('BattlefieldCtrl', function ($scope, $state, $ionicHistory, menuService, $timeout, $http, $rootScope, $location) {
