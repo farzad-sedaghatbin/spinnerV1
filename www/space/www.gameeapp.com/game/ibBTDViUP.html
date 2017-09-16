@@ -1,69 +1,71 @@
 
-<html>
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"><!--<![endif]-->
+
 <!-- Mirrored from www.gameeapp.com/game/ibBTDViUP by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 10 Jul 2017 03:44:43 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
 	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height, minimal-ui">
 
 	<link rel="stylesheet" href="../detail/css/preloader.min3860.css?v=1">
 	<link rel="stylesheet" href="../detail/css/main.min7b30.css?v=4">
-
-	<link rel="apple-touch-icon" sizes="180x180" href="../brand/apple-touch-icon.png">
-	<link rel="icon" type="image/png" href="../brand/favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="../brand/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" href="../detail/css/bootstrap.min.css">
 </head>
 
 
 <body ontouchstart="">
+<div style="position: absolute;z-index: 1000;display: none" class="alert alert-danger" role="alert">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="gameeUI.hideAlert.hide()">
+		<span aria-hidden="true">&times;</span>
+	</button>
+	<strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+</div>
 <script type="text/javascript">
-  var url = location.href;
-  var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
-  db.transaction(function (tx) {
-    tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
-      var len = results.rows.length, i, result = '';
-      if (results.rows && results.rows.length != 0) {
-        var a = results.rows.item(0).val.split(",");
-        url = a[4];
-      }
+    var url = location.href;
+    var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+    db.transaction(function (tx) {
+        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
+            var len = results.rows.length, i, result = '';
+            if (results.rows && results.rows.length != 0) {
+                var a = results.rows.item(0).val.split(",");
+                url = a[4];
+            }
+        });
     });
-  });
-  history.pushState(null, null, location.href);
-  window.addEventListener('popstate', function(event) {
-    history.pushState(null, location.href);
-    window.location = url;
-  });
-  function goHome() {
-    window.location = url;
-  }
+    history.pushState(null, null, location.href);
+    window.addEventListener('popstate', function(event) {
+        history.pushState(null, location.href);
+        window.location = url;
+    });
+    function goHome() {
+        window.location = url;
+    }
 </script>
 <div class="preloader main">
 	<div class="inner">
 		<div class="icon"></div>
 		<div class="type"></div>
-        <div class="claim">بازیهای ما خیلی خوبه</div>
+        <div class="claim">Social gaming, endless fun!</div>
 	</div>
 	<div class="loading_bar"></div>
 </div>
 
 
 <div class="l_pageBody" id="gameeDesktop">
-
 	<div class="l_pageBody-inside">
 
 		<div class="b_contentWrap">
 
 			<main class="b_content">
-
-				<!-- More options menu /-->
-				<div id="gameMoreOptions">
-                	<a class="btn-dots" title="Show more options"></a>
-
-                	<div class="dropdown">
-                		<a class="btn-embed-game" title="Embed game">Embed game</a>
-                	</div>
-                </div>
-
 
 				<div class="b_content-leftWrap">
 					<div class="b_content-leftAppWrap">
@@ -72,7 +74,7 @@
 							<div class="this-border">Score: <span class="child-score js-score">0</span></div>
 						</div>
 
-						<iframe name="game" class="gameFrame" data-src="frame/index.html" frameborder="0" width="640" height="640"></iframe>
+						<iframe name="game" class="gameFrame" data-src="../data/index.html" frameborder="0" width="640" height="640"></iframe>
 						<div class="b_contnet-leftAppControls">
 							<div class="child-item this-pause js_pause"></div>
 						</div>
@@ -86,12 +88,6 @@
 
 
 								<div class="startOverlay">
-
-								<div class="overlay-header">
-									<h3>Space Traveler</h3>
-									<div class="highscore">Highscore is <span>9212</span></div>
-								</div>
-
 								<div class="child-pushSpace"><span>Push Space to Play</span></div>
 
 								<div class="child-howToPlayWrap">
@@ -115,11 +111,6 @@
 
 							<!-- Overlay paused new /-->
 							<div class="b_content-leftAppOverlayPaused js-overlay js-overlayPaused" style="display: none">
-
-								<div class="overlay-header">
-									<h3>Space Traveler</h3>
-									<div class="highscore">Highscore is <span class="child-score js-score">0</span>!</div>
-								</div>
 
 								<div class="child-pushSpace"><span>Push Space to Play</span></div>
 
@@ -155,9 +146,6 @@
 									<div class="yourScore">
 										You scored <span class="child-score js-score">0</span>!
 									</div>
-									<div class="highscore" style="display: none;">
-										Highscore is <span class="child-score js-highscore">9212</span>.
-									</div>
 								</div>
 
 								<div class="child-pushSpace replay">Push Space to Continue</div>
@@ -166,24 +154,6 @@
 
 							</div>
 
-						</div>
-					</div>
-				</div>
-
-				<div class="b_content-rightWrap">
-					<div class="inner">
-
-					</div>
-				</div>
-
-
-				<div id="sidebar-ranks" class="in-wrap" style="display: none;">
-
-					<div class="ranks-wrap">
-						<div class="in">
-							<div class="area">
-								<div class="items"></div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -198,6 +168,7 @@
 <div id="gameeMobile" class="FullScreenPortrait">
 
 		<div id="canvasWrap">
+
 			<!-- Your score on the top /-->
 			<div class="your_score v2">
 				<div class="this_border">Score: <span class="totalScore">0</span></div>
@@ -241,10 +212,6 @@
 				<div class="inner">
 					<div class="transform">
 						<p class="press-play">Press play!<br><span>To start the game</span></p>
-
-                        <div class="ranks-wrap noBot visible">
-                        </div>
-
 						<div class="ranks-wrap">
 							<div class="this-share visible">
 							</div>
@@ -257,7 +224,7 @@
 				</div>
 			</div>
 
-			<iframe id="gameeFrameMobile" name="game" class="gameFrame" data-src="frame/index.html" frameborder="0" scrolling="no" width="320" height="320" style=""></iframe>
+			<iframe id="gameeFrameMobile" name="game" class="gameFrame" data-src="../data/index.html" frameborder="0" scrolling="no" width="320" height="320" style=""></iframe>
 
 
 		</div> <!-- Canvas wrap /-->
@@ -268,19 +235,18 @@
 			<div class="cWrap">
 				<div class="cLayout restart" id="restart">
 					<div id="control-restart" class="control"></div>
+					<div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
 				</div>
 
 				<div class="cLayout play" id="play">
 					<div id="control-play" class="control"></div>
-          <div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
-
-        </div>
+					<div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
+				</div>
 
 				<div class="cLayout resume">
 					<div id="control-resume" class="control"></div>
-          <div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
-
-        </div>
+					<div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
+				</div>
 
 				<div class="cLayout FullScreenPortrait" id="controller">
 					<div class="inner">
@@ -313,7 +279,7 @@
 
 <!-- Javascript /-->
 <script data-pace-options='{ "ajax": false }' type="text/javascript" src="../detail/js/vendor/pace.min.js"></script>
-<script src="../detail/js/vendor/jquery-2.2.4.min.js"></script>
+<script src="../../ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="../detail/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
 <script src="../detail/js/libs.min.js"></script>
 <script src="../detail/js/vendor/scroller.min.js"></script>
@@ -324,6 +290,17 @@
 	    source = "web",
 	    innerWidth = window.innerWidth,
         innerHeight = window.innerHeight;
+
+	var gameGlobals = {
+		game_name: "",
+		game_img: "",
+		game_genre: "",
+		game_source: source,
+		game_url: "",
+		game_fullUrl: "",
+		game_code: "",
+		mixPanelToken: ""
+	};
 
 	if (body.hasClass('mobile') || body.hasClass('tablet')) {
 	    $('.preloader.main').css('opacity','1');
@@ -347,7 +324,6 @@
 </script>
 
 <script type="text/javascript" src="../detail/js/gameeWeb.min.js"></script>
-<script type="text/javascript" src="../detail/js/common.min.js"></script>
 
 </body>
 

@@ -46,5 +46,15 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com.smartmobilesoftware.androidinappbilling": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\Omid\\Desktop\\Cafebazzar-inappbilling-cordova-master"
+        },
+        "is_top_level": true,
+        "variables": {
+            "BILLING_KEY": "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDkyra6nrGHTp6dGu+M8M9haLk0C6Vj6TJ/tVciYVaonGyXoAf9PWhgTOc7wGCNYd6p6PoCECbKe1iD/bevb7nZC6CySDFn2IDxz8LryMDUtNCLla10/FgpfhAYpelcseE2uk+90jGr/0MFv+YU48Q9vlrEy0Vj0LeJgSorcSj35ZAPyJ4B/bEmmj6goxUCZcFXDqGZ1/weoVW6ZVeKEz/8QBv9qKdIn+dBQfuxiucCAwEAAQ=="
+        }
     }
 }
