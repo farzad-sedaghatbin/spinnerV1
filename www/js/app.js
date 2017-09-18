@@ -166,6 +166,11 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         controller: 'RanksCtrl',
         templateUrl: 'ranks.html'
       })
+      .state('league', {
+        url: '/league',
+        controller: 'LeagueCtrl',
+        templateUrl: 'league.html'
+      })
       .state('app.table', {
         url: '/table',
         views: {
