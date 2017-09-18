@@ -119,7 +119,7 @@ angular.module('starter.controllers', [])
       $rootScope.refreshGamer(true, $scope);
     };
     $scope.isLeague = function () {
-      return false;
+      return true;
     };
     $scope.challenge = function () {
       if($rootScope.gamer.coins < $rootScope.gamer.perGameCoins){
@@ -160,6 +160,9 @@ angular.module('starter.controllers', [])
     };
     $scope.coining = function () {
       $state.go("coining");
+    };
+    $scope.league = function () {
+      $state.go("league");
     };
     $scope.training = function () {
       $rootScope.battle = null;
@@ -357,50 +360,26 @@ angular.module('starter.controllers', [])
         });
       }
     };
-    $scope.ranks = function (id) {
-      $rootScope.selectedGame = id;
-      $ionicModal.fromTemplateUrl('ranks.html', {
-        scope: $scope
-      }).then(function (modal) {
-        $rootScope.modal = modal;
-        modal.show();
+    $scope.topRanks = function (id) {
+      index = null;
+      menuService.startLoading();
+      $http.post("https://dagala.cfapps.io/api/1/records", id).success(function (data, status, headers, config) {
+        $scope.ranks = data;
+        menuService.stopLoading();
+        $ionicModal.fromTemplateUrl('ranks.html', {
+          scope: $scope
+        }).then(function (modal) {
+          $rootScope.modal = modal;
+          modal.show();
+        });
+      }).catch(function (err) {
+        // menuService.myHandleError(err);
+        menuService.stopLoading();
       });
-      // $state.go("ranks");
     };
     $scope.goBack = function () {
       $ionicHistory.goBack();
     }
-  })
-  .controller('BuyCtrl', function ($scope, $state) {
-  })
-  .controller('RanksCtrl', function ($scope, $state, $ionicHistory, menuService, $http, $rootScope) {
-    $scope.$on("$ionicView.enter", function (scopes, states) {
-      menuService.startLoading();
-      var url;
-      if ($rootScope.selectedGame != null) {
-        $http.post("https://dagala.cfapps.io/api/1/records", $rootScope.selectedGame).success(function (data, status, headers, config) {
-          $scope.ranks = data;
-          menuService.stopLoading();
-        }).catch(function (err) {
-          // menuService.myHandleError(err);
-          menuService.stopLoading();
-        });
-      } else {
-        $http.post("https://dagala.cfapps.io/api/1/topPlayer").success(function (data, status, headers, config) {
-          $scope.ranks = data;
-          menuService.stopLoading();
-        }).catch(function (err) {
-          // menuService.myHandleError(err);
-          menuService.stopLoading();
-        });
-      }
-    });
-    $scope.goBack = function () {
-      $ionicHistory.goBack();
-    }
-  })
-  .controller('TableCtrl', function ($scope, $state, $ionicSideMenuDelegate) {
-    $ionicSideMenuDelegate.canDragContent(false)
   })
   .controller('InvitationCtrl', function ($scope, $state, $ionicHistory, $http, $rootScope, menuService) {
     $scope.username;
@@ -418,6 +397,23 @@ angular.module('starter.controllers', [])
         menuService.stopLoading();
       });
     };
+    $scope.goBack = function () {
+      $ionicHistory.goBack();
+    }
+  })
+  .controller('LeagueCtrl', function ($scope, $state, $ionicHistory, $http, $rootScope, menuService,$timeout) {
+    $scope.$on("$ionicView.enter", function (scopes, states) {
+      $timeout(function () {
+        menuService.startLoading();
+        $http.post("https://dagala.cfapps.io/api/1/availableLeague").success(function (data, status, headers, config) {
+          menuService.stopLoading();
+          $scope.leagues = data;
+        }).catch(function (err) {
+          // menuService.myHandleError(err);
+          menuService.stopLoading();
+        });
+      }, 700)
+    });
     $scope.goBack = function () {
       $ionicHistory.goBack();
     }
@@ -812,7 +808,7 @@ angular.module('starter.controllers', [])
     };
     $scope.signUp = function (form) {
       menuService.startLoading();
-      var signUpUrl = "http://192.168.160.172:8080/api/1/signup";
+      var signUpUrl = "https://dagala.cfapps.io/api/1/signup";
       var d = {
         username: $("#username").val(),
         mobile: $("#tel").val(),
