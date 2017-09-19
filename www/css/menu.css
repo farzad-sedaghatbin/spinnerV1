@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'myFont';
   src:
-    url('font/DiodrumArabic-Regular.ttf') format('truetype');
+    url('font/DiodrumArabic-Bold.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
 }
 .myText {
   font-family: myFont, sans-serif;
-  color: black;
+  font-weight: bolder;
 }
 html, body {
   margin: 0;
@@ -299,6 +299,7 @@ span.font-36 {
   line-height: 60px;
   background: url(../img/battlefield.png) no-repeat center;
   background-size: contain;
+  opacity: 0.9;
 }
 .row .col.s12 {
   height: 70px;
@@ -324,6 +325,7 @@ span.font-36 {
   line-height: 70px;
   background: url(../img/button1.png) no-repeat center;
   background-size: contain;
+  opacity: 0.9;
 }
 .board{
   line-height: 70px;
@@ -339,11 +341,13 @@ span.font-36 {
   line-height: 70px;
   background: url(../img/red-button.png) no-repeat center;
   background-size: contain;
+  opacity: 0.9;
 }
 .gold-button{
   line-height: 70px;
   background: url(../img/league.png) no-repeat center;
   background-size: contain;
+  opacity: 0.9;
 }
 .row .col.s6 {
   width: 50%;
