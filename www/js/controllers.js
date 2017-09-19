@@ -414,7 +414,7 @@ angular.module('starter.controllers', [])
       $ionicHistory.goBack();
     }
   })
-  .controller('LeagueCtrl', function ($scope, $state, $ionicHistory, $http, $rootScope, menuService,$timeout) {
+  .controller('LeagueCtrl', function ($scope, $state, $ionicHistory, $http, $rootScope, menuService,$timeout,$ionicModal) {
     $scope.$on("$ionicView.enter", function (scopes, states) {
       $timeout(function () {
         menuService.startLoading();
@@ -448,6 +448,25 @@ angular.module('starter.controllers', [])
     $scope.playLeague = function (id) {
       $rootScope.leagueId = id;
       $state.go("battlefield");
+    };
+    $scope.tops = function (id) {
+      menuService.startLoading();
+      $http.post("https://dagala.cfapps.io/api/1/finishedLeague", id).success(function (data, status, headers, config) {
+        $scope.ranks = {
+          users : data,
+          user : null
+        };
+        menuService.stopLoading();
+        $ionicModal.fromTemplateUrl('ranks.html', {
+          scope: $scope
+        }).then(function (modal) {
+          $rootScope.modal = modal;
+          modal.show();
+        });
+      }).catch(function (err) {
+        // menuService.myHandleError(err);
+        menuService.stopLoading();
+      });
     };
     $scope.goBack = function () {
       $ionicHistory.goBack();

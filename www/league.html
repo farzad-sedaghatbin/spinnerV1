@@ -13,8 +13,11 @@
         <div ng-if="row.status == 0" ng-click="joinLeague(row)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 90px;padding: 0;background-size: 80%" ng-click="battlefield(row.gameId,false)">
           عضو شو
         </div>
-        <div ng-if="row.status == 1" ng-click="playLeague(row.id)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 90px;padding: 0;background-size: 80%" ng-click="battlefield(row.gameId,false)">
+        <div ng-if="row.status == 3" ng-click="playLeague(row.id)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 90px;padding: 0;background-size: 80%" ng-click="battlefield(row.gameId,false)">
           بازی کن
+        </div>
+        <div ng-if="row.status == 4" ng-click="tops(row.id)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 90px;padding: 0;background-size: 80%" ng-click="battlefield(row.gameId,false)">
+          نفرات برتر
         </div>
         <div class="col grid-example s3" style="padding: 0">
           <div style="line-height: 35px;font-size: medium">{{row.capacity}}</div>
