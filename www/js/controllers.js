@@ -138,6 +138,7 @@ angular.module('starter.controllers', [])
             onTap: function(e) {
               $rootScope.isTrain = false;
               $rootScope.callService = true;
+              $rootScope.isLeague = false;
               $state.go("newgame");
             }
           },
@@ -162,11 +163,13 @@ angular.module('starter.controllers', [])
       $state.go("coining");
     };
     $scope.league = function () {
+      $rootScope.isLeague = true;
       $state.go("league");
     };
     $scope.training = function () {
       $rootScope.battle = null;
       $rootScope.isTrain = true;
+      $rootScope.isLeague = false;
       $state.go("board");
     };
     $scope.help = function () {
@@ -341,23 +344,33 @@ angular.module('starter.controllers', [])
 
     $scope.start = function (id, url) {
       menuService.startLoading();
-      if ($rootScope.isTrain) {
-        menuService.getDb().transaction(function (tx) {
-          tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
-            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "true," + id + "," + $rootScope.gamer.token + ",0," + $rootScope.homeURL], function (tx, results) {
-              $rootScope.changeUrl(url);
-            });
-          });
-        });
-      } else {
-        var serverUrl = "https://dagala.cfapps.io/api/1/createGame";
-        $http.post(serverUrl, $rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
+      if ($rootScope.battle.status == "10"){
+        $http.post("https://dagala.cfapps.io/api/1/createLeagueGame", $rootScope.leagueId + "," + id).success(function (data, status, headers, config) {
           $rootScope.goToGame(url, data);
         }).catch(function (err) {
           // menuService.myHandleError(err);
           menuService.stopLoading();
           renderRoot();
         });
+      } else {
+        if ($rootScope.isTrain) {
+          menuService.getDb().transaction(function (tx) {
+            tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
+              tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "true," + id + "," + $rootScope.gamer.token + ",0," + $rootScope.homeURL], function (tx, results) {
+                $rootScope.changeUrl(url);
+              });
+            });
+          });
+        } else {
+          var serverUrl = "https://dagala.cfapps.io/api/1/createGame";
+          $http.post(serverUrl, $rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
+            $rootScope.goToGame(url, data);
+          }).catch(function (err) {
+            // menuService.myHandleError(err);
+            menuService.stopLoading();
+            renderRoot();
+          });
+        }
       }
     };
     $scope.topRanks = function (id) {
@@ -414,6 +427,28 @@ angular.module('starter.controllers', [])
         });
       }, 700)
     });
+    $scope.joinLeague = function (row) {
+      menuService.startLoading();
+      $http.post("https://dagala.cfapps.io/api/1/requestLeague",row.id).success(function (data, status, headers, config) {
+        menuService.stopLoading();
+        if (data == 200) {
+          menuService.myMessage("شما با موفقیت عضو این لیگ شدید", "پیام");
+          row.status = 3;
+        } else if (data == 201){
+          menuService.myMessage("ظرفیت این لیگ تکمیل شده و امکان ثبت نام نیست", "خطا");
+        } else if (data == 202){
+          menuService.myMessage("لیگ شروع شده و امکان ثبت نام نیست", "خطا");
+          row.status = 2;
+        }
+      }).catch(function (err) {
+        // menuService.myHandleError(err);
+        menuService.stopLoading();
+      });
+    };
+    $scope.playLeague = function (id) {
+      $rootScope.leagueId = id;
+      $state.go("battlefield");
+    };
     $scope.goBack = function () {
       $ionicHistory.goBack();
     }
@@ -490,9 +525,17 @@ angular.module('starter.controllers', [])
   })
   .controller('BattlefieldCtrl', function ($scope, $state, $ionicHistory, menuService, $timeout, $http, $rootScope, $location) {
     $scope.loaded = false;
+    var url;
+    var param;
     function loadData(refresh) {
-      var url = "https://dagala.cfapps.io/api/1/detailGame";
-      $http.post(url, $rootScope.rowId).success(function (data, status, headers, config) {
+      if ($rootScope.isLeague){
+        url = "https://dagala.cfapps.io/api/1/detailLeague";
+        param = $rootScope.leagueId;
+      } else {
+        url = "https://dagala.cfapps.io/api/1/detailGame";
+        param = $rootScope.rowId;
+      }
+      $http.post(url, param).success(function (data, status, headers, config) {
         if (!$rootScope.isEnded) {
           processTiming(data)
         } else {
@@ -513,7 +556,7 @@ angular.module('starter.controllers', [])
         showResults(data);
       } else {
         if (data.timeLeft != null && data.timeLeft <= 0) {
-          callTimeoutService();
+          callTimeoutService(data);
         } else {
           if (data.status == "2") {
             $scope.myTurn = "";
@@ -531,7 +574,7 @@ angular.module('starter.controllers', [])
               callbacks: {
                 stop: function () {
                   menuService.startLoading();
-                  callTimeoutService();
+                  callTimeoutService(data);
                 },
                 start: function () {
                   $('#clock').css("display", "block");
@@ -549,8 +592,8 @@ angular.module('starter.controllers', [])
       $scope.loaded = true;
     }
 
-    function callTimeoutService() {
-      $http.post("https://dagala.cfapps.io/api/1/timeOut", $rootScope.rowId).success(function (data, status, headers, config) {
+    function callTimeoutService(data1) {
+      $http.post("https://dagala.cfapps.io/api/1/timeOut", data1.gameId).success(function (data, status, headers, config) {
         data.pass = $rootScope.gamer.pass;
         data.token = $rootScope.gamer.token;
         $rootScope.saveGamer(data);
@@ -591,7 +634,7 @@ angular.module('starter.controllers', [])
           // menuService.myHandleError(err);
           menuService.stopLoading();
         });
-      } else if (!$rootScope.battle.url && $rootScope.battle.status == "1") {
+      } else if ($rootScope.battle.status == "10" || (!$rootScope.battle.url && $rootScope.battle.status == "1")) {
         $rootScope.isTrain = false;
         $state.go("board");
       }
@@ -606,7 +649,7 @@ angular.module('starter.controllers', [])
     $scope.taslim = function () {
       menuService.startLoading();
       var url = "https://dagala.cfapps.io/api/1/stopGame";
-      $http.post(url, $rootScope.rowId).success(function (data, status, headers, config) {
+      $http.post(url, $rootScope.battle.gameId).success(function (data, status, headers, config) {
         data.pass = $rootScope.gamer.pass;
         data.token = $rootScope.gamer.token;
         $rootScope.saveGamer(data);
