@@ -7,8 +7,8 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
 
 .run(function($ionicPlatform,$http,$rootScope) {
   $ionicPlatform.ready(function() {
-    // inappbilling.init();
-    // tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
+    inappbilling.init();
+    tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
