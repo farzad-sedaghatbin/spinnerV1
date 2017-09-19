@@ -367,9 +367,18 @@ span.font-36 {
   direction: rtl;
 }
 .row .col.s2 {
-  width: 16.6666%;
+  max-width: 16.6666%;
   min-height: 75px;
   text-align: center;
+  background: url(../img/show.png) no-repeat center;
+  color: black;
+  direction: rtl;
+}
+.row .col.s10 {
+  width: 84.4444%;
+  min-height: 75px;
+  text-align: center;
+  background: url(../img/sign.png) no-repeat center;
   color: black;
   direction: rtl;
 }
@@ -499,4 +508,17 @@ span.font-36 {
 .myDisable{
   background:#dddddd !important;
   pointer-events:none
+}
+.home-badge-img{
+  width: 32px;
+  margin-left: 5px;
+}
+.home-badge-text{
+  color: white;
+  margin-top: 5px;
+  position: absolute;
+}
+.myends{
+}
+.myhalfs{
 }

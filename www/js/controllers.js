@@ -188,6 +188,30 @@ angular.module('starter.controllers', [])
       $rootScope.isEnded = isEnded;
       $state.go("battlefield");
     };
+    var halfs = true;
+    var ends = true;
+    $scope.toggleHalfs = function () {
+      if (halfs){
+        halfs = false;
+        $(".myhalfs").hide("slow");
+        $("#halfIcon").css("background","url(img/hide.png) no-repeat center").css("background-size","contain");
+      } else {
+        halfs = true;
+        $(".myhalfs").show("slow");
+        $("#halfIcon").css("background","url(img/show.png) no-repeat center").css("background-size","contain");
+      }
+    };
+    $scope.toggleEnds = function () {
+      if (ends){
+        ends = false;
+        $(".myends").hide("slow");
+        $("#endIcon").css("background","url(img/hide.png) no-repeat center").css("background-size","contain");
+      } else {
+        ends = true;
+        $(".myends").show("slow");
+        $("#endIcon").css("background","url(img/show.png) no-repeat center").css("background-size","contain");
+      }
+    }
   })
   .controller('BoardCtrl', function ($scope, $timeout, $ionicHistory, menuService, $http, $rootScope, $state,$ionicModal) {
     var root = true;

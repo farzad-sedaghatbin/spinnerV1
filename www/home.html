@@ -39,26 +39,26 @@
         </filter>
       </defs>
     </svg>
-
+    <div class="myText" style="float:left;margin-top: 10px">
+      <span style="display:inline;"><img class="home-badge-img" src="img/cup.png"/></span>
+      <span class="home-badge-text" style="display:inline;top: 10px;left: 40px">{{gamer.rating}}</span>
+    </div>
+    <div class="myText" style="float:left;clear: both">
+      <span style="display:inline;"><img class="home-badge-img" src="img/coin.png"/></span>
+      <span class="home-badge-text" style="display:inline;top: 40px;left: 40px">{{gamer.coins}}</span>
+    </div>
+    <div class="myText" style="float:left;clear: both">
+      <span style="display:inline;"><img class="home-badge-img" src="img/gem.png"/></span>
+      <span class="home-badge-text" style="display:inline;top: 75px;left: 40px">{{gamer.gem}}</span>
+    </div>
+    <div style="background: url(img/pic.png) no-repeat center;background-size: contain;right: 0;position: absolute;width: 75px;height: 75px"
+         ng-click="selectAvatar()">
+      <img style="width: 48px;margin-top: 18px;border-radius: 50%" src="{{gamer.avatar}}">
+    </div>
+    <div class="myText" style="color: white;position: absolute;top: 25px;right: 70px">{{gamer.user}}</div>
+    <div class="myText" style="color: white;position: absolute;top: 45px;right: 70px">سطح : {{gamer.level}}</div>
+    <div class="myText" style="color: white;position: absolute;top: 65px;right: 70px">امتیاز : {{gamer.score}}</div>
     <div class="myText">
-      <div class="row" style="margin-top: 0;height: 120px;margin-left: 50%">
-        <div class="col grid-example s3 board" style="max-width: 25%;right: 25%;position: absolute;height: 130px;">
-          <div style="line-height: 30px;color: black">{{gamer.user}}</div>
-          <div style="line-height: 20px;color: black;text-align: right"> سکه : {{gamer.coins}}</div>
-          <div style="line-height: 15px;color: black;text-align: right"> رتبه : {{gamer.rating}}</div>
-          <div style="line-height: 20px;color: black;text-align: right">سطح : {{gamer.level}}</div>
-          <div style="line-height: 20px;color: black;text-align: right">الماس : {{gamer.gem}}</div>
-          <div style="line-height: 20px;color: black;text-align: right">امتیاز : {{gamer.score}}</div>
-        </div>
-        <div class="col grid-example s3"
-             style="background: url(img/pic.png) no-repeat center;background-size: contain;max-width: 25%;right: 0;position: absolute;"
-             ng-click="selectAvatar()">
-          <img style="width: 48px;margin-top: 18px;border-radius: 50%" src="{{gamer.avatar}}">
-        </div>
-      </div>
-      <!--<div class="upgrade-ico" ng-click="avatar()"></div>-->
-      <!--<a class="upgrade-ico" href="ranks.html" style="right: 80px"></a>-->
-
       <div ng-if="gamer.isGuest" class="row" style="margin-top: 30px">
         <article class="notepad">
           <p style="text-align: right;direction: rtl">لطفا ثبت نام کنید یا با حساب ساخته شده وارد شوید. در صورت ثبت نام امتیازات حساب مهمان منتقل خواهد شد</p>
@@ -91,12 +91,15 @@
 
       <div ng-if="gamer.halfGame.length > 0">
         <div class="row">
-          <div class="col grid-example s12"
-               style="background-size: 25% 100%;font-size: small;">
+          <div class="col grid-example s10"
+               style="background-size: 25% 100%;font-size: small;margin-left: 50px">
             نا تمام ها
           </div>
+          <div id="halfIcon" class="col grid-example s2" ng-click="toggleHalfs()"
+               style="background-size: contain;font-size: small;">
+          </div>
         </div>
-        <div class="row" style="margin-bottom: 10px;" ng-repeat="row in gamer.halfGame">
+        <div class="row myhalfs" style="margin-bottom: 10px;" ng-repeat="row in gamer.halfGame">
           <div ng-if="row.second.user" class="col grid-example s3"
                style="background: url(img/pic.png) no-repeat center;background-size: contain;">
             <img style="width: 48px;margin-top: 8px" src="{{row.second.avatar}}">
@@ -124,11 +127,14 @@
       <div ng-if="gamer.fullGame.length > 0">
         <div class="row">
           <div class="col grid-example s12"
-               style="background-size: 25% 100%;font-size: small;">
+               style="background-size: 25% 100%;font-size: small;margin-left: 50px">
             تمام شده ها
           </div>
+          <div id="endIcon" class="col grid-example s2" ng-click="toggleEnds()"
+               style="background-size: contain;font-size: small;">
+          </div>
         </div>
-        <div class="row" style="margin-bottom: 10px;" ng-repeat="row in gamer.fullGame">
+        <div class="row myends" style="margin-bottom: 10px;" ng-repeat="row in gamer.fullGame">
           <div class="col grid-example s3"
                style="background: url(img/pic.png) no-repeat center;background-size: contain;">
             <img style="width: 48px;margin-top: 8px" src="{{row.second.avatar}}">
