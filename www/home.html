@@ -65,8 +65,8 @@
         </article>
       </div>
 
-      <div class="row" style="margin-bottom: 50px;margin-top: 20px">
-        <div ng-show="!isLeague()" class="row" style="margin-top: 0">
+      <div class="row" style="padding-top: 70px">
+        <div ng-show="!isLeague()" class="row">
           <div class="col grid-example s6 blue-button"
                ng-click="training()">
             تمرین میکنم
@@ -75,7 +75,7 @@
             حریف میطلبم
           </div>
         </div>
-        <div ng-show="isLeague()" class="row" style="margin-top: 0">
+        <div ng-show="isLeague()" class="row">
           <div class="col grid-example s4 blue-button" style="font-size: medium"
                ng-click="training()">
             تمرین میکنم
@@ -89,7 +89,7 @@
         </div>
       </div>
 
-      <div ng-if="gamer.halfGame.length > 0">
+      <div ng-if="gamer.halfGame.length > 0" style="padding-top: 80px">
         <div class="row">
           <div class="col grid-example s10"
                style="background-size: 25% 100%;font-size: small;margin-left: 50px">
