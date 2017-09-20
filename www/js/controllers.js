@@ -557,7 +557,7 @@ angular.module('starter.controllers', [])
 
         }
       });
-    }
+    };
     $scope.buy = function () {
       inappbilling.getPurchases(function (data) {
         alert(data[0].productId)
