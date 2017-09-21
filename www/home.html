@@ -14,7 +14,7 @@
       <a ng-click="register()" style="font-size: x-small" class="menu-item-omid myText"> ثبت نام </a>
       <a ng-click="changePass()" style="font-size: x-small" class="menu-item-omid myText"> ورود </a>
       <a ng-click="forgetPass()" style="font-size: xx-small" class="menu-item-omid myText"> بازیابی رمز </a>
-      <a ng-click="coining()" style="font-size: 8px" class="menu-item-omid myText"> سکه خواری </a>
+      <a ng-click="coining()" style="font-size: 8px" class="menu-item-omid myText"> سکه </a>
       <a ng-click="ranks()" style="font-size: x-small" class="menu-item-omid myText"> خفن ها </a>
       <a ng-click="help()" style="font-size: x-small" class="menu-item-omid myText"> راهنما </a>
     </nav>
@@ -45,15 +45,15 @@
     </div>
     <div class="myText" style="float:left;clear: both">
       <span style="display:inline;"><img class="home-badge-img" src="img/coin.png"/></span>
-      <span class="home-badge-text" style="display:inline;top: 40px;left: 40px">{{gamer.coins}}</span>
+      <span class="home-badge-text" style="display:inline;top: 50px;left: 40px">{{gamer.coins}}</span>
     </div>
     <div class="myText" style="float:left;clear: both">
       <span style="display:inline;"><img class="home-badge-img" src="img/gem.png"/></span>
-      <span class="home-badge-text" style="display:inline;top: 75px;left: 40px">{{gamer.gem}}</span>
+      <span class="home-badge-text" style="display:inline;top: 85px;left: 40px">{{gamer.gem}}</span>
     </div>
     <div style="background: url(img/pic.png) no-repeat center;background-size: contain;right: 0;position: absolute;width: 75px;height: 75px"
          ng-click="selectAvatar()">
-      <img style="width: 48px;margin-top: 18px;border-radius: 50%" src="{{gamer.avatar}}">
+      <img style="width: 48px;margin-top: 10px;border-radius: 50%;margin-left: 14px" src="{{gamer.avatar}}">
     </div>
     <div class="myText" style="color: white;position: absolute;top: 25px;right: 70px">{{gamer.user}}</div>
     <div class="myText" style="color: white;position: absolute;top: 45px;right: 70px">سطح : {{gamer.level}}</div>
@@ -65,8 +65,8 @@
         </article>
       </div>
 
-      <div class="row" style="padding-top: 70px">
-        <div ng-show="!isLeague()" class="row">
+      <div class="row">
+        <div ng-show="!isLeague()" class="row" style="margin-top: 70px">
           <div class="col grid-example s6 blue-button"
                ng-click="training()">
             تمرین میکنم
@@ -75,7 +75,7 @@
             حریف میطلبم
           </div>
         </div>
-        <div ng-show="isLeague()" class="row">
+        <div ng-show="isLeague()" class="row" style="margin-top: 70px">
           <div class="col grid-example s4 blue-button" style="font-size: medium"
                ng-click="training()">
             تمرین میکنم
@@ -89,7 +89,7 @@
         </div>
       </div>
 
-      <div ng-if="gamer.halfGame.length > 0" style="padding-top: 80px">
+      <div ng-if="gamer.halfGame.length > 0" style="margin-top: 80px">
         <div class="row">
           <div class="col grid-example s10"
                style="background-size: 35% 100%;font-size: small;margin-left: 50px">
@@ -124,7 +124,7 @@
       <!--</div>-->
       <!--</div>-->
 
-      <div ng-if="gamer.fullGame.length > 0">
+      <div ng-if="gamer.fullGame.length > 0" ng-class="{'margin-top-80': gamer.halfGame.length == 0}">
         <div class="row">
           <div class="col grid-example s12"
                style="background-size: 35% 100%;font-size: small;margin-left: 50px">
