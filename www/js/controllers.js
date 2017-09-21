@@ -368,7 +368,7 @@ angular.module('starter.controllers', [])
 
     $scope.start = function (id, url) {
       menuService.startLoading();
-      if ($rootScope.battle.status == "10"){
+      if ($rootScope.isLeague && $rootScope.battle.status == "10"){
         $http.post("https://dagala.cfapps.io/api/1/createLeagueGame", $rootScope.leagueId + "," + id).success(function (data, status, headers, config) {
           $rootScope.goToGame(url, data);
         }).catch(function (err) {
