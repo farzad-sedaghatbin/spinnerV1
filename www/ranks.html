@@ -6,6 +6,9 @@
         <a class="col grid-example s6" style="text-align: left" ng-click="ranksBack()">
           <img class="coins-ico" src="img/back.jpg" style="width: 56px"/>
         </a>
+        <a class="col grid-example s6 mytitle">
+          خفن ها
+        </a>
       </div>
       <div ng-if="ranks.score" class="row coining2" style="background-size: 80%">
         <div class="col grid-example s6 coining-text-left" style="color: darkmagenta;margin-left: 20%">
@@ -17,11 +20,11 @@
 
       </div>
       <div ng-repeat="row in ranks.users" class="row" style="background: url('img/{{row.index}}.png') no-repeat center;background-size: 80% 140px">
-        <div class="col grid-example s4 coining-text-right" style="font-size: large">
-          {{row.score}}
+        <div class="col grid-example s4 coining-text-right" style="font-size: large;color: darkblue">
+          <b>{{row.score}}</b>
         </div>
         <div class="col grid-example s4 coining-text-left" style="color: darkmagenta;">
-         {{row.user}}
+          <b>{{row.user}}</b>
         </div>
         <div class="col grid-example s4" style="margin-top: 0">
           <img style="width: 48px;margin-right: 28px" src="{{row.avatar}}">
