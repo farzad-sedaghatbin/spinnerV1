@@ -408,6 +408,9 @@ angular.module('starter.controllers', [])
         menuService.stopLoading();
       });
     };
+    $scope.ranksBack = function () {
+      $rootScope.modal.hide();
+    };
     $scope.goBack = function () {
       $ionicHistory.goBack();
     }
@@ -814,6 +817,23 @@ angular.module('starter.controllers', [])
     $scope.goBack = function () {
       $ionicHistory.goBack();
     }
+  })
+  .controller('RanksCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory,$timeout) {
+    $scope.$on("$ionicView.enter", function (scopes, states) {
+      $timeout(function () {
+        menuService.startLoading();
+        $http.post("https://dagala.cfapps.io/api/1/topPlayer").success(function (data, status, headers, config) {
+          $scope.ranks = data;
+          menuService.stopLoading();
+        }).catch(function (err) {
+          // menuService.myHandleError(err);
+          menuService.stopLoading();
+        });
+      }, 700);
+    });
+    $scope.ranksBack = function () {
+      $ionicHistory.goBack();
+    };
   })
   .controller('ForgetCtrl', function ($scope, $state, menuService, $http, $ionicHistory) {
     $scope.submit = function (username) {
