@@ -42,7 +42,7 @@ angular.module('starter.controllers', [])
                 var len = results.rows.length, i, result = '';
                 if (results.rows && results.rows.length != 0) {
                   var vals = results.rows.item(0).val.split(",");
-                  if (vals[0]) {
+                  if (vals[0] == "false") {
                     menuService.startLoading();
                     var serverUrl = "https://dagala.cfapps.io/api/1/endGame";
                     $http.post(serverUrl, vals[1] + "," + vals[2] + "," + vals[3]).success(function (data, status, headers, config) {
