@@ -529,3 +529,13 @@ span.font-36 {
 .margin-top-80{
   margin-top: 80px;
 }
+.closeButton
+{
+  display:block;
+  position:absolute;
+  top:-5px;
+  right:20px;
+  width:27px;
+  height:27px;
+  background:url('../img/close-button.png') no-repeat center center;
+}

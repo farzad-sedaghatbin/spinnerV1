@@ -91,12 +91,6 @@ angular.module('starter.controllers', [])
         menuService.myMessage("New Level : " + $rootScope.gamer.level);
       }
     }
-    $scope.tiles = ['/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png', '/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png'];
-    var rowSize = Math.ceil($scope.tiles.length / 3);
-    $scope.rows = [];
-    for (var i = 0; i < rowSize; i++) {
-      $scope.rows.push($scope.tiles.slice(i * 3, (i + 1) * 3));
-    }
     $scope.selectAvatar = function () {
       $ionicModal.fromTemplateUrl('avatars.html', {
         scope: $scope
@@ -871,15 +865,9 @@ angular.module('starter.controllers', [])
   })
   .controller('SignupCtrl', function ($scope, $ionicModal, menuService, $http, $state, $rootScope, $ionicHistory) {
     $scope.avatar = 'img/default.png';
-    $scope.tiles = ['/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png', '/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png'];
     $scope.username;
     $scope.pass;
     $scope.tel;
-    var rowSize = Math.ceil($scope.tiles.length / 3);
-    $scope.rows = [];
-    for (var i = 0; i < rowSize; i++) {
-      $scope.rows.push($scope.tiles.slice(i * 3, (i + 1) * 3));
-    }
     $scope.selectAvatar = function () {
       $ionicModal.fromTemplateUrl('avatars.html', {
         scope: $scope

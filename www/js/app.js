@@ -88,13 +88,16 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         }, null);
       });
     });
-    // $interval(function () {
-    //   var url = "https://dagala.cfapps.io/api/1/refresh";
-    //   $http.post(url).success(function (data, status, headers, config) {
-    //   }).catch(function (err) {
-    //     // menuService.myHandleError(err, true);
-    //   });
-    // }, 1000);
+    var tiles = ['/img/PNG/FA01.png', '/img/PNG/FA02.png', '/img/PNG/FA03.png', '/img/PNG/A01.png', '/img/PNG/A02.png', '/img/PNG/A03.png',
+      '/img/PNG/FA04.png','/img/PNG/FA05.png','/img/PNG/FB01.png','/img/PNG/A04.png','/img/PNG/A05.png','/img/PNG/B01.png','/img/PNG/FB02.png','/img/PNG/FB03.png',
+      '/img/PNG/FB04.png','/img/PNG/B02.png','/img/PNG/B03.png','/img/PNG/B04.png','/img/PNG/FB05.png','/img/PNG/FC01.png','/img/PNG/FC02.png',
+      '/img/PNG/B05.png','/img/PNG/C01.png','/img/PNG/C02.png','/img/PNG/FC03.png','/img/PNG/FC04.png','/img/PNG/FC05.png','/img/PNG/C03.png','/img/PNG/C04.png',
+      '/img/PNG/C05.png'];
+    var rowSize = Math.ceil(tiles.length / 3);
+    $rootScope.rows = [];
+    for (var i = 0; i < rowSize; i++) {
+      $rootScope.rows.push(tiles.slice(i * 3, (i + 1) * 3));
+    }
   });
 })
   .config(function ($stateProvider, $urlRouterProvider) {
