@@ -519,7 +519,7 @@ angular.module('starter.controllers', [])
       $ionicHistory.goBack();
     }
   })
-  .controller('CoiningCtrl', function ($scope, $state, $ionicHistory) {
+  .controller('CoiningCtrl', function ($scope, $state, $ionicHistory,menuService) {
     $scope.goBack = function () {
       $ionicHistory.goBack();
     };
@@ -532,7 +532,7 @@ angular.module('starter.controllers', [])
     $scope.tapsell = function () {
       tapsell.requestAd(null, false, function (result) {
         if (result['action'] == 'onAdAvailable') {
-          tapsell.showAd(result['adId'], true, true, tapsell_rotation_locked_portrait, false);
+          tapsell.showAd(result['adId'], true, true, tapsell_rotation_unlocked, true);
           tapsell.setRewardCallback(function (result) {
             if (result['action'] == 'onAdShowFinished') {
               if (result['completed'] && result['rewarded']) {
@@ -542,16 +542,16 @@ angular.module('starter.controllers', [])
           });
         }
         else if (result['action'] == 'onNoAdAvailable') {
-
+          menuService.myMessage("تبلیغی برای نمایش وجود ندارد","خطا");
         }
         else if (result['action'] == 'onNoNetwork') {
-
+          menuService.myMessage("لطفا اتصال اینترنت خود را بررسی کنید","خطا");
         }
         else if (result['action'] == 'onError') {
-
+          menuService.myMessage("خطا در دریافت ویدیو","خطا");
         }
         else if (result['action'] == 'onExpiring') {
-
+          menuService.myMessage("این تبلیغ منقضی شده است","خطا");
         }
       });
     };
