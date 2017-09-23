@@ -450,6 +450,14 @@ angular.module('starter.controllers', [])
         });
       }, 700)
     });
+    $scope.prices = function () {
+      $ionicModal.fromTemplateUrl('price.html', {
+        scope: $scope
+      }).then(function (modal) {
+        $rootScope.modal = modal;
+        modal.show();
+      });
+    };
     $scope.joinLeague = function (row) {
       menuService.startLoading();
       $http.post("https://dagala.cfapps.io/api/1/requestLeague", row.id).success(function (data, status, headers, config) {
