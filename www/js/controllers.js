@@ -30,7 +30,7 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('HomeCtrl', function ($scope, $state, $ionicModal, $rootScope, menuService, $http,$ionicPopup) {
+  .controller('HomeCtrl', function ($scope, $state, $ionicModal, $rootScope, menuService, $http, $ionicPopup) {
     $rootScope.homeURL = window.location.href;
     $scope.$on("$ionicView.enter", function (scopes, states) {
       menuService.getDb().transaction(function (tx) {
@@ -91,6 +91,7 @@ angular.module('starter.controllers', [])
         menuService.myMessage("New Level : " + $rootScope.gamer.level);
       }
     }
+
     $scope.selectAvatar = function () {
       $ionicModal.fromTemplateUrl('avatars.html', {
         scope: $scope
@@ -116,20 +117,21 @@ angular.module('starter.controllers', [])
       return true;
     };
     $scope.challenge = function () {
-      if($rootScope.gamer.coins < $rootScope.gamer.perGameCoins){
-        menuService.myMessage("سکه های شما کافی نیست. برای بدست آوردن سکه به قسمت سکه خواری در منو مراجعه کنید.","خطا");
+      if ($rootScope.gamer.coins < $rootScope.gamer.perGameCoins) {
+        menuService.myMessage("سکه های شما کافی نیست. برای بدست آوردن سکه به قسمت سکه خواری در منو مراجعه کنید.", "خطا");
         return;
       }
-      if ($rootScope.gamer.halfGame.length == 5){
-        menuService.myMessage("شما به سقف تعداد بازی نیمه تمام رسیده اید.","خطا");
+      if ($rootScope.gamer.halfGame.length == 5) {
+        menuService.myMessage("شما به سقف تعداد بازی نیمه تمام رسیده اید.", "خطا");
         return;
       }
       $ionicPopup.alert({
         title: '<span class="myText">توجه</span>',
-        template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی '+$rootScope.gamer.perGameCoins+' سکه از شما کم می شود، تمایل دارید؟</div>',
+        template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
         buttons: [
-          {text: '<span class="myText">باشه</span>',
-            onTap: function(e) {
+          {
+            text: '<span class="myText">باشه</span>',
+            onTap: function (e) {
               $rootScope.isTrain = false;
               $rootScope.callService = true;
               $rootScope.isLeague = false;
@@ -185,29 +187,29 @@ angular.module('starter.controllers', [])
     var halfs = true;
     var ends = true;
     $scope.toggleHalfs = function () {
-      if (halfs){
+      if (halfs) {
         halfs = false;
         $(".myhalfs").hide("slow");
-        $("#halfIcon").css("background","url(img/hide.png) no-repeat center").css("background-size","contain");
+        $("#halfIcon").css("background", "url(img/hide.png) no-repeat center").css("background-size", "contain");
       } else {
         halfs = true;
         $(".myhalfs").show("slow");
-        $("#halfIcon").css("background","url(img/show.png) no-repeat center").css("background-size","contain");
+        $("#halfIcon").css("background", "url(img/show.png) no-repeat center").css("background-size", "contain");
       }
     };
     $scope.toggleEnds = function () {
-      if (ends){
+      if (ends) {
         ends = false;
         $(".myends").hide("slow");
-        $("#endIcon").css("background","url(img/hide.png) no-repeat center").css("background-size","contain");
+        $("#endIcon").css("background", "url(img/hide.png) no-repeat center").css("background-size", "contain");
       } else {
         ends = true;
         $(".myends").show("slow");
-        $("#endIcon").css("background","url(img/show.png) no-repeat center").css("background-size","contain");
+        $("#endIcon").css("background", "url(img/show.png) no-repeat center").css("background-size", "contain");
       }
     }
   })
-  .controller('BoardCtrl', function ($scope, $timeout, $ionicHistory, menuService, $http, $rootScope, $state,$ionicModal) {
+  .controller('BoardCtrl', function ($scope, $timeout, $ionicHistory, menuService, $http, $rootScope, $state, $ionicModal) {
     var root = true;
 
     function renderRoot() {
@@ -228,10 +230,10 @@ angular.module('starter.controllers', [])
         $scope.config = {
           status: true,
           submenus: [
-            {menuicon: '', adr: 'javascript:;', text: 'فکری', style: {"font-size": "large"}, id: '1',style2:false},
-            {menuicon: '', adr: 'javascript:;', text: 'اکشن', style: {"font-size": "large"}, id: '2',style2:false},
-            {menuicon: '', adr: 'javascript:;', text: 'فرار', style: {"font-size": "large"}, id: '3',style2:false},
-            {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: '4',style2:false}
+            {menuicon: '', adr: 'javascript:;', text: 'فکری', style: {"font-size": "large"}, id: '1', style2: false},
+            {menuicon: '', adr: 'javascript:;', text: 'اکشن', style: {"font-size": "large"}, id: '2', style2: false},
+            {menuicon: '', adr: 'javascript:;', text: 'فرار', style: {"font-size": "large"}, id: '3', style2: false},
+            {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: '4', style2: false}
           ]
         };
       }, 300)
@@ -250,7 +252,7 @@ angular.module('starter.controllers', [])
 
     };
     var index = null;
-    $scope.menufun = function (s,id, url) {
+    $scope.menufun = function (s, id, url) {
       if (root) {
         menuService.startLoading();
         var serverUrl = "https://dagala.cfapps.io/api/1/games";
@@ -362,7 +364,7 @@ angular.module('starter.controllers', [])
 
     $scope.start = function (id, url) {
       menuService.startLoading();
-      if ($rootScope.isLeague && $rootScope.battle.status == "10"){
+      if ($rootScope.isLeague && $rootScope.battle.status == "10") {
         $http.post("https://dagala.cfapps.io/api/1/createLeagueGame", $rootScope.leagueId + "," + id).success(function (data, status, headers, config) {
           $rootScope.goToGame(url, data);
         }).catch(function (err) {
@@ -435,7 +437,7 @@ angular.module('starter.controllers', [])
       $ionicHistory.goBack();
     }
   })
-  .controller('LeagueCtrl', function ($scope, $state, $ionicHistory, $http, $rootScope, menuService,$timeout,$ionicModal) {
+  .controller('LeagueCtrl', function ($scope, $state, $ionicHistory, $http, $rootScope, menuService, $timeout, $ionicModal) {
     $scope.$on("$ionicView.enter", function (scopes, states) {
       $timeout(function () {
         menuService.startLoading();
@@ -450,14 +452,14 @@ angular.module('starter.controllers', [])
     });
     $scope.joinLeague = function (row) {
       menuService.startLoading();
-      $http.post("https://dagala.cfapps.io/api/1/requestLeague",row.id).success(function (data, status, headers, config) {
+      $http.post("https://dagala.cfapps.io/api/1/requestLeague", row.id).success(function (data, status, headers, config) {
         menuService.stopLoading();
         if (data == 200) {
           menuService.myMessage("شما با موفقیت عضو این لیگ شدید", "پیام");
           row.status = 3;
-        } else if (data == 201){
+        } else if (data == 201) {
           menuService.myMessage("ظرفیت این لیگ تکمیل شده و امکان ثبت نام نیست", "خطا");
-        } else if (data == 202){
+        } else if (data == 202) {
           menuService.myMessage("لیگ شروع شده و امکان ثبت نام نیست", "خطا");
           row.status = 2;
         }
@@ -474,8 +476,8 @@ angular.module('starter.controllers', [])
       menuService.startLoading();
       $http.post("https://dagala.cfapps.io/api/1/finishedLeague", id).success(function (data, status, headers, config) {
         $scope.ranks = {
-          users : data,
-          user : null
+          users: data,
+          user: null
         };
         menuService.stopLoading();
         $ionicModal.fromTemplateUrl('ranks.html', {
@@ -509,7 +511,7 @@ angular.module('starter.controllers', [])
         if (data == "200") {
           $rootScope.gamer.coins += (value + 1);
         } else {
-          menuService.myMessage("شما سهمیه امروز خود را دریافت کردید","خطا");
+          menuService.myMessage("شما سهمیه امروز خود را دریافت کردید", "خطا");
         }
       }).catch(function (err) {
         // menuService.myHandleError(err);
@@ -519,7 +521,7 @@ angular.module('starter.controllers', [])
       $ionicHistory.goBack();
     }
   })
-  .controller('CoiningCtrl', function ($scope, $state, $ionicHistory,menuService) {
+  .controller('CoiningCtrl', function ($scope, $state, $ionicHistory, menuService, $ionicModal, $rootScope, $http) {
     $scope.goBack = function () {
       $ionicHistory.goBack();
     };
@@ -536,30 +538,49 @@ angular.module('starter.controllers', [])
           tapsell.setRewardCallback(function (result) {
             if (result['action'] == 'onAdShowFinished') {
               if (result['completed'] && result['rewarded']) {
-                alert("karbare dayus aya hal kardi ba tabligh?")
+                $rootScope.gamer.coins += 30;
+                menuService.myMessage("30 سکه به شما تعلق گرفت", "پیام");
               }
             }
           });
         }
         else if (result['action'] == 'onNoAdAvailable') {
-          menuService.myMessage("تبلیغی برای نمایش وجود ندارد","خطا");
+          menuService.myMessage("تبلیغی برای نمایش وجود ندارد", "خطا");
         }
         else if (result['action'] == 'onNoNetwork') {
-          menuService.myMessage("لطفا اتصال اینترنت خود را بررسی کنید","خطا");
+          menuService.myMessage("لطفا اتصال اینترنت خود را بررسی کنید", "خطا");
         }
         else if (result['action'] == 'onError') {
-          menuService.myMessage("خطا در دریافت ویدیو","خطا");
+          menuService.myMessage("خطا در دریافت ویدیو", "خطا");
         }
         else if (result['action'] == 'onExpiring') {
-          menuService.myMessage("این تبلیغ منقضی شده است","خطا");
+          menuService.myMessage("این تبلیغ منقضی شده است", "خطا");
         }
       });
     };
     $scope.buy = function () {
-      inappbilling.getPurchases(function (data) {
-        alert(data[0].productId)
-      },function (e) {
-        alert(e)
+      inappbilling.getAvailableProducts(function (data) {
+        $scope.rows = data;
+        $ionicModal.fromTemplateUrl('buy.html', {
+          scope: $scope
+        }).then(function (modal) {
+          $rootScope.modal = modal;
+          modal.show();
+        });
+      }, function (e) {
+        menuService.myMessage("خطا در برقراری ارتباط با کافه بازار", "خطا");
+      })
+    };
+    $scope.doBuy = function (productId) {
+      $rootScope.modal.hide();
+      inappbilling.buy(function (data) {
+        $http.post("https://dagala.cfapps.io/api/1/inventory", productId).success(function (data, status, headers, config) {
+          menuService.myMessage("خرید شما با موفقیت انجام شد", "پیام");
+        }).catch(function (err) {
+          // menuService.myHandleError(err);
+        });
+      }, function (e) {
+        menuService.myMessage("خطا در برقراری ارتباط با کافه بازار", "خطا");
       })
     }
   })
@@ -567,8 +588,9 @@ angular.module('starter.controllers', [])
     $scope.loaded = false;
     var url;
     var param;
+
     function loadData(refresh) {
-      if ($rootScope.isLeague){
+      if ($rootScope.isLeague) {
         url = "https://dagala.cfapps.io/api/1/detailLeague";
         param = $rootScope.leagueId;
       } else {
@@ -645,8 +667,9 @@ angular.module('starter.controllers', [])
         menuService.stopLoading();
       });
     }
+
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
-      $('#clock').css("display","none");
+      $('#clock').css("display", "none");
       $scope.loaded = false;
     });
     $scope.$on("$ionicView.enter", function (scopes, states) {
@@ -680,7 +703,7 @@ angular.module('starter.controllers', [])
       }
     };
     $scope.dontPlay = function () {
-      if ($rootScope.battle.user.user == null){
+      if ($rootScope.battle.user.user == null) {
         menuService.myMessage("هنوز حریفی برای شما انتخاب نشده");
       } else {
         menuService.myMessage("نوبت حریفته، بازیش که تموم شد نوبت تو میشه");
@@ -763,8 +786,9 @@ angular.module('starter.controllers', [])
         title: '<span class="myText">اخطار</span>',
         template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">آیا از انصراف اطمینان دارید؟</div>',
         buttons: [
-          {text: '<span class="myText">بله</span>',
-            onTap: function(e) {
+          {
+            text: '<span class="myText">بله</span>',
+            onTap: function (e) {
               var serverUrl = "https://dagala.cfapps.io/api/1/cancelGame";
               $http.post(serverUrl, $rootScope.battle.gameId).success(function (data, status, headers, config) {
               }).catch(function (err) {
@@ -781,10 +805,10 @@ angular.module('starter.controllers', [])
     $rootScope.$ionicGoBack = function () {
       $scope.goBack();
     };
-    var deregisterSoftBack = function() {
+    var deregisterSoftBack = function () {
       $rootScope.$ionicGoBack = oldSoftBack;
     };
-    $scope.$on('$ionicView.leave', function() {
+    $scope.$on('$ionicView.leave', function () {
       deregisterSoftBack();
     });
   })
@@ -818,7 +842,7 @@ angular.module('starter.controllers', [])
       $ionicHistory.goBack();
     }
   })
-  .controller('RanksCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory,$timeout) {
+  .controller('RanksCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout) {
     $scope.$on("$ionicView.enter", function (scopes, states) {
       $timeout(function () {
         menuService.startLoading();

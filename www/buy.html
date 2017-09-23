@@ -1,27 +1,17 @@
-<ion-view>
-  <ion-content class="page-background">
-    <a class="coins-total ui-text" style="left: 0" href="/">
-      <img class="coins-ico" src="img/back.png" style="width: 56px"/>
-    </a>
-    <div class="upgrade-screen ui-text" style="display: block;">
-      <div class="button-upgrade-wrapper"><span class="upgrade-level">تومان</span><span class="upgrade-level-wrapper font-60"> <span
-        class="upgrade-level">0</span></span>
-        <button style="background: url(img/btn_active.png) no-repeat;background-size: contain" class="button-large"
-                disabled="">25
-        </button>
+<ion-modal-view
+  style="min-height: 80%;width: 90%;top: 10%;left: 5%;border-radius: 5%;background: rgba(255,255,255,0.9);">
+  <ion-content class="padding">
+    <a ng-click="modal.hide()" class="closeButton"></a>
+    <div class="row" ng-repeat="row in rows">
+      <div class="col grid-example s4 battlefield" style="color: white;font-size: smaller" ng-click="doBuy(row.productId)">
+        خرید
       </div>
-      <div class="button-upgrade-wrapper"><span class="upgrade-level">تومان</span><span class="upgrade-level-wrapper font-60"> <span
-        class="upgrade-level">0</span></span>
-        <button style="background: url(img/btn_active.png) no-repeat;background-size: contain" class="button-large"
-                disabled="">25
-        </button>
+      <div class="col grid-example s4 coining-text-right" style="font-size: large">
+       {{row.price}}
       </div>
-      <div class="button-upgrade-wrapper"><span class="upgrade-level">تومان</span><span class="upgrade-level-wrapper font-60"> <span
-        class="upgrade-level">0</span></span>
-        <button style="background: url(img/btn_active.png) no-repeat;background-size: contain" class="button-large"
-                disabled="">25
-        </button>
+      <div class="col grid-example s4 coining-text-left" style="color: darkmagenta;">
+       {{row.title}}
       </div>
     </div>
   </ion-content>
-</ion-view>
+</ion-modal-view>
