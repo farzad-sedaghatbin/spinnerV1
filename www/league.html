@@ -19,12 +19,12 @@
         <div ng-if="row.status == 4" ng-click="tops(row.id)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 90px;padding: 0;background-size: 80%;margin-top: 20px" ng-click="battlefield(row.gameId,false)">
           نفرات برتر
         </div>
-        <div class="col grid-example s3" style="padding: 0;margin-top: 20px">
+        <div class="col grid-example s3" style="padding: 0;margin-top: 20px;margin-bottom: 0">
           <div style="line-height: 35px;font-size: medium">{{row.capacity}}</div>
           <div style="line-height: 5px;font-size: medium">{{row.left}}</div>
           <div style="line-height: 25px;font-size: medium">{{row.startDate}}</div>
           <div style="line-height: 5px;font-size: medium">{{row.cost}}</div>
-          <div class="blue-button" ng-click="prices()" style="line-height: 5px;font-size: medium">جوایز</div>
+          <div class="blue-button" ng-click="prices(row.i)" style="line-height: 20px;font-size: medium">جوایز</div>
         </div>
         <div class="col grid-example s3" style="padding: 0;margin-top: 20px">
           <div style="line-height: 35px;font-size: medium">ظرفیت</div>

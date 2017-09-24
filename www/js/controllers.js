@@ -444,13 +444,17 @@ angular.module('starter.controllers', [])
         $http.post("https://dagala.cfapps.io/api/1/availableLeague").success(function (data, status, headers, config) {
           menuService.stopLoading();
           $scope.leagues = data;
+          angular.forEach($scope.leagues, function(member, index){
+            member.i = index;
+          });
         }).catch(function (err) {
           // menuService.myHandleError(err);
           menuService.stopLoading();
         });
       }, 700)
     });
-    $scope.prices = function () {
+    $scope.prices = function (index) {
+      $scope.p = $scope.leagues[index].prizes;
       $ionicModal.fromTemplateUrl('price.html', {
         scope: $scope
       }).then(function (modal) {

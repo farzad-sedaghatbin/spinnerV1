@@ -1,9 +1,16 @@
 <ion-modal-view
   style="min-height: 80%;width: 90%;top: 10%;left: 5%;border-radius: 5%;background: rgba(255,255,255,0.9);">
   <ion-content class="padding">
+    <div class="myText">
     <a ng-click="modal.hide()" class="closeButton"></a>
-    <div class="row" ng-repeat="row in rows">
-
+    <div class="row" ng-repeat="row in p">
+      <div class="col grid-example s4 coining-text-left" style="color: darkmagenta;text-align: center !important;">
+        {{row.desc}}
+      </div>
+      <div class="col grid-example s4 coining-text-right" style="font-size: x-large;text-align: center !important;">
+        {{row.index}}
+      </div>
+    </div>
     </div>
   </ion-content>
 </ion-modal-view>
