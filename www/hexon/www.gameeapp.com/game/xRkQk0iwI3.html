@@ -9,14 +9,14 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js"><!--<![endif]-->
 
-<!-- Mirrored from www.gameeapp.com/game/ipUMpcUES by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Sep 2017 05:11:53 GMT -->
+<!-- Mirrored from www.gameeapp.com/game/xRkQk0iwI3 by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Sep 2017 08:06:03 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height, minimal-ui">
 
 	<link rel="stylesheet" href="../detail/css/preloader.min3860.css?v=1">
-	<link rel="stylesheet" href="../detail/css/main.min1bce.css?v=6">
+	<link rel="stylesheet" href="../detail/css/main.min8fa7.css?v=18">
   <link rel="stylesheet" href="../detail/css/bootstrap.min.css">
 </head>
 
@@ -60,7 +60,6 @@
 
 
 <div class="l_pageBody" id="gameeDesktop">
-
 	<div class="l_pageBody-inside">
 
 		<div class="b_contentWrap">
@@ -74,7 +73,7 @@
 							<div class="this-border">Score: <span class="child-score js-score">0</span></div>
 						</div>
 
-						<iframe name="game" class="gameFrame" data-src="../data/index.html" frameborder="0" width="640" height="640"></iframe>
+						<iframe name="game" class="gameFrame" data-src="https://d29zfk7accxxr5.cloudfront.net/games/game-166/data/index.html" frameborder="0" width="640" height="640"></iframe>
 						<div class="b_contnet-leftAppControls">
 							<div class="child-item this-pause js_pause"></div>
 						</div>
@@ -89,6 +88,10 @@
 
 								<div class="startOverlay">
 
+								<div class="overlay-header">
+									<h3>Hexonix</h3>
+								</div>
+
 								<div class="child-pushSpace"><span>Push Space to Play</span></div>
 
 								<div class="child-howToPlayWrap">
@@ -98,7 +101,7 @@
 										<div class="child-group">
 											<div class="child-item">
 												<div class="child-key this-single">P</div>
-												<span class="child-keyTitle">Pause</span>
+												<span class="child-keyTitle">pause</span>
 											</div>
 											<div class="child-item">
 												<div class="child-key this-single">R</div>
@@ -114,8 +117,7 @@
 							<div class="b_content-leftAppOverlayPaused js-overlay js-overlayPaused" style="display: none">
 
 								<div class="overlay-header">
-									<h3>Spinner Winner</h3>
-									<div class="highscore">Highscore is <span class="child-score js-score">0</span>!</div>
+									<h3>Hexonix</h3>
 								</div>
 
 								<div class="child-pushSpace"><span>Push Space to Play</span></div>
@@ -127,7 +129,7 @@
 										<div class="child-group">
 											<div class="child-item">
 												<div class="child-key this-single">P</div>
-												<span class="child-keyTitle">Pause</span>
+												<span class="child-keyTitle">pause</span>
 											</div>
 											<div class="child-item">
 												<div class="child-key this-single">R</div>
@@ -145,17 +147,15 @@
 
 							<!-- End of game overlay /-->
 							<div class="b_content-leftAppOverlayOver js-overlay js-overlayOver" style="display: none">
-								<div class="child-logo"></div>
-
 								<div class="child-top">
 
 									<div class="yourScore">
 										You scored <span class="child-score js-score">0</span>!
 									</div>
+
 								</div>
 
 								<div class="child-pushSpace replay">Push Space to Continue</div>
-
 							</div>
 
 							</div>
@@ -172,6 +172,7 @@
 
 <!-- Gamee for mobile phone /-->
 <div id="gameeMobile" class="FullScreenPortrait">
+
 		<div id="canvasWrap">
 
 			<!-- Your score on the top /-->
@@ -188,13 +189,16 @@
 			<!--  Game over overlay /-->
 			<div class="overlay" id="overlay-end">
 				<div class="inner">
-					<div class="transform">
+					<div class="transform_score" style="display: none;">
 						<div class="your_score">
 							<span class="you_scored_text">You scored</span> <span class="totalScore">0</span>!
 							<div class="custom_text"></div>
 						</div>
-						<div class="fullscreen-control control-fs-restart"></div>
-					</div>
+                    </div>
+
+					<div class="fullscreen-control control-fs-restart"></div>
+
+					<div class="noTouchScrollUp"></div>
 				</div>
 			</div>
 
@@ -204,29 +208,24 @@
 
 						<div class="ic-pause"></div>
 						<span class="text-pause">Paused</span>
-						<div class="fullscreen-control control-fs-resume"></div>
+
 					</div>
+
+					<div class="fullscreen-control control-fs-resume"></div>
 				</div>
 			</div>
 
 			<div class="overlay" id="overlay-start">
 				<div class="inner">
-					<div class="transform">
-						<p class="press-play" style="opacity: 0;">Press play!<br><span>To start the game</span></p>
-
-						<div class="ranks-wrap">
-							<div class="this-share visible">
-							</div>
-
-
-						</div>
-
-						<div class="fullscreen-control control-fs-play visible"></div>
+					<div class="scrollerWrap">
 					</div>
+
+					<div class="fullscreen-control control-fs-play visible"></div>
+
 				</div>
 			</div>
 
-			<iframe id="gameeFrameMobile" name="game" class="gameFrame" data-src="../data/index.html" frameborder="0" scrolling="no" width="320" height="320" style=""></iframe>
+			<iframe id="gameeFrameMobile" name="game" class="gameFrame" data-src="https://d29zfk7accxxr5.cloudfront.net/games/game-166/data/index.html" frameborder="0" scrolling="no" width="320" height="320" style=""></iframe>
 
 
 		</div> <!-- Canvas wrap /-->
@@ -276,6 +275,7 @@
 		</div>
 
 
+
 		<div id="alert"><p>Please rotate your phone to enjoy GAMEE</p></div>
 </div> <!-- end of mobile /-->
 
@@ -292,6 +292,7 @@
 	    source = "web",
 	    innerWidth = window.innerWidth,
         innerHeight = window.innerHeight;
+
 	var gameGlobals = {
 		game_name: "",
 		game_img: "",
@@ -300,6 +301,7 @@
 		game_url: "",
 		game_fullUrl: "",
 		game_code: "",
+		offerTelegramSubscription: false,
 		mixPanelToken: ""
 	};
 
@@ -328,7 +330,8 @@
 </script>
 
 <script type="text/javascript" src="../detail/js/gameeWeb.min.js"></script>
+
 </body>
 
-<!-- Mirrored from www.gameeapp.com/game/ipUMpcUES by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Sep 2017 05:12:14 GMT -->
+<!-- Mirrored from www.gameeapp.com/game/xRkQk0iwI3 by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Sep 2017 08:06:26 GMT -->
 </html>
