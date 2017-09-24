@@ -174,15 +174,6 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         controller: 'LeagueCtrl',
         templateUrl: 'league.html'
       })
-      .state('app.table', {
-        url: '/table',
-        views: {
-          'menuContent': {
-            templateUrl: 'table.html',
-            controller: 'TableCtrl'
-          }
-        }
-      })
       .state('buy', {
         url: '/buy',
         controller: 'BuyCtrl',

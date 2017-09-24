@@ -5,8 +5,19 @@
   font-weight: 900;
   font-style: normal;
 }
+@font-face {
+  font-family: 'myEFont';
+  src:
+    url('font/Caprice.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
 .myText {
   font-family: myFont, sans-serif;
+  font-weight: bolder;
+}
+.myEText {
+  font-family: myEFont, sans-serif;
   font-weight: bolder;
 }
 html, body {

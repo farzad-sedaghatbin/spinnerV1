@@ -55,7 +55,7 @@
          ng-click="selectAvatar()">
       <img style="width: 48px;margin-top: 10px;border-radius: 50%;margin-left: 14px" src="{{gamer.avatar}}">
     </div>
-    <div class="myText" style="color: white;position: absolute;top: 25px;right: 70px">{{gamer.user}}</div>
+    <div class="myEText" style="color: white;position: absolute;top: 25px;right: 70px">{{gamer.user}}</div>
     <div class="myText" style="color: white;position: absolute;top: 45px;right: 70px">سطح : {{gamer.level}}</div>
     <div class="myText" style="color: white;position: absolute;top: 65px;right: 70px">امتیاز : {{gamer.score}}</div>
     <div class="myText">
@@ -104,7 +104,7 @@
                style="background: url(img/pic.png) no-repeat center;background-size: contain;">
             <img style="width: 48px;margin-top: 8px" src="{{row.second.avatar}}">
           </div>
-          <div ng-if="row.second.user" class="col grid-example s3 rate-button" style="margin-right: 5px">
+          <div ng-if="row.second.user" class="col grid-example s3 rate-button myEText" style="margin-right: 5px">
             {{row.second.user}}
           </div>
           <div ng-if="!row.second.user" class="col grid-example s3" style="margin-right: 5px">
@@ -141,7 +141,7 @@
                style="background: url(img/pic.png) no-repeat center;background-size: contain;">
             <img style="width: 48px;margin-top: 8px" src="{{row.second.avatar}}">
           </div>
-          <div class="col grid-example s3 rate-button" style="margin-right: 5px">
+          <div class="col grid-example s3 rate-button myEText" style="margin-right: 5px">
             {{row.second.user}}
           </div>
           <div class="col grid-example s3 rate" style="margin-left: 5px">
