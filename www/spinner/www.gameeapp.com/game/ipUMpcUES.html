@@ -21,7 +21,33 @@
 
 
 <body ontouchstart="">
-
+<div style="position: absolute;z-index: 1000;display: none" class="alert alert-danger" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="gameeUI.hideAlert.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+</div>
+<script type="text/javascript">
+  var url = location.href;
+  var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+  db.transaction(function (tx) {
+    tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
+      var len = results.rows.length, i, result = '';
+      if (results.rows && results.rows.length != 0) {
+        var a = results.rows.item(0).val.split(",");
+        url = a[4];
+      }
+    });
+  });
+  history.pushState(null, null, location.href);
+  window.addEventListener('popstate', function(event) {
+    history.pushState(null, location.href);
+    window.location = url;
+  });
+  function goHome() {
+    window.location = url;
+  }
+</script>
 <div class="preloader main">
 	<div class="inner">
 		<div class="icon"></div>
@@ -210,14 +236,17 @@
 			<div class="cWrap">
 				<div class="cLayout restart" id="restart">
 					<div id="control-restart" class="control"></div>
+          <div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
 				</div>
 
 				<div class="cLayout play" id="play">
 					<div id="control-play" class="control"></div>
+          <div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
 				</div>
 
 				<div class="cLayout resume">
 					<div id="control-resume" class="control"></div>
+          <div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
 				</div>
 
 				<div class="cLayout FullScreenPortrait" id="controller">
@@ -298,7 +327,6 @@
 </script>
 
 <script type="text/javascript" src="../detail/js/gameeWeb.min.js"></script>
-<script type="text/javascript" src="../detail/js/common.min.js"></script>
 </body>
 
 <!-- Mirrored from www.gameeapp.com/game/ipUMpcUES by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Sep 2017 05:12:14 GMT -->
