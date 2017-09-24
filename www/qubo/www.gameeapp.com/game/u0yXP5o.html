@@ -9,49 +9,48 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js"><!--<![endif]-->
 
-<!-- Mirrored from www.gameeapp.com/game/ibBTDViUP by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 10 Jul 2017 03:44:43 GMT -->
+<!-- Mirrored from www.gameeapp.com/game/u0yXP5o by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Sep 2017 10:34:09 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height, minimal-ui">
 
 	<link rel="stylesheet" href="../detail/css/preloader.min3860.css?v=1">
-	<link rel="stylesheet" href="../detail/css/main.min7b30.css?v=4">
-	<link rel="stylesheet" href="../detail/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../detail/css/main.min8fa7.css?v=18">
+  <link rel="stylesheet" href="../detail/css/bootstrap.min.css">
 </head>
 
 
 <body ontouchstart="">
 <div style="position: absolute;z-index: 1000;display: none" class="alert alert-danger" role="alert">
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="hideAlert()">
-		<span aria-hidden="true">&times;</span>
-	</button>
-	<strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="hideAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
 </div>
 <script type="text/javascript">
-    var url = location.href;
-    var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
-    db.transaction(function (tx) {
-        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
-            var len = results.rows.length, i, result = '';
-            if (results.rows && results.rows.length != 0) {
-                var a = results.rows.item(0).val.split(",");
-                url = a[4];
-            }
-        });
+  var url = location.href;
+  var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+  db.transaction(function (tx) {
+    tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
+      var len = results.rows.length, i, result = '';
+      if (results.rows && results.rows.length != 0) {
+        var a = results.rows.item(0).val.split(",");
+        url = a[4];
+      }
     });
-    history.pushState(null, null, location.href);
-    window.addEventListener('popstate', function(event) {
-        history.pushState(null, location.href);
-        window.location = url;
-    });
-    function goHome() {
-        window.location = url;
-    }
-    function hideAlert() {
-      $(".alert-danger").css("display","none");
-    }
+  });
+  history.pushState(null, null, location.href);
+  window.addEventListener('popstate', function(event) {
+    history.pushState(null, location.href);
+    window.location = url;
+  });
+  function goHome() {
+    window.location = url;
+  }
+  function hideAlert() {
+    $(".alert-danger").css("display","none");
+  }
 </script>
 <div class="preloader main">
 	<div class="inner">
@@ -64,6 +63,7 @@
 
 
 <div class="l_pageBody" id="gameeDesktop">
+
 	<div class="l_pageBody-inside">
 
 		<div class="b_contentWrap">
@@ -77,7 +77,7 @@
 							<div class="this-border">Score: <span class="child-score js-score">0</span></div>
 						</div>
 
-						<iframe name="game" class="gameFrame" data-src="../data/index.html" frameborder="0" width="640" height="640"></iframe>
+						<iframe name="game" class="gameFrame" data-src="https://d29zfk7accxxr5.cloudfront.net/games/game-147/data/index.html" frameborder="0" width="640" height="640"></iframe>
 						<div class="b_contnet-leftAppControls">
 							<div class="child-item this-pause js_pause"></div>
 						</div>
@@ -91,48 +91,61 @@
 
 
 								<div class="startOverlay">
+
+								<div class="overlay-header">
+									<h3>Qubo</h3>
+								</div>
+
 								<div class="child-pushSpace"><span>Push Space to Play</span></div>
 
 								<div class="child-howToPlayWrap">
 									<span class="child-header">How to play</span>
-
-										<!-- Full screen portrait -->
+										<!-- One Button -->
 										<div class="child-group">
 											<div class="child-item">
 												<div class="child-key this-single">P</div>
-												<span class="child-keyTitle">Pause</span>
+												<span class="child-keyTitle">pause</span>
 											</div>
 											<div class="child-item">
 												<div class="child-key this-single">R</div>
 												<span class="child-keyTitle">Restart</span>
 											</div>
-									    </div>
-
-																	</div>
+											<div class="child-item">
+												<div class="child-key this-space"></div>
+												<span class="child-keyTitle">Spacebar</span>
+											</div>
+										</div>
+								</div>
 							</div>
 							</div>
 
 							<!-- Overlay paused new /-->
 							<div class="b_content-leftAppOverlayPaused js-overlay js-overlayPaused" style="display: none">
 
+								<div class="overlay-header">
+									<h3>Qubo</h3>
+								</div>
+
 								<div class="child-pushSpace"><span>Push Space to Play</span></div>
 
 								<div class="child-howToPlayWrap">
 									<span class="child-header">How to play</span>
-
-										<!-- Full screen portrait -->
+										<!-- One Button -->
 										<div class="child-group">
 											<div class="child-item">
 												<div class="child-key this-single">P</div>
-												<span class="child-keyTitle">Pause</span>
+												<span class="child-keyTitle">pause</span>
 											</div>
 											<div class="child-item">
 												<div class="child-key this-single">R</div>
 												<span class="child-keyTitle">Restart</span>
 											</div>
-									    </div>
-
-																	</div>
+											<div class="child-item">
+												<div class="child-key this-space"></div>
+												<span class="child-keyTitle">Spacebar</span>
+											</div>
+										</div>
+								</div>
 
 								<div class="b_contnet-leftAppControls">
 									<div class="child-item this-pause js_resume"></div>
@@ -142,8 +155,6 @@
 
 							<!-- End of game overlay /-->
 							<div class="b_content-leftAppOverlayOver js-overlay js-overlayOver" style="display: none">
-								<div class="child-logo"></div>
-
 								<div class="child-top">
 
 									<div class="yourScore">
@@ -152,7 +163,6 @@
 								</div>
 
 								<div class="child-pushSpace replay">Push Space to Continue</div>
-
 							</div>
 
 							</div>
@@ -168,7 +178,7 @@
 
 
 <!-- Gamee for mobile phone /-->
-<div id="gameeMobile" class="FullScreenPortrait">
+<div id="gameeMobile" class="OneButton">
 
 		<div id="canvasWrap">
 
@@ -186,13 +196,16 @@
 			<!--  Game over overlay /-->
 			<div class="overlay" id="overlay-end">
 				<div class="inner">
-					<div class="transform">
+					<div class="transform_score" style="display: none;">
 						<div class="your_score">
 							<span class="you_scored_text">You scored</span> <span class="totalScore">0</span>!
 							<div class="custom_text"></div>
 						</div>
-						<div class="fullscreen-control control-fs-restart"></div>
-					</div>
+                    </div>
+
+					<div class="fullscreen-control control-fs-restart"></div>
+
+					<div class="noTouchScrollUp"></div>
 				</div>
 			</div>
 
@@ -203,31 +216,19 @@
 						<div class="ic-pause"></div>
 						<span class="text-pause">Paused</span>
 
-
-
-						<div class="fullscreen-control control-fs-resume"></div>
-
 					</div>
+
+					<div class="fullscreen-control control-fs-resume"></div>
 				</div>
 			</div>
 
 			<div class="overlay" id="overlay-start">
 				<div class="inner">
-					<div class="transform">
-						<p class="press-play">Press play!<br><span>To start the game</span></p>
-						<div class="ranks-wrap">
-							<div class="this-share visible">
-							</div>
-
-
-						</div>
-
-						<div class="fullscreen-control control-fs-play visible"></div>
-					</div>
+					<div class="fullscreen-control control-fs-play visible"></div>
 				</div>
 			</div>
 
-			<iframe id="gameeFrameMobile" name="game" class="gameFrame" data-src="../data/index.html" frameborder="0" scrolling="no" width="320" height="320" style=""></iframe>
+			<iframe id="gameeFrameMobile" name="game" class="gameFrame" data-src="https://d29zfk7accxxr5.cloudfront.net/games/game-147/data/index.html" frameborder="0" scrolling="no" width="320" height="320" style=""></iframe>
 
 
 		</div> <!-- Canvas wrap /-->
@@ -238,20 +239,20 @@
 			<div class="cWrap">
 				<div class="cLayout restart" id="restart">
 					<div id="control-restart" class="control"></div>
-					<div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
+          <div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
 				</div>
 
 				<div class="cLayout play" id="play">
 					<div id="control-play" class="control"></div>
-					<div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
+          <div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
 				</div>
 
 				<div class="cLayout resume">
 					<div id="control-resume" class="control"></div>
-					<div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
+          <div onclick="goHome()" style="width: 135px;height: 135px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
 				</div>
 
-				<div class="cLayout FullScreenPortrait" id="controller">
+				<div class="cLayout OneButton" id="controller">
 					<div class="inner">
 						<div id="control-oneButton" class="control"></div>
 						<div id="control-buttonA" class="control"></div>
@@ -277,6 +278,7 @@
 		</div>
 
 
+
 		<div id="alert"><p>Please rotate your phone to enjoy GAMEE</p></div>
 </div> <!-- end of mobile /-->
 
@@ -293,7 +295,6 @@
 	    source = "web",
 	    innerWidth = window.innerWidth,
         innerHeight = window.innerHeight;
-
 	var gameGlobals = {
 		game_name: "",
 		game_img: "",
@@ -302,6 +303,7 @@
 		game_url: "",
 		game_fullUrl: "",
 		game_code: "",
+		offerTelegramSubscription: false,
 		mixPanelToken: ""
 	};
 
@@ -314,8 +316,11 @@
         var lastTouchEnd = 0;
 		document.documentElement.addEventListener('touchend', function (event) {
 			var now = (new Date()).getTime();
-			if (now - lastTouchEnd <= 300) {
-				event.preventDefault();
+
+            if(event.target.id !== 'control-restart' || event.target.id !== 'control-play') {
+                if (now - lastTouchEnd <= 500) {
+                        event.preventDefault();
+                }
 			}
 			lastTouchEnd = now;
 		}, false);
@@ -325,9 +330,8 @@
 		$.getScript("../detail/js/gameUIdesktop.min.js");
 	}
 </script>
-
 <script type="text/javascript" src="../detail/js/gameeWeb.min.js"></script>
 </body>
 
-<!-- Mirrored from www.gameeapp.com/game/ibBTDViUP by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 10 Jul 2017 03:45:08 GMT -->
+<!-- Mirrored from www.gameeapp.com/game/u0yXP5o by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Sep 2017 10:34:32 GMT -->
 </html>

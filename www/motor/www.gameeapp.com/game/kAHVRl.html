@@ -25,7 +25,7 @@
 
 <body ontouchstart="">
 <div style="position: absolute;z-index: 1000;display: none" class="alert alert-danger" role="alert">
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="gameeUI.hideAlert.hide()">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="hideAlert()">
 		<span aria-hidden="true">&times;</span>
 	</button>
 	<strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
@@ -49,6 +49,9 @@
     });
     function goHome() {
         window.location = url;
+    }
+    function hideAlert() {
+      $(".alert-danger").css("display","none");
     }
 </script>
 <div class="preloader main">
