@@ -438,6 +438,9 @@ angular.module('starter.controllers', [])
     }
   })
   .controller('LeagueCtrl', function ($scope, $state, $ionicHistory, $http, $rootScope, menuService, $timeout, $ionicModal) {
+    $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
+      $scope.loaded = false;
+    });
     $scope.$on("$ionicView.enter", function (scopes, states) {
       $timeout(function () {
         menuService.startLoading();
@@ -447,6 +450,7 @@ angular.module('starter.controllers', [])
           angular.forEach($scope.leagues, function(member, index){
             member.i = index;
           });
+          $scope.loaded = true;
         }).catch(function (err) {
           // menuService.myHandleError(err);
           menuService.stopLoading();
