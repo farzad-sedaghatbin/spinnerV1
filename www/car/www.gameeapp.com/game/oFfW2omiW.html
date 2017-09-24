@@ -24,7 +24,7 @@
 
 <body ontouchstart="">
 <div style="position: absolute;z-index: 1000;display: none" class="alert alert-danger" role="alert">
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="gameeUI.hideAlert.hide()">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="hideAlert()">
 		<span aria-hidden="true">&times;</span>
 	</button>
 	<strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
@@ -48,6 +48,9 @@
     });
     function goHome() {
         window.location = url;
+    }
+    function hideAlert() {
+      $(".alert-danger").css("display","none");
     }
 </script>
 <div class="preloader main">
@@ -74,7 +77,7 @@
 							<div class="this-border">Score: <span class="child-score js-score">0</span></div>
 						</div>
 
-						<iframe name="game" class="gameFrame" data-src="https://d29zfk7accxxr5.cloudfront.net/games/game-106/data/index.html" frameborder="0" width="640" height="640"></iframe>
+						<iframe name="game" class="gameFrame" data-src="../data/index.html" frameborder="0" width="640" height="640"></iframe>
 						<div class="b_contnet-leftAppControls">
 							<div class="child-item this-pause js_pause"></div>
 						</div>
@@ -244,7 +247,7 @@
 				</div>
 			</div>
 
-			<iframe id="gameeFrameMobile" name="game" class="gameFrame" data-src="https://d29zfk7accxxr5.cloudfront.net/games/game-106/data/index.html" frameborder="0" scrolling="no" width="320" height="320" style=""></iframe>
+			<iframe id="gameeFrameMobile" name="game" class="gameFrame" data-src="../data/index.html" frameborder="0" scrolling="no" width="320" height="320" style=""></iframe>
 
 
 		</div> <!-- Canvas wrap /-->
