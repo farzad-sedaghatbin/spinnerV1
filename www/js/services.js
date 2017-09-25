@@ -78,12 +78,61 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
   var getDb = function () {
     return db;
   };
+  var homeTutorial = function () {
+    db.transaction(function (tx) {
+      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="homeTutorial"', [], function (tx, results) {
+        var len = results.rows.length, i, result = '';
+        if (!results.rows || results.rows.length == 0) {
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["homeTutorial", true]);
+          $('ion-content').pagewalkthrough({
+            name: 'introduction',
+            steps: [{
+              popup: {
+                content: 'این بهترین بازی دنیاس کله پوکا',
+                type: 'modal'
+              }
+            }, {
+              wrapper: '#train',
+              popup: {
+                content: 'اگر میخوای تمرین کنی و رکورد بزنی بهترین جا اینجاست',
+                type: 'tooltip',
+                position: 'bottom'
+              }
+            }, {
+              wrapper: '#league',
+              popup: {
+                content: 'اگر میخوای تو لیگای مختلف شرکت کنی و جایزه ببری بیا اینجا',
+                type: 'tooltip',
+                position: 'bottom'
+              }
+            }, {
+              wrapper: '#battle',
+              popup: {
+                content: 'اگر دنبال یه حریف شانسی هستی تا تواناییاتو به چالش بکشی جاش اینجاست',
+                type: 'tooltip',
+                position: 'bottom'
+              }
+            }, {
+              wrapper: '.menu-open-button',
+              popup: {
+                content: 'این منو هست، حتما بش سر بزن',
+                type: 'tooltip',
+                position: 'bottom'
+              }
+            }]
+          });
+          $('ion-content').pagewalkthrough('show');
+        }
+      }, null);
+    })
+  };
   return {
     startLoading: startLoading,
     stopLoading: stopLoading,
     myHandleError: myHandleError,
     getDb: getDb,
-    myMessage: myMessage
+    myMessage: myMessage,
+    homeTutorial : homeTutorial
   };
 })
   .service('authHttpResponseInterceptor', ['$q', function ($q) {
