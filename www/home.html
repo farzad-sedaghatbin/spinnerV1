@@ -59,15 +59,6 @@
     <div class="myText" style="color: white;position: absolute;top: 45px;right: 70px">سطح : {{gamer.level}}</div>
     <div class="myText" style="color: white;position: absolute;top: 65px;right: 70px">امتیاز : {{gamer.score}}</div>
     <div class="myText">
-      <walkthrough
-        is-round=true
-        walkthrough-type="transparency"
-        focus-element-id="test"
-        icon="single_tap"
-        main-caption="This is some text"
-        is-active="true"
-        use-button="true">
-      </walkthrough>
       <div ng-if="gamer.isGuest" class="row" style="margin-top: 30px">
         <article class="notepad">
           <p style="text-align: right;direction: rtl">لطفا ثبت نام کنید یا با حساب ساخته شده وارد شوید. در صورت ثبت نام امتیازات حساب مهمان منتقل خواهد شد</p>
@@ -85,7 +76,7 @@
           </div>
         </div>
         <div ng-show="isLeague()" class="row" style="margin-top: 70px">
-          <div class="col grid-example s4 blue-button" style="font-size: medium"
+          <div id="train" class="col grid-example s4 blue-button" style="font-size: medium"
                ng-click="training()">
             تمرین میکنم
           </div>
