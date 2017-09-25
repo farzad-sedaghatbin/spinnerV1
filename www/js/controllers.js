@@ -30,7 +30,7 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('HomeCtrl', function ($scope, $state, $ionicModal, $rootScope, menuService, $http, $ionicPopup) {
+  .controller('HomeCtrl', function ($scope, $state, $ionicModal, $rootScope, menuService, $http, $ionicPopup,$timeout) {
     $rootScope.homeURL = window.location.href;
     $scope.$on("$ionicView.enter", function (scopes, states) {
       menuService.getDb().transaction(function (tx) {
@@ -207,7 +207,42 @@ angular.module('starter.controllers', [])
         $(".myends").show("slow");
         $("#endIcon").css("background", "url(img/show.png) no-repeat center").css("background-size", "contain");
       }
-    }
+    };
+    $timeout(function () {
+      $('ion-content').pagewalkthrough({
+        name: 'introduction',
+        steps: [{
+          popup: {
+            content: 'این بهترین بازی دنیاس کله پوکا',
+            type: 'modal'
+          }
+        }, {
+          wrapper: '#train',
+          popup: {
+            content: 'اگر میخوای تمرین کنی و رکورد بزنی بهترین جا اینجاست',
+            type: 'tooltip',
+            position: 'bottom'
+          }
+        },{
+          wrapper: '#league',
+          popup: {
+            content: 'اگر میخوای تو لیگای مختلف شرکت کنی و جایزه ببری بیا اینجا',
+            type: 'tooltip',
+            position: 'bottom'
+          }
+        }, {
+          wrapper: '#battle',
+          popup: {
+            content: 'اگر دنبال یه حریف شانسی هستی تا تواناییاتو به چالش بکشی جاش اینجاست',
+            type: 'tooltip',
+            position: 'bottom'
+          }
+        }]
+      });
+
+      // Show the tour
+      $('ion-content').pagewalkthrough('show');
+    },700)
   })
   .controller('BoardCtrl', function ($scope, $timeout, $ionicHistory, menuService, $http, $rootScope, $state, $ionicModal) {
     var root = true;

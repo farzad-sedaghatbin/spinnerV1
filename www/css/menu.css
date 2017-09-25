@@ -550,3 +550,15 @@ span.font-36 {
   height:27px;
   background:url('../img/close-button.png') no-repeat center center;
 }
+#jpwTooltip{
+  left: 0 !important;
+  margin-left: 0 !important;
+  width: 100% !important;
+}
+#tooltipWrapper{
+  width: 100% !important;
+}
+#tooltipInner,#jpwPrevious,#jpwNext,#jpwClose,#jpwFinish{
+  font-family: myFont !important;
+}
+
