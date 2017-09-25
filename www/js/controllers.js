@@ -17,17 +17,6 @@ angular.module('starter.controllers', [])
         $rootScope.mainModal.show();
       });
     };
-    $scope.logout = function () {
-      menuService.getDb().transaction(function (tx) {
-        tx.executeSql('DELETE FROM ANIJUU WHERE name != ?', ["adv"]);
-      });
-      delete $http.defaults.headers.common.Authorization;
-      if (menuService.isPlatformOld()) {
-        $state.go("menuless.login-old")
-      } else {
-        $state.go("menuless.login")
-      }
-    };
   })
 
   .controller('HomeCtrl', function ($scope, $state, $ionicModal, $rootScope, menuService, $http, $ionicPopup,$timeout) {

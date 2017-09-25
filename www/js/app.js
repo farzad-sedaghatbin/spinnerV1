@@ -183,6 +183,4 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
       $location.path("/app/home");
     });
   });
-app.config(function ($httpProvider) {
-  $httpProvider.interceptors.push('authHttpResponseInterceptor');
-});
+

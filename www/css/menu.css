@@ -561,4 +561,7 @@ span.font-36 {
 #tooltipInner,#jpwPrevious,#jpwNext,#jpwClose,#jpwFinish{
   font-family: myFont !important;
 }
-
+.overlay-hole{
+  margin-left: 20px !important;
+  margin-top: 20px !important;
+}
