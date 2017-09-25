@@ -592,7 +592,7 @@ angular.module('starter.controllers', [])
       })
     }
   })
-  .controller('BattlefieldCtrl', function ($scope, $state, $ionicHistory, menuService, $timeout, $http, $rootScope, $location) {
+  .controller('BattlefieldCtrl', function ($scope, $state, $ionicHistory, menuService, $timeout, $http, $rootScope, $interval) {
     $scope.loaded = false;
     var url;
     var param;
@@ -675,7 +675,7 @@ angular.module('starter.controllers', [])
         menuService.stopLoading();
       });
     }
-
+    var refreshInterval;
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
       $('#clock').css("display", "none");
       $scope.loaded = false;
@@ -684,7 +684,13 @@ angular.module('starter.controllers', [])
       $timeout(function () {
         menuService.startLoading();
         loadData(false);
-      }, 700)
+      }, 700);
+      refreshInterval = $interval(function () {
+        loadData(false);
+      }, 60000);
+    });
+    $scope.$on('$ionicView.leave', function () {
+      $interval.cancel(refreshInterval);
     });
     $scope.play = function () {
       if ($rootScope.battle.url && $rootScope.battle.status == "1") {
