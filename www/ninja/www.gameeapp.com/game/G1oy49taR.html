@@ -23,15 +23,16 @@
 	<link rel="stylesheet" href="../detail/css/preloader.min3860.css?v=1">
 	<link rel="stylesheet" href="../detail/css/main.min7b30.css?v=4">
 	<link rel="stylesheet" href="../detail/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/www/css/font.css">
 </head>
 
 
 <body ontouchstart="">
-<div style="position: absolute;z-index: 1000;display: none" class="alert alert-danger" role="alert">
+<div style="position: absolute;z-index: 1000;display: none" class="alert alert-danger myText" role="alert">
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="hideAlert()">
 		<span aria-hidden="true">&times;</span>
 	</button>
-	<strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+  <strong>خطا در ثبت رکورد</strong> <span class="alert-link">لطفا اتصال اینترنت خود را بررسی کنید</span>
 </div>
 <script type="text/javascript">
     var url = location.href;
@@ -61,7 +62,7 @@
 	<div class="inner">
 		<div class="icon"></div>
 		<div class="type"></div>
-        <div class="claim">Social gaming, endless fun!</div>
+        <div class="claim myText">داگالا، نهایت تفریح و بازی</div>
 	</div>
 	<div class="loading_bar"></div>
 </div>
@@ -79,7 +80,7 @@
 					<div class="b_content-leftAppWrap">
 
 						<div class="actualScore">
-							<div class="this-border">Score: <span class="child-score js-score">0</span></div>
+              <div class="this-border" style="direction: rtl">امتیاز: <span class="child-score js-score">0</span></div>
 						</div>
 
 						<iframe name="game" class="gameFrame" data-src="../data/index.html" frameborder="0" width="640" height="640"></iframe>
@@ -97,15 +98,10 @@
 
 								<div class="startOverlay">
 
-								<div class="overlay-header">
-									<h3>Gravity Ninja</h3>
-									<div class="highscore">Highscore is <span>45294</span></div>
-								</div>
-
-								<div class="child-pushSpace"><span>Push Space to Play</span></div>
+								<div class="child-pushSpace"><span>برای بازی کلیک کنید</span></div>
 
 								<div class="child-howToPlayWrap">
-									<span class="child-header">How to play</span>
+									<span class="child-header">چطور بازی کنم</span>
 										<!-- One Button -->
 										<div class="child-group">
 											<div class="child-item">
@@ -133,10 +129,10 @@
 									<div class="highscore">Highscore is <span class="child-score js-score">0</span>!</div>
 								</div>
 
-								<div class="child-pushSpace"><span>Push Space to Play</span></div>
+								<div class="child-pushSpace"><span>برای بازی کلیک کنید</span></div>
 
 								<div class="child-howToPlayWrap">
-									<span class="child-header">How to play</span>
+									<span class="child-header">چطور بازی کنم</span>
 										<!-- One Button -->
 										<div class="child-group">
 											<div class="child-item">
@@ -169,10 +165,6 @@
 									<div class="yourScore">
 										You scored <span class="child-score js-score">0</span>!
 									</div>
-
-									<div class="highscore" style="display: none;">
-										Highscore is <span class="child-score js-highscore">45294</span>.
-									</div>
 								</div>
 
 								<div class="child-pushSpace replay">Push Space to Continue</div>
@@ -196,8 +188,8 @@
 		<div id="canvasWrap">
 
 			<!-- Your score on the top /-->
-			<div class="your_score v2">
-				<div class="this_border">Score: <span class="totalScore">0</span></div>
+			<div class="your_score v2" style="direction: rtl">
+				<div class="this_border">امتیاز: <span class="totalScore">0</span></div>
 			</div>
 
 			<!-- Rank status on the top /-->
@@ -210,10 +202,10 @@
 			<div class="overlay" id="overlay-end">
 				<div class="inner">
 					<div class="transform">
-						<div class="your_score">
-							<span class="you_scored_text">You scored</span> <span class="totalScore">0</span>!
-							<div class="custom_text"></div>
-						</div>
+            <div class="your_score" style="direction: rtl">
+              <span class="you_scored_text">امتیاز شما</span> <span class="totalScore">0</span>!
+              <div class="custom_text"></div>
+            </div>
 
 						<div class="fullscreen-control control-fs-restart"></div>
 					</div>
@@ -308,7 +300,7 @@
 		</div>
 
 
-		<div id="alert"><p>Please rotate your phone to enjoy GAMEE</p></div>
+		<div id="alert"><p>لطفا موبایل خود را بچرخانید</p></div>
 </div> <!-- end of mobile /-->
 
 <!-- Javascript /-->
