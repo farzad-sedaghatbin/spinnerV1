@@ -623,8 +623,8 @@ angular.module('starter.controllers', [])
       if ($rootScope.isAndroid()) {
         inappbilling.buy(function (data) {
           $http.post("https://dagala.cfapps.io/api/1/inventory", productId).success(function (data, status, headers, config) {
-            menuService.myMessage("خرید شما با موفقیت انجام شد", "پیام");
             inappbilling.consumePurchase(function () {
+              menuService.myMessage("خرید شما با موفقیت انجام شد", "پیام");
             }, function (e) {
               menuService.myMessage("خرید مجدد این محصول برای شما ممکن نخواهد بود، بدلیل خطای کافه بازار.برای رفع مشکل با ما تماس بگیرید", "خطا");
             }, productId)
