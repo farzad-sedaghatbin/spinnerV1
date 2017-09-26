@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('starter', ['ionic','starter.controllers','starter.services'])
 
-.run(function($ionicPlatform,$http,$rootScope) {
+.run(function($ionicPlatform,$http,$rootScope,$ionicHistory,$timeout,$cordovaSplashscreen) {
   $ionicPlatform.ready(function() {
     // inappbilling.init();
     // tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
@@ -19,6 +19,25 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
       // a much nicer keyboard experience.
       cordova.plugins.Keyboard.disableScroll(true);
     }
+    var backbutton = 0;
+    $ionicPlatform.registerBackButtonAction(function (e) {
+      e.preventDefault();
+      if ($rootScope.modal && $rootScope.modal.isShown()) {
+        $rootScope.modal.hide();
+      } else if ($ionicHistory.currentStateName() == "home") {
+        if (backbutton == 0) {
+          backbutton++;
+          window.plugins.toast.showShortBottom('برای خروج دوباره لمس کنید');
+          $timeout(function () {
+            backbutton = 0;
+          }, 2000);
+        } else {
+          navigator.app.exitApp();
+        }
+      } else {
+        $ionicHistory.goBack();
+      }
+    }, 501);//registerBackButton
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
@@ -64,12 +83,14 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
       if (result) {
         $rootScope.gamer = JSON.parse(result);
         $http.defaults.headers.common['Authorization'] = $rootScope.gamer.token;
+        $cordovaSplashscreen.hide();
       } else {
         var url = "https://dagala.cfapps.io/api/1/tempUser";
         $http.post(url).success(function (data, status, headers, config) {
           $http.defaults.headers.common['Authorization'] = data.token;
           data.pass = data.user;
           $rootScope.saveGamer(data);
+          $cordovaSplashscreen.hide();
         }).catch(function (err) {
           // menuService.myHandleError(err, true);
         });
@@ -102,20 +123,10 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
 })
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('app', {
-        url: '/app',
-        abstract: true,
-        templateUrl: 'menu.html',
-        controller: 'AppCtrl'
-      })
-      .state('app.home', {
+      .state('home', {
         url: '/home',
-        views: {
-          'menuContent': {
-            templateUrl: 'home.html',
-            controller: 'HomeCtrl'
-          }
-        }
+        controller: 'HomeCtrl',
+        templateUrl: 'home.html'
       })
       .state('board', {
         url: '/board',
@@ -180,7 +191,7 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         templateUrl: 'buy.html'
       });
     $urlRouterProvider.otherwise(function ($injector,$location) {
-      $location.path("/app/home");
+      $location.path("/home");
     });
   });
 

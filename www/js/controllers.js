@@ -1,24 +1,5 @@
 'use strict';
 angular.module('starter.controllers', [])
-  .controller('AppCtrl', function ($scope, $ionicModal, menuService, $state, $http, $rootScope) {
-    $scope.changePassM = function () {
-      $ionicModal.fromTemplateUrl('templates/change-pass.html', {
-        scope: $scope
-      }).then(function (modal) {
-        $rootScope.mainModal = modal;
-        $rootScope.mainModal.show();
-      });
-    };
-    $scope.openContact = function () {
-      $ionicModal.fromTemplateUrl('templates/contact.html', {
-        scope: $scope
-      }).then(function (modal) {
-        $rootScope.mainModal = modal;
-        $rootScope.mainModal.show();
-      });
-    };
-  })
-
   .controller('HomeCtrl', function ($scope, $state, $ionicModal, $rootScope, menuService, $http, $ionicPopup,$timeout) {
     $rootScope.homeURL = window.location.href;
     $scope.$on("$ionicView.enter", function (scopes, states) {
@@ -699,7 +680,7 @@ angular.module('starter.controllers', [])
         data.token = $rootScope.gamer.token;
         $rootScope.saveGamer(data);
         $rootScope.timedOut = true;
-        $state.go("app.home");
+        $state.go("home");
         menuService.stopLoading();
       }).catch(function (err) {
         // menuService.myHandleError(err);
@@ -762,7 +743,7 @@ angular.module('starter.controllers', [])
         data.token = $rootScope.gamer.token;
         $rootScope.saveGamer(data);
         menuService.stopLoading();
-        $state.go("app.home");
+        $state.go("home");
       }).catch(function (err) {
         // menuService.myHandleError(err);
         menuService.stopLoading();
@@ -878,7 +859,7 @@ angular.module('starter.controllers', [])
         data.user = d.username;
         $rootScope.saveGamer(data);
         menuService.stopLoading();
-        $state.go("app.home");
+        $state.go("home");
       }).catch(function (err) {
         menuService.myHandleError(err, true);
         menuService.stopLoading();
