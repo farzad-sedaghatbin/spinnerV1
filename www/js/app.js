@@ -3,9 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic','starter.controllers','starter.services'])
+var app = angular.module('starter', ['ionic','starter.controllers','starter.services','ionic-native-transitions'])
 
-.run(function($ionicPlatform,$http,$rootScope,$ionicHistory,$timeout,$cordovaSplashscreen) {
+.run(function($ionicPlatform,$http,$rootScope,$ionicHistory,$timeout) {
   $ionicPlatform.ready(function() {
     // inappbilling.init();
     // tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
@@ -83,14 +83,14 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
       if (result) {
         $rootScope.gamer = JSON.parse(result);
         $http.defaults.headers.common['Authorization'] = $rootScope.gamer.token;
-        $cordovaSplashscreen.hide();
+        window.plugins.splashscreen.hide();
       } else {
         var url = "https://dagala.cfapps.io/api/1/tempUser";
         $http.post(url).success(function (data, status, headers, config) {
           $http.defaults.headers.common['Authorization'] = data.token;
           data.pass = data.user;
           $rootScope.saveGamer(data);
-          $cordovaSplashscreen.hide();
+          window.plugins.splashscreen.hide();
         }).catch(function (err) {
           // menuService.myHandleError(err, true);
         });
@@ -121,7 +121,19 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
     }
   });
 })
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider,$ionicNativeTransitionsProvider,$ionicConfigProvider) {
+    $ionicConfigProvider.scrolling.jsScrolling(false);
+    $ionicNativeTransitionsProvider.setDefaultOptions({
+      duration: 200
+    });
+    $ionicNativeTransitionsProvider.setDefaultTransition({
+      type: 'slide',
+      direction: 'left'
+    });
+    $ionicNativeTransitionsProvider.setDefaultBackTransition({
+      type: 'slide',
+      direction: 'right'
+    });
     $stateProvider
       .state('home', {
         url: '/home',

@@ -43,7 +43,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
         });
       }
     } else if (err && err.status == 0) {
-      $cordovaToast.showShortBottom('لطفا اتصال اینترنت خود را بررسی کنید');
+      window.plugins.toast.showShortBottom('لطفا اتصال اینترنت خود را بررسی کنید');
     } else if (err && err.status == 418) {
       $ionicPopup.alert({
         title: '<span class="myText">بروزرسانی</span>',
@@ -61,7 +61,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
       $(".popup").css("width", "90%");
       //$(".popup-buttons").css("display", "none");
     } else {
-      $cordovaToast.showShortBottom('خطا در ارتباط با سرور');
+      window.plugins.toast.showShortBottom('خطا در ارتباط با سرور');
     }
   };
   var myMessage = function (msg,title) {
