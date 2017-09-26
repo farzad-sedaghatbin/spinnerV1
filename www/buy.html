@@ -2,15 +2,21 @@
   style="min-height: 80%;width: 90%;top: 10%;left: 5%;border-radius: 5%;background: rgba(255,255,255,0.9);">
   <ion-content class="padding">
     <a ng-click="modal.hide()" class="closeButton"></a>
-    <div class="row" ng-repeat="row in rows">
-      <div class="col grid-example s4 battlefield" style="color: white;font-size: smaller" ng-click="doBuy(row.productId)">
-        خرید
-      </div>
-      <div class="col grid-example s4 coining-text-right" style="font-size: large">
-       {{row.price}}
-      </div>
-      <div class="col grid-example s4 coining-text-left" style="color: darkmagenta;">
-       {{row.title}}
+    <div style="margin-top: 20px">
+      <div class="row myText" ng-repeat="row in rows">
+        <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller"
+             ng-click="doBuy(row.name,row.price)">
+          خرید
+        </div>
+        <div class="col grid-example s3 coining-text-right" style="font-size: large">
+          {{row.price}}
+        </div>
+        <div class="col grid-example s3 coining-text-left" style="color: darkmagenta;">
+          {{row.description}}
+        </div>
+        <div class="col grid-example s3 coining-text-left" style="color: darkmagenta;">
+          <img src="{{row.icon}}" style="width: 42px;height: 42px">
+        </div>
       </div>
     </div>
   </ion-content>

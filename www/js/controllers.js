@@ -567,29 +567,48 @@ angular.module('starter.controllers', [])
       });
     };
     $scope.buy = function () {
-      inappbilling.getAvailableProducts(function (data) {
+      menuService.startLoading();
+      $http.post("https://dagala.cfapps.io/api/1/marketObjects").success(function (data, status, headers, config) {
         $scope.rows = data;
+        menuService.stopLoading();
         $ionicModal.fromTemplateUrl('buy.html', {
           scope: $scope
         }).then(function (modal) {
           $rootScope.modal = modal;
           modal.show();
         });
-      }, function (e) {
-        menuService.myMessage("خطا در برقراری ارتباط با کافه بازار", "خطا");
-      })
+      }).catch(function (err) {
+        menuService.stopLoading();
+        // menuService.myHandleError(err);
+      });
     };
-    $scope.doBuy = function (productId) {
+    $scope.doBuy = function (productId,price) {
       $rootScope.modal.hide();
-      inappbilling.buy(function (data) {
-        $http.post("https://dagala.cfapps.io/api/1/inventory", productId).success(function (data, status, headers, config) {
-          menuService.myMessage("خرید شما با موفقیت انجام شد", "پیام");
+      if ($rootScope.isAndroid()) {
+        inappbilling.buy(function (data) {
+          $http.post("https://dagala.cfapps.io/api/1/inventory", productId).success(function (data, status, headers, config) {
+            menuService.myMessage("خرید شما با موفقیت انجام شد", "پیام");
+          }).catch(function (err) {
+            // menuService.myHandleError(err);
+          });
+        }, function (e) {
+          menuService.myMessage("خطا در برقراری ارتباط با کافه بازار", "خطا");
+        },productId)
+      } else {
+        menuService.startLoading();
+        var url = "https://dagala.cfapps.io/api/1/factor";
+        $http.post(url, price).success(function (data, status, headers, config) {
+          menuService.stopLoading();
+          window.open(
+            "http://dagala.ir/bank.html?res=" + data + "&amount=" + price ,
+            "_system",
+            "hidden=no,location=no,clearsessioncache=yes,clearcache=yes"
+          );
         }).catch(function (err) {
+          menuService.stopLoading();
           // menuService.myHandleError(err);
         });
-      }, function (e) {
-        menuService.myMessage("خطا در برقراری ارتباط با کافه بازار", "خطا");
-      })
+      }
     }
   })
   .controller('BattlefieldCtrl', function ($scope, $state, $ionicHistory, menuService, $timeout, $http, $rootScope, $interval) {
