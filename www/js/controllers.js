@@ -203,18 +203,61 @@ angular.module('starter.controllers', [])
       }
       $timeout(function () {
         root = true;
-        $scope.config = {
-          status: true,
-          submenus: [
-            {menuicon: '', adr: 'javascript:;', text: 'فکری', style: {"font-size": "large"}, id: '1', style2: false},
-            {menuicon: '', adr: 'javascript:;', text: 'اکشن', style: {"font-size": "large"}, id: '2', style2: false},
-            {menuicon: '', adr: 'javascript:;', text: 'فرار', style: {"font-size": "large"}, id: '3', style2: false},
-            {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: '4', style2: false}
-          ]
-        };
+        if ($rootScope.isTrain) {
+          $scope.config = {
+            status: true,
+            submenus: [
+              {menuicon: '', adr: 'javascript:;', text: 'فکری', style: {"font-size": "large"}, id: 1, style2: false},
+              {menuicon: '', adr: 'javascript:;', text: 'اکشن', style: {"font-size": "large"}, id: 2, style2: false},
+              {menuicon: '', adr: 'javascript:;', text: 'فرار', style: {"font-size": "large"}, id: 3, style2: false},
+              {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: 4, style2: false}
+            ]
+          };
+        } else {
+          var arr = [];
+          while(arr.length < 2){
+            var randomnumber = Math.floor(Math.random() * 4) + 1;
+            if(arr.indexOf(randomnumber) > -1) continue;
+            arr[arr.length] = randomnumber;
+          }
+          $scope.config = {
+            status: true,
+            submenus: [
+              {menuicon: '', adr: 'javascript:;', text: 'فکری', style: {"font-size": "large"}, id: 1, style2: false},
+              {menuicon: '', adr: 'javascript:;', text: 'اکشن', style: {"font-size": "large"}, id: 2, style2: false},
+              {menuicon: '', adr: 'javascript:;', text: 'فرار', style: {"font-size": "large"}, id: 3, style2: false},
+              {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: 4, style2: false}
+            ]
+          };
+          var newMenu = [];
+          angular.forEach($scope.config.submenus, function(member, index){
+            if (arr.indexOf(member.id)>-1){
+              newMenu.push(member);
+            }
+          });
+          $scope.config.submenus = newMenu;
+        }
       }, 300)
     }
-
+    $scope.releaseMore = function () {
+      if ($rootScope.gamer.coins < 50){
+        menuService.myMessage("سکه های شما برای آزاد کردن دسته بندی ها کافی نیست", "خطا");
+        return;
+      }
+      $http.post("https://dagala.cfapps.io/api/1/expandMenu").success(function (data, status, headers, config) {
+        menuService.stopLoading();
+        $rootScope.config.submenus = [
+          {menuicon: '', adr: 'javascript:;', text: 'فکری', style: {"font-size": "large"}, id: 1, style2: false},
+          {menuicon: '', adr: 'javascript:;', text: 'اکشن', style: {"font-size": "large"}, id: 2, style2: false},
+          {menuicon: '', adr: 'javascript:;', text: 'فرار', style: {"font-size": "large"}, id: 3, style2: false},
+          {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: 4, style2: false}
+        ];
+        $rootScope.gamer.coins -= 50;
+      }).catch(function (err) {
+        // menuService.myHandleError(err);
+        menuService.stopLoading();
+      });
+    };
     $scope.$on("$ionicView.enter", function (scopes, states) {
       renderRoot();
     });
