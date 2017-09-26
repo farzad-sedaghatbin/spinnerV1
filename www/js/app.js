@@ -83,14 +83,14 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
       if (result) {
         $rootScope.gamer = JSON.parse(result);
         $http.defaults.headers.common['Authorization'] = $rootScope.gamer.token;
-        window.plugins.splashscreen.hide();
+        navigator.splashscreen.hide();
       } else {
         var url = "https://dagala.cfapps.io/api/1/tempUser";
         $http.post(url).success(function (data, status, headers, config) {
           $http.defaults.headers.common['Authorization'] = data.token;
           data.pass = data.user;
           $rootScope.saveGamer(data);
-          window.plugins.splashscreen.hide();
+          navigator.splashscreen.hide();
         }).catch(function (err) {
           // menuService.myHandleError(err, true);
         });

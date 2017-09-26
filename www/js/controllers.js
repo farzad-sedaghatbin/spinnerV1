@@ -865,7 +865,7 @@ angular.module('starter.controllers', [])
           {
             text: '<span class="myText">بله</span>',
             onTap: function (e) {
-              var serverUrl = "https://dagala.cfapps.io/api/1/cancelGame";
+              var serverUrl = "https://dagala.cfapps.io/api/1/cancelRequest";
               $http.post(serverUrl, $rootScope.battle.gameId).success(function (data, status, headers, config) {
               }).catch(function (err) {
                 // menuService.myHandleError(err);
