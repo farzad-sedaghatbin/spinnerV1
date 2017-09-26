@@ -124,6 +124,7 @@ angular.module('starter.controllers', [])
               $rootScope.isTrain = false;
               $rootScope.callService = true;
               $rootScope.isLeague = false;
+              $rootScope.gamer.coins -= $rootScope.gamer.perGameCoins;
               $state.go("newgame");
             }
           },
@@ -203,7 +204,9 @@ angular.module('starter.controllers', [])
   })
   .controller('BoardCtrl', function ($scope, $timeout, $ionicHistory, menuService, $http, $rootScope, $state, $ionicModal) {
     var root = true;
-
+    $timeout(function () {
+      menuService.boardTutorial();
+    },700);
     function renderRoot() {
       var myEl = angular.element(document.querySelector('.m'));
       if (!root) {
@@ -443,6 +446,7 @@ angular.module('starter.controllers', [])
             member.i = index;
           });
           $scope.loaded = true;
+          menuService.leagueTutorial();
         }).catch(function (err) {
           // menuService.myHandleError(err);
           menuService.stopLoading();
@@ -459,10 +463,15 @@ angular.module('starter.controllers', [])
       });
     };
     $scope.joinLeague = function (row) {
+      if ($rootScope.gamer.gem < row.cost){
+        menuService.myMessage("الماس شما برای ورود به این لیگ کافی نیست", "خطا");
+        return;
+      }
       menuService.startLoading();
       $http.post("https://dagala.cfapps.io/api/1/requestLeague", row.id).success(function (data, status, headers, config) {
         menuService.stopLoading();
         if (data == 200) {
+          $rootScope.gamer.gem -= row.cost;
           menuService.myMessage("شما با موفقیت عضو این لیگ شدید", "پیام");
           row.status = 3;
         } else if (data == 201) {
@@ -529,7 +538,10 @@ angular.module('starter.controllers', [])
       $ionicHistory.goBack();
     }
   })
-  .controller('CoiningCtrl', function ($scope, $state, $ionicHistory, menuService, $ionicModal, $rootScope, $http) {
+  .controller('CoiningCtrl', function ($scope, $state, $ionicHistory, menuService, $ionicModal, $rootScope, $http,$timeout) {
+    $timeout(function () {
+      menuService.coiningTutorial();
+    },700);
     $scope.goBack = function () {
       $ionicHistory.goBack();
     };
@@ -796,6 +808,7 @@ angular.module('starter.controllers', [])
         if ($rootScope.callService) {
           menuService.startLoading();
           loadData(false);
+          menuService.newGameTutorial();
         }
       }, 700)
     });
@@ -882,6 +895,7 @@ angular.module('starter.controllers', [])
         $http.post("https://dagala.cfapps.io/api/1/topPlayer").success(function (data, status, headers, config) {
           $scope.ranks = data;
           menuService.stopLoading();
+          menuService.ranksTutorial();
         }).catch(function (err) {
           // menuService.myHandleError(err);
           menuService.stopLoading();

@@ -119,6 +119,162 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
                 type: 'tooltip',
                 position: 'bottom'
               }
+            }, {
+              wrapper: '#cupT',
+              popup: {
+                content: 'رتبه شما را نشان می دهد',
+                type: 'tooltip',
+                position: 'bottom'
+              }
+            }, {
+              wrapper: '#coinT',
+              popup: {
+                content: 'تعداد سکه های شما',
+                type: 'tooltip',
+                position: 'bottom'
+              }
+            }, {
+              wrapper: '#gemT',
+              popup: {
+                content: 'تعداد الماسهایتان که برای شرکت در لیگها لازم دارید و تنها راه بدست آوردن خریدنشان است',
+                type: 'tooltip',
+                position: 'bottom'
+              }
+            }]
+          });
+          $('ion-content').pagewalkthrough('show');
+        }
+      }, null);
+    })
+  };
+  var boardTutorial = function () {
+    db.transaction(function (tx) {
+      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="boardTutorial"', [], function (tx, results) {
+        var len = results.rows.length, i, result = '';
+        if (!results.rows || results.rows.length == 0) {
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["boardTutorial", true]);
+          $('ion-content').pagewalkthrough({
+            name: 'introduction',
+            steps: [{
+              popup: {
+                content: 'حالا باید یه بازی انتخاب کنید',
+                type: 'modal'
+              }
+            }, {
+              wrapper: '#a0',
+              popup: {
+                content: 'از اینجا دسته بندی رو انتخاب و تو هر دسته بندی بازی مربوط به اون دسته رو انتخاب کن',
+                type: 'tooltip',
+                position: 'bottom'
+              }
+            }]
+          });
+          $('ion-content').pagewalkthrough('show');
+        }
+      }, null);
+    })
+  };
+  var newGameTutorial = function () {
+    db.transaction(function (tx) {
+      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="newGameTutorial"', [], function (tx, results) {
+        var len = results.rows.length, i, result = '';
+        if (!results.rows || results.rows.length == 0) {
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["newGameTutorial", true]);
+          $('ion-content').pagewalkthrough({
+            name: 'introduction',
+            steps: [{
+              popup: {
+                content: 'یه چالشو شروع کردی',
+                type: 'modal'
+              }
+            }, {
+              wrapper: '#decline',
+              popup: {
+                content: 'اگر انصراف بدی سکه هات بت برگردونده نمیشه',
+                type: 'tooltip',
+                position: 'bottom'
+              }
+            }, {
+              wrapper: '#playBtn',
+              popup: {
+                content: 'اگه نفر اول باشی تو بازیو انخاب می کنی وگرنه باید بازی ای که حریف انتخاب کرده بود بازی کنی. بازی بعدیو نفر مقابل انتخاب می کنه. بازی آخرم ما انتخاب می کنیم',
+                type: 'tooltip',
+                position: 'bottom'
+              }
+            }]
+          });
+          $('ion-content').pagewalkthrough('show');
+        }
+      }, null);
+    })
+  };
+  var leagueTutorial = function () {
+    db.transaction(function (tx) {
+      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="leagueTutorial"', [], function (tx, results) {
+        var len = results.rows.length, i, result = '';
+        if (!results.rows || results.rows.length == 0) {
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["leagueTutorial", true]);
+          $('ion-content').pagewalkthrough({
+            name: 'introduction',
+            steps: [{
+              popup: {
+                content: 'اینجا لیگ های ما رو میبینی. برای ورود به لیگ باید الماس بخری',
+                type: 'modal'
+              }
+            }, {
+              wrapper: '#joinLeague',
+              popup: {
+                content: 'برای عضویت تو لیگ اینو بزن',
+                type: 'tooltip',
+                position: 'bottom'
+              }
+            }, {
+              wrapper: '#prices',
+              popup: {
+                content: 'برای دیدن جوایز نفرات برتر اینو بزن',
+                type: 'tooltip',
+                position: 'bottom'
+              }
+            }]
+          });
+          $('ion-content').pagewalkthrough('show');
+        }
+      }, null);
+    })
+  };
+  var coiningTutorial = function () {
+    db.transaction(function (tx) {
+      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="coiningTutorial"', [], function (tx, results) {
+        var len = results.rows.length, i, result = '';
+        if (!results.rows || results.rows.length == 0) {
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["coiningTutorial", true]);
+          $('ion-content').pagewalkthrough({
+            name: 'introduction',
+            steps: [{
+              popup: {
+                content: 'اینجا به روشهای مختلف میتونی سکه هاتو زیاد کنی یا اینکه سکه و الماس بخری',
+                type: 'modal'
+              }
+            }]
+          });
+          $('ion-content').pagewalkthrough('show');
+        }
+      }, null);
+    })
+  };
+  var ranksTutorial = function () {
+    db.transaction(function (tx) {
+      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="ranksTutorial"', [], function (tx, results) {
+        var len = results.rows.length, i, result = '';
+        if (!results.rows || results.rows.length == 0) {
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["ranksTutorial", true]);
+          $('ion-content').pagewalkthrough({
+            name: 'introduction',
+            steps: [{
+              popup: {
+                content: 'اینجا میتونی رتبه برترین های بازی رو ببینی',
+                type: 'modal'
+              }
             }]
           });
           $('ion-content').pagewalkthrough('show');
@@ -132,7 +288,12 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
     myHandleError: myHandleError,
     getDb: getDb,
     myMessage: myMessage,
-    homeTutorial : homeTutorial
+    homeTutorial : homeTutorial,
+    boardTutorial : boardTutorial,
+    newGameTutorial : newGameTutorial,
+    leagueTutorial : leagueTutorial,
+    coiningTutorial : coiningTutorial,
+    ranksTutorial : ranksTutorial
   };
 })
   .service('authHttpResponseInterceptor', ['$q', function ($q) {
