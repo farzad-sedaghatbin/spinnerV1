@@ -833,6 +833,8 @@ angular.module('starter.controllers', [])
           menuService.startLoading();
           loadData(false);
           menuService.newGameTutorial();
+        } else {
+          $scope.loaded = true;
         }
       }, 700)
     });
