@@ -106,6 +106,7 @@ angular.module('starter.controllers', [])
               $rootScope.callService = true;
               $rootScope.isLeague = false;
               $rootScope.gamer.coins -= $rootScope.gamer.perGameCoins;
+              $rootScope.hasPaid = false;
               $state.go("newgame");
             }
           },
@@ -203,7 +204,7 @@ angular.module('starter.controllers', [])
       }
       $timeout(function () {
         root = true;
-        if ($rootScope.isTrain) {
+        if ($rootScope.isTrain || $rootScope.hasPaid) {
           $scope.config = {
             status: true,
             submenus: [
@@ -253,6 +254,7 @@ angular.module('starter.controllers', [])
           {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: 4, style2: false}
         ];
         $rootScope.gamer.coins -= 50;
+        $rootScope.hasPaid = true;
       }).catch(function (err) {
         // menuService.myHandleError(err);
         menuService.stopLoading();
@@ -260,6 +262,8 @@ angular.module('starter.controllers', [])
     };
     $scope.$on("$ionicView.enter", function (scopes, states) {
       renderRoot();
+      if (!$rootScope.isTrain) {
+      }
     });
     $scope.toglefun = function ($config) {
       var myEl = angular.element(document.querySelector('.m'));
@@ -267,6 +271,9 @@ angular.module('starter.controllers', [])
         myEl.toggleClass('active');
       } else {
         renderRoot();
+        if (!$rootScope.isTrain) {
+          $("#release").css("display", "block");
+        }
       }
 
     };
@@ -284,6 +291,9 @@ angular.module('starter.controllers', [])
           $timeout(function () {
             myEl.toggleClass('omid');
           }, 100);
+          if (!$rootScope.isTrain) {
+            $("#release").css("display", "none");
+          }
         }).catch(function (err) {
           // menuService.myHandleError(err);
           menuService.stopLoading();
