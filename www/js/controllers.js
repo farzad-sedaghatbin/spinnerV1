@@ -251,9 +251,10 @@ angular.module('starter.controllers', [])
         menuService.myMessage("سکه های شما برای آزاد کردن دسته بندی ها کافی نیست", "خطا");
         return;
       }
+      menuService.startLoading();
       $http.post("https://dagala.cfapps.io/api/1/expandMenu").success(function (data, status, headers, config) {
         menuService.stopLoading();
-        $rootScope.config.submenus = [
+        $scope.config.submenus = [
           {menuicon: '', adr: 'javascript:;', text: 'فکری', style: {"font-size": "large"}, id: 1, style2: false},
           {menuicon: '', adr: 'javascript:;', text: 'اکشن', style: {"font-size": "large"}, id: 2, style2: false},
           {menuicon: '', adr: 'javascript:;', text: 'فرار', style: {"font-size": "large"}, id: 3, style2: false},
