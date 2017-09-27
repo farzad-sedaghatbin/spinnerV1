@@ -9,6 +9,10 @@
           لیگ ها
         </a>
       </div>
+      <div class="myhelp" style="width:100%;background-size: 72px 72px;background-position-x: left;">
+        <div ng-click="help()" style="width: 72px;float: left;">راهنما</div>
+        <div style="width: 60%;float: right;margin-top: 30px;display: none" id="clock"></div>
+      </div>
       <div ng-if="loaded" class="row" ng-repeat="row in leagues" style="background: url('img/1.png') no-repeat center;background-size: 100% 100%;height: 120px">
         <div id="joinLeague" ng-if="row.status == 0" ng-click="joinLeague(row)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 90px;padding: 0;background-size: 80%;margin-top: 20px" ng-click="battlefield(row.gameId,false)">
           عضو شو

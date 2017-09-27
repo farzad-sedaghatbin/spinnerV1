@@ -152,12 +152,7 @@ angular.module('starter.controllers', [])
       $state.go("board");
     };
     $scope.help = function () {
-      $ionicModal.fromTemplateUrl('help.html', {
-        scope: $scope
-      }).then(function (modal) {
-        $rootScope.modal = modal;
-        modal.show();
-      });
+      menuService.homeHelp();
     };
     $scope.buy = function () {
       $state.go("buy")
@@ -401,7 +396,9 @@ angular.module('starter.controllers', [])
         'pointerEvents': 'auto'
       });
     }
-
+    $scope.help = function () {
+      menuService.boardHelp();
+    };
     $scope.start = function (id, url) {
       menuService.startLoading();
       if ($rootScope.isLeague && $rootScope.battle.status == "10") {
@@ -507,6 +504,9 @@ angular.module('starter.controllers', [])
         modal.show();
       });
     };
+    $scope.help = function () {
+      menuService.leagueHelp();
+    };
     $scope.joinLeague = function (row) {
       if ($rootScope.gamer.gem < row.cost){
         menuService.myMessage("الماس شما برای ورود به این لیگ کافی نیست", "خطا");
@@ -598,6 +598,9 @@ angular.module('starter.controllers', [])
     };
     $scope.invitation = function () {
       $state.go("invitation");
+    };
+    $scope.help = function () {
+      menuService.coiningHelp();
     };
     $scope.tapsell = function () {
       tapsell.requestAd(null, false, function (result) {
@@ -775,6 +778,8 @@ angular.module('starter.controllers', [])
     $scope.$on('$ionicView.leave', function () {
       $interval.cancel(refreshInterval);
     });
+    $scope.help = function () {
+    };
     $scope.play = function () {
       if ($rootScope.battle.url && $rootScope.battle.status == "1") {
         menuService.startLoading();
@@ -823,8 +828,6 @@ angular.module('starter.controllers', [])
     $scope.refresh = function () {
       loadData(true);
     };
-    $scope.me = "img/PNG/A01.png";
-    $scope.other = "img/PNG/A02.png";
     $scope.goBack = function () {
       $ionicHistory.goBack();
     }
@@ -866,6 +869,9 @@ angular.module('starter.controllers', [])
         }
       }, 700)
     });
+    $scope.help = function () {
+      menuService.newGameHelp();
+    };
     $scope.play = function () {
       if ($rootScope.battle.second != null) {
         menuService.startLoading();

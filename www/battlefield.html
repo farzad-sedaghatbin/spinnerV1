@@ -9,12 +9,12 @@
         <a class="col grid-example s6" style="text-align: left" ng-click="goBack()">
           <img class="coins-ico" src="img/back.jpg" style="width: 56px"/>
         </a>
-        <a class="col grid-example s6 mytitle">
+        <a class="col grid-example s6 mytitle myText">
           آوردگاه
         </a>
       </div>
       <div class="myhelp" style="width:100%;background-size: 72px 72px;background-position-x: left;">
-        <div style="width: 72px;float: left;">راهنما</div>
+        <div ng-click="help()" style="width: 72px;float: left;">راهنما</div>
         <div style="width: 60%;float: right;margin-top: 30px;display: none" id="clock"></div>
       </div>
       <div ng-if="loaded">
