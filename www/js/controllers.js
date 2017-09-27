@@ -542,6 +542,9 @@ angular.module('starter.controllers', [])
         menuService.stopLoading();
       });
     };
+    $scope.ranksBack = function () {
+      $rootScope.modal.hide();
+    };
     $scope.goBack = function () {
       $ionicHistory.goBack();
     }
