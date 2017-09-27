@@ -7,16 +7,8 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
 
 .run(function($ionicPlatform,$http,$rootScope,$ionicHistory,$timeout) {
   $ionicPlatform.ready(function() {
-    inappbilling.init();
-    inappbilling.consumePurchase(function () {
-    }, function (e) {
-      menuService.myMessage("خرید مجدد این محصول برای شما ممکن نخواهد بود، بدلیل خطای کافه بازار.برای رفع مشکل با ما تماس بگیرید", "خطا");
-    }, "gas")
-    inappbilling.consumePurchase(function () {
-    }, function (e) {
-      menuService.myMessage("خرید مجدد این محصول برای شما ممکن نخواهد بود، بدلیل خطای کافه بازار.برای رفع مشکل با ما تماس بگیرید", "خطا");
-    }, "gem1")
-    tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
+    // inappbilling.init();
+    // tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)

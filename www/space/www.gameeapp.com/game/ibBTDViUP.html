@@ -169,7 +169,7 @@
 
 
 <!-- Gamee for mobile phone /-->
-<div id="gameeMobile" class="FullScreenPortrait">
+<div id="gameeMobile" class="FullScreenPortrait myText">
 
 		<div id="canvasWrap">
 
@@ -189,10 +189,13 @@
 				<div class="inner">
 					<div class="transform">
             <div class="your_score" style="direction: rtl">
-              <span class="you_scored_text">امتیاز شما</span> <span class="totalScore">0</span>!
+              <span class="you_scored_text">امتیاز شما</span> <span class="totalScore">0</span>
               <div class="custom_text"></div>
             </div>
-						<div class="fullscreen-control control-fs-restart"></div>
+            <div>
+              <div class="fullscreen-control control-fs-restart" style="position: relative;margin: 0"></div>
+              <div onclick="goHome()" style="width: 230px;height: 230px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
+            </div>
 					</div>
 				</div>
 			</div>
@@ -204,9 +207,10 @@
 						<div class="ic-pause"></div>
 						<span class="text-pause">Paused</span>
 
-
-
-						<div class="fullscreen-control control-fs-resume"></div>
+            <div>
+              <div class="fullscreen-control control-fs-resume" style="position: relative;margin: 0"></div>
+              <div onclick="goHome()" style="width: 230px;height: 230px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
+            </div>
 
 					</div>
 				</div>
@@ -215,15 +219,14 @@
 			<div class="overlay" id="overlay-start">
 				<div class="inner">
 					<div class="transform">
-						<p class="press-play">دکمه بازی را کلیک کنید<br><span>برای شروع</span></p>
 						<div class="ranks-wrap">
 							<div class="this-share visible">
 							</div>
-
-
 						</div>
-
-						<div class="fullscreen-control control-fs-play visible"></div>
+            <div>
+              <div class="fullscreen-control control-fs-play visible" style="position: relative;margin: 0"></div>
+              <div onclick="goHome()" style="width: 230px;height: 230px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;" class="control"></div>
+            </div>
 					</div>
 				</div>
 			</div>
