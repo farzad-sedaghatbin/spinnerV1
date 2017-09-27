@@ -61,7 +61,18 @@ angular.module('starter.controllers', [])
         menuService.myMessage("New Level : " + $rootScope.gamer.level);
       }
     }
-
+    $rootScope.isMute = false;
+    $scope.speaker = function () {
+      if ($rootScope.isMute){
+        document.getElementById("myAudio").muted = false;
+        $("#speaker").attr("src","img/speaker.png");
+        $rootScope.isMute = false;
+      } else {
+        document.getElementById("myAudio").muted = true;
+        $("#speaker").attr("src","img/mute.png");
+        $rootScope.isMute = true;
+      }
+    };
     $scope.selectAvatar = function () {
       $ionicModal.fromTemplateUrl('avatars.html', {
         scope: $scope
