@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('starter', ['ionic','starter.controllers','starter.services','ionic-native-transitions'])
 
-.run(function($ionicPlatform,$http,$rootScope,$ionicHistory,$timeout) {
+.run(function($ionicPlatform,$http,$rootScope,$ionicHistory,$timeout,$ionicPopup,menuService) {
   $ionicPlatform.ready(function() {
     // inappbilling.init();
     // tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
@@ -34,10 +34,39 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         } else {
           navigator.app.exitApp();
         }
+      } else if ($ionicHistory.currentStateName() == "newgame") {
+        $ionicPopup.alert({
+          title: '<span class="myText">اخطار</span>',
+          template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">آیا از انصراف اطمینان دارید؟</div>',
+          buttons: [
+            {
+              text: '<span class="myText">بله</span>',
+              onTap: function (e) {
+                var serverUrl = "https://dagala.cfapps.io/api/1/cancelRequest";
+                $http.post(serverUrl, $rootScope.battle.gameId).success(function (data, status, headers, config) {
+                }).catch(function (err) {
+                  menuService.myHandleError(err);
+                });
+                $ionicHistory.goBack();
+              }
+            },
+            {text: '<span class="myText">نه</span>'}
+          ]
+        });
       } else {
         $ionicHistory.goBack();
       }
     }, 501);//registerBackButton
+    document.addEventListener("pause", function () {
+      if (!$rootScope.isMute){
+        document.getElementById("myAudio").muted = true;
+      }
+    }, false);
+    document.addEventListener("resume", function () {
+      if (!$rootScope.isMute){
+        document.getElementById("myAudio").muted = false;
+      }
+    }, false);
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }

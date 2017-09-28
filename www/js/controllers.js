@@ -190,7 +190,7 @@ angular.module('starter.controllers', [])
       menuService.homeTutorial();
     },700);
   })
-  .controller('BoardCtrl', function ($scope, $timeout, $ionicHistory, menuService, $http, $rootScope, $state, $ionicModal) {
+  .controller('BoardCtrl', function ($scope, $timeout, $ionicHistory, menuService, $http, $rootScope, $state, $ionicModal,$ionicPopup) {
     var root = true;
     $timeout(function () {
       menuService.boardTutorial();
@@ -920,16 +920,6 @@ angular.module('starter.controllers', [])
         ]
       });
     };
-    var oldSoftBack = $rootScope.$ionicGoBack;
-    $rootScope.$ionicGoBack = function () {
-      $scope.goBack();
-    };
-    var deregisterSoftBack = function () {
-      $rootScope.$ionicGoBack = oldSoftBack;
-    };
-    $scope.$on('$ionicView.leave', function () {
-      deregisterSoftBack();
-    });
   })
   .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory) {
     $scope.username;
