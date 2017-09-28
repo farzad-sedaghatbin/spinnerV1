@@ -1,14 +1,14 @@
 @font-face {
   font-family: 'myFont';
   src:
-    url('font/Mj_Fantezy.ttf') format('truetype');
+    url('font/A-MehdiHeydari.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
 }
 @font-face {
   font-family: 'myEFont';
   src:
-    url('font/Caprice.ttf') format('truetype');
+    url('font/Autobus-Bold.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
 }
