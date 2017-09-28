@@ -695,7 +695,6 @@ angular.module('starter.controllers', [])
     $scope.loaded = false;
     var url;
     var param;
-
     function loadData(refresh) {
       if ($rootScope.isLeague) {
         url = "https://dagala.cfapps.io/api/1/detailLeague";
@@ -792,6 +791,7 @@ angular.module('starter.controllers', [])
       $interval.cancel(refreshInterval);
     });
     $scope.help = function () {
+      menuService.battlefieldHelp();
     };
     $scope.play = function () {
       if ($rootScope.battle.url && $rootScope.battle.status == "1") {

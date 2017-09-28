@@ -305,6 +305,61 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
     });
     $('ion-content').pagewalkthrough('show');
   };
+  var battlefieldTutorial = function () {
+    db.transaction(function (tx) {
+      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="battlefieldTutorial"', [], function (tx, results) {
+        var len = results.rows.length, i, result = '';
+        if (!results.rows || results.rows.length == 0) {
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["battlefieldTutorial", true]);
+          battlefieldHelp();
+        }
+      }, null);
+    })
+  };
+  var battlefieldHelp = function () {
+    $('ion-content').pagewalkthrough({
+      name: 'introduction',
+      steps: [{
+        popup: {
+          content: 'این صفحه جزییات بازیتونه. هرکی برنده شه سکه های بازی مال اون میشه. اگه زمان بازی تموم شه کسی که نوبتش بوده بازی کنه بازندس. با کشیدن صفحه به پایین از آخرین وضعیت بازیتون باخبر شو',
+          type: 'modal'
+        }
+      }, {
+        wrapper: '#taslim',
+        popup: {
+          content: 'اگه تسلیم شی میبازی و سکه های بازی به رقیبت میرسه',
+          type: 'tooltip',
+          position: 'bottom',
+          offsetArrowHorizontal: -140
+        }
+      }, {
+        wrapper: '#playgame',
+        popup: {
+          content: 'اگه نوبتته بازی کن اگه نوبت حریفته صبر کن بازیش تموم شه',
+          type: 'tooltip',
+          position: 'bottom',
+          offsetArrowHorizontal: 60
+        }
+      }, {
+        wrapper: '#yourscore',
+        popup: {
+          content: 'امتیاز تو',
+          type: 'tooltip',
+          position: 'bottom',
+          offsetArrowHorizontal: -120
+        }
+      }, {
+        wrapper: '#hisscore',
+        popup: {
+          content: 'امتیاز حریف',
+          type: 'tooltip',
+          position: 'bottom',
+          offsetArrowHorizontal: 10
+        }
+      }]
+    });
+    $('ion-content').pagewalkthrough('show');
+  };
   return {
     startLoading: startLoading,
     stopLoading: stopLoading,
@@ -322,7 +377,9 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
     newGameHelp : newGameHelp,
     leagueHelp : leagueHelp,
     coiningHelp : coiningHelp,
-    ranksHelp : ranksHelp
+    ranksHelp : ranksHelp,
+    battlefieldTutorial : battlefieldTutorial,
+    battlefieldHelp : battlefieldHelp
   };
 })
   .service('authHttpResponseInterceptor', ['$q', function ($q) {
