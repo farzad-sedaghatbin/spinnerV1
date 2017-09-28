@@ -13,31 +13,33 @@
         <div ng-click="help()" style="width: 72px;float: left;">راهنما</div>
         <div style="width: 60%;float: right;margin-top: 30px;display: none" id="clock"></div>
       </div>
-      <div ng-if="loaded" class="row" ng-repeat="row in leagues" style="background: url('img/1.png') no-repeat center;background-size: 100% 100%;height: 120px">
-        <div id="joinLeague" ng-if="row.status == 0" ng-click="joinLeague(row)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 90px;padding: 0;background-size: 80%;margin-top: 20px" ng-click="battlefield(row.gameId,false)">
+      <div ng-if="loaded" class="row" ng-repeat="row in leagues" style="background: url('img/1.png') no-repeat center;background-size: 100% 100%;height: 140px">
+        <div id="joinLeague" ng-if="row.status == 0" ng-click="joinLeague(row)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 100px;padding: 0;background-size: 80%;margin-top: 20px" ng-click="battlefield(row.gameId,false)">
           عضو شو
         </div>
-        <div ng-if="row.status == 3" ng-click="playLeague(row.id)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 90px;padding: 0;background-size: 80%;margin-top: 20px" ng-click="battlefield(row.gameId,false)">
+        <div ng-if="row.status == 3" ng-click="playLeague(row.id)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 100px;padding: 0;background-size: 80%;margin-top: 20px" ng-click="battlefield(row.gameId,false)">
           بازی کن
         </div>
-        <div ng-if="row.status == 4" ng-click="tops(row.id)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 90px;padding: 0;background-size: 80%;margin-top: 20px" ng-click="battlefield(row.gameId,false)">
+        <div ng-if="row.status == 4" ng-click="tops(row.id)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 100px;padding: 0;background-size: 80%;margin-top: 20px" ng-click="battlefield(row.gameId,false)">
           نفرات برتر
         </div>
-        <div class="col grid-example s3" style="padding: 0;margin-top: 20px;margin-bottom: 0">
-          <div style="line-height: 35px;font-size: medium">{{row.capacity}}</div>
-          <div style="line-height: 5px;font-size: medium">{{row.left}}</div>
-          <div style="line-height: 25px;font-size: medium">{{row.startDate}}</div>
-          <div style="line-height: 5px;font-size: medium">{{row.cost}}</div>
+        <div class="col grid-example s3" style="padding: 0;margin-top: 25px;margin-bottom: 0">
+          <div style="line-height: 25px;font-size: medium">{{row.name}}</div>
+          <div style="line-height: 15px;font-size: medium">{{row.capacity}}</div>
+          <div style="line-height: 15px;font-size: medium">{{row.left}}</div>
+          <div style="line-height: 15px;font-size: medium">{{row.startDate}}</div>
+          <div style="line-height: 15px;font-size: medium">{{row.cost}}</div>
           <div id="prices" class="blue-button" ng-click="prices(row.i)" style="line-height: 20px;font-size: medium">جوایز</div>
         </div>
-        <div class="col grid-example s3" style="padding: 0;margin-top: 20px">
-          <div style="line-height: 35px;font-size: medium">ظرفیت</div>
-          <div style="line-height: 5px;font-size: medium">باقیمانده</div>
-          <div style="line-height: 25px;font-size: medium">تاریخ شروع</div>
-          <div style="line-height: 5px;font-size: medium">هزینه</div>
+        <div class="col grid-example s3" style="padding: 0;margin-top: 25px">
+          <div style="line-height: 25px;font-size: medium">نام</div>
+          <div style="line-height: 15px;font-size: medium">ظرفیت</div>
+          <div style="line-height: 15px;font-size: medium">باقیمانده</div>
+          <div style="line-height: 15px;font-size: medium">تاریخ شروع</div>
+          <div style="line-height: 15px;font-size: medium">هزینه</div>
         </div>
         <div class="col grid-example s3">
-          <img style="width: 72px;margin-top: 15px" src="img/cup.png">
+          <img style="width: 72px;margin-top: 30px" src="img/cup.png">
         </div>
       </div>
     </div>
