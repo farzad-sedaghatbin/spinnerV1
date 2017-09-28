@@ -616,30 +616,41 @@ angular.module('starter.controllers', [])
       menuService.coiningHelp();
     };
     $scope.tapsell = function () {
-      tapsell.requestAd(null, false, function (result) {
-        if (result['action'] == 'onAdAvailable') {
-          tapsell.showAd(result['adId'], true, true, tapsell_rotation_unlocked, true);
-          tapsell.setRewardCallback(function (result) {
-            if (result['action'] == 'onAdShowFinished') {
-              if (result['completed'] && result['rewarded']) {
-                $rootScope.gamer.coins += 30;
-                menuService.myMessage("30 سکه به شما تعلق گرفت", "پیام");
-              }
+      menuService.startLoading();
+      $http.post("https://dagala.cfapps.io/api/1/videoLimit").success(function (data, status, headers, config) {
+        menuService.stopLoading();
+        if (data == "201"){
+          menuService.myMessage("در هر ساعت می توانید فقط یک ویدیو تماشا کنید", "خطا");
+        } else {
+          tapsell.requestAd(null, false, function (result) {
+            if (result['action'] == 'onAdAvailable') {
+              tapsell.showAd(result['adId'], true, true, tapsell_rotation_unlocked, true);
+              tapsell.setRewardCallback(function (result) {
+                if (result['action'] == 'onAdShowFinished') {
+                  if (result['completed'] && result['rewarded']) {
+                    $rootScope.gamer.coins += 30;
+                    menuService.myMessage("30 سکه به شما تعلق گرفت", "پیام");
+                  }
+                }
+              });
+            }
+            else if (result['action'] == 'onNoAdAvailable') {
+              menuService.myMessage("تبلیغی برای نمایش وجود ندارد", "خطا");
+            }
+            else if (result['action'] == 'onNoNetwork') {
+              menuService.myMessage("لطفا اتصال اینترنت خود را بررسی کنید", "خطا");
+            }
+            else if (result['action'] == 'onError') {
+              menuService.myMessage("خطا در دریافت ویدیو", "خطا");
+            }
+            else if (result['action'] == 'onExpiring') {
+              menuService.myMessage("این تبلیغ منقضی شده است", "خطا");
             }
           });
         }
-        else if (result['action'] == 'onNoAdAvailable') {
-          menuService.myMessage("تبلیغی برای نمایش وجود ندارد", "خطا");
-        }
-        else if (result['action'] == 'onNoNetwork') {
-          menuService.myMessage("لطفا اتصال اینترنت خود را بررسی کنید", "خطا");
-        }
-        else if (result['action'] == 'onError') {
-          menuService.myMessage("خطا در دریافت ویدیو", "خطا");
-        }
-        else if (result['action'] == 'onExpiring') {
-          menuService.myMessage("این تبلیغ منقضی شده است", "خطا");
-        }
+      }).catch(function (err) {
+        menuService.stopLoading();
+        menuService.myHandleError(err);
       });
     };
     $scope.buy = function () {
