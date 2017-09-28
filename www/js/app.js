@@ -103,7 +103,7 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
         if (refresh)
             scope.$broadcast('scroll.refreshComplete');
       }).catch(function (err) {
-        // menuService.myHandleError(err, true);
+        menuService.myHandleError(err, true);
         if (refresh)
           scope.$broadcast('scroll.refreshComplete');
       });
@@ -121,7 +121,7 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
           $rootScope.saveGamer(data);
           navigator.splashscreen.hide();
         }).catch(function (err) {
-          // menuService.myHandleError(err, true);
+          menuService.myHandleError(err, true);
         });
       }
     };

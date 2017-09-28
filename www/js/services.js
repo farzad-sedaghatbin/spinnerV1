@@ -96,7 +96,8 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
         popup: {
           content: 'اگر میخوای تمرین کنی و رکورد بزنی بهترین جا اینجاست',
           type: 'tooltip',
-          position: 'bottom'
+          position: 'bottom',
+          offsetArrowHorizontal: -120
         }
       }, {
         wrapper: '#league',
@@ -110,35 +111,40 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
         popup: {
           content: 'اگر دنبال یه حریف شانسی هستی تا تواناییاتو به چالش بکشی جاش اینجاست',
           type: 'tooltip',
-          position: 'bottom'
+          position: 'bottom',
+          offsetArrowHorizontal: 100
         }
       }, {
         wrapper: '.menu-open-button',
         popup: {
           content: 'این منو هست، حتما بش سر بزن',
           type: 'tooltip',
-          position: 'bottom'
+          position: 'bottom',
+          offsetArrowHorizontal: -80
         }
       }, {
         wrapper: '#cupT',
         popup: {
           content: 'رتبه شما را نشان می دهد',
           type: 'tooltip',
-          position: 'bottom'
+          position: 'bottom',
+          offsetArrowHorizontal: -300
         }
       }, {
         wrapper: '#coinT',
         popup: {
           content: 'تعداد سکه های شما',
           type: 'tooltip',
-          position: 'bottom'
+          position: 'bottom',
+          offsetArrowHorizontal: -300
         }
       }, {
         wrapper: '#gemT',
         popup: {
           content: 'تعداد الماسهایتان که برای شرکت در لیگها لازم دارید و تنها راه بدست آوردن خریدنشان است',
           type: 'tooltip',
-          position: 'bottom'
+          position: 'bottom',
+          offsetArrowHorizontal: -300
         }
       }]
     });
@@ -168,7 +174,8 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
         popup: {
           content: 'از اینجا دسته بندی رو انتخاب و تو هر دسته بندی بازی مربوط به اون دسته رو انتخاب کن',
           type: 'tooltip',
-          position: 'bottom'
+          position: 'bottom',
+          offsetArrowHorizontal: -140
         }
       }]
     });
@@ -198,7 +205,8 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
         popup: {
           content: 'اگر انصراف بدی سکه هات بت برگردونده نمیشه',
           type: 'tooltip',
-          position: 'bottom'
+          position: 'bottom',
+          offsetArrowHorizontal: -140
         }
       }, {
         wrapper: '#playBtn',
@@ -235,14 +243,16 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
         popup: {
           content: 'برای عضویت تو لیگ اینو بزن',
           type: 'tooltip',
-          position: 'bottom'
+          position: 'bottom',
+          offsetArrowHorizontal: -140
         }
       }, {
         wrapper: '#prices',
         popup: {
           content: 'برای دیدن جوایز نفرات برتر اینو بزن',
           type: 'tooltip',
-          position: 'bottom'
+          position: 'bottom',
+          offsetArrowHorizontal: -120
         }
       }]
     });
