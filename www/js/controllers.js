@@ -628,8 +628,12 @@ angular.module('starter.controllers', [])
               tapsell.setRewardCallback(function (result) {
                 if (result['action'] == 'onAdShowFinished') {
                   if (result['completed'] && result['rewarded']) {
-                    $rootScope.gamer.coins += 30;
-                    menuService.myMessage("30 سکه به شما تعلق گرفت", "پیام");
+                    $http.post("https://dagala.cfapps.io/api/1/videoWatch").success(function (data, status, headers, config) {
+                      $rootScope.gamer.coins += 30;
+                      menuService.myMessage("30 سکه به شما تعلق گرفت", "پیام");
+                    }).catch(function (err) {
+                      menuService.myHandleError(err);
+                    });
                   }
                 }
               });
