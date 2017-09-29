@@ -94,9 +94,6 @@ angular.module('starter.controllers', [])
     $scope.refresh = function () {
       $rootScope.refreshGamer(true, $scope);
     };
-    $scope.isLeague = function () {
-      return true;
-    };
     $scope.challenge = function () {
       if ($rootScope.gamer.coins < $rootScope.gamer.perGameCoins) {
         menuService.myMessage("سکه های شما کافی نیست. برای بدست آوردن سکه به قسمت سکه خواری در منو مراجعه کنید.", "خطا");
