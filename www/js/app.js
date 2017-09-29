@@ -77,7 +77,7 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
     $rootScope.goToGame = function (url, challengeId){
       db.transaction(function (tx) {
         tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
-          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "false," + $rootScope.battle.gameId + "," + challengeId + ",0,"+$rootScope.homeURL], function (tx, results) {
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "false," + $rootScope.battle.gameId + "," + challengeId + ",0,"+$rootScope.homeURL+","+$rootScope.gamer.user], function (tx, results) {
             $rootScope.changeUrl(url);
           });
         });
@@ -96,7 +96,7 @@ var app = angular.module('starter', ['ionic','starter.controllers','starter.serv
     };
     $rootScope.refreshGamer = function (refresh,scope) {
       var url = "https://dagala.cfapps.io/api/1/refresh";
-      $http.post(url).success(function (data, status, headers, config) {
+      $http.post(url,$rootScope.gamer.user).success(function (data, status, headers, config) {
         data.pass = $rootScope.gamer.pass;
         data.token = $rootScope.gamer.token;
         $rootScope.saveGamer(data);
