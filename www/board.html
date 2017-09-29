@@ -61,7 +61,7 @@
                    style="background-color:transparent;pointer-events: none"><span style="display: none"
                                                                                    class="{{ 'text' + $index }}">شروع</span>
               </div>
-              <i id="{{'i' + $index}}" style="color: white;" ng-style="imageObj.style" class="{{imageObj.menuicon}}">{{imageObj.text}}</i>
+              <i id="{{'i' + $index}}" style="color: white;" ng-style="imageObj.style">{{imageObj.text}}<img ng-if="imageObj.menuicon" style="width: 52px;height: 52px" src="{{imageObj.menuicon}}"/></i>
             </a>
           </div>
         </div>
