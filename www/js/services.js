@@ -88,13 +88,13 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
       name: 'introduction',
       steps: [{
         popup: {
-          content: 'این بهترین بازی دنیاس کله پوکا',
+          content: 'داگالا سرزمین تفریح و سرگرمی و رقابت',
           type: 'modal'
         }
       }, {
         wrapper: '#train',
         popup: {
-          content: 'اگر میخوای تمرین کنی و رکورد بزنی بهترین جا اینجاست',
+          content: 'اگر میخوای تمرین کنی و رکورد بزنی اینجاست',
           type: 'tooltip',
           position: 'bottom',
           offsetArrowHorizontal: -120
@@ -109,7 +109,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
       }, {
         wrapper: '#battle',
         popup: {
-          content: 'اگر دنبال یه حریف شانسی هستی تا تواناییاتو به چالش بکشی جاش اینجاست',
+          content: 'اگر دنبال یه حریف شانسی هستی تا تواناییهاتو به چالش بکشی جاش اینجاست',
           type: 'tooltip',
           position: 'bottom',
           offsetArrowHorizontal: 100
@@ -117,7 +117,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
       }, {
         wrapper: '.menu-open-button',
         popup: {
-          content: 'این منو هست، حتما بش سر بزن',
+          content: 'این منو هست، حتما به اون سر بزن',
           type: 'tooltip',
           position: 'bottom',
           offsetArrowHorizontal: -80
@@ -141,7 +141,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
       }, {
         wrapper: '#gemT',
         popup: {
-          content: 'تعداد الماسهایتان که برای شرکت در لیگها لازم دارید و تنها راه بدست آوردن خریدنشان است',
+          content: 'تعداد الماسهایتان که برای شرکت در لیگها لازم دارید',
           type: 'tooltip',
           position: 'bottom',
           offsetArrowHorizontal: -300
@@ -172,7 +172,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
       }, {
         wrapper: '#a0',
         popup: {
-          content: 'از اینجا دسته بندی رو انتخاب و تو هر دسته بندی بازی مربوط به اون دسته رو انتخاب کن',
+          content: 'از اینجا دسته بندی رو انتخاب کن و از بین بازی هاش یکی رو انتخاب کن',
           type: 'tooltip',
           position: 'bottom',
           offsetArrowHorizontal: -140
@@ -203,7 +203,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
       }, {
         wrapper: '#decline',
         popup: {
-          content: 'اگر انصراف بدی سکه هات بت برگردونده نمیشه',
+          content: 'اگر انصراف بدی سکه هات برگردونده نمیشه',
           type: 'tooltip',
           position: 'bottom',
           offsetArrowHorizontal: -140
@@ -211,7 +211,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
       }, {
         wrapper: '#playBtn',
         popup: {
-          content: 'اگه نفر اول باشی تو بازیو انخاب می کنی وگرنه باید بازی ای که حریف انتخاب کرده بود بازی کنی. بازی بعدیو نفر مقابل انتخاب می کنه. بازی آخرم ما انتخاب می کنیم',
+          content: 'اگه نفر اول باشی تو بازیو انخاب می کنی وگرنه باید بازی که حریف انتخاب کرده بود بازی کنی. بازی بعدیو نفر مقابل انتخاب می کنه. بازی آخرم ما انتخاب می کنیم',
           type: 'tooltip',
           position: 'bottom'
         }
@@ -235,13 +235,13 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
       name: 'introduction',
       steps: [{
         popup: {
-          content: 'اینجا لیگ های ما رو میبینی. برای ورود به لیگ باید الماس بخری',
+          content: 'اینجا لیگ های ما رو میبینی. برای ورود به لیگ باید الماس داشته باشی',
           type: 'modal'
         }
       }, {
         wrapper: '#joinLeague',
         popup: {
-          content: 'برای عضویت تو لیگ این دکمه رو بزن. بعد از عضویت هم وضعیتهای مختلف لیگ رو پیگیری کن از همینجا.با پایین کشیدن صفحه اطلاعات بروز میشه',
+          content: 'برای عضویت تو لیگ این دکمه رو بزن. بعد از عضویت از همینجا وضعیت لیگ رو پیگیری کن. با پایین کشیدن صفحه اطلاعات بروز میشه',
           type: 'tooltip',
           position: 'bottom',
           offsetArrowHorizontal: -140
