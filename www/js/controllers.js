@@ -619,10 +619,10 @@ angular.module('starter.controllers', [])
     }
   })
   .controller('WheelCtrl', function ($scope, $state, $ionicHistory, menuService, $http, $rootScope) {
-    $scope.spin = function (index) {
+    $scope.spin = function () {
       var count = $(".triangle").length;
       var $spinner = $(".spinneromid");
-      var value = index >= 0 ? index : parseInt(Math.random() * count);
+      var value = Math.floor(Math.random() * 12) + 1;
       var preffix = "index-";
       $spinner.toggleClass("spin");
       $spinner[0].className = $spinner[0].className.replace(
@@ -631,8 +631,8 @@ angular.module('starter.controllers', [])
       );
       $spinner.addClass(preffix + value);
       $http.post("https://dagala.cfapps.io/api/1/rouletteWheel", value + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
-        if (data == "200") {
-          $rootScope.gamer.coins += (value + 1);
+        if (data) {
+          $rootScope.gamer.coins += data;
         } else {
           menuService.myMessage("شما سهمیه امروز خود را دریافت کردید", "خطا");
         }
