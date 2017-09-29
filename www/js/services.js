@@ -241,7 +241,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
       }, {
         wrapper: '#joinLeague',
         popup: {
-          content: 'برای عضویت تو لیگ اینو بزن',
+          content: 'برای عضویت تو لیگ این دکمه رو بزن. بعد از عضویت هم وضعیتهای مختلف لیگ رو پیگیری کن از همینجا.با پایین کشیدن صفحه اطلاعات بروز میشه',
           type: 'tooltip',
           position: 'bottom',
           offsetArrowHorizontal: -140
