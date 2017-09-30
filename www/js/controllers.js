@@ -619,7 +619,10 @@ angular.module('starter.controllers', [])
     }
   })
   .controller('WheelCtrl', function ($scope, $state, $ionicHistory, menuService, $http, $rootScope) {
-    var wasHit = false;
+    var wasHit;
+    $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
+      wasHit = false;
+    });
     $scope.spin = function () {
       if (wasHit)
         return;
