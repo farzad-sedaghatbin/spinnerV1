@@ -1,6 +1,6 @@
 var app = angular.module('starter.services', []);
 
-app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$rootScope) {
+app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, $rootScope) {
   var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
   var startLoading = function () {
     myLoading();
@@ -11,36 +11,10 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
   var myHandleError = function (err, isFromLogin) {
     if (err == 401) {
       if (isFromLogin) {
-        myMessage("نام کاربری یا رمز عبور اشتباه می باشد","خطا");
+        myMessage("نام کاربری یا رمز عبور اشتباه می باشد", "خطا");
       } else {
-        var url = "https://dagala.cfapps.io/api/1/user_authenticate";
-        var d = {
-          username: $rootScope.gamer.user,
-          password: $rootScope.gamer.pass,
-          rememberMe: true
-        };
-        $http.post(url, d).success(function (data, status, headers, config) {
-          delete $http.defaults.headers.common.Authorization;
-          $http.defaults.headers.common.Authorization = data.token;
-          data.pass = d.password;
-          data.user = d.username;
-          $rootScope.saveGamer(data);
-          myMessage("لطفا مجددا عملیات مورد نظر خود را اجرا کنید");
-        }).catch(function (err) {
-          myMessage("لطفا مجددا اطلاعات حساب خود را وارد نمایید","خطا");
-          getDb().transaction(function (tx) {
-            tx.executeSql('DELETE FROM MYGAME WHERE name="gamer"',[],function (tx, results) {
-              var url = "https://dagala.cfapps.io/api/1/tempUser";
-              $http.post(url).success(function (data, status, headers, config) {
-                $http.defaults.headers.common['Authorization'] = data.token;
-                data.pass = data.user;
-                $rootScope.saveGamer(data);
-              }).catch(function (err) {
-              });
-            });
-          });
-          $state.go("login");
-        });
+        myMessage("لطفا مجددا اطلاعات حساب خود را وارد نمایید", "خطا");
+        $state.go("login");
       }
     } else if (err && err.status == 0) {
       window.plugins.toast.showShortBottom('لطفا اتصال اینترنت خود را بررسی کنید');
@@ -58,10 +32,10 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
       window.plugins.toast.showShortBottom('خطا در ارتباط با سرور');
     }
   };
-  var myMessage = function (msg,title) {
+  var myMessage = function (msg, title) {
     var t = title ? title : '';
     $ionicPopup.alert({
-      title: '<span class="myText">'+t+'</span>',
+      title: '<span class="myText">' + t + '</span>',
       template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">' + msg + '</div>',
       buttons: [
         {text: '<span class="myText">باشه</span>'}
@@ -366,20 +340,20 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http,$
     myHandleError: myHandleError,
     getDb: getDb,
     myMessage: myMessage,
-    homeTutorial : homeTutorial,
-    boardTutorial : boardTutorial,
-    newGameTutorial : newGameTutorial,
-    leagueTutorial : leagueTutorial,
-    coiningTutorial : coiningTutorial,
-    ranksTutorial : ranksTutorial,
-    homeHelp : homeHelp,
-    boardHelp : boardHelp,
-    newGameHelp : newGameHelp,
-    leagueHelp : leagueHelp,
-    coiningHelp : coiningHelp,
-    ranksHelp : ranksHelp,
-    battlefieldTutorial : battlefieldTutorial,
-    battlefieldHelp : battlefieldHelp
+    homeTutorial: homeTutorial,
+    boardTutorial: boardTutorial,
+    newGameTutorial: newGameTutorial,
+    leagueTutorial: leagueTutorial,
+    coiningTutorial: coiningTutorial,
+    ranksTutorial: ranksTutorial,
+    homeHelp: homeHelp,
+    boardHelp: boardHelp,
+    newGameHelp: newGameHelp,
+    leagueHelp: leagueHelp,
+    coiningHelp: coiningHelp,
+    ranksHelp: ranksHelp,
+    battlefieldTutorial: battlefieldTutorial,
+    battlefieldHelp: battlefieldHelp
   };
 })
   .service('authHttpResponseInterceptor', ['$q', function ($q) {

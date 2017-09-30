@@ -619,7 +619,11 @@ angular.module('starter.controllers', [])
     }
   })
   .controller('WheelCtrl', function ($scope, $state, $ionicHistory, menuService, $http, $rootScope) {
+    var wasHit = false;
     $scope.spin = function () {
+      if (wasHit)
+        return;
+      wasHit = true;
       var count = $(".triangle").length;
       var $spinner = $(".spinneromid");
       var value = Math.floor(Math.random() * 12) + 1;
