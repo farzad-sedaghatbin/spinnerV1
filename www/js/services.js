@@ -252,6 +252,34 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
           content: 'اینجا به روشهای مختلف میتونی سکه هاتو زیاد کنی یا اینکه سکه و الماس بخری',
           type: 'modal'
         }
+      }, {
+        wrapper: '.coining1',
+        popup: {
+          content: 'با دیدن ویدیو سکه هاتو زیاد کن',
+          type: 'tooltip',
+          position: 'bottom'
+        }
+      }, {
+        wrapper: '.coining2',
+        popup: {
+          content: 'هرروز یبار میتونی گردونرو بچرخونی و تا 45 تا سکه بگیری. البته ممکنه تا 20 تا هم از سکه هات کم شه، گردونس دیگه!',
+          type: 'tooltip',
+          position: 'bottom'
+        }
+      }, {
+        wrapper: '.coining3',
+        popup: {
+          content: 'حداکثر 3 تا از دوستاتو میتونی اینجا معرفی کنی و به هرکدوم 150 تا سکه بدی',
+          type: 'tooltip',
+          position: 'top'
+        }
+      }, {
+        wrapper: '.coining4',
+        popup: {
+          content: 'اینجا میتونی سکه یا الماس یا تجربه بخری. تجربه باعث میشه تا یه زمان محدودی محاسبه سطحت چند برابر در نظر گرفته شه تو هر بازی',
+          type: 'tooltip',
+          position: 'top'
+        }
       }]
     });
     $('ion-content').pagewalkthrough('show');
