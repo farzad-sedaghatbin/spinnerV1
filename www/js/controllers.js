@@ -218,7 +218,8 @@ angular.module('starter.controllers', [])
               {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: 4, style2: false}
             ]
           };
-        } else {
+        } else if (!$rootScope.newMenu) {
+          $rootScope.newMenu = [];
           var arr = [];
           while (arr.length < 2) {
             var randomnumber = Math.floor(Math.random() * 4) + 1;
@@ -234,13 +235,17 @@ angular.module('starter.controllers', [])
               {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: 4, style2: false}
             ]
           };
-          var newMenu = [];
           angular.forEach($scope.config.submenus, function (member, index) {
             if (arr.indexOf(member.id) > -1) {
-              newMenu.push(member);
+              $rootScope.newMenu.push(member);
             }
           });
-          $scope.config.submenus = newMenu;
+          $scope.config.submenus = $rootScope.newMenu;
+        } else {
+          $scope.config = {
+            status: true,
+            submenus: $rootScope.newMenu
+          };
         }
       }, 300)
     }
@@ -308,8 +313,6 @@ angular.module('starter.controllers', [])
     };
     $scope.$on("$ionicView.enter", function (scopes, states) {
       renderRoot();
-      if (!$rootScope.isTrain) {
-      }
     });
     $scope.toglefun = function ($config) {
       var myEl = angular.element(document.querySelector('.m'));
