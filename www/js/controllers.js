@@ -6,13 +6,13 @@ angular.module('starter.controllers', [])
       menuService.getDb().transaction(function (tx) {
         tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
           var len = results.rows.length, i, result = '';
-          if (results.rows && results.rows.length != 0) {
+          if (results.rows && results.rows.length !== 0) {
             if (results.rows.item(0).val) {
               tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
                 var len = results.rows.length, i, result = '';
-                if (results.rows && results.rows.length != 0) {
+                if (results.rows && results.rows.length !== 0) {
                   var vals = results.rows.item(0).val.split(",");
-                  if (vals[0] == "false") {
+                  if (vals[0] === "false") {
                     menuService.startLoading();
                     var serverUrl = "https://dagala.cfapps.io/api/1/endGame";
                     $http.post(serverUrl, vals[1] + "," + vals[2] + "," + vals[3] + "," + vals[5]).success(function (data, status, headers, config) {
@@ -100,7 +100,7 @@ angular.module('starter.controllers', [])
         menuService.myMessage("سکه های شما کافی نیست. برای بدست آوردن سکه به قسمت سکه خواری در منو مراجعه کنید.", "خطا");
         return;
       }
-      if ($rootScope.gamer.halfGame.length == 5) {
+      if ($rootScope.gamer.halfGame.length === 5) {
         menuService.myMessage("شما به سقف تعداد بازی نیمه تمام رسیده اید.", "خطا");
         return;
       }
@@ -350,7 +350,7 @@ angular.module('starter.controllers', [])
         });
       } else {
         if ($rootScope.isTrain) {
-          if (index == null) {
+          if (index === null) {
             index = s;
             $("#a" + index).animate({
               height: '60px',
@@ -379,7 +379,7 @@ angular.module('starter.controllers', [])
             $("#i" + index).delay(100).animate({
               'line-height': '70px'
             }, 300);
-            if (s != index) {
+            if (s !== index) {
               index = s;
               $("#a" + index).animate({
                 height: '60px',
@@ -445,7 +445,7 @@ angular.module('starter.controllers', [])
     };
     $scope.start = function (id, url) {
       menuService.startLoading();
-      if ($rootScope.isLeague && $rootScope.battle.status == "10") {
+      if ($rootScope.isLeague && $rootScope.battle.status === "10") {
         $http.post("https://dagala.cfapps.io/api/1/createLeagueGame", $rootScope.leagueId + "," + id + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
           $rootScope.goToGame(url, data);
         }).catch(function (err) {
@@ -504,9 +504,9 @@ angular.module('starter.controllers', [])
       menuService.startLoading();
       $http.post("https://dagala.cfapps.io/api/1/inviteFriend", $("#username").val() + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
         menuService.stopLoading();
-        if (data == "404") {
+        if (data === "404") {
           menuService.myMessage("نام کاربری اشتباه می باشد")
-        } else if (data == "200") {
+        } else if (data === "200") {
           menuService.myMessage("امتیاز معرف شما ثبت شد")
         }
       }).catch(function (err) {
@@ -574,13 +574,13 @@ angular.module('starter.controllers', [])
       menuService.startLoading();
       $http.post("https://dagala.cfapps.io/api/1/requestLeague", row.id + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
         menuService.stopLoading();
-        if (data == 200) {
+        if (data === 200) {
           $rootScope.gamer.gem -= row.cost;
           menuService.myMessage("شما با موفقیت عضو این لیگ شدید", "پیام");
           row.status = 1;
-        } else if (data == 201) {
+        } else if (data === 201) {
           menuService.myMessage("ظرفیت این لیگ تکمیل شده و امکان ثبت نام نیست", "خطا");
-        } else if (data == 202) {
+        } else if (data === 202) {
           menuService.myMessage("لیگ شروع شده و امکان ثبت نام نیست", "خطا");
           row.status = 2;
         }
@@ -678,14 +678,14 @@ angular.module('starter.controllers', [])
       menuService.startLoading();
       $http.post("https://dagala.cfapps.io/api/1/videoLimit").success(function (data, status, headers, config) {
         menuService.stopLoading();
-        if (data == "201") {
+        if (data === "201") {
           menuService.myMessage("در هر ساعت می توانید فقط یک ویدیو تماشا کنید", "خطا");
         } else {
           tapsell.requestAd(null, false, function (result) {
-            if (result['action'] == 'onAdAvailable') {
+            if (result['action'] === 'onAdAvailable') {
               tapsell.showAd(result['adId'], true, true, tapsell_rotation_unlocked, true);
               tapsell.setRewardCallback(function (result) {
-                if (result['action'] == 'onAdShowFinished') {
+                if (result['action'] === 'onAdShowFinished') {
                   if (result['completed'] && result['rewarded']) {
                     $http.post("https://dagala.cfapps.io/api/1/videoWatch", $rootScope.gamer.user).success(function (data, status, headers, config) {
                       $rootScope.gamer.coins += 30;
@@ -697,16 +697,16 @@ angular.module('starter.controllers', [])
                 }
               });
             }
-            else if (result['action'] == 'onNoAdAvailable') {
+            else if (result['action'] === 'onNoAdAvailable') {
               menuService.myMessage("تبلیغی برای نمایش وجود ندارد", "خطا");
             }
-            else if (result['action'] == 'onNoNetwork') {
+            else if (result['action'] === 'onNoNetwork') {
               menuService.myMessage("لطفا اتصال اینترنت خود را بررسی کنید", "خطا");
             }
-            else if (result['action'] == 'onError') {
+            else if (result['action'] === 'onError') {
               menuService.myMessage("خطا در دریافت ویدیو", "خطا");
             }
-            else if (result['action'] == 'onExpiring') {
+            else if (result['action'] === 'onExpiring') {
               menuService.myMessage("این تبلیغ منقضی شده است", "خطا");
             }
           });
@@ -795,10 +795,10 @@ angular.module('starter.controllers', [])
     }
 
     function processTiming(data) {
-      if (data.timeLeft != null && data.timeLeft <= 0) {
+      if (data.timeLeft !== null && data.timeLeft <= 0) {
         callTimeoutService(data);
       } else {
-        if (data.status == "2") {
+        if (data.status === "2") {
           $scope.myTurn = "";
           $scope.hisTurn = "نوبتشه";
         } else {
@@ -806,7 +806,7 @@ angular.module('starter.controllers', [])
           $scope.hisTurn = "";
         }
         showResults(data);
-        if (data.timeLeft != null) {
+        if (data.timeLeft !== null) {
           var clock = new FlipClock($('#clock'), data.timeLeft, {
             clockFace: 'SecondCounter',
             autoStart: true,
@@ -866,7 +866,7 @@ angular.module('starter.controllers', [])
       menuService.battlefieldHelp();
     };
     $scope.play = function () {
-      if ($rootScope.battle.url && $rootScope.battle.status == "1") {
+      if ($rootScope.battle.url && $rootScope.battle.status === "1") {
         menuService.startLoading();
         var serverUrl = "https://dagala.cfapps.io/api/1/joinGame";
         $http.post(serverUrl, $rootScope.battle.gameId + "," + $rootScope.battle.gameDTOS[$rootScope.battle.gameDTOS.length - 1].challengeId + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
@@ -875,7 +875,7 @@ angular.module('starter.controllers', [])
           menuService.stopLoading();
           menuService.myHandleError(err);
         });
-      } else if ($rootScope.battle.url && $rootScope.battle.status == "3") {
+      } else if ($rootScope.battle.url && $rootScope.battle.status === "3") {
         menuService.startLoading();
         var serverUrl = "https://dagala.cfapps.io/api/1/joinGame";
         $http.post(serverUrl, $rootScope.battle.gameId + "," + $rootScope.battle.url + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
@@ -884,13 +884,13 @@ angular.module('starter.controllers', [])
           menuService.stopLoading();
           menuService.myHandleError(err);
         });
-      } else if ($rootScope.battle.status == "10" || (!$rootScope.battle.url && $rootScope.battle.status == "1")) {
+      } else if ($rootScope.battle.status === "10" || (!$rootScope.battle.url && $rootScope.battle.status === "1")) {
         $rootScope.isTrain = false;
         $state.go("board");
       }
     };
     $scope.dontPlay = function () {
-      if ($rootScope.battle.user.user == null) {
+      if ($rootScope.battle.user.user === null) {
         menuService.myMessage("هنوز حریفی برای شما انتخاب نشده");
       } else {
         menuService.myMessage("نوبت حریفته، بازیش که تموم شد نوبت تو میشه");
@@ -922,7 +922,7 @@ angular.module('starter.controllers', [])
       var url = "https://dagala.cfapps.io/api/1/requestGame";
       $http.post(url, $rootScope.gamer.user).success(function (data, status, headers, config) {
         $rootScope.battle = data;
-        if ($rootScope.battle.second != null && $rootScope.battle.second.user == $rootScope.gamer.user) {
+        if ($rootScope.battle.second !== null && $rootScope.battle.second.user === $rootScope.gamer.user) {
           var swap = $rootScope.battle.first;
           $rootScope.battle.first = $rootScope.battle.second;
           $rootScope.battle.second = swap;
@@ -958,7 +958,7 @@ angular.module('starter.controllers', [])
       menuService.newGameHelp();
     };
     $scope.play = function () {
-      if ($rootScope.battle.second != null) {
+      if ($rootScope.battle.second !== null) {
         menuService.startLoading();
         var serverUrl = "https://dagala.cfapps.io/api/1/joinGame";
         $http.post(serverUrl, $rootScope.battle.gameId + "," + $rootScope.battle.challengeList[$rootScope.battle.challengeList.length - 1].id).success(function (data, status, headers, config) {
@@ -1047,7 +1047,7 @@ angular.module('starter.controllers', [])
       var signUpUrl = "https://dagala.cfapps.io/api/1/forget";
       $http.post(signUpUrl, username)
         .success(function (suc) {
-          if (suc == "201") {
+          if (suc === "201") {
             menuService.myMessage("نام کاربری اشتباه می باشد", "خطا");
           } else {
             menuService.myMessage("کد مورد نیاز برای تغییر کلمه عبور پیامک شد");
@@ -1065,10 +1065,10 @@ angular.module('starter.controllers', [])
       $http.post(signUpUrl, JSON.stringify({code: code, password: password}))
         .success(function (suc) {
           menuService.stopLoading();
-          if (suc == "200") {
+          if (suc === "200") {
             menuService.myMessage("کلمه عبور با موفقیت تغییر کرد");
             $state.go("login");
-          } else if (suc == "301") {
+          } else if (suc === "301") {
             menuService.myMessage("خطا در عملیات. لطفا مجددا تلاش کنید", "خطا");
             $state.go("login");
           } else {
@@ -1118,7 +1118,7 @@ angular.module('starter.controllers', [])
       };
       $http.post(signUpUrl, d)
         .success(function (data, status, headers, config) {
-          if (data == "400") {
+          if (data === "400") {
             menuService.myMessage("کاربر دیگری با این نام کاربری قبلا ثبت نام کرده", "خطا");
             menuService.stopLoading();
           } else {
