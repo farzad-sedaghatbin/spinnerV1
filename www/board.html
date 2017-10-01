@@ -48,10 +48,9 @@
     <div class=cicular_wrapper>
       <div class="m">
         <div class="btn trigger" ng-click="toglefun()"><span class="line"></span></div>
-        <div class="rotater" ng-repeat="imageObj in config.submenus"
-             ng-click="menufun($index,imageObj.id,imageObj.adr);">
+        <div class="rotater" ng-repeat="imageObj in config.submenus">
           <div style="height: 100px;width: 100px">
-            <a id="{{'a' + $index}}" style="text-align: center;line-height: 70px;"
+            <a ng-click="menufun($index,imageObj.id,imageObj.adr)" id="{{'a' + $index}}" style="text-align: center;line-height: 70px;"
                ng-class="{myDisable : imageObj.style2}" class="btn btn-icon myshadow">
               <div ng-click="topRanks(imageObj.id)" id="{{ 'object1' + $index }}" class="menu-item1"
                    style="background-color:transparent;pointer-events: none"><span style="display: none"

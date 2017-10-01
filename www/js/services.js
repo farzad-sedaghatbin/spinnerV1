@@ -16,7 +16,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
         myMessage("لطفا مجددا اطلاعات حساب خود را وارد نمایید", "خطا");
         $state.go("login");
       }
-    } else if (err && err.status == 0) {
+    } else if (err && (err.status == 0 || err.status == -1)) {
       window.plugins.toast.showShortBottom('لطفا اتصال اینترنت خود را بررسی کنید');
     } else if (err && err.status == 418) {
       $ionicPopup.alert({
