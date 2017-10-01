@@ -400,7 +400,7 @@ angular.module('starter.controllers', [])
     function whichgoo(s) {
       switch (s) {
         case 0:
-          gooyi(58, 39, 7, 65);
+          gooyi(44, 59, -10, 65);
           break;
         case 1:
           gooyi(35, -42, -25, -36);
