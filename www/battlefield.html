@@ -19,7 +19,7 @@
       </div>
       <div ng-if="loaded">
         <div ng-if="!isEnded" class="row" style="margin-bottom: 20px;margin-top: 0">
-          <div id="taslim" class="col grid-example s6 blue-button"
+          <div ng-if="battle.user.user" id="taslim" class="col grid-example s6 blue-button"
                ng-click="taslim()">
             تسلیم شو
           </div>
