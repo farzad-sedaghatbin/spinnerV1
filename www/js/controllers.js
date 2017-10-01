@@ -564,6 +564,10 @@ angular.module('starter.controllers', [])
         menuService.myMessage("الماس شما برای ورود به این لیگ کافی نیست", "خطا");
         return;
       }
+      if ($rootScope.gamer.level < row.minLevel) {
+        menuService.myMessage("سطح شما از حداقل سطح لازم برای این لیگ پایین تر است", "خطا");
+        return;
+      }
       menuService.startLoading();
       $http.post("https://dagala.cfapps.io/api/1/requestLeague", row.id + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
         menuService.stopLoading();
