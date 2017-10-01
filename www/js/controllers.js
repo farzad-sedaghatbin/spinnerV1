@@ -505,10 +505,10 @@ angular.module('starter.controllers', [])
       $http.post("https://dagala.cfapps.io/api/1/inviteFriend", $("#username").val() + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
         menuService.stopLoading();
         if (data === "404") {
-          menuService.myMessage("نام کاربری اشتباه می باشد")
-          $rootScope.gamer.coins += 150;
+          menuService.myMessage("نام کاربری اشتباه می باشد", "خطا");
         } else if (data === "200") {
-          menuService.myMessage("امتیاز معرف شما ثبت شد")
+          menuService.myMessage("امتیاز شما و معرف شما ثبت شد")
+          $rootScope.gamer.coins += 150;
         } else if (data === "333"){
           menuService.myMessage("شما حداکثر 3 تا از دوستانتون رو میتونید معرفی کنید", "خطا");
         }
