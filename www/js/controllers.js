@@ -506,8 +506,11 @@ angular.module('starter.controllers', [])
         menuService.stopLoading();
         if (data === "404") {
           menuService.myMessage("نام کاربری اشتباه می باشد")
+          $rootScope.gamer.coins += 150;
         } else if (data === "200") {
           menuService.myMessage("امتیاز معرف شما ثبت شد")
+        } else if (data === "333"){
+          menuService.myMessage("شما حداکثر 3 تا از دوستانتون رو میتونید معرفی کنید", "خطا");
         }
       }).catch(function (err) {
         menuService.stopLoading();
