@@ -806,7 +806,7 @@ angular.module('starter.controllers', [])
       if (data.timeLeft !== null && data.timeLeft <= 0) {
         callTimeoutService(data);
       } else {
-        if (data.status === "2") {
+        if (data.status === "2" || data.status === null) {
           $scope.myTurn = "";
           $scope.hisTurn = "نوبتشه";
         } else {
@@ -867,8 +867,9 @@ angular.module('starter.controllers', [])
         loadData(false);
       }, 60000);
     });
-    $scope.$on('$ionicView.leave', function () {
+    $scope.$on('$ionicView.beforeLeave', function () {
       $interval.cancel(refreshInterval);
+      $('#clock').css("display", "none");
     });
     $scope.help = function () {
       menuService.battlefieldHelp();
