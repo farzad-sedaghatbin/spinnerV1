@@ -758,8 +758,8 @@ angular.module('starter.controllers', [])
                 if (result['action'] === 'onAdShowFinished') {
                   if (result['completed'] && result['rewarded']) {
                     $http.post("https://dagala.cfapps.io/api/1/videoWatch", $rootScope.gamer.user).success(function (data, status, headers, config) {
-                      $rootScope.gamer.coins += 30;
-                      menuService.myMessage("30 سکه به شما تعلق گرفت", "پیام");
+                      $rootScope.gamer.coins += 20;
+                      menuService.myMessage("20 سکه به شما تعلق گرفت", "پیام");
                     }).catch(function (err) {
                       menuService.myHandleError(err);
                     });
