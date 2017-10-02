@@ -1,7 +1,14 @@
 @font-face {
   font-family: 'myFont';
   src:
-    url('font/A-MehdiHeydari.ttf') format('truetype');
+    url('font/MehdiHeydari.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'helpFont';
+  src:
+    url('font/Al-Jazeera.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
 }
@@ -14,6 +21,10 @@
 }
 .myText {
   font-family: myFont, sans-serif;
+  font-weight: bolder;
+}
+.myHelp {
+  font-family: helpFont,sans-serif;
   font-weight: bolder;
 }
 .myEText {
@@ -559,7 +570,7 @@ span.font-36 {
   width: 100% !important;
 }
 #tooltipInner,#jpwPrevious,#jpwNext,#jpwClose,#jpwFinish{
-  font-family: myFont !important;
+  font-family: myHelp !important;
 }
 .overlay-hole{
   margin-left: 20px !important;
