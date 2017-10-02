@@ -268,7 +268,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
       }, {
         wrapper: '.coining2',
         popup: {
-          content: 'هرروز یبار میتونی گردونرو بچرخونی و تا 40 تا سکه بگیری. البته ممکنه تا 10 تا هم از سکه هات کم شه، گردونس دیگه!',
+          content: 'هرروز یبار میتونی گردونرو بچرخونی و تا 45 تا سکه بگیری. البته ممکنه تا 10 تا هم از سکه هات کم شه، گردونس دیگه!',
           type: 'tooltip',
           position: 'bottom'
         }

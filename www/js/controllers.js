@@ -718,9 +718,9 @@ angular.module('starter.controllers', [])
         if (data) {
           $rootScope.gamer.coins += data;
           if (data >= 0) {
-            menuService.myMessage(" سکه دریافت کردید" + data, "پیام");
+            menuService.myMessage(data + " سکه دریافت کردید", "پیام");
           } else {
-            menuService.myMessage(" سکه از شما کم شد" + data, "پیام");
+            menuService.myMessage(data + " سکه از شما کم شد", "پیام");
           }
         } else {
           menuService.myMessage("شما سهمیه امروز خود را دریافت کردید", "خطا");
