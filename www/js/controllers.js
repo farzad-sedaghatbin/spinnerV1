@@ -1208,7 +1208,7 @@ angular.module('starter.controllers', [])
       };
       $http.post(signUpUrl, d)
         .success(function (data, status, headers, config) {
-          if (data === "400") {
+          if (data === 400) {
             menuService.myMessage("کاربر دیگری با این نام کاربری قبلا ثبت نام کرده", "خطا");
             menuService.stopLoading();
           } else {
@@ -1217,7 +1217,7 @@ angular.module('starter.controllers', [])
             $rootScope.gamer.pass = d.password;
             $rootScope.gamer.token = data.token;
             $rootScope.saveGamer($rootScope.gamer);
-            $state.go("menuless.login");
+            $state.go("login");
             menuService.stopLoading();
           }
         })
