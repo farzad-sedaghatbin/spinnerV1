@@ -65,11 +65,11 @@ angular.module('starter.controllers', [])
     $rootScope.isMute = false;
     $scope.speaker = function () {
       if ($rootScope.isMute) {
-        document.getElementById("myAudio").muted = false;
+        document.getElementById("myAudio").play();
         $("#speaker").attr("src", "img/speaker.png");
         $rootScope.isMute = false;
       } else {
-        document.getElementById("myAudio").muted = true;
+        document.getElementById("myAudio").pause();
         $("#speaker").attr("src", "img/mute.png");
         $rootScope.isMute = true;
       }

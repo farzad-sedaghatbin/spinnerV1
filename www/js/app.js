@@ -52,10 +52,14 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         cordova.plugins.Keyboard.disableScroll(true);
       }
       document.addEventListener("pause", function () {
-        document.getElementById("myAudio").pause();
+        if (!$rootScope.isMute) {
+          document.getElementById("myAudio").pause();
+        }
       }, false);
       document.addEventListener("resume", function () {
-        document.getElementById("myAudio").play();
+        if (!$rootScope.isMute) {
+          document.getElementById("myAudio").play();
+        }
       }, false);
       if (window.StatusBar) {
         StatusBar.styleDefault();
@@ -81,10 +85,10 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         $.ajax({
           type: 'HEAD',
           url: url,
-          success: function () {
+          success: function(){
             window.location.assign(url);
           },
-          error: function () {
+          error: function() {
             menuService.stopLoading();
             $ionicPopup.alert({
               title: '<span class="myText">بروزرسانی</span>',
