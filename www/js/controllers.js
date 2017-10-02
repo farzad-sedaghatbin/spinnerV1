@@ -592,11 +592,11 @@ angular.module('starter.controllers', [])
         menuService.myHandleError(err);
       });
     };
-    $scope.joinLeague = function () {
-      menuService.myMessage("این لیگ شروع شده ولی شما در آن عضو نیستید", "خطا");
-    };
     $scope.waitForLeague = function () {
       menuService.myMessage("شما در این لیگ عضو هستید. منتظر شروع شدن آن باشید", "خطا");
+    };
+    $scope.leagueStarted = function () {
+      menuService.myMessage("لیگ شروع شده ولی شما در آن عضو نیستید", "خطا");
     };
     $scope.playLeague = function (id) {
       $rootScope.leagueId = id;
