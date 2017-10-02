@@ -89,12 +89,19 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
             window.location.assign(url);
           },
           error: function() {
+            menuService.stopLoading();
             $ionicPopup.alert({
               title: '<span class="myText">بروزرسانی</span>',
               template: '<div class="myText" style="padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">    <div style="direction: rtl;padding-top: 20px;line-height: 3em">' +
-              '<span class="myText">رقیب شما بازی ای کرده که شما بدلیل عدم بروزرسانی آنرا ندارید. لطفا بازی را بروزرسانی کنید</span></div></div>'
-            }).then(function (res) {
-              navigator.app.exitApp();
+              '<span class="myText">رقیب شما بازی ای کرده که شما بدلیل عدم بروزرسانی آنرا ندارید. لطفا بازی را بروزرسانی کنید</span></div></div>',
+              buttons: [
+                {
+                  text: '<span class="myText">باشه</span>',
+                  onTap: function (e) {
+                    navigator.app.exitApp();
+                  }
+                }
+              ]
             });
             $(".popup").css("width", "90%");
           }
