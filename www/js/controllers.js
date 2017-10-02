@@ -329,25 +329,92 @@ angular.module('starter.controllers', [])
     var index = null;
     $scope.menufun = function (s, id, url) {
       if (root) {
-        menuService.startLoading();
-        var serverUrl = "https://dagala.cfapps.io/api/1/games";
-        $http.post(serverUrl, $rootScope.isTrain ? "train" + "," + id : $rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
-          menuService.stopLoading();
-          $scope.config.submenus = data;
-          root = false;
-          var myEl = angular.element(document.querySelector('.m'));
-          myEl.toggleClass("active");
-          $timeout(function () {
-            myEl.toggleClass('omid');
-          }, 100);
-          if (!$rootScope.isTrain) {
-            $("#release").css("display", "none");
-          }
-        }).catch(function (err) {
-          menuService.stopLoading();
-          menuService.myHandleError(err);
-          renderRoot();
-        });
+        switch (id) {
+          case 1:
+            $scope.config.submenus = [{
+              menuicon: 'img/puzzle.png',
+              adr: 'puzzle/www.gameeapp.com/game/FGM7TVW2Ma.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 5,
+              style2: false
+            },{
+              menuicon: 'img/hexo.png',
+              adr: 'hexon/www.gameeapp.com/game/xRkQk0iwI3.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 7,
+              style2: false
+            }];
+            break;
+          case 2:
+            $scope.config.submenus = [{
+              menuicon: 'img/spinner.png',
+              adr: 'spinner/www.gameeapp.com/game/ipUMpcUES.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 2,
+              style2: false
+            },{
+              menuicon: 'img/mr.png',
+              adr: 'mr/www.gameeapp.com/game/WmHdqig.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 8,
+              style2: false
+            }];
+            break;
+          case 3:
+            $scope.config.submenus = [{
+              menuicon: 'img/ninja.png',
+              adr: 'ninja/www.gameeapp.com/game/G1oy49taR.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 3,
+              style2: false
+            },{
+              menuicon: 'img/space.png',
+              adr: 'space/www.gameeapp.com/game/ibBTDViUP.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 1,
+              style2: false
+            },{
+              menuicon: 'img/qubo.png',
+              adr: 'qubo/www.gameeapp.com/game/u0yXP5o.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 9,
+              style2: false
+            }];
+            break;
+          case 4:
+            $scope.config.submenus = [{
+              menuicon: 'img/motor.png',
+              adr: 'motor/www.gameeapp.com/game/kAHVRl.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 4,
+              style2: false
+            },{
+              menuicon: 'img/car.png',
+              adr: 'car/www.gameeapp.com/game/oFfW2omiW.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 6,
+              style2: false
+            }];
+            break;
+        }
+        root = false;
+        var myEl = angular.element(document.querySelector('.m'));
+        myEl.toggleClass("active");
+        $timeout(function () {
+          myEl.toggleClass('omid');
+        }, 100);
+        if (!$rootScope.isTrain) {
+          $("#release").css("display", "none");
+        }
       } else {
         if ($rootScope.isTrain) {
           if (index === null) {
@@ -679,7 +746,7 @@ angular.module('starter.controllers', [])
     };
     $scope.tapsell = function () {
       menuService.startLoading();
-      $http.post("https://dagala.cfapps.io/api/1/videoLimit").success(function (data, status, headers, config) {
+      $http.post("https://dagala.cfapps.io/api/1/videoLimit",$rootScope.gamer.user).success(function (data, status, headers, config) {
         menuService.stopLoading();
         if (data === "201") {
           menuService.myMessage("در هر ساعت می توانید فقط یک ویدیو تماشا کنید", "خطا");
