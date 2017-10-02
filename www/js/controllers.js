@@ -706,7 +706,7 @@ angular.module('starter.controllers', [])
       wasHit = true;
       var count = $(".triangle").length;
       var $spinner = $(".spinneromid");
-      var value = Math.floor(Math.random() * 12) + 1;
+      var value = parseInt(Math.random() * count);
       var preffix = "index-";
       $spinner.toggleClass("spin");
       $spinner[0].className = $spinner[0].className.replace(
