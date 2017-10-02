@@ -54,6 +54,10 @@
             <div style="line-height: 40px;color: #d2dea6;font-size: large">{{myTurn}}</div>
           </div>
           <div ng-if="battle.user.user" class="col grid-example s6" style="margin: 0">
+            <div class="myText" style="position: absolute;top: 225px;right: 20px;">
+              <span class="home-badge-text" style="position: relative">{{battle.user.level}}</span>
+              <span style="display:inline;"><img class="home-badge-img" style="width: 28px" src="img/exp.png"/></span>
+            </div>
             <div class="myEText" style="line-height: 60px;color: black;height: 30px;font-size: large">{{battle.user.user}}</div>
             <div style="line-height: 40px;color: #d2dea6;font-size: large">{{hisTurn}}</div>
           </div>
