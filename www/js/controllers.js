@@ -787,6 +787,8 @@ angular.module('starter.controllers', [])
         param = $rootScope.rowId;
       }
       $http.post(url, param + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
+        if ($rootScope.isLeague && data.timeLeft === null)
+          $rootScope.isEnded = true;
         if (!$rootScope.isEnded) {
           processTiming(data)
         } else {
