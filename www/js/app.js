@@ -82,7 +82,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         });
       };
       $rootScope.changeUrl = function (url) {
-        window.open(url, '_self ', 'location=yes');
+        window.location = url;
       };
       $rootScope.saveGamer = function (data) {
         $rootScope.gamer = data;
