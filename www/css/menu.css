@@ -392,6 +392,14 @@ span.font-36 {
   color: black;
   direction: rtl;
 }
+.row .col.s1 {
+  max-width: 16%;
+  min-height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: black;
+  direction: rtl;
+}
 .row .col.s2 {
   max-width: 16.6666%;
   min-height: 75px;
