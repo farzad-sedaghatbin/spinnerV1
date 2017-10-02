@@ -817,7 +817,7 @@ angular.module('starter.controllers', [])
         }
         showResults(data);
         if (data.timeLeft !== null) {
-          var clock = new FlipClock($('#clock'), data.timeLeft, {
+          var clock = new FlipClock($('.clock'), data.timeLeft, {
             clockFace: 'SecondCounter',
             autoStart: true,
             countdown: true,
@@ -827,7 +827,7 @@ angular.module('starter.controllers', [])
                 callTimeoutService(data);
               },
               start: function () {
-                $('#clock').css("display", "block");
+                $('.clock').css("display", "block");
               }
             }
           });
@@ -857,7 +857,7 @@ angular.module('starter.controllers', [])
 
     var refreshInterval;
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
-      $('#clock').css("display", "none");
+      $('.clock').css("display", "none");
       $scope.loaded = false;
     });
     $scope.$on("$ionicView.enter", function (scopes, states) {
@@ -871,7 +871,7 @@ angular.module('starter.controllers', [])
     });
     $scope.$on('$ionicView.beforeLeave', function () {
       $interval.cancel(refreshInterval);
-      $('#clock').css("display", "none");
+      $('.clock').css("display", "none");
     });
     $scope.help = function () {
       menuService.battlefieldHelp();
