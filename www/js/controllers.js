@@ -717,6 +717,11 @@ angular.module('starter.controllers', [])
       $http.post("https://dagala.cfapps.io/api/1/rouletteWheel", value + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
         if (data) {
           $rootScope.gamer.coins += data;
+          if (data >= 0) {
+            menuService.myMessage(" سکه دریافت کردید" + data, "پیام");
+          } else {
+            menuService.myMessage(" سکه از شما کم شد" + data, "پیام");
+          }
         } else {
           menuService.myMessage("شما سهمیه امروز خود را دریافت کردید", "خطا");
         }
