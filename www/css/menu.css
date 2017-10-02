@@ -400,6 +400,13 @@ span.font-36 {
   color: black;
   direction: rtl;
 }
+.row .col.s2b {
+  max-width: 16.6666%;
+  min-height: 75px;
+  text-align: center;
+  color: black;
+  direction: rtl;
+}
 .row .col.s10 {
   width: 84.4444%;
   min-height: 75px;

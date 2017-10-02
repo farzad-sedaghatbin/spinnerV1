@@ -4,18 +4,18 @@
     <a ng-click="modal.hide()" class="closeButton"></a>
     <div style="margin-top: 20px">
       <div class="row myText" ng-repeat="row in rows">
-        <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller"
+        <div class="col grid-example s2b battlefield" style="color: white;font-size: smaller"
              ng-click="doBuy(row.name,row.price,row.icon,row.amount)">
           خرید
         </div>
-        <div class="col grid-example s3 coining-text-right" style="font-size: large">
+        <div class="col grid-example s4 coining-text-right" style="font-size: large">
           {{row.price}}
         </div>
-        <div class="col grid-example s3 coining-text-left" style="color: darkmagenta;">
+        <div class="col grid-example s4 coining-text-left" style="color: darkmagenta;padding: 0">
           {{row.description}}
         </div>
-        <div class="col grid-example s3 coining-text-left" style="color: darkmagenta;">
-          <img src="{{row.icon}}" style="width: 42px;height: 42px">
+        <div class="col grid-example s2b coining-text-left" style="color: darkmagenta;">
+          <img src="{{row.icon}}" style="width: 32px;height: 32px">
         </div>
       </div>
     </div>
