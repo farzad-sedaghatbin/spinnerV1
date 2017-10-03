@@ -72,11 +72,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         db.transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
             tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "false," + $rootScope.battle.gameId + "," + challengeId + ",0," + $rootScope.homeURL + "," + $rootScope.gamer.user], function (tx, results) {
-              tx.executeSql('DELETE FROM MYGAME WHERE name="wasInGame"', [], function (tx, results) {
-                tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["wasInGame", true], function (tx, results) {
-                  $rootScope.changeUrl(url);
-                });
-              });
+              $rootScope.changeUrl(url);
             });
           });
         });
@@ -85,10 +81,14 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         $.ajax({
           type: 'HEAD',
           url: url,
-          success: function(){
-            window.location.assign(url);
+          success: function () {
+            tx.executeSql('DELETE FROM MYGAME WHERE name="wasInGame"', [], function (tx, results) {
+              tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["wasInGame", true], function (tx, results) {
+                window.location.assign(url);
+              });
+            });
           },
-          error: function() {
+          error: function () {
             menuService.stopLoading();
             $ionicPopup.alert({
               title: '<span class="myText">بروزرسانی</span>',
@@ -166,7 +166,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
             $rootScope.isMute = false;
           } else {
             $rootScope.isMute = results.rows.item(0).val;
-            if ($rootScope.isMute){
+            if ($rootScope.isMute) {
               document.getElementById("myAudio").pause();
               $("#speaker").attr("src", "img/mute.png");
             }
