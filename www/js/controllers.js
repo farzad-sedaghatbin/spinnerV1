@@ -105,7 +105,7 @@ angular.module('starter.controllers', [])
     $scope.refresh = function () {
       $rootScope.refreshGamer(true, $scope);
     };
-    $scope.challenge = function () {
+    function innerChallenge() {
       if ($rootScope.gamer.coins < $rootScope.gamer.perGameCoins) {
         menuService.myMessage("سکه های شما کافی نیست. برای بدست آوردن سکه به قسمت سکه خواری در منو مراجعه کنید.", "خطا");
         return;
@@ -132,6 +132,23 @@ angular.module('starter.controllers', [])
           {text: '<span class="myText">نه</span>'}
         ]
       });
+    }
+    $scope.challenge = function () {
+      if (!$rootScope.gamer){
+        menuService.startLoading();
+        $http.post("https://dagala.cfapps.io/api/1/tempUser").success(function (data, status, headers, config) {
+          $http.defaults.headers.common['Authorization'] = data.token;
+          data.pass = data.user;
+          $rootScope.saveGamer(data);
+          menuService.stopLoading();
+          innerChallenge();
+        }).catch(function (err) {
+          menuService.stopLoading();
+          menuService.myHandleError(err, false);
+        });
+      } else {
+        innerChallenge();
+      }
     };
     $scope.ranks = function () {
       $rootScope.selectedGame = null;
@@ -520,7 +537,7 @@ angular.module('starter.controllers', [])
     $scope.help = function () {
       menuService.boardHelp();
     };
-    $scope.start = function (id, url) {
+    function innerStart() {
       menuService.startLoading();
       if ($rootScope.isLeague && $rootScope.battle.status === "10") {
         $http.post("https://dagala.cfapps.io/api/1/createLeagueGame", $rootScope.leagueId + "," + id + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
@@ -549,6 +566,23 @@ angular.module('starter.controllers', [])
             renderRoot();
           });
         }
+      }
+    }
+    $scope.start = function (id, url) {
+      if (!$rootScope.gamer){
+        menuService.startLoading();
+        $http.post("https://dagala.cfapps.io/api/1/tempUser").success(function (data, status, headers, config) {
+          $http.defaults.headers.common['Authorization'] = data.token;
+          data.pass = data.user;
+          $rootScope.saveGamer(data);
+          menuService.stopLoading();
+          innerStart();
+        }).catch(function (err) {
+          menuService.stopLoading();
+          menuService.myHandleError(err, false);
+        });
+      } else {
+        innerStart();
       }
     };
     $scope.topRanks = function (id) {
@@ -623,8 +657,21 @@ angular.module('starter.controllers', [])
 
     $scope.$on("$ionicView.enter", function (scopes, states) {
       $timeout(function () {
-        menuService.startLoading();
-        loadData(false);
+        if (!$rootScope.gamer){
+          menuService.startLoading();
+          $http.post("https://dagala.cfapps.io/api/1/tempUser").success(function (data, status, headers, config) {
+            $http.defaults.headers.common['Authorization'] = data.token;
+            data.pass = data.user;
+            $rootScope.saveGamer(data);
+            loadData(false);
+          }).catch(function (err) {
+            menuService.stopLoading();
+            menuService.myHandleError(err, false);
+          });
+        } else {
+          menuService.startLoading();
+          loadData(false);
+        }
       }, 700)
     });
     $scope.refresh = function () {
@@ -1139,17 +1186,34 @@ angular.module('starter.controllers', [])
     }
   })
   .controller('RanksCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout) {
+    function innerStart() {
+      menuService.startLoading();
+      $http.post("https://dagala.cfapps.io/api/1/topPlayer", $rootScope.gamer.user).success(function (data, status, headers, config) {
+        $scope.ranks = data;
+        menuService.stopLoading();
+        menuService.ranksTutorial();
+      }).catch(function (err) {
+        menuService.stopLoading();
+        menuService.myHandleError(err);
+      });
+    }
     $scope.$on("$ionicView.enter", function (scopes, states) {
       $timeout(function () {
-        menuService.startLoading();
-        $http.post("https://dagala.cfapps.io/api/1/topPlayer", $rootScope.gamer.user).success(function (data, status, headers, config) {
-          $scope.ranks = data;
-          menuService.stopLoading();
-          menuService.ranksTutorial();
-        }).catch(function (err) {
-          menuService.stopLoading();
-          menuService.myHandleError(err);
-        });
+        if (!$rootScope.gamer){
+          menuService.startLoading();
+          $http.post("https://dagala.cfapps.io/api/1/tempUser").success(function (data, status, headers, config) {
+            $http.defaults.headers.common['Authorization'] = data.token;
+            data.pass = data.user;
+            $rootScope.saveGamer(data);
+            menuService.stopLoading();
+            innerStart();
+          }).catch(function (err) {
+            menuService.stopLoading();
+            menuService.myHandleError(err, false);
+          });
+        } else {
+          innerStart();
+        }
       }, 700);
     });
     $scope.ranksBack = function () {

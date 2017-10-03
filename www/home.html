@@ -63,8 +63,8 @@
       <img style="width: 42px;margin-top: 12px;border-radius: 50%;margin-left: 16px;" src="{{gamer.avatar}}">
     </div>
     <div class="myEText" style="color: white;position: absolute;top: 25px;right: 70px">{{gamer.user}}</div>
-    <div class="myText" style="color: white;position: absolute;top: 45px;right: 70px">سطح : {{gamer.level}}</div>
-    <div class="myText" style="color: white;position: absolute;top: 65px;right: 70px">امتیاز : {{gamer.score}}</div>
+    <div ng-if="gamer" class="myText" style="color: white;position: absolute;top: 45px;right: 70px">سطح : {{gamer.level}}</div>
+    <div ng-if="gamer" class="myText" style="color: white;position: absolute;top: 65px;right: 70px">امتیاز : {{gamer.score}}</div>
     <div class="myText">
       <div ng-if="gamer.guest" class="row" style="margin-top: 30px">
         <article class="notepad">

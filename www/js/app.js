@@ -142,7 +142,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
             $rootScope.saveGamer(data);
             navigator.splashscreen.hide();
           }).catch(function (err) {
-            menuService.myHandleError(err, true);
+            menuService.myHandleError(err, false);
           });
         }
       };
