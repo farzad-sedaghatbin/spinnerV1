@@ -552,7 +552,7 @@ angular.module('starter.controllers', [])
           menuService.getDb().transaction(function (tx) {
             tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
               tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "true," + id + "," + $rootScope.gamer.token + ",0," + $rootScope.homeURL + "," + $rootScope.gamer.user], function (tx, results) {
-                $rootScope.changeUrl(url);
+                $rootScope.changeUrl(url,null);
               });
             });
           });
