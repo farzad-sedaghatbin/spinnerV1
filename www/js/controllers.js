@@ -4,11 +4,11 @@ angular.module('starter.controllers', [])
     $rootScope.homeURL = window.location.href;
     $scope.$on("$ionicView.enter", function (scopes, states) {
       menuService.getDb().transaction(function (tx) {
-        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
+        tx.executeSql('SELECT d.val FROM OMIDDB d WHERE d.name="wasInGame"', [], function (tx, results) {
           var len = results.rows.length, i, result = '';
           if (results.rows && results.rows.length !== 0) {
             if (results.rows.item(0).val) {
-              tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
+              tx.executeSql('SELECT d.val FROM OMIDDB d WHERE d.name="score"', [], function (tx, results) {
                 var len = results.rows.length, i, result = '';
                 if (results.rows && results.rows.length !== 0) {
                   var vals = results.rows.item(0).val.split(",");
@@ -36,8 +36,8 @@ angular.module('starter.controllers', [])
                       menuService.myHandleError(err);
                     });
                   }
-                  tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
-                    tx.executeSql('DELETE FROM MYGAME WHERE name="wasInGame"');
+                  tx.executeSql('DELETE FROM OMIDDB WHERE name="score"', [], function (tx, results) {
+                    tx.executeSql('DELETE FROM OMIDDB WHERE name="wasInGame"');
                   });
                 }
               }, null);
@@ -65,10 +65,20 @@ angular.module('starter.controllers', [])
     $rootScope.isMute = false;
     $scope.speaker = function () {
       if ($rootScope.isMute) {
+        menuService.getDb().transaction(function (tx) {
+          tx.executeSql('DELETE FROM OMIDDB WHERE name="mute"', [], function (tx, results) {
+            tx.executeSql('INSERT INTO OMIDDB (name, val) VALUES (?, ?)', ["mute", false]);
+          });
+        });
         document.getElementById("myAudio").play();
         $("#speaker").attr("src", "img/speaker.png");
         $rootScope.isMute = false;
       } else {
+        menuService.getDb().transaction(function (tx) {
+          tx.executeSql('DELETE FROM OMIDDB WHERE name="mute"', [], function (tx, results) {
+            tx.executeSql('INSERT INTO OMIDDB (name, val) VALUES (?, ?)', ["mute", true]);
+          });
+        });
         document.getElementById("myAudio").pause();
         $("#speaker").attr("src", "img/mute.png");
         $rootScope.isMute = true;
@@ -523,8 +533,8 @@ angular.module('starter.controllers', [])
       } else {
         if ($rootScope.isTrain) {
           menuService.getDb().transaction(function (tx) {
-            tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
-              tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "true," + id + "," + $rootScope.gamer.token + ",0," + $rootScope.homeURL + "," + $rootScope.gamer.user], function (tx, results) {
+            tx.executeSql('DELETE FROM OMIDDB WHERE name="score"', [], function (tx, results) {
+              tx.executeSql('INSERT INTO OMIDDB (name, val) VALUES (?, ?)', ["score", "true," + id + "," + $rootScope.gamer.token + ",0," + $rootScope.homeURL + "," + $rootScope.gamer.user], function (tx, results) {
                 $rootScope.changeUrl(url);
               });
             });
@@ -1221,8 +1231,8 @@ angular.module('starter.controllers', [])
             $rootScope.gamer.user = d.username;
             $rootScope.gamer.pass = d.password;
             $rootScope.gamer.token = data.token;
-            $rootScope.saveGamer($rootScope.gamer);
-            $state.go("login");
+            $rootScope.saveGamer(data);
+            $state.go("home");
             menuService.stopLoading();
           }
         })
