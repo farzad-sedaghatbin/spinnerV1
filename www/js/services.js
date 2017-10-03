@@ -54,10 +54,10 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
   };
   var homeTutorial = function () {
     db.transaction(function (tx) {
-      tx.executeSql('SELECT d.val FROM OMIDDB d WHERE d.name="homeTutorial"', [], function (tx, results) {
+      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="homeTutorial"', [], function (tx, results) {
         var len = results.rows.length, i, result = '';
         if (!results.rows || results.rows.length == 0) {
-          tx.executeSql('INSERT INTO OMIDDB (name, val) VALUES (?, ?)', ["homeTutorial", true]);
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["homeTutorial", true]);
           homeHelp();
         }
       }, null);
@@ -132,10 +132,10 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
   };
   var boardTutorial = function () {
     db.transaction(function (tx) {
-      tx.executeSql('SELECT d.val FROM OMIDDB d WHERE d.name="boardTutorial"', [], function (tx, results) {
+      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="boardTutorial"', [], function (tx, results) {
         var len = results.rows.length, i, result = '';
         if (!results.rows || results.rows.length == 0) {
-          tx.executeSql('INSERT INTO OMIDDB (name, val) VALUES (?, ?)', ["boardTutorial", true]);
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["boardTutorial", true]);
           boardHelp();
         }
       }, null);
@@ -163,10 +163,10 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
   };
   var newGameTutorial = function () {
     db.transaction(function (tx) {
-      tx.executeSql('SELECT d.val FROM OMIDDB d WHERE d.name="newGameTutorial"', [], function (tx, results) {
+      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="newGameTutorial"', [], function (tx, results) {
         var len = results.rows.length, i, result = '';
         if (!results.rows || results.rows.length == 0) {
-          tx.executeSql('INSERT INTO OMIDDB (name, val) VALUES (?, ?)', ["newGameTutorial", true]);
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["newGameTutorial", true]);
           newGameHelp();
         }
       }, null);
@@ -201,10 +201,10 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
   };
   var leagueTutorial = function () {
     db.transaction(function (tx) {
-      tx.executeSql('SELECT d.val FROM OMIDDB d WHERE d.name="leagueTutorial"', [], function (tx, results) {
+      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="leagueTutorial"', [], function (tx, results) {
         var len = results.rows.length, i, result = '';
         if (!results.rows || results.rows.length == 0) {
-          tx.executeSql('INSERT INTO OMIDDB (name, val) VALUES (?, ?)', ["leagueTutorial", true]);
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["leagueTutorial", true]);
           leagueHelp();
         }
       }, null);
@@ -241,10 +241,10 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
   };
   var coiningTutorial = function () {
     db.transaction(function (tx) {
-      tx.executeSql('SELECT d.val FROM OMIDDB d WHERE d.name="coiningTutorial"', [], function (tx, results) {
+      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="coiningTutorial"', [], function (tx, results) {
         var len = results.rows.length, i, result = '';
         if (!results.rows || results.rows.length == 0) {
-          tx.executeSql('INSERT INTO OMIDDB (name, val) VALUES (?, ?)', ["coiningTutorial", true]);
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["coiningTutorial", true]);
           coiningHelp();
         }
       }, null);
@@ -292,10 +292,10 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
   };
   var ranksTutorial = function () {
     db.transaction(function (tx) {
-      tx.executeSql('SELECT d.val FROM OMIDDB d WHERE d.name="ranksTutorial"', [], function (tx, results) {
+      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="ranksTutorial"', [], function (tx, results) {
         var len = results.rows.length, i, result = '';
         if (!results.rows || results.rows.length == 0) {
-          tx.executeSql('INSERT INTO OMIDDB (name, val) VALUES (?, ?)', ["ranksTutorial", true]);
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["ranksTutorial", true]);
           ranksHelp();
         }
       }, null);
@@ -315,10 +315,10 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
   };
   var battlefieldTutorial = function () {
     db.transaction(function (tx) {
-      tx.executeSql('SELECT d.val FROM OMIDDB d WHERE d.name="battlefieldTutorial"', [], function (tx, results) {
+      tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="battlefieldTutorial"', [], function (tx, results) {
         var len = results.rows.length, i, result = '';
         if (!results.rows || results.rows.length == 0) {
-          tx.executeSql('INSERT INTO OMIDDB (name, val) VALUES (?, ?)', ["battlefieldTutorial", true]);
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["battlefieldTutorial", true]);
           battlefieldHelp();
         }
       }, null);
