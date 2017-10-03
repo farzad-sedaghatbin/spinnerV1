@@ -65,10 +65,20 @@ angular.module('starter.controllers', [])
     $rootScope.isMute = false;
     $scope.speaker = function () {
       if ($rootScope.isMute) {
+        menuService.getDb().transaction(function (tx) {
+          tx.executeSql('DELETE FROM MYGAME WHERE name="mute"', [], function (tx, results) {
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["mute", false]);
+          });
+        });
         document.getElementById("myAudio").play();
         $("#speaker").attr("src", "img/speaker.png");
         $rootScope.isMute = false;
       } else {
+        menuService.getDb().transaction(function (tx) {
+          tx.executeSql('DELETE FROM MYGAME WHERE name="mute"', [], function (tx, results) {
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["mute", true]);
+          });
+        });
         document.getElementById("myAudio").pause();
         $("#speaker").attr("src", "img/mute.png");
         $rootScope.isMute = true;
