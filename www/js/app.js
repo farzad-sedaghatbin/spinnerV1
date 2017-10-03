@@ -72,20 +72,22 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         db.transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
             tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "false," + $rootScope.battle.gameId + "," + challengeId + ",0," + $rootScope.homeURL + "," + $rootScope.gamer.user], function (tx, results) {
-              $rootScope.changeUrl(url,tx);
+              $rootScope.changeUrl(url, true);
             });
           });
         });
       };
-      $rootScope.changeUrl = function (url,tx) {
+      $rootScope.changeUrl = function (url, isNotTrain) {
         $.ajax({
           type: 'HEAD',
           url: url,
           success: function () {
-            if (tx) {
-              tx.executeSql('DELETE FROM MYGAME WHERE name="wasInGame"', [], function (tx, results) {
-                tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["wasInGame", true], function (tx, results) {
-                  window.location.assign(url);
+            if (isNotTrain) {
+              db.transaction(function (tx) {
+                tx.executeSql('DELETE FROM MYGAME WHERE name="wasInGame"', [], function (tx, results) {
+                  tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["wasInGame", true], function (tx, results) {
+                    window.location.assign(url);
+                  });
                 });
               });
             } else {
