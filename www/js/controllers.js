@@ -1213,7 +1213,7 @@ angular.module('starter.controllers', [])
       };
       $http.post(signUpUrl, d)
         .success(function (data, status, headers, config) {
-          if (data === 400) {
+          if (data === "400") {
             menuService.myMessage("کاربر دیگری با این نام کاربری قبلا ثبت نام کرده", "خطا");
             menuService.stopLoading();
           } else {
