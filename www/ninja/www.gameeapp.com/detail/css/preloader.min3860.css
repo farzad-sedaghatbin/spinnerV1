@@ -88,8 +88,8 @@
 
 .preloader .icon {
   background: url('logo.png') no-repeat;
-  width: 125px;
-  height: 40px;
+  width: 115px;
+  height: 115px;
   margin: 0 auto;
   background-size: contain
 }
