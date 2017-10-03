@@ -753,7 +753,7 @@ angular.module('starter.controllers', [])
       menuService.startLoading();
       $http.post("https://dagala.cfapps.io/api/1/videoLimit",$rootScope.gamer.user).success(function (data, status, headers, config) {
         menuService.stopLoading();
-        if (data === "201") {
+        if (data === 201) {
           menuService.myMessage("در هر ساعت می توانید فقط یک ویدیو تماشا کنید", "خطا");
         } else {
           tapsell.requestAd(null, false, function (result) {

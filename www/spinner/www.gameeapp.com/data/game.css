@@ -6,7 +6,7 @@
     cursor: pointer;
     -ms-transform-origin: 0 0; /* IE 9 */
     -webkit-transform-origin:  0 0; /* Chrome, Safari, Opera */
-    transform-origin: 0 0; 
+    transform-origin: 0 0;
 
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -66,9 +66,15 @@ button:focus {
 }
 
 /*html ui*/
-
+@font-face {
+  font-family: 'myFont';
+  src:
+    url('assets/fonts/MehdiHeydari.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
 .ui-text, .ui-text span {
-    font-family: "Rounds Black";
+  font-family: myFont, serif;
     color: #222;
     /*font-size: 18px;*/
 }
@@ -126,7 +132,7 @@ button:focus {
 }
 
 .spins-count {
-    padding: 8px 60px;
+    padding: 0px 60px;
     text-align: left;
     position: absolute;
     z-index: 2;
@@ -186,7 +192,7 @@ div.level-up {
 
 span.level-mult {
     position: absolute;
-    top: 45px;
+    top: 25px;
     right: 17px;
     z-index: 7;
     font-size: 40px;
@@ -347,7 +353,7 @@ span.font-50 {
 .ls-wrapper {
 
     width: 640px;
-   
+
     /*
     max-width: 430px;
     min-width: 430px;*/
@@ -366,13 +372,13 @@ span.font-50 {
 }
 
 .button-ok {
-    background-image: url(assets/ui/sppinner_ok_but.png);
+    background-image: url(assets/ui/play.png);
     background-repeat: no-repeat;
 
     /*margin: 50px;*/
 
     width: 308px;
-    height: 117px;
+    height: 308px;
 
     display: inline-block !important;
 
@@ -560,7 +566,7 @@ span.upgrade-level {
     margin: 0 auto 40px;
     padding: 8px 20px 8px;
  }
- 
+
  span.upgrade-text {
     color: #333;
 }
