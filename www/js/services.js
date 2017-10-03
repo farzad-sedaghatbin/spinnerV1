@@ -9,16 +9,16 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
     myStopLoading();
   };
   var myHandleError = function (err, isFromLogin) {
-    if (err == 401) {
+    if (err.status == 401) {
       if (isFromLogin) {
         myMessage("نام کاربری یا رمز عبور اشتباه می باشد", "خطا");
       } else {
         myMessage("لطفا مجددا اطلاعات حساب خود را وارد نمایید", "خطا");
         $state.go("login");
       }
-    } else if (err && (err.status == 0 || err.status == -1)) {
+    } else if (err.status == 0 || err.status == -1) {
       window.plugins.toast.showShortBottom('لطفا اتصال اینترنت خود را بررسی کنید');
-    } else if (err && err.status == 418) {
+    } else if (err.status == 418) {
       $ionicPopup.alert({
         title: '<span class="myText">بروزرسانی</span>',
         template: '<div class="myText" style="padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">    <div style="direction: rtl;padding-top: 20px;line-height: 3em">' +
