@@ -1101,6 +1101,32 @@ angular.module('starter.controllers', [])
   .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory) {
     $scope.username;
     $scope.pass;
+    $scope.$on("$ionicView.enter", function (scopes, states) {
+      $("#username").keypress(function(event){
+        var ew = event.which;
+        if(ew == 32)
+          return true;
+        if(48 <= ew && ew <= 57)
+          return true;
+        if(65 <= ew && ew <= 90)
+          return true;
+        if(97 <= ew && ew <= 122)
+          return true;
+        return false;
+      });
+      $("#pass").keypress(function(event){
+        var ew = event.which;
+        if(ew == 32)
+          return true;
+        if(48 <= ew && ew <= 57)
+          return true;
+        if(65 <= ew && ew <= 90)
+          return true;
+        if(97 <= ew && ew <= 122)
+          return true;
+        return false;
+      });
+    });
     $scope.doLogin = function () {
       var username = $("#username").val();
       var pass = $("#pass").val();
@@ -1199,6 +1225,32 @@ angular.module('starter.controllers', [])
     $scope.username;
     $scope.pass;
     $scope.tel;
+    $scope.$on("$ionicView.enter", function (scopes, states) {
+      $("#username").keypress(function(event){
+        var ew = event.which;
+        if(ew == 32)
+          return true;
+        if(48 <= ew && ew <= 57)
+          return true;
+        if(65 <= ew && ew <= 90)
+          return true;
+        if(97 <= ew && ew <= 122)
+          return true;
+        return false;
+      });
+      $("#pass").keypress(function(event){
+        var ew = event.which;
+        if(ew == 32)
+          return true;
+        if(48 <= ew && ew <= 57)
+          return true;
+        if(65 <= ew && ew <= 90)
+          return true;
+        if(97 <= ew && ew <= 122)
+          return true;
+        return false;
+      });
+    });
     $scope.selectAvatar = function () {
       $ionicModal.fromTemplateUrl('avatars.html', {
         scope: $scope
