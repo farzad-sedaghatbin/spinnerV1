@@ -1012,6 +1012,7 @@ angular.module('starter.controllers', [])
         $http.post(serverUrl, $rootScope.battle.gameId + "," + $rootScope.battle.gameDTOS[$rootScope.battle.gameDTOS.length - 1].challengeId + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
           if (!data.lastUrl){
             menuService.myMessage("این بازی تمام شده است","خطا");
+            menuService.stopLoading();
             return;
           }
           $rootScope.goToGame(data.lastUrl, data.challengeId)
@@ -1025,6 +1026,7 @@ angular.module('starter.controllers', [])
         $http.post(serverUrl, $rootScope.battle.gameId + "," + $rootScope.battle.url + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
           if (!data.lastUrl){
             menuService.myMessage("این بازی تمام شده است","خطا");
+            menuService.stopLoading();
             return;
           }
           $rootScope.goToGame(data.lastUrl, data.challengeId)
