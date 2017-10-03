@@ -146,7 +146,7 @@ span.spins-actual-desc {
 span.spins-actual {
     color: white;
     font-size: 80px;
-    line-height: 60px;
+    line-height: 20px;
 }
 
 .fill-bar {

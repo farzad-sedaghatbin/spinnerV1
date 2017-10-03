@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'myFont';
   src:
-    url('font/MehdiHeydari.ttf') format('truetype');
+    url('MehdiHeydari.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
 }
