@@ -537,7 +537,7 @@ angular.module('starter.controllers', [])
     $scope.help = function () {
       menuService.boardHelp();
     };
-    function innerStart() {
+    function innerStart(id, url) {
       menuService.startLoading();
       if ($rootScope.isLeague && $rootScope.battle.status === "10") {
         $http.post("https://dagala.cfapps.io/api/1/createLeagueGame", $rootScope.leagueId + "," + id + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
@@ -576,13 +576,13 @@ angular.module('starter.controllers', [])
           data.pass = data.user;
           $rootScope.saveGamer(data);
           menuService.stopLoading();
-          innerStart();
+          innerStart(id, url);
         }).catch(function (err) {
           menuService.stopLoading();
           menuService.myHandleError(err, false);
         });
       } else {
-        innerStart();
+        innerStart(id, url);
       }
     };
     $scope.topRanks = function (id) {
