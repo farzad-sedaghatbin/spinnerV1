@@ -105,7 +105,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
       }, {
         wrapper: '#cupT',
         popup: {
-          content: 'رتبه شما را نشان می دهد',
+          content: 'رتبه شما را در کل بازی نشان می دهد',
           type: 'tooltip',
           position: 'bottom',
           offsetArrowHorizontal: -300
