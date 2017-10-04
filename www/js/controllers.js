@@ -351,6 +351,7 @@ angular.module('starter.controllers', [])
         if (!$rootScope.isTrain) {
           $("#release").css("display", "block");
         }
+        $("#title").text("دسته بندی");
       }
 
     };
@@ -443,6 +444,7 @@ angular.module('starter.controllers', [])
         if (!$rootScope.isTrain) {
           $("#release").css("display", "none");
         }
+        $("#title").text("بازی ها");
       } else {
         if ($rootScope.isTrain) {
           if (index === null) {
