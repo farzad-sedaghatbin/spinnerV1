@@ -107,7 +107,7 @@ angular.module('starter.controllers', [])
     };
     function innerChallenge() {
       if ($rootScope.gamer.coins < $rootScope.gamer.perGameCoins) {
-        menuService.myMessage("سکه های شما کافی نیست. برای بدست آوردن سکه به قسمت سکه خواری در منو مراجعه کنید.", "خطا");
+        menuService.myMessage("سکه های شما کافی نیست. برای بدست آوردن سکه، به قسمت سکه در منو مراجعه کنید.", "خطا");
         return;
       }
       if ($rootScope.gamer.halfGame.length === 5) {
@@ -171,6 +171,7 @@ angular.module('starter.controllers', [])
       $state.go("league");
     };
     $scope.training = function () {
+      menuService.resetPlayedGames();
       $rootScope.battle = null;
       $rootScope.isTrain = true;
       $rootScope.isLeague = false;
@@ -364,14 +365,14 @@ angular.module('starter.controllers', [])
               text: '',
               style: {"font-size": "large"},
               id: 5,
-              style2: false
+              style2: $.inArray('img/puzzle.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/hexo.png',
               adr: 'hexon/www.gameeapp.com/game/xRkQk0iwI3.html',
               text: '',
               style: {"font-size": "large"},
               id: 7,
-              style2: false
+              style2: $.inArray('img/hexo.png', menuService.getPlayedGames()) > -1
             }];
             break;
           case 2:
@@ -381,14 +382,14 @@ angular.module('starter.controllers', [])
               text: '',
               style: {"font-size": "large"},
               id: 2,
-              style2: false
+              style2: $.inArray('img/spinner.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/mr.png',
               adr: 'mr/www.gameeapp.com/game/WmHdqig.html',
               text: '',
               style: {"font-size": "large"},
               id: 8,
-              style2: false
+              style2: $.inArray('img/mr.png', menuService.getPlayedGames()) > -1
             }];
             break;
           case 3:
@@ -398,21 +399,21 @@ angular.module('starter.controllers', [])
               text: '',
               style: {"font-size": "large"},
               id: 3,
-              style2: false
+              style2: $.inArray('img/ninja.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/space.png',
               adr: 'space/www.gameeapp.com/game/ibBTDViUP.html',
               text: '',
               style: {"font-size": "large"},
               id: 1,
-              style2: false
+              style2: $.inArray('img/space.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/qubo.png',
               adr: 'qubo/www.gameeapp.com/game/u0yXP5o.html',
               text: '',
               style: {"font-size": "large"},
               id: 9,
-              style2: false
+              style2: $.inArray('img/qubo.png', menuService.getPlayedGames()) > -1
             }];
             break;
           case 4:
@@ -422,14 +423,14 @@ angular.module('starter.controllers', [])
               text: '',
               style: {"font-size": "large"},
               id: 4,
-              style2: false
+              style2: $.inArray('img/motor.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/car.png',
               adr: 'car/www.gameeapp.com/game/oFfW2omiW.html',
               text: '',
               style: {"font-size": "large"},
               id: 6,
-              style2: false
+              style2: $.inArray('img/car.png', menuService.getPlayedGames()) > -1
             }];
             break;
         }
@@ -906,7 +907,6 @@ angular.module('starter.controllers', [])
     $scope.loaded = false;
     var url;
     var param;
-
     function loadData(refresh) {
       if ($rootScope.isLeague) {
         url = "https://dagala.cfapps.io/api/1/detailLeague";
@@ -961,6 +961,10 @@ angular.module('starter.controllers', [])
             }
           });
         }
+        menuService.resetPlayedGames();
+        angular.forEach(data.gameDTOS, function (member, index) {
+          menuService.addPlayedGames(member.icon);
+        });
       }
     }
 

@@ -2,6 +2,7 @@ var app = angular.module('starter.services', []);
 
 app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, $rootScope) {
   var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+  var playedGames = [];
   var startLoading = function () {
     myLoading();
   };
@@ -97,7 +98,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
       }, {
         wrapper: '.menu-open-button',
         popup: {
-          content: 'این منو هست، حتما به اون سر بزن',
+          content: 'اینم منو، حتما بهش سر بزن',
           type: 'tooltip',
           position: 'bottom',
           offsetArrowHorizontal: -80
@@ -368,6 +369,15 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
     });
     $('ion-content').pagewalkthrough('show');
   };
+  var addPlayedGames = function (x) {
+    playedGames.push(x)
+  };
+  var getPlayedGames = function () {
+    return playedGames;
+  };
+  var resetPlayedGames = function () {
+    playedGames = [];
+  };
   return {
     startLoading: startLoading,
     stopLoading: stopLoading,
@@ -387,7 +397,10 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
     coiningHelp: coiningHelp,
     ranksHelp: ranksHelp,
     battlefieldTutorial: battlefieldTutorial,
-    battlefieldHelp: battlefieldHelp
+    battlefieldHelp: battlefieldHelp,
+    addPlayedGames : addPlayedGames,
+    getPlayedGames : getPlayedGames,
+    resetPlayedGames : resetPlayedGames
   };
 })
   .service('authHttpResponseInterceptor', ['$q', function ($q) {
