@@ -45,8 +45,8 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           $ionicHistory.goBack();
         }
       }, 101);//registerBackButton
-      inappbilling.init();
-      tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
+      // inappbilling.init();
+      // tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
