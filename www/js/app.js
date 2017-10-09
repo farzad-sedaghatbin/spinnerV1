@@ -67,7 +67,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
       $rootScope.isAndroid = function () {
         return ionic.Platform.isAndroid();
       };
-      var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+      var db = openDatabase('mydb', '1.0', 'OMIDDB', 2 * 1024 * 1024);
       $rootScope.goToGame = function (url, challengeId) {
         db.transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {

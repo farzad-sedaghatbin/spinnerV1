@@ -1,7 +1,7 @@
 var app = angular.module('starter.services', []);
 
 app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, $rootScope) {
-  var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+  var db = openDatabase('mydb', '1.0', 'OMIDDB', 2 * 1024 * 1024);
   var playedGames = [];
   var startLoading = function () {
     myLoading();

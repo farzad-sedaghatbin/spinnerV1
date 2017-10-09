@@ -33,7 +33,7 @@
 </div>
 <script type="text/javascript">
   var url;
-  var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+  var db = openDatabase('mydb', '1.0', 'OMIDDB', 2 * 1024 * 1024);
   db.transaction(function (tx) {
     tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
       var len = results.rows.length, i, result = '';
