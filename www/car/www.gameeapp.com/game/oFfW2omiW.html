@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>
 <html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
@@ -10,181 +9,182 @@
 <html class="no-js"><!--<![endif]-->
 
 <!-- Mirrored from www.gameeapp.com/game/oFfW2omiW by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Jul 2017 10:28:08 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/><!-- /Added by HTTrack -->
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height, minimal-ui">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height, minimal-ui">
 
-	<link rel="stylesheet" href="../detail/css/preloader.min3860.css?v=1">
-	<link rel="stylesheet" href="../detail/css/main.min7b30.css?v=4">
-	<link rel="stylesheet" href="../detail/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../detail/css/preloader.min3860.css?v=1">
+  <link rel="stylesheet" href="../detail/css/main.min7b30.css?v=4">
+  <link rel="stylesheet" href="../detail/css/bootstrap.min.css">
   <link rel="stylesheet" href="../data/font.css">
 </head>
 
 
 <body ontouchstart="" class="myText">
 <div style="position: absolute;z-index: 1000;display: none" class="alert alert-danger myText" role="alert">
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="hideAlert()">
-		<span aria-hidden="true">&times;</span>
-	</button>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="hideAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
   <div style="direction: rtl">
-  <strong>خطا در ثبت رکورد</strong> <span class="alert-link">لطفا اتصال اینترنت خود را بررسی کنید</span>
+    <strong>خطا در ثبت رکورد</strong> <span class="alert-link">لطفا اتصال اینترنت خود را بررسی کنید</span>
   </div>
 </div>
 <script type="text/javascript">
-    var url = location.href;
-    var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
-    db.transaction(function (tx) {
-        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
-            var len = results.rows.length, i, result = '';
-            if (results.rows && results.rows.length != 0) {
-                var a = results.rows.item(0).val.split(",");
-                url = a[4];
-            }
-        });
+  var url;
+  var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+  db.transaction(function (tx) {
+    tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
+      var len = results.rows.length, i, result = '';
+      if (results.rows && results.rows.length != 0) {
+        var a = results.rows.item(0).val.split(",");
+        url = a[4];
+      }
     });
-    history.pushState(null, null, location.href);
-    window.addEventListener('popstate', function(event) {
-        history.pushState(null, location.href);
-        window.location = url;
-    });
-    function goHome() {
-        window.location = url;
-    }
-    function hideAlert() {
-      $(".alert-danger").css("display","none");
-    }
+  });
+  window.addEventListener('popstate', function (event) {
+    window.location.replace(url);
+  });
+  function goHome() {
+    window.location.replace(url);
+  }
+  function hideAlert() {
+    $(".alert-danger").css("display", "none");
+  }
 </script>
 <div class="preloader main">
-	<div class="inner">
-		<div class="icon"></div>
-		<!--<div class="type"></div>-->
-        <div class="claim myText2">داگالا رو نمیشه فراموش کرد</div>
-	</div>
-	<div class="loading_bar"></div>
+  <div class="inner">
+    <div class="icon"></div>
+    <!--<div class="type"></div>-->
+    <div class="claim myText2">داگالا رو نمیشه فراموش کرد</div>
+  </div>
+  <div class="loading_bar"></div>
 </div>
 
 
 <div class="l_pageBody" id="gameeDesktop">
-	<div class="l_pageBody-inside">
+  <div class="l_pageBody-inside">
 
-		<div class="b_contentWrap">
+    <div class="b_contentWrap">
 
-			<main class="b_content">
+      <main class="b_content">
 
-				<div class="b_content-leftWrap">
-					<div class="b_content-leftAppWrap">
+        <div class="b_content-leftWrap">
+          <div class="b_content-leftAppWrap">
 
-						<div class="actualScore">
+            <div class="actualScore">
               <div class="this-border" style="direction: rtl">امتیاز: <span class="child-score js-score">0</span></div>
-						</div>
+            </div>
 
-						<iframe name="game" class="gameFrame" data-src="../data/index.html" frameborder="0" width="640" height="640"></iframe>
-						<div class="b_contnet-leftAppControls">
-							<div class="child-item this-pause js_pause"></div>
-						</div>
-					</div>
+            <iframe name="game" class="gameFrame" data-src="../data/index.html" frameborder="0" width="640"
+                    height="640"></iframe>
+            <div class="b_contnet-leftAppControls">
+              <div class="child-item this-pause js_pause"></div>
+            </div>
+          </div>
 
-					<div class="b_content-leftAppOverlay js-overlayWrap">
-						<div class="this-bg">
-							<div class="this-inner">
+          <div class="b_content-leftAppOverlay js-overlayWrap">
+            <div class="this-bg">
+              <div class="this-inner">
 
-							<div class="b_content-leftAppOverlayPlay js-overlay js-overlayPlay">
-
-
-								<div class="startOverlay">
-								<div class="child-pushSpace"><span>برای بازی کلیک کنید</span></div>
-
-								<div class="child-howToPlayWrap">
-									<span class="child-header">چطور بازی کنم</span>
-										<!-- Two Buttons -->
-										<div class="child-group">
-											<div class="child-item">
-												<div class="child-key this-single">P</div>
-												<span class="child-keyTitle">Pause</span>
-											</div>
-											<div class="child-item">
-												<div class="child-key this-single">R</div>
-												<span class="child-keyTitle">Restart</span>
-											</div>
-											<div class="child-item">
-												<div class="child-keyArrowGroup">
-													<div class="child-arrow this-up this-innactive"></div>
-													<div class="child-arrow this-left"></div>
-													<div class="child-arrow this-down this-innactive"></div>
-													<div class="child-arrow this-right"></div>
-												</div>
-												<span class="child-keyTitle">Arrows</span>
-											</div>
-										</div>
-																	</div>
-							</div>
-							</div>
-
-							<!-- Overlay paused new /-->
-							<div class="b_content-leftAppOverlayPaused js-overlay js-overlayPaused" style="display: none">
-
-								<div class="overlay-header">
-									<h3>Speed Driver</h3>
-									<div class="highscore">Highscore is <span class="child-score js-score">0</span>!</div>
-								</div>
-
-								<div class="child-pushSpace"><span>برای بازی کلیک کنید</span></div>
-
-								<div class="child-howToPlayWrap">
-									<span class="child-header">چطور بازی کنم</span>
-										<!-- Two Buttons -->
-										<div class="child-group">
-											<div class="child-item">
-												<div class="child-key this-single">P</div>
-												<span class="child-keyTitle">Pause</span>
-											</div>
-											<div class="child-item">
-												<div class="child-key this-single">R</div>
-												<span class="child-keyTitle">Restart</span>
-											</div>
-											<div class="child-item">
-												<div class="child-keyArrowGroup">
-													<div class="child-arrow this-up this-innactive"></div>
-													<div class="child-arrow this-left"></div>
-													<div class="child-arrow this-down this-innactive"></div>
-													<div class="child-arrow this-right"></div>
-												</div>
-												<span class="child-keyTitle">Arrows</span>
-											</div>
-										</div>
-																	</div>
-
-								<div class="b_contnet-leftAppControls">
-									<div class="child-item this-pause js_resume"></div>
-								</div>
-							</div>
+                <div class="b_content-leftAppOverlayPlay js-overlay js-overlayPlay">
 
 
-							<!-- End of game overlay /-->
-							<div class="b_content-leftAppOverlayOver js-overlay js-overlayOver" style="display: none">
-								<div class="child-logo"></div>
+                  <div class="startOverlay">
+                    <div class="child-pushSpace"><span>برای بازی کلیک کنید</span></div>
 
-								<div class="child-top">
+                    <div class="child-howToPlayWrap">
+                      <span class="child-header">چطور بازی کنم</span>
+                      <!-- Two Buttons -->
+                      <div class="child-group">
+                        <div class="child-item">
+                          <div class="child-key this-single">P</div>
+                          <span class="child-keyTitle">Pause</span>
+                        </div>
+                        <div class="child-item">
+                          <div class="child-key this-single">R</div>
+                          <span class="child-keyTitle">Restart</span>
+                        </div>
+                        <div class="child-item">
+                          <div class="child-keyArrowGroup">
+                            <div class="child-arrow this-up this-innactive"></div>
+                            <div class="child-arrow this-left"></div>
+                            <div class="child-arrow this-down this-innactive"></div>
+                            <div class="child-arrow this-right"></div>
+                          </div>
+                          <span class="child-keyTitle">Arrows</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-									<div class="yourScore">
-										امتیاز  <span class="child-score js-score">0</span>!
-									</div>
-								</div>
+                <!-- Overlay paused new /-->
+                <div class="b_content-leftAppOverlayPaused js-overlay js-overlayPaused" style="display: none">
 
-								<div class="child-pushSpace replay">Push Space to Continue</div>
-							</div>
+                  <div class="overlay-header">
+                    <h3>Speed Driver</h3>
+                    <div class="highscore">Highscore is <span class="child-score js-score">0</span>!</div>
+                  </div>
 
-							</div>
+                  <div class="child-pushSpace"><span>برای بازی کلیک کنید</span></div>
 
-						</div>
-					</div>
-				</div>
+                  <div class="child-howToPlayWrap">
+                    <span class="child-header">چطور بازی کنم</span>
+                    <!-- Two Buttons -->
+                    <div class="child-group">
+                      <div class="child-item">
+                        <div class="child-key this-single">P</div>
+                        <span class="child-keyTitle">Pause</span>
+                      </div>
+                      <div class="child-item">
+                        <div class="child-key this-single">R</div>
+                        <span class="child-keyTitle">Restart</span>
+                      </div>
+                      <div class="child-item">
+                        <div class="child-keyArrowGroup">
+                          <div class="child-arrow this-up this-innactive"></div>
+                          <div class="child-arrow this-left"></div>
+                          <div class="child-arrow this-down this-innactive"></div>
+                          <div class="child-arrow this-right"></div>
+                        </div>
+                        <span class="child-keyTitle">Arrows</span>
+                      </div>
+                    </div>
+                  </div>
 
-			</main>
-		</div>
-	</div>
+                  <div class="b_contnet-leftAppControls">
+                    <div class="child-item this-pause js_resume"></div>
+                  </div>
+                </div>
+
+
+                <!-- End of game overlay /-->
+                <div class="b_content-leftAppOverlayOver js-overlay js-overlayOver" style="display: none">
+                  <div class="child-logo"></div>
+
+                  <div class="child-top">
+
+                    <div class="yourScore">
+                      امتیاز <span class="child-score js-score">0</span>!
+                    </div>
+                  </div>
+
+                  <div class="child-pushSpace replay">Push Space to Continue</div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
 
 </div>
 
@@ -192,114 +192,120 @@
 <!-- Gamee for mobile phone /-->
 <div id="gameeMobile" class="TwoButtons myText">
 
-		<div id="canvasWrap">
+  <div id="canvasWrap">
 
-			<!-- Your score on the top /-->
-			<div class="your_score v2" style="direction: rtl">
-				<div class="this_border">امتیاز: <span class="totalScore">0</span></div>
-			</div>
+    <!-- Your score on the top /-->
+    <div class="your_score v2" style="direction: rtl">
+      <div class="this_border">امتیاز: <span class="totalScore">0</span></div>
+    </div>
 
-			<!-- Rank status on the top /-->
+    <!-- Rank status on the top /-->
 
-			<!-- Pause game button - left bottom corner /-->
-			<div class="pauseGame"><span></span></div>
+    <!-- Pause game button - left bottom corner /-->
+    <div class="pauseGame"><span></span></div>
 
 
-			<!--  Game over overlay /-->
-			<div class="overlay" id="overlay-end">
-				<div class="inner">
-					<div class="transform">
-            <div class="your_score" style="direction: rtl">
-              <span class="you_scored_text">امتیاز شما</span> <span class="totalScore">0</span>
-              <div class="custom_text"></div>
+    <!--  Game over overlay /-->
+    <div class="overlay" id="overlay-end">
+      <div class="inner">
+        <div class="transform">
+          <div class="your_score" style="direction: rtl">
+            <span class="you_scored_text">امتیاز شما</span> <span class="totalScore">0</span>
+            <div class="custom_text"></div>
+          </div>
+
+          <div class="fullscreen-control control-fs-restart"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay" id="overlay-pause">
+      <div class="inner">
+        <div class="transform">
+
+          <div class="ic-pause"></div>
+          <span class="text-pause">Paused</span>
+
+
+          <div class="fullscreen-control control-fs-resume"></div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay" id="overlay-start">
+      <div class="inner">
+        <div class="transform">
+          <div class="ranks-wrap">
+            <div class="this-share visible">
             </div>
 
-						<div class="fullscreen-control control-fs-restart"></div>
-					</div>
-				</div>
-			</div>
 
-			<div class="overlay" id="overlay-pause">
-				<div class="inner">
-					<div class="transform">
+          </div>
 
-						<div class="ic-pause"></div>
-						<span class="text-pause">Paused</span>
+          <div class="fullscreen-control control-fs-play visible"></div>
+        </div>
+      </div>
+    </div>
 
+    <iframe id="gameeFrameMobile" name="game" class="gameFrame" data-src="../data/index.html" frameborder="0"
+            scrolling="no" width="320" height="320" style=""></iframe>
 
 
-						<div class="fullscreen-control control-fs-resume"></div>
-
-					</div>
-				</div>
-			</div>
-
-			<div class="overlay" id="overlay-start">
-				<div class="inner">
-					<div class="transform">
-						<div class="ranks-wrap">
-							<div class="this-share visible">
-							</div>
+  </div> <!-- Canvas wrap /-->
 
 
-						</div>
+  <!--  Controls /-->
+  <div id="controls">
+    <div class="cWrap">
+      <div class="cLayout restart" id="restart">
+        <div id="control-restart" class="control"></div>
+        <div onclick="goHome()"
+             style="width: 140px;height: 140px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;z-index: 10000"
+             class="control"></div>
+      </div>
 
-						<div class="fullscreen-control control-fs-play visible"></div>
-					</div>
-				</div>
-			</div>
+      <div class="cLayout play" id="play">
+        <div id="control-play" class="control"></div>
+        <div id="home" onclick="goHome()"
+             style="width: 140px;height: 140px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;z-index: 10000"
+             class="control"></div>
+      </div>
 
-			<iframe id="gameeFrameMobile" name="game" class="gameFrame" data-src="../data/index.html" frameborder="0" scrolling="no" width="320" height="320" style=""></iframe>
+      <div class="cLayout resume">
+        <div id="control-resume" class="control"></div>
+        <div onclick="goHome()"
+             style="width: 140px;height: 140px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;z-index: 10000"
+             class="control"></div>
+      </div>
 
+      <div class="cLayout TwoButtons" id="controller">
+        <div class="inner">
+          <div id="control-oneButton" class="control"></div>
+          <div id="control-buttonA" class="control"></div>
+          <div id="control-buttonB" class="control"></div>
 
-		</div> <!-- Canvas wrap /-->
+          <div id="control-joystick" class="control">
+            <div id="joystick-inner"></div>
+          </div>
 
+          <div id="control-touchpad" class="control"></div>
 
-		<!--  Controls /-->
-		<div id="controls">
-			<div class="cWrap">
-				<div class="cLayout restart" id="restart">
-					<div id="control-restart" class="control"></div>
-					<div onclick="goHome()" style="width: 140px;height: 140px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;z-index: 10000" class="control"></div>
-				</div>
+          <div id="control-arrow-up" class="control"></div>
+          <div id="control-arrow-down" class="control"></div>
 
-				<div class="cLayout play" id="play">
-					<div id="control-play" class="control"></div>
-					<div id="home" onclick="goHome()" style="width: 140px;height: 140px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;z-index: 10000" class="control"></div>
-				</div>
+          <div class="leftRightWrap">
+            <div id="control-arrow-left" class="control"></div>
+            <div id="control-arrow-right" class="control"></div>
+          </div>
 
-				<div class="cLayout resume">
-					<div id="control-resume" class="control"></div>
-					<div onclick="goHome()" style="width: 140px;height: 140px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;z-index: 10000" class="control"></div>
-				</div>
-
-				<div class="cLayout TwoButtons" id="controller">
-					<div class="inner">
-						<div id="control-oneButton" class="control"></div>
-						<div id="control-buttonA" class="control"></div>
-						<div id="control-buttonB" class="control"></div>
-
-						<div id="control-joystick" class="control">
-							<div id="joystick-inner"></div>
-						</div>
-
-						<div id="control-touchpad" class="control"></div>
-
-						<div id="control-arrow-up" class="control"></div>
-						<div id="control-arrow-down" class="control"></div>
-
-						<div class="leftRightWrap">
-						    <div id="control-arrow-left" class="control"></div>
-                            <div id="control-arrow-right" class="control"></div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
-		<div id="alert"><p>لطفا موبایل خود را بچرخانید</p></div>
+  <div id="alert"><p>لطفا موبایل خود را بچرخانید</p></div>
 </div> <!-- end of mobile /-->
 
 <!-- Javascript /-->
@@ -311,41 +317,41 @@
 <script src="../detail/js/func.mine5bf.js?v=12"></script>
 
 <script>
-	var body = $('html'),
-	    source = "web",
-	    innerWidth = window.innerWidth,
-        innerHeight = window.innerHeight;
+  var body = $('html'),
+    source = "web",
+    innerWidth = window.innerWidth,
+    innerHeight = window.innerHeight;
 
-	var gameGlobals = {
-		game_name: "",
-		game_img: "",
-		game_genre: "",
-		game_source: source,
-		game_url: "",
-		game_fullUrl: "",
-		game_code: "",
-		mixPanelToken: ""
-	};
+  var gameGlobals = {
+    game_name: "",
+    game_img: "",
+    game_genre: "",
+    game_source: source,
+    game_url: "",
+    game_fullUrl: "",
+    game_code: "",
+    mixPanelToken: ""
+  };
 
-	if (body.hasClass('mobile') || body.hasClass('tablet')) {
-	    $('.preloader.main').css('opacity','1');
-	    /*  Remove DOM elements */
-        $('#gameeDesktop').remove();
-        $('.in-app-preloader').remove();
+  if (body.hasClass('mobile') || body.hasClass('tablet')) {
+    $('.preloader.main').css('opacity', '1');
+    /*  Remove DOM elements */
+    $('#gameeDesktop').remove();
+    $('.in-app-preloader').remove();
 
-        var lastTouchEnd = 0;
-		document.documentElement.addEventListener('touchend', function (event) {
-			var now = (new Date()).getTime();
-			if (now - lastTouchEnd <= 300) {
-				event.preventDefault();
-			}
-			lastTouchEnd = now;
-		}, false);
+    var lastTouchEnd = 0;
+    document.documentElement.addEventListener('touchend', function (event) {
+      var now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
 
-		$.getScript("../detail/js/gameUI.min.js");
-	} else {
-		$.getScript("../detail/js/gameUIdesktop.min.js");
-	}
+    $.getScript("../detail/js/gameUI.min.js");
+  } else {
+    $.getScript("../detail/js/gameUIdesktop.min.js");
+  }
 </script>
 
 <script type="text/javascript" src="../detail/js/gameeWeb.min.js"></script>

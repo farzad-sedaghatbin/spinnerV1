@@ -32,7 +32,7 @@
   </div>
 </div>
 <script type="text/javascript">
-  var url = location.href;
+  var url;
   var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
   db.transaction(function (tx) {
     tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
@@ -43,10 +43,8 @@
       }
     });
   });
-  history.pushState(null, null, location.href);
-  window.addEventListener('popstate', function(event) {
-    history.pushState(null, location.href);
-    window.location = url;
+  window.addEventListener('popstate', function (event) {
+    window.location.replace(url);
   });
   function goHome() {
     window.location = url;
