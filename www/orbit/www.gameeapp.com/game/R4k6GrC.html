@@ -17,17 +17,49 @@
 
 	<link rel="stylesheet" href="../detail/css/preloader.min3860.css?v=1">
 	<link rel="stylesheet" href="../detail/css/main.min8fa7.css?v=18">
-
+  <link rel="stylesheet" href="../detail/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../data/font.css">
 </head>
 
 
 <body ontouchstart="">
-
+<div style="position: absolute;z-index: 1000;display: none" class="alert alert-danger myText" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="hideAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div style="direction: rtl">
+    <strong>خطا در ثبت رکورد</strong> <span class="alert-link">لطفا اتصال اینترنت خود را بررسی کنید</span>
+  </div>
+</div>
+<script type="text/javascript">
+  var url = location.href;
+  var db = openDatabase('mydb', '1.0', 'OMIDDB', 1024 * 1024);
+  db.transaction(function (tx) {
+    tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
+      var len = results.rows.length, i, result = '';
+      if (results.rows && results.rows.length != 0) {
+        var a = results.rows.item(0).val.split(",");
+        url = a[4];
+      }
+    });
+  });
+  history.pushState(null, null, location.href);
+  window.addEventListener('popstate', function(event) {
+    history.pushState(null, location.href);
+    window.location = url;
+  });
+  function goHome() {
+    window.location = url;
+  }
+  function hideAlert() {
+    $(".alert-danger").css("display","none");
+  }
+</script>
 <div class="preloader main">
 	<div class="inner">
 		<div class="icon"></div>
-		<div class="type"></div>
-        <div class="claim">Social gaming, endless fun!</div>
+		<!--<div class="type"></div>-->
+        <div class="claim myText2">داگالا رو نمیشه فراموش کرد</div>
 	</div>
 	<div class="loading_bar"></div>
 </div>
@@ -147,12 +179,12 @@
 
 
 <!-- Gamee for mobile phone /-->
-<div id="gameeMobile" class="OneButton">
+<div id="gameeMobile" class="OneButton myText">
 
 		<div id="canvasWrap">
 			<!-- Your score on the top /-->
 			<div class="your_score v2">
-				<div class="this_border">Score: <span class="totalScore">0</span></div>
+				<div class="this_border">امتیاز :<span class="totalScore">0</span></div>
 			</div>
 
 			<!-- Rank status on the top /-->
@@ -166,7 +198,7 @@
 				<div class="inner">
 					<div class="transform_score" style="display: none;">
 						<div class="your_score">
-							<span class="you_scored_text">You scored</span> <span class="totalScore">0</span>!
+							<span class="you_scored_text">امتیاز شما</span> <span class="totalScore">0</span>
 							<div class="custom_text"></div>
 						</div>
                     </div>
@@ -179,7 +211,10 @@
 						</div>
 					</div>
 
-					<div class="fullscreen-control control-fs-restart"></div>
+          <div>
+            <div class="fullscreen-control control-fs-restart" style="position: relative;margin: 0"></div>
+            <div onclick="goHome()" style="width: 105px;height: 105px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;z-index: 10000" class="control"></div>
+          </div>
 
 					<div class="noTouchScrollUp"></div>
 				</div>
@@ -194,7 +229,10 @@
 
 					</div>
 
-					<div class="fullscreen-control control-fs-resume"></div>
+          <div>
+            <div class="fullscreen-control control-fs-resume" style="position: relative;margin: 0"></div>
+            <div onclick="goHome()" style="width: 105px;height: 105px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;z-index: 10000" class="control"></div>
+          </div>
 				</div>
 			</div>
 
@@ -207,7 +245,10 @@
 						</div>
 					</div>
 
-					<div class="fullscreen-control control-fs-play visible"></div>
+          <div>
+            <div class="fullscreen-control control-fs-play visible" style="position: relative;margin: 0"></div>
+            <div id="home" onclick="goHome()" style="width: 105px;height: 105px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;z-index: 10000" class="control"></div>
+          </div>
 
 				</div>
 			</div>
@@ -223,14 +264,17 @@
 			<div class="cWrap">
 				<div class="cLayout restart" id="restart">
 					<div id="control-restart" class="control"></div>
+          <div onclick="goHome()" style="width: 140px;height: 140px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;z-index: 10000" class="control"></div>
 				</div>
 
 				<div class="cLayout play" id="play">
 					<div id="control-play" class="control"></div>
+          <div onclick="goHome()" style="width: 140px;height: 140px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;z-index: 10000" class="control"></div>
 				</div>
 
 				<div class="cLayout resume">
 					<div id="control-resume" class="control"></div>
+          <div onclick="goHome()" style="width: 140px;height: 140px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;z-index: 10000" class="control"></div>
 				</div>
 
 				<div class="cLayout OneButton" id="controller">
@@ -260,7 +304,7 @@
 
 
 
-		<div id="alert"><p>Please rotate your phone to enjoy GAMEE</p></div>
+		<div id="alert"><p>لطفا موبایل خود را بچرخانید</p></div>
 </div> <!-- end of mobile /-->
 
 <!-- Javascript /-->
