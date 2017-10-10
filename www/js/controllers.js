@@ -867,7 +867,7 @@ angular.module('starter.controllers', [])
         menuService.myHandleError(err);
       });
     };
-    $scope.doBuy = function (productId, price, icon, amount) {
+    $scope.doBuy = function (productId, price, icon, amount,id) {
       $rootScope.modal.hide();
       if ($rootScope.isAndroid()) {
         inappbilling.buy(function (data) {
@@ -891,7 +891,7 @@ angular.module('starter.controllers', [])
       } else {
         menuService.startLoading();
         var url = "https://dagala.cfapps.io/api/1/factor";
-        $http.post(url, price + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
+        $http.post(url, price + "," + $rootScope.gamer.user + "," + id).success(function (data, status, headers, config) {
           menuService.stopLoading();
           window.open(
             "http://dagala.ir/bank.html?res=" + data + "&amount=" + price,
