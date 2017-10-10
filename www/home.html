@@ -41,19 +41,19 @@
     </svg>
     <div class="myText" style="float:left;margin-top: 10px">
       <span style="display:inline;"><img id="cupT" class="home-badge-img" src="img/cup.png"/></span>
-      <span class="home-badge-text" style="display:inline;top: 10px;left: 40px">{{gamer.rating}}</span>
+      <span class="home-badge-text" style="display:inline;top: 10px;left: 40px;font-size: 25px">{{gamer.rating}}</span>
     </div>
     <div class="myText" style="float:left;clear: both">
       <span style="display:inline;"><img id="coinT" class="home-badge-img" src="img/coin.png"/></span>
-      <span class="home-badge-text" style="display:inline;top: 45px;left: 40px">{{gamer.coins}}</span>
+      <span class="home-badge-text" style="display:inline;top: 45px;left: 40px;font-size: 25px">{{gamer.coins}}</span>
     </div>
     <div class="myText" style="float:left;clear: both">
       <span style="display:inline;"><img id="gemT" class="home-badge-img" src="img/gem.png"/></span>
-      <span class="home-badge-text" style="display:inline;top: 85px;left: 40px">{{gamer.gem}}</span>
+      <span class="home-badge-text" style="display:inline;top: 80px;left: 40px;font-size: 25px">{{gamer.gem}}</span>
     </div>
     <div ng-if="gamer.exp" class="myText" style="float:left;clear: both">
       <span style="display:inline;"><img class="home-badge-img" src="img/exp.png"/></span>
-      <span class="home-badge-text" style="display:inline;top: 115px;left: 40px">{{gamer.exp}}</span>
+      <span class="home-badge-text" style="display:inline;top: 115px;left: 40px;font-size: 25px">{{gamer.exp}}</span>
     </div>
     <div class="myText" style="float:left;clear: both" ng-click="speaker()">
       <span style="display:inline;"><img id="speaker" class="home-badge-img" src="img/speaker.png"/></span>
@@ -62,9 +62,9 @@
          ng-click="selectAvatar()">
       <img style="width: 42px;margin-top: 12px;border-radius: 50%;margin-left: 16px;" src="{{gamer.avatar}}">
     </div>
-    <div class="myEText" style="color: white;position: absolute;top: 25px;right: 70px">{{gamer.user}}</div>
-    <div ng-if="gamer" class="myText" style="color: white;position: absolute;top: 45px;right: 70px">سطح : {{gamer.level}}</div>
-    <div ng-if="gamer" class="myText" style="color: white;position: absolute;top: 65px;right: 70px">امتیاز : {{gamer.score}}</div>
+    <div class="myEText" style="color: white;position: absolute;top: 25px;right: 70px;font-size: 20px">{{gamer.user}}</div>
+    <div ng-if="gamer" class="myText" style="color: white;position: absolute;top: 45px;right: 70px;font-size: 20px">سطح : {{gamer.level}}</div>
+    <div ng-if="gamer" class="myText" style="color: white;position: absolute;top: 68px;right: 70px;font-size: 20px">امتیاز : {{gamer.score}}</div>
     <div class="myText">
       <div ng-if="gamer.guest" class="row" style="margin-top: 30px">
         <article class="notepad">
