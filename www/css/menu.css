@@ -130,7 +130,7 @@ ul {
 .error-message {
   padding: 3px 20px 3px 5px;
   margin: 0;
-  color: #d62d20;
+  color: rgb(0, 18, 255);
   font-size: 16px;
   text-align: right;
 }
