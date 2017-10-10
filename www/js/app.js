@@ -140,6 +140,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           $rootScope.gamer = JSON.parse(result);
           $http.defaults.headers.common['Authorization'] = $rootScope.gamer.token;
           navigator.splashscreen.hide();
+          $rootScope.refreshGamer(false,null);
         } else {
           var url = "https://dagala.cfapps.io/api/1/tempUser";
           $http.post(url).success(function (data, status, headers, config) {
