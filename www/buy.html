@@ -5,11 +5,14 @@
     <div style="margin-top: 20px">
       <div class="row myText" ng-repeat="row in rows">
         <div class="col grid-example s1 battlefield" style="color: white;font-size: smaller;"
-             ng-click="doBuy(row.name,row.price,row.icon,row.amount,row.id)">
+             ng-click="doBuy(row.name,row.price,row.icon,row.amount,row.id,row.coin)">
           خرید
         </div>
-        <div class="col grid-example s3 coining-text-right" style="font-size: smaller;text-align: center !important;">
+        <div ng-if="!row.coin" class="col grid-example s3 coining-text-right" style="font-size: smaller;text-align: center !important;">
           {{row.price}} ت
+        </div>
+        <div ng-if="row.coin" class="col grid-example s3 coining-text-right" style="font-size: smaller;text-align: center !important;">
+          {{row.price}} سکه
         </div>
         <div class="col grid-example s6 coining-text-left" style="color: darkmagenta;padding: 0;text-align: right !important;font-size: x-small;min-width: 40%">
           {{row.description}}
