@@ -1255,10 +1255,10 @@ angular.module('starter.controllers', [])
       $http.post(signUpUrl, JSON.stringify({code: code, password: password}))
         .success(function (suc) {
           menuService.stopLoading();
-          if (suc === "200") {
+          if (suc === 200) {
             menuService.myMessage("کلمه عبور با موفقیت تغییر کرد");
             $state.go("login");
-          } else if (suc === "301") {
+          } else if (suc === 301) {
             menuService.myMessage("خطا در عملیات. لطفا مجددا تلاش کنید", "خطا");
             $state.go("login");
           } else {
