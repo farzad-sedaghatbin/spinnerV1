@@ -867,9 +867,21 @@ angular.module('starter.controllers', [])
         menuService.myHandleError(err);
       });
     };
-    $scope.doBuy = function (productId, price, icon, amount,id) {
+    $scope.doBuy = function (productId, price, icon, amount,id,isCoin) {
       $rootScope.modal.hide();
-      if ($rootScope.isAndroid()) {
+      if (isCoin){
+        menuService.startLoading();
+        $http.post("https://dagala.cfapps.io/api/1/inventory", productId + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
+          data.pass = $rootScope.gamer.pass;
+          data.token = $rootScope.gamer.token;
+          $rootScope.saveGamer(data);
+          menuService.myMessage("خرید شما با موفقیت انجام شد", "پیام");
+          menuService.stopLoading();
+        }).catch(function (err) {
+          menuService.stopLoading();
+          menuService.myHandleError(err);
+        });
+      } else if ($rootScope.isAndroid()) {
         inappbilling.buy(function (data) {
           $http.post("https://dagala.cfapps.io/api/1/inventory", productId + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
             inappbilling.consumePurchase(function () {
