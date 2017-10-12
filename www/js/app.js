@@ -45,8 +45,18 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           $ionicHistory.goBack();
         }
       }, 101);//registerBackButton
-      // inappbilling.init();
-      // tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
+
+      if (window.navigator.simulator === true) {
+        alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
+        navigator.app.exitApp();
+
+      };
+      if(device.isVirtual){
+        alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
+        navigator.app.exitApp();
+      }
+      inappbilling.init();
+      tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
