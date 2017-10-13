@@ -379,7 +379,7 @@ angular.module('starter.controllers', [])
           case 2:
             $scope.config.submenus = [{
               menuicon: 'img/spinner.png',
-              adr: 'spinner/www.gameeapp.com/game/ipUMpcUES.html',
+              adr: 'spinner/gamee/game/index.html',
               text: '',
               style: {"font-size": "large"},
               id: 2,
