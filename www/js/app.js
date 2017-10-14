@@ -89,19 +89,19 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
       };
       $rootScope.changeUrl = function (url, isNotTrain) {
         $.ajax({
-          type: 'HEAD',
+          type: 'GET',
           url: url,
           success: function () {
             if (isNotTrain) {
               db.transaction(function (tx) {
                 tx.executeSql('DELETE FROM MYGAME WHERE name="wasInGame"', [], function (tx, results) {
                   tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["wasInGame", true], function (tx, results) {
-                    window.location = url;
+                    window.location.replace(url);
                   });
                 });
               });
             } else {
-              window.location = url;
+              window.location.replace(url);
             }
           },
           error: function () {
