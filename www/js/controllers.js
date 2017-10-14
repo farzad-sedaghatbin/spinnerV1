@@ -362,18 +362,32 @@ angular.module('starter.controllers', [])
           case 1:
             $scope.config.submenus = [{
               menuicon: 'img/puzzle.png',
-              adr: 'puzzle/www.gameeapp.com/game/FGM7TVW2Ma.html',
+              adr: 'puzzle/gamee/game/index.html',
               text: '',
               style: {"font-size": "large"},
               id: 5,
               style2: $.inArray('img/puzzle.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/hexo.png',
-              adr: 'hexon/www.gameeapp.com/game/xRkQk0iwI3.html',
+              adr: 'hexon/gamee/game/index.html',
               text: '',
               style: {"font-size": "large"},
               id: 7,
               style2: $.inArray('img/hexo.png', menuService.getPlayedGames()) > -1
+            },{
+              menuicon: 'img/diamond.png',
+              adr: 'diamond/gamee/game/index.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 10,
+              style2: $.inArray('img/diamond.png', menuService.getPlayedGames()) > -1
+            },{
+              menuicon: 'img/hegza.png',
+              adr: 'hegza/gamee/game/index.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 11,
+              style2: $.inArray('img/hegza.png', menuService.getPlayedGames()) > -1
             }];
             break;
           case 2:
@@ -386,52 +400,87 @@ angular.module('starter.controllers', [])
               style2: $.inArray('img/spinner.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/mr.png',
-              adr: 'mr/www.gameeapp.com/game/WmHdqig.html',
+              adr: 'mr/gamee/game/index.html',
               text: '',
               style: {"font-size": "large"},
               id: 8,
               style2: $.inArray('img/mr.png', menuService.getPlayedGames()) > -1
+            },{
+              menuicon: 'img/orbit.png',
+              adr: 'orbit/gamee/game/index.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 12,
+              style2: $.inArray('img/orbit.png', menuService.getPlayedGames()) > -1
+            },{
+              menuicon: 'img/school.png',
+              adr: 'school/gamee/game/index.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 13,
+              style2: $.inArray('img/school.png', menuService.getPlayedGames()) > -1
             }];
             break;
           case 3:
             $scope.config.submenus = [{
               menuicon: 'img/ninja.png',
-              adr: 'ninja/www.gameeapp.com/game/G1oy49taR.html',
+              adr: 'ninja/gamee/game/index.html',
               text: '',
               style: {"font-size": "large"},
               id: 3,
               style2: $.inArray('img/ninja.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/space.png',
-              adr: 'space/www.gameeapp.com/game/ibBTDViUP.html',
+              adr: 'space/gamee/game/index.html',
               text: '',
               style: {"font-size": "large"},
               id: 1,
               style2: $.inArray('img/space.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/qubo.png',
-              adr: 'qubo/www.gameeapp.com/game/u0yXP5o.html',
+              adr: 'qubo/gamee/game/index.html',
               text: '',
               style: {"font-size": "large"},
               id: 9,
               style2: $.inArray('img/qubo.png', menuService.getPlayedGames()) > -1
+            },{
+              menuicon: 'img/tire.png',
+              adr: 'tire/gamee/game/index.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 14,
+              style2: $.inArray('img/tire.png', menuService.getPlayedGames()) > -1
             }];
             break;
           case 4:
             $scope.config.submenus = [{
               menuicon: 'img/motor.png',
-              adr: 'motor/www.gameeapp.com/game/kAHVRl.html',
+              adr: 'motor/gamee/game/index.html',
               text: '',
               style: {"font-size": "large"},
               id: 4,
               style2: $.inArray('img/motor.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/car.png',
-              adr: 'car/www.gameeapp.com/game/oFfW2omiW.html',
+              adr: 'car/gamee/game/index.html',
               text: '',
               style: {"font-size": "large"},
               id: 6,
               style2: $.inArray('img/car.png', menuService.getPlayedGames()) > -1
+            },{
+              menuicon: 'img/football.png',
+              adr: 'football/gamee/game/index.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 15,
+              style2: $.inArray('img/football.png', menuService.getPlayedGames()) > -1
+            },{
+              menuicon: 'img/karate.png',
+              adr: 'karate/gamee/game/index.html',
+              text: '',
+              style: {"font-size": "large"},
+              id: 16,
+              style2: $.inArray('img/karate.png', menuService.getPlayedGames()) > -1
             }];
             break;
         }
