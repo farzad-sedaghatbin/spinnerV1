@@ -96,12 +96,12 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
               db.transaction(function (tx) {
                 tx.executeSql('DELETE FROM MYGAME WHERE name="wasInGame"', [], function (tx, results) {
                   tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["wasInGame", true], function (tx, results) {
-                    window.location.assign(url);
+                    window.location = url;
                   });
                 });
               });
             } else {
-              window.location.assign(url);
+              window.location = url;
             }
           },
           error: function () {
