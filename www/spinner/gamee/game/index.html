@@ -31,6 +31,28 @@
   <strong>خطا در ثبت رکورد</strong> <span class="alert-link">لطفا اتصال اینترنت خود را بررسی کنید</span>
   </div>
 </div>
+<script type="text/javascript">
+  var url;
+  var db = openDatabase('mydb', '1.0', 'OMIDDB', 2 * 1024 * 1024);
+  db.transaction(function (tx) {
+    tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
+      var len = results.rows.length, i, result = '';
+      if (results.rows && results.rows.length != 0) {
+        var a = results.rows.item(0).val.split(",");
+        url = a[4];
+      }
+    });
+  });
+  window.addEventListener('popstate', function (event) {
+    window.location.replace(url);
+  });
+  function goHome() {
+    window.location = url;
+  }
+  function hideAlert() {
+    $(".alert-danger").css("display","none");
+  }
+</script>
 <div class="preloader main">
 	<div class="inner">
 		<div class="icon"></div>
