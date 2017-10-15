@@ -804,7 +804,7 @@ angular.module('starter.controllers', [])
       $ionicHistory.goBack();
     }
   })
-  .controller('WheelCtrl', function ($scope, $state, $ionicHistory, menuService, $http, $rootScope) {
+  .controller('WheelCtrl', function ($scope, $state, $ionicHistory, menuService, $http, $rootScope,$timeout) {
     var wasHit;
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
       wasHit = false;
@@ -824,16 +824,18 @@ angular.module('starter.controllers', [])
       );
       $spinner.addClass(preffix + value);
       $http.post("https://dagala.cfapps.io/api/1/rouletteWheel", value + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
-        if (data) {
-          $rootScope.gamer.coins += data;
-          if (data >= 0) {
-            menuService.myMessage(data + " سکه دریافت کردید", "پیام");
+        $rootScope.gamer.coins += data;
+        $timeout(function () {
+          if (data) {
+            if (data >= 0) {
+              menuService.myMessage(data + " سکه دریافت کردید", "پیام");
+            } else {
+              menuService.myMessage(data + " سکه از شما کم شد", "پیام");
+            }
           } else {
-            menuService.myMessage(data + " سکه از شما کم شد", "پیام");
+            menuService.myMessage("شما سهمیه امروز خود را دریافت کردید", "خطا");
           }
-        } else {
-          menuService.myMessage("شما سهمیه امروز خود را دریافت کردید", "خطا");
-        }
+        },2500);
       }).catch(function (err) {
         menuService.myHandleError(err);
       });
