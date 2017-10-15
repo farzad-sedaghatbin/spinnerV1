@@ -1,92 +1,92 @@
 {
-    "cordova-plugin-device": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-device@~1.1.4"
-        },
-        "is_top_level": true,
-        "variables": {}
+  "cordova-plugin-device": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-device@~1.1.4"
     },
-    "cordova-plugin-console": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-console@1.0.5"
-        },
-        "is_top_level": true,
-        "variables": {}
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-console": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-console@1.0.5"
     },
-    "cordova-plugin-whitelist": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-whitelist@1.3.1"
-        },
-        "is_top_level": true,
-        "variables": {}
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-whitelist": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-whitelist@1.3.1"
     },
-    "cordova-plugin-splashscreen": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-splashscreen@~4.0.3"
-        },
-        "is_top_level": true,
-        "variables": {}
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-splashscreen": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-splashscreen@~4.0.3"
     },
-    "cordova-plugin-statusbar": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-statusbar@2.2.1"
-        },
-        "is_top_level": true,
-        "variables": {}
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-statusbar": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-statusbar@2.2.1"
     },
-    "ionic-plugin-keyboard": {
-        "source": {
-            "type": "registry",
-            "id": "ionic-plugin-keyboard@~2.2.1"
-        },
-        "is_top_level": true,
-        "variables": {}
+    "is_top_level": true,
+    "variables": {}
+  },
+  "ionic-plugin-keyboard": {
+    "source": {
+      "type": "registry",
+      "id": "ionic-plugin-keyboard@~2.2.1"
     },
-    "com.smartmobilesoftware.androidinappbilling": {
-        "source": {
-            "type": "local",
-            "path": "/home/farzad/Downloads/Cafebazzar-inappbilling-cordova-master"
-        },
-        "is_top_level": true,
-        "variables": {
-            "BILLING_KEY": "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwC1FyNxCZ0VGU3KG/P0+r5+xSs967ZY7vToMLGNrrreIi5w5gP2z7UtAicMcYrLHgus6Q4+QPAhvdfoeIixGqyEf8nRbQiN+F3TQTxQxKB7OKkopNiOWz4pSUsUkrh4bMP779DxYBoc3LhoYbZvZIAJkzkehmpgmm6j1dh4Ppu/EYiDKOX4fq0esLHfiZUhev9RoTQB1tHUyYc9g31WUhs9QRxdo3pmsWL9/AqTjYUCAwEAAQ=="
-        }
+    "is_top_level": true,
+    "variables": {}
+  },
+  "com.smartmobilesoftware.androidinappbilling": {
+    "source": {
+      "type": "local",
+      "path": "/home/farzad/Downloads/Cafebazzar-inappbilling-cordova-master"
     },
-    "tapsell-v3-cordova-plugin": {
-        "source": {
-            "type": "registry",
-            "id": "tapsell-v3-cordova-plugin"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-x-toast": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-x-toast"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-inappbrowser": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-inappbrowser@1.7.1"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "com.telerik.plugins.nativepagetransitions": {
-        "source": {
-            "type": "registry",
-            "id": "com.telerik.plugins.nativepagetransitions"
-        },
-        "is_top_level": true,
-        "variables": {}
+    "is_top_level": true,
+    "variables": {
+      "BILLING_KEY": "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwC1FyNxCZ0VGU3KG/P0+r5+xSs967ZY7vToMLGNrrreIi5w5gP2z7UtAicMcYrLHgus6Q4+QPAhvdfoeIixGqyEf8nRbQiN+F3TQTxQxKB7OKkopNiOWz4pSUsUkrh4bMP779DxYBoc3LhoYbZvZIAJkzkehmpgmm6j1dh4Ppu/EYiDKOX4fq0esLHfiZUhev9RoTQB1tHUyYc9g31WUhs9QRxdo3pmsWL9/AqTjYUCAwEAAQ=="
     }
+  },
+  "tapsell-v3-cordova-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "tapsell-v3-cordova-plugin"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-x-toast": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-x-toast"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-inappbrowser": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-inappbrowser@1.7.1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "com.telerik.plugins.nativepagetransitions": {
+    "source": {
+      "type": "registry",
+      "id": "com.telerik.plugins.nativepagetransitions"
+    },
+    "is_top_level": true,
+    "variables": {}
+  }
 }
