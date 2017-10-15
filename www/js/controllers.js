@@ -188,30 +188,72 @@ angular.module('starter.controllers', [])
       $rootScope.isEnded = isEnded;
       $state.go("battlefield");
     };
-    var halfs = true;
-    var ends = true;
     $scope.toggleHalfs = function () {
-      if (halfs) {
-        halfs = false;
+      if ($rootScope.halfs) {
+        $rootScope.halfs = false;
         $(".myhalfs").hide("slow");
         $("#halfIcon").css("background", "url(img/hide.png) no-repeat center").css("background-size", "contain");
+        menuService.getDb().transaction(function (tx) {
+          tx.executeSql('DELETE FROM MYGAME WHERE name="halfs"', [], function (tx, results) {
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["halfs", true]);
+          });
+        });
       } else {
-        halfs = true;
+        $rootScope.halfs = true;
         $(".myhalfs").show("slow");
         $("#halfIcon").css("background", "url(img/show.png) no-repeat center").css("background-size", "contain");
+        menuService.getDb().transaction(function (tx) {
+          tx.executeSql('DELETE FROM MYGAME WHERE name="halfs"', [], function (tx, results) {
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["halfs", false]);
+          });
+        });
       }
     };
     $scope.toggleEnds = function () {
-      if (ends) {
-        ends = false;
+      if ($rootScope.ends) {
+        $rootScope.ends = false;
         $(".myends").hide("slow");
         $("#endIcon").css("background", "url(img/hide.png) no-repeat center").css("background-size", "contain");
+        menuService.getDb().transaction(function (tx) {
+          tx.executeSql('DELETE FROM MYGAME WHERE name="ends"', [], function (tx, results) {
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["ends", true]);
+          });
+        });
       } else {
-        ends = true;
+        $rootScope.ends = true;
         $(".myends").show("slow");
         $("#endIcon").css("background", "url(img/show.png) no-repeat center").css("background-size", "contain");
+        menuService.getDb().transaction(function (tx) {
+          tx.executeSql('DELETE FROM MYGAME WHERE name="ends"', [], function (tx, results) {
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["ends", false]);
+          });
+        });
       }
     };
+    $timeout(function () {
+      menuService.getDb().transaction(function (tx) {
+        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="halfs"', [], function (tx, results) {
+          var len = results.rows.length, i, result = '';
+          if (!results.rows || results.rows.length == 0) {
+            $rootScope.halfs = false;
+          } else {
+            $rootScope.halfs = results.rows.item(0).val === true || results.rows.item(0).val === "true";
+          }
+          $scope.toggleHalfs();
+        }, null);
+      });
+      menuService.getDb().transaction(function (tx) {
+        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="ends"', [], function (tx, results) {
+          var len = results.rows.length, i, result = '';
+          if (!results.rows || results.rows.length == 0) {
+            $rootScope.ends = false;
+          } else {
+            $rootScope.ends = results.rows.item(0).val === true || results.rows.item(0).val === "true";
+          }
+          $scope.toggleEnds();
+        }, null);
+      });
+    }, 100);
     $timeout(function () {
       menuService.homeTutorial();
     }, 700);

@@ -182,7 +182,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           if (!results.rows || results.rows.length == 0) {
             $rootScope.isMute = false;
           } else {
-            $rootScope.isMute = results.rows.item(0).val;
+            $rootScope.isMute = results.rows.item(0).val === true || results.rows.item(0).val === "true";
             if ($rootScope.isMute) {
               document.getElementById("myAudio").pause();
               $("#speaker").attr("src", "img/mute.png");
