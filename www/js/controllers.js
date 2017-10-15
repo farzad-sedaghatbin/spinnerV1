@@ -110,7 +110,7 @@ angular.module('starter.controllers', [])
         menuService.myMessage("سکه های شما کافی نیست. برای بدست آوردن سکه، به قسمت سکه در منو مراجعه کنید.", "خطا");
         return;
       }
-      if ($rootScope.gamer.halfGame.length === 5) {
+      if ($rootScope.gamer.halfGame.length === 10) {
         menuService.myMessage("شما به سقف تعداد بازی نیمه تمام رسیده اید.", "خطا");
         return;
       }
@@ -955,7 +955,7 @@ angular.module('starter.controllers', [])
         $http.post(url, price + "," + $rootScope.gamer.user + "," + id).success(function (data, status, headers, config) {
           menuService.stopLoading();
           window.open(
-            "http://dagala.ir/bank.html?res=" + data + "&amount=" + price,
+            "http://dagala.ir/bank.html?res=" + data + "&amount=" + parseInt(price) * 10,
             "_system",
             "hidden=no,location=no,clearsessioncache=yes,clearcache=yes"
           );
