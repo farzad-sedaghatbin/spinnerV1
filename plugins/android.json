@@ -1,0 +1,50 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "com.smartmobilesoftware.androidinappbilling": {
+      "BILLING_KEY": "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwC1FyNxCZ0VGU3KG/P0+r5+xSs967ZY7vToMLGNrrreIi5w5gP2z7UtAicMcYrLHgus6Q4+QPAhvdfoeIixGqyEf8nRbQiN+F3TQTxQxKB7OKkopNiOWz4pSUsUkrh4bMP779DxYBoc3LhoYbZvZIAJkzkehmpgmm6j1dh4Ppu/EYiDKOX4fq0esLHfiZUhev9RoTQB1tHUyYc9g31WUhs9QRxdo3pmsWL9/AqTjYUCAwEAAQ==",
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "com.telerik.plugins.nativepagetransitions": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "cordova-plugin-console": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "cordova-plugin-x-toast": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "tapsell-v3-cordova-plugin": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    }
+  },
+  "dependent_plugins": {
+    "pushe-cordova-plugin": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    }
+  }
+}
