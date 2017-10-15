@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>web-loading-spinner</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="100" cy="100" r="100"></circle>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="200" height="200" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Ingame-+-Share-Screen" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Ingame---Loading" transform="translate(-220.000000, -818.000000)">
+            <g id="web-loading-spinner" transform="translate(220.000000, 818.000000)">
+                <use id="stroke" stroke="#F0F3F3" mask="url(#mask-2)" stroke-width="16" xlink:href="#path-1"></use>
+                <path d="M100,192 L100,200 C155.228475,200 200,155.228475 200,100 L192,100 C192,150.810197 150.810197,192 100,192 Z" id="Green-part" fill="#5AC546"></path>
+            </g>
+        </g>
+    </g>
+</svg>
