@@ -9,7 +9,7 @@ body {
 }
 
 .roulette {
-  position: relative;
+  position: absolute;
   z-index: 1;
   font-size: 1em;
   width: 50em;
