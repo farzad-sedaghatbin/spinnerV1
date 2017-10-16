@@ -404,14 +404,14 @@ angular.module('starter.controllers', [])
           case 1:
             $scope.config.submenus = [{
               menuicon: 'img/puzzle.png',
-              adr: 'puzzle/gamee/game/index.html',
+              adr: 'puzzle/www.gameeapp.com/game/FGM7TVW2Ma.html',
               text: '',
               style: {"font-size": "large"},
               id: 5,
               style2: $.inArray('img/puzzle.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/hexo.png',
-              adr: 'hexon/gamee/game/index.html',
+              adr: 'hexon/www.gameeapp.com/game/xRkQk0iwI3.html',
               text: '',
               style: {"font-size": "large"},
               id: 7,
@@ -435,14 +435,14 @@ angular.module('starter.controllers', [])
           case 2:
             $scope.config.submenus = [{
               menuicon: 'img/spinner.png',
-              adr: 'spinner/gamee/game/index.html',
+              adr: 'spinner/www.gameeapp.com/game/ipUMpcUES.html',
               text: '',
               style: {"font-size": "large"},
               id: 2,
               style2: $.inArray('img/spinner.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/mr.png',
-              adr: 'mr/gamee/game/index.html',
+              adr: 'mr/www.gameeapp.com/game/index.html',
               text: '',
               style: {"font-size": "large"},
               id: 8,
@@ -466,21 +466,21 @@ angular.module('starter.controllers', [])
           case 3:
             $scope.config.submenus = [{
               menuicon: 'img/ninja.png',
-              adr: 'ninja/gamee/game/index.html',
+              adr: 'ninja/www.gameeapp.com/game/G1oy49taR.html',
               text: '',
               style: {"font-size": "large"},
               id: 3,
               style2: $.inArray('img/ninja.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/space.png',
-              adr: 'space/gamee/game/index.html',
+              adr: 'space/www.gameeapp.com/game/ibBTDViUP.html',
               text: '',
               style: {"font-size": "large"},
               id: 1,
               style2: $.inArray('img/space.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/qubo.png',
-              adr: 'qubo/gamee/game/index.html',
+              adr: 'qubo/www.gameeapp.com/game/u0yXP5o.html',
               text: '',
               style: {"font-size": "large"},
               id: 9,
@@ -497,14 +497,14 @@ angular.module('starter.controllers', [])
           case 4:
             $scope.config.submenus = [{
               menuicon: 'img/motor.png',
-              adr: 'motor/gamee/game/index.html',
+              adr: 'motor/www.gameeapp.com/game/kAHVRl.html',
               text: '',
               style: {"font-size": "large"},
               id: 4,
               style2: $.inArray('img/motor.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/car.png',
-              adr: 'car/gamee/game/index.html',
+              adr: 'car/www.gameeapp.com/game/oFfW2omiW.html',
               text: '',
               style: {"font-size": "large"},
               id: 6,
