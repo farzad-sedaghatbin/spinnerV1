@@ -230,7 +230,7 @@ angular.module('starter.controllers', [])
         });
       }
     };
-    $timeout(function () {
+    $scope.$on("$ionicView.afterEnter",function () {
       menuService.getDb().transaction(function (tx) {
         tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="halfs"', [], function (tx, results) {
           var len = results.rows.length, i, result = '';
@@ -253,7 +253,7 @@ angular.module('starter.controllers', [])
           $scope.toggleEnds();
         }, null);
       });
-    }, 100);
+    });
     $timeout(function () {
       menuService.homeTutorial();
     }, 700);
