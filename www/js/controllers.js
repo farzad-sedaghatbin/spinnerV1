@@ -442,7 +442,7 @@ angular.module('starter.controllers', [])
               style2: $.inArray('img/spinner.png', menuService.getPlayedGames()) > -1
             },{
               menuicon: 'img/mr.png',
-              adr: 'mr/www.gameeapp.com/game/index.html',
+              adr: 'mr/www.gameeapp.com/game/WmHdqig.html',
               text: '',
               style: {"font-size": "large"},
               id: 8,

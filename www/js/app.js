@@ -47,7 +47,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
       }, 101);//registerBackButton
 
       if (window.navigator.simulator === true) {
-        alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
+        alert("بر روiی شبیه ساز قابلیت اجرا وجود ندارد");
         navigator.app.exitApp();
 
       };
