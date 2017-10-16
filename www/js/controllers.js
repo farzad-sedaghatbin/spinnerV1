@@ -230,29 +230,31 @@ angular.module('starter.controllers', [])
         });
       }
     };
-    $scope.$on("$ionicView.afterEnter",function () {
-      menuService.getDb().transaction(function (tx) {
-        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="halfs"', [], function (tx, results) {
-          var len = results.rows.length, i, result = '';
-          if (!results.rows || results.rows.length == 0) {
-            $rootScope.halfs = false;
-          } else {
-            $rootScope.halfs = results.rows.item(0).val === true || results.rows.item(0).val === "true";
-          }
-          $scope.toggleHalfs();
-        }, null);
-      });
-      menuService.getDb().transaction(function (tx) {
-        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="ends"', [], function (tx, results) {
-          var len = results.rows.length, i, result = '';
-          if (!results.rows || results.rows.length == 0) {
-            $rootScope.ends = false;
-          } else {
-            $rootScope.ends = results.rows.item(0).val === true || results.rows.item(0).val === "true";
-          }
-          $scope.toggleEnds();
-        }, null);
-      });
+    $scope.$on("$ionicView.loaded",function () {
+      $timeout(function () {
+        menuService.getDb().transaction(function (tx) {
+          tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="halfs"', [], function (tx, results) {
+            var len = results.rows.length, i, result = '';
+            if (!results.rows || results.rows.length == 0) {
+              $rootScope.halfs = false;
+            } else {
+              $rootScope.halfs = results.rows.item(0).val === true || results.rows.item(0).val === "true";
+            }
+            $scope.toggleHalfs();
+          }, null);
+        });
+        menuService.getDb().transaction(function (tx) {
+          tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="ends"', [], function (tx, results) {
+            var len = results.rows.length, i, result = '';
+            if (!results.rows || results.rows.length == 0) {
+              $rootScope.ends = false;
+            } else {
+              $rootScope.ends = results.rows.item(0).val === true || results.rows.item(0).val === "true";
+            }
+            $scope.toggleEnds();
+          }, null);
+        });
+      },600);
     });
     $timeout(function () {
       menuService.homeTutorial();
