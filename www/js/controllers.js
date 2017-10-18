@@ -400,6 +400,7 @@ angular.module('starter.controllers', [])
 
     };
     var index = null;
+    var text;
     $scope.menufun = function (s, id, url) {
       if (root) {
         switch (id) {
@@ -433,6 +434,7 @@ angular.module('starter.controllers', [])
               id: 11,
               style2: $.inArray('img/hegza.png', menuService.getPlayedGames()) > -1
             }];
+            text = "فکری";
             break;
           case 2:
             $scope.config.submenus = [{
@@ -464,6 +466,7 @@ angular.module('starter.controllers', [])
               id: 13,
               style2: $.inArray('img/school.png', menuService.getPlayedGames()) > -1
             }];
+            text = "مهارتی";
             break;
           case 3:
             $scope.config.submenus = [{
@@ -495,6 +498,7 @@ angular.module('starter.controllers', [])
               id: 14,
               style2: $.inArray('img/tire.png', menuService.getPlayedGames()) > -1
             }];
+            text = "پرشی";
             break;
           case 4:
             $scope.config.submenus = [{
@@ -526,6 +530,7 @@ angular.module('starter.controllers', [])
               id: 16,
               style2: $.inArray('img/karate.png', menuService.getPlayedGames()) > -1
             }];
+            text = "ورزشی";
             break;
         }
         root = false;
@@ -537,7 +542,7 @@ angular.module('starter.controllers', [])
         if (!$rootScope.isTrain) {
           $("#release").css("display", "none");
         }
-        $("#title").text("بازی ها");
+        $("#title").text(text);
       } else {
         if ($rootScope.isTrain) {
           if (index === null) {
