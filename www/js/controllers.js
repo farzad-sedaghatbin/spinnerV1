@@ -963,6 +963,10 @@ angular.module('starter.controllers', [])
     $scope.doBuy = function (productId, price, icon, amount,id,isCoin) {
       $rootScope.modal.hide();
       if (isCoin){
+        if ($rootScope.gamer.coins < price){
+          menuService.myMessage("سکه های شما کافی نیست", "خطا");
+          return;
+        }
         menuService.startLoading();
         $http.post("https://dagala.cfapps.io/api/1/inventory", productId + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
           data.pass = $rootScope.gamer.pass;
