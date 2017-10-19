@@ -15980,13 +15980,8 @@ function _PS(_KI, _Qs, _LS, _QS) {
   if (index > 0) {
     _KI = _KI.substr(0, index)
   }
-  if (_DR) {
     _LS = "ogg"
-  } else if (_ER) {
-    _LS = "mp3"
-  } else {
-    _LS = "ogg"
-  }
+
   _KI = _KI + "." + _LS;
   var _jK = new XMLHttpRequest();
   _jK.responseType = 'arraybuffer';
