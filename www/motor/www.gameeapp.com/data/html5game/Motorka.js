@@ -43,7 +43,7 @@ var __1 = {
     _92: 0
   }, {
     _32: "http://dagala.ir/snd_deathFlatTire", _42: 0,
-    _52: ".wav", _62: "snd_deathFlatTire", _72: 0, volume: 1, _82: 0, preload: !0, _92: 0
+    _52: ".wav", _62: "http://dagala.ir/snd_deathFlatTire", _72: 0, volume: 1, _82: 0, preload: !0, _92: 0
   }, {
     _32: "http://dagala.ir/snd_suspension",
     _42: 0,
