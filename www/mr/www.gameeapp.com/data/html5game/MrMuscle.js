@@ -10627,13 +10627,8 @@ function _NM(_eA, _vi, _JM, _OM) {
   if (index > 0) {
     _eA = _eA.substr(0, index)
   }
-  if (_CL) {
-    _JM = "ogg"
-  } else if (_DL) {
-    _JM = "mp3"
-  } else {
-    _JM = "ogg"
-  }
+
+    _JM = "ogg";
   _eA = _eA + "." + _JM;
   var _OB = new XMLHttpRequest();
   _OB.responseType = 'arraybuffer';
