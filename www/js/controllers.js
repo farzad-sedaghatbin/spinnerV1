@@ -53,12 +53,12 @@ angular.module('starter.controllers', [])
     function checkLevel(isCallingFromTimeout) {
       if (isCallingFromTimeout) {
         if ($rootScope.gamer.newLevel) {
-          menuService.myMessage("New Level : " + $rootScope.gamer.level, "وقت بازی تمام شد");
+          menuService.myMessage("آفرین، سطح شما به "+ $rootScope.gamer.level + " ارتقا پیدا کرد", "وقت بازی تمام شد");
         } else {
           menuService.myMessage("وقت بازی تمام شد");
         }
       } else if ($rootScope.gamer.newLevel) {
-        menuService.myMessage("New Level : " + $rootScope.gamer.level);
+        menuService.myMessage("آفرین، سطح شما به "+ $rootScope.gamer.level + " ارتقا پیدا کرد");
       }
     }
 
