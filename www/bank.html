@@ -20,7 +20,7 @@
   </style>
 </head>
 <body>
-<form id="TheForm" action="https://sep.shaparak.ir/payment.aspx" method="post">
+<form id="TheForm">
   <input type="hidden" name="Amount" />
   <input type="hidden" name="MID"/>
   <input type="hidden" name="ResNum"/>
@@ -69,6 +69,8 @@
     f.MID.value = "10822833";
     f.ResNum.value = res;
     f.RedirectURL.value = "https://dagala.cfapps.io/api/1/donePeyment";
+    f.action = "https://sep.shaparak.ir/payment.aspx";
+    f.type = "POST";
     f.submit();
   }
 </script>
