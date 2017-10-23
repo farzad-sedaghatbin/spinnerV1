@@ -20,7 +20,7 @@
   </style>
 </head>
 <body>
-<form id="TheForm" action="https://sep.shaparak.ir/payment.aspx" method="post">
+<form id="TheForm">
   <input type="hidden" name="Amount" />
   <input type="hidden" name="MID"/>
   <input type="hidden" name="ResNum"/>
@@ -64,8 +64,6 @@
   function submit() {
     var amount = getUrlParameter("amount");
     var res = getUrlParameter("res");
-    alert(amount)
-    alert(res)
     var f = document.getElementById('TheForm');
     f.Amount.value = amount;
     f.MID.value = "10822833";
