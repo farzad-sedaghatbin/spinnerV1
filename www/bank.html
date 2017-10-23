@@ -20,7 +20,7 @@
   </style>
 </head>
 <body>
-<form id="TheForm">
+<form id="TheForm" onsubmit="submit()">
   <input type="hidden" name="Amount" />
   <input type="hidden" name="MID"/>
   <input type="hidden" name="ResNum"/>
@@ -44,7 +44,7 @@
     </div>
   </div>
   <div style="text-align: center;margin-top: 100px">
-    <a style="font-size: 50px" onclick="submit()" class="button">ورود به صفحه بانک</a>
+    <button style="font-size: 50px" type="submit" class="button">ورود به صفحه بانک</button>
   </div>
 </form>
 </body>
