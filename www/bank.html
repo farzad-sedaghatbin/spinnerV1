@@ -20,7 +20,7 @@
   </style>
 </head>
 <body>
-<form id="TheForm" onsubmit="submit()">
+<form id="TheForm" action="https://sep.shaparak.ir/payment.aspx" method="post">
   <input type="hidden" name="Amount" />
   <input type="hidden" name="MID"/>
   <input type="hidden" name="ResNum"/>
@@ -44,7 +44,7 @@
     </div>
   </div>
   <div style="text-align: center;margin-top: 100px">
-    <button style="font-size: 50px" type="submit" class="button">ورود به صفحه بانک</button>
+    <a style="font-size: 50px" onclick="myform()" class="button">ورود به صفحه بانک</a>
   </div>
 </form>
 </body>
@@ -61,7 +61,7 @@
   };
   document.getElementById("amountL").innerHTML = getUrlParameter("amount");
   document.getElementById("resL").innerHTML = getUrlParameter("res");
-  function submit() {
+  function myform() {
     var amount = getUrlParameter("amount");
     var res = getUrlParameter("res");
     var f = document.getElementById('TheForm');
