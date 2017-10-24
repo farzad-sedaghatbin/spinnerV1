@@ -2423,8 +2423,8 @@ var Penalty;
         }
         Sounds.AUDIO_JSON = {
             "resources": [
-                "sfx.ogg",
-                "sfx.mp3"
+                "http://dagala.ir/football/gamee/data/assets/sfx.ogg",
+                "http://dagala.ir/football/gamee/data/assets/sfx.mp3"
             ],
             "spritemap": {
                 "kick": {
@@ -2857,7 +2857,7 @@ var Penalty;
             }
             else {
                 this.load.audiosprite("sfx", Penalty.Sounds.AUDIO_JSON.resources, null, Penalty.Sounds.AUDIO_JSON);
-                this.load.audio("ambient", ["ambient.ogg", "ambient.mp3"]);
+                this.load.audio("ambient", ["http://dagala.ir/football/gamee/data/assets/ambient.ogg", "http://dagala.ir/football/gamee/data/assets/ambient.mp3"]);
             }
             if (Penalty.Global.GAMEE) {
                 Gamee2.Gamee.onInitialized.add(function (initState) {

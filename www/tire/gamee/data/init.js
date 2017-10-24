@@ -141,12 +141,12 @@ LoadingState.prototype.preload = function ()
 
     game.load.image('finish', 'gfx/nokian_finish.png');
 
-    game.load.audio("hudba", ["sfx/hudba.mp3", "sfx/hudba.ogg"]);
-    game.load.audio("dopad", ["sfx/dopad.mp3", "sfx/dopad.ogg"]);
-    game.load.audio("most", ["sfx/most.mp3", "sfx/most.ogg"]);
-    game.load.audio("naraz", ["sfx/naraz.mp3", "sfx/naraz.ogg"]);
-    game.load.audio("sauna", ["sfx/sauna.mp3", "sfx/sauna.ogg"]);
-    game.load.audio("yetti", ["sfx/yetti.mp3", "sfx/yetti.ogg"]);
+    game.load.audio("hudba", ["http://dagala.ir/tire/gamee/data/sfx/hudba.mp3", "http://dagala.ir/tire/gamee/data/sfx/hudba.ogg"]);
+    game.load.audio("dopad", ["http://dagala.ir/tire/gamee/data/sfx/dopad.mp3", "http://dagala.ir/tire/gamee/data/sfx/dopad.ogg"]);
+    game.load.audio("most", ["http://dagala.ir/tire/gamee/data/sfx/most.mp3", "http://dagala.ir/tire/gamee/data/sfx/most.ogg"]);
+    game.load.audio("naraz", ["http://dagala.ir/tire/gamee/data/sfx/naraz.mp3", "http://dagala.ir/tire/gamee/data/sfx/naraz.ogg"]);
+    game.load.audio("sauna", ["http://dagala.ir/tire/gamee/data/sfx/sauna.mp3", "http://dagala.ir/tire/gamee/data/sfx/sauna.ogg"]);
+    game.load.audio("yetti", ["http://dagala.ir/tire/gamee/data/sfx/yetti.mp3", "http://dagala.ir/tire/gamee/data/sfx/yetti.ogg"]);
     game.load.audio("game-over", ["sfx/game-over.mp3", "sfx/game-over.ogg"]);
 }
 
