@@ -85,7 +85,8 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
         popup: {
           content: 'اگر میخوای تو لیگای مختلف شرکت کنی و جایزه ببری بیا اینجا',
           type: 'tooltip',
-          position: 'bottom'
+          position: 'bottom',
+          offsetArrowHorizontal: -120
         }
       }, {
         wrapper: '#battle',

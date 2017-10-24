@@ -11,9 +11,12 @@
         <span class="hamburger hamburger-2"></span>
         <span class="hamburger hamburger-3"></span>
       </label>
-      <a ng-if="gamer.guest" on-hold="register()" ng-click="register()" style="font-size: x-small" class="menu-item-omid myText"> ثبت نام </a>
-      <a on-hold="changePass()" ng-click="changePass()" style="font-size: x-small" class="menu-item-omid myText"> ورود </a>
-      <a on-hold="forgetPass()" ng-click="forgetPass()" style="font-size: xx-small" class="menu-item-omid myText"> بازیابی رمز </a>
+      <a ng-if="gamer.guest" on-hold="register()" ng-click="register()" style="font-size: x-small"
+         class="menu-item-omid myText"> ثبت نام </a>
+      <a on-hold="changePass()" ng-click="changePass()" style="font-size: x-small" class="menu-item-omid myText">
+        ورود </a>
+      <a on-hold="forgetPass()" ng-click="forgetPass()" style="font-size: xx-small" class="menu-item-omid myText">
+        بازیابی رمز </a>
       <a on-hold="coining()" ng-click="coining()" style="font-size: 8px" class="menu-item-omid myText"> سکه </a>
       <a on-hold="ranks()" ng-click="ranks()" style="font-size: x-small" class="menu-item-omid myText"> خفن ها </a>
       <a on-hold="help()" ng-click="help()" style="font-size: x-small" class="menu-item-omid myText"> راهنما </a>
@@ -58,32 +61,42 @@
     <div class="myText" style="float:left;clear: both" ng-click="speaker()">
       <span style="display:inline;"><img id="speaker" class="home-badge-img" src="img/speaker.png"/></span>
     </div>
-    <div style="background: url(img/pic.png) no-repeat center;background-size: contain;right: 0;position: absolute;width: 75px;height: 75px"
-         ng-click="selectAvatar()">
+    <div
+      style="background: url(img/pic.png) no-repeat center;background-size: contain;right: 0;position: absolute;width: 75px;height: 75px"
+      ng-click="selectAvatar()">
       <img style="width: 42px;margin-top: 12px;border-radius: 50%;margin-left: 16px;" src="{{gamer.avatar}}">
     </div>
-    <div class="myEText" style="color: white;position: absolute;top: 25px;right: 70px;font-size: 20px">{{gamer.user}}</div>
-    <div ng-if="gamer" class="myText" style="color: white;position: absolute;top: 45px;right: 70px;font-size: 14px">سطح : {{gamer.level}}</div>
-    <div ng-if="gamer" class="myText" style="color: white;position: absolute;top: 68px;right: 70px;font-size: 14px">امتیاز : {{gamer.score}}</div>
+    <div class="myEText" style="color: white;position: absolute;top: 25px;right: 70px;font-size: 20px">{{gamer.user}}
+    </div>
+    <div ng-if="gamer" class="myText" style="color: white;position: absolute;top: 45px;right: 70px;font-size: 14px">سطح
+      : {{gamer.level}}
+    </div>
+    <div ng-if="gamer" class="myText" style="color: white;position: absolute;top: 68px;right: 70px;font-size: 14px">
+      امتیاز : {{gamer.score}}
+    </div>
     <div class="myText">
       <div ng-if="gamer.guest" class="row" style="margin-top: 30px">
         <article class="notepad">
-          <p style="text-align: right;direction: rtl">لطفا حتما ثبت نام کنید یا با حساب ساخته شده وارد شوید. در صورت ثبت نام امتیازات حساب مهمان منتقل خواهد شد</p>
+          <p style="text-align: right;direction: rtl">لطفا حتما ثبت نام کنید یا با حساب ساخته شده وارد شوید. در صورت ثبت
+            نام امتیازات حساب مهمان منتقل خواهد شد</p>
         </article>
       </div>
 
-      <div class="row">
-        <div class="row" style="margin-top: 20px">
-          <div id="train" class="col grid-example s4 blue-button" style="font-size: medium"
-               ng-click="training()">
-            تمرین میکنم
-          </div>
-          <div id="league" class="col grid-example s4 gold-button" ng-click="league()" style="font-size: medium">
-            لیگ
-          </div>
-          <div id="battle" class="col grid-example s4 red-button" ng-click="challenge()" style="font-size: small">
-            حریف میطلبم
-          </div>
+      <div class="row" style="margin-top: 20px">
+        <div id="train" class="col grid-example s6 blue-button" style="font-size: medium"
+             ng-click="training()">
+          تمرین میکنم
+        </div>
+        <div id="battle" class="col grid-example s6 red-button" ng-click="challenge()" style="font-size: small">
+          حریف میطلبم
+        </div>
+      </div>
+      <div class="row" style="margin-top: 20px">
+        <div id="league" class="col grid-example s6 gold-button" ng-click="league()" style="font-size: medium">
+          لیگ
+        </div>
+        <div class="col grid-example s6 green-button" ng-click="soon()" style="font-size: small">
+          به زودی
         </div>
       </div>
       <div ng-if="gamer.halfGame.length > 0" style="margin-top: 80px">
@@ -113,7 +126,8 @@
             <div style="line-height: 5px;font-size: smaller">{{row.scoreStatus}}</div>
             <div style="line-height: 25px;font-size: xx-small">{{row.status}}</div>
           </div>
-          <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield(row.gameId,false)">
+          <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller"
+               ng-click="battlefield(row.gameId,false)">
             جزییات
           </div>
         </div>
@@ -146,7 +160,8 @@
             <div style="line-height: 35px">{{row.score}}</div>
             <div style="line-height: 25px;font-size: smaller">{{row.status}}</div>
           </div>
-          <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller" ng-click="battlefield(row.gameId,true)">
+          <div class="col grid-example s3 battlefield" style="color: white;font-size: smaller"
+               ng-click="battlefield(row.gameId,true)">
             جزییات
           </div>
         </div>

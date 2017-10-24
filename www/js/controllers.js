@@ -107,11 +107,11 @@ angular.module('starter.controllers', [])
     };
     function innerChallenge() {
       if ($rootScope.gamer.coins < $rootScope.gamer.perGameCoins) {
-        menuService.myMessage("سکه های شما کافی نیست. برای بدست آوردن سکه، به قسمت سکه در منو مراجعه کنید.", "خطا");
+        menuService.myMessage("سکه های شما کافی نیست. برای بدست آوردن سکه، به قسمت سکه در منو مراجعه کنید", "خطا");
         return;
       }
       if ($rootScope.gamer.halfGame.length === 10) {
-        menuService.myMessage("شما به سقف تعداد بازی نیمه تمام رسیده اید.", "خطا");
+        menuService.myMessage("شما به سقف تعداد بازی نیمه تمام رسیده اید", "خطا");
         return;
       }
       $ionicPopup.alert({
@@ -149,6 +149,9 @@ angular.module('starter.controllers', [])
       } else {
         innerChallenge();
       }
+    };
+    $scope.soon = function () {
+      menuService.myMessage("خبرهای جالبی تو راهه");
     };
     $scope.ranks = function () {
       $rootScope.selectedGame = null;
@@ -719,7 +722,7 @@ angular.module('starter.controllers', [])
         if (data === "404") {
           menuService.myMessage("نام کاربری اشتباه می باشد", "خطا");
         } else if (data === "200") {
-          menuService.myMessage("امتیاز شما و معرف شما ثبت شد")
+          menuService.myMessage("امتیاز شما و معرف شما ثبت شد");
           $rootScope.gamer.coins += 150;
         } else if (data === "333"){
           menuService.myMessage("شما حداکثر 3 تا از دوستانتون رو میتونید معرفی کنید", "خطا");

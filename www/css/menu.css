@@ -349,6 +349,12 @@ span.font-36 {
   background-size: contain;
   opacity: 0.9;
 }
+.green-button{
+  line-height: 70px;
+  background: url(../img/green.png) no-repeat center;
+  background-size: contain;
+  opacity: 0.9;
+}
 .board{
   line-height: 70px;
   background: url(../img/board.png) no-repeat center;
