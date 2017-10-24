@@ -70,7 +70,7 @@ angular.module('starter.controllers', [])
             tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["mute", false]);
           });
         });
-        document.getElementById("myAudio").play();
+        $rootScope.myAudio.play({ numberOfLoops: 9999 });
         $("#speaker").attr("src", "img/speaker.png");
         $rootScope.isMute = false;
       } else {
@@ -79,7 +79,7 @@ angular.module('starter.controllers', [])
             tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["mute", true]);
           });
         });
-        document.getElementById("myAudio").pause();
+        $rootScope.myAudio.pause();
         $("#speaker").attr("src", "img/mute.png");
         $rootScope.isMute = true;
       }

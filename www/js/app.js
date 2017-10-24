@@ -57,18 +57,22 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
       }
       inappbilling.init();
       tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
+      if(!$rootScope.myAudio){
+        $rootScope.myAudio = new Media("http://dagala.ir/Era_Ameno.mp3");
+        $rootScope.myAudio.play({ numberOfLoops: 9999 });
+      }
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
       }
       document.addEventListener("pause", function () {
         if (!$rootScope.isMute) {
-          document.getElementById("myAudio").pause();
+          $rootScope.myAudio.pause();
         }
       }, false);
       document.addEventListener("resume", function () {
         if (!$rootScope.isMute) {
-          document.getElementById("myAudio").play();
+          $rootScope.myAudio.play({ numberOfLoops: 9999 });
         }
       }, false);
       if (window.StatusBar) {
