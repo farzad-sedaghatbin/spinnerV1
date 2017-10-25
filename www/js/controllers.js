@@ -882,7 +882,7 @@ angular.module('starter.controllers', [])
             if (data >= 0) {
               menuService.myMessage(data + " سکه دریافت کردید", "پیام");
             } else {
-              menuService.myMessage(data + " سکه از شما کم شد", "پیام");
+              menuService.myMessage(Math.abs(data) + " سکه از شما کم شد", "پیام");
             }
           } else {
             menuService.myMessage("شما سهمیه امروز خود را دریافت کردید", "خطا");
