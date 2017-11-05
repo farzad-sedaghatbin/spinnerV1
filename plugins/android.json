@@ -40,10 +40,19 @@
     },
     "tapsell-v3-cordova-plugin": {
       "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "cordova-plugin-media": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
     }
   },
   "dependent_plugins": {
     "pushe-cordova-plugin": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "cordova-plugin-file": {
       "PACKAGE_NAME": "ir.redmind.dagala"
     }
   }
