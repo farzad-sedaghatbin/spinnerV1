@@ -189,6 +189,7 @@ angular.module('starter.controllers', [])
     $scope.battlefield = function (gameId, isEnded) {
       $rootScope.rowId = gameId;
       $rootScope.isEnded = isEnded;
+      $rootScope.isLeague = false;
       $state.go("battlefield");
     };
     $scope.toggleHalfs = function () {
