@@ -806,6 +806,8 @@ angular.module('starter.controllers', [])
     };
     $scope.playLeague = function (id) {
       $rootScope.leagueId = id;
+      $rootScope.isEnded = false;
+      $rootScope.isLeague = true;
       $state.go("battlefield");
     };
     $scope.tops = function (id) {

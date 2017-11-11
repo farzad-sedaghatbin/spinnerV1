@@ -20,16 +20,16 @@
         <div id="joinLeague" ng-if="row.status == 0" ng-click="joinLeague(row)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 120px;padding: 0;background-size: 80%;margin-top: 20px" ng-click="battlefield(row.gameId,false)">
           عضو شو
         </div>
-        <div ng-if="row.status == 1" ng-click="waitForLeague()" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 120px;padding: 0;background-size: 80%;margin-top: 20px" ng-click="battlefield(row.gameId,false)">
+        <div ng-if="row.status == 1" ng-click="waitForLeague()" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 120px;padding: 0;background-size: 80%;margin-top: 20px">
           منتظر باش
         </div>
-        <div ng-if="row.status == 2" ng-click="leagueStarted()" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 120px;padding: 0;background-size: 80%;margin-top: 20px" ng-click="battlefield(row.gameId,false)">
+        <div ng-if="row.status == 2" ng-click="leagueStarted()" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 120px;padding: 0;background-size: 80%;margin-top: 20px">
           شروع شد
         </div>
-        <div ng-if="row.status == 3" ng-click="playLeague(row.id)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 120px;padding: 0;background-size: 80%;margin-top: 20px" ng-click="battlefield(row.gameId,false)">
+        <div ng-if="row.status == 3" ng-click="playLeague(row.id)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 120px;padding: 0;background-size: 80%;margin-top: 20px">
           بازی کن
         </div>
-        <div ng-if="row.status == 4" ng-click="tops(row.id)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 120px;padding: 0;background-size: 80%;margin-top: 20px" ng-click="battlefield(row.gameId,false)">
+        <div ng-if="row.status == 4" ng-click="tops(row.id)" class="col grid-example s3 battlefield" style="color: white;font-size: smaller;line-height: 120px;padding: 0;background-size: 80%;margin-top: 20px">
           نفرات برتر
         </div>
         <div class="col grid-example s3" style="padding: 0;margin-top: 25px;margin-bottom: 0">
