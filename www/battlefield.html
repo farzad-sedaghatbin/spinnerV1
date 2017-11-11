@@ -63,14 +63,14 @@
         </div>
 
         <div class="row" style="margin-top: 10px;background: url('img/{{$index}}.png') no-repeat center;background-size: 100%" ng-repeat="row in battle.gameDTOS">
-          <div class="col grid-example s3" style="margin: 0;font-size: xx-large">
+          <div class="col grid-example s3 score" style="margin: 0;font-size: xx-large">
             {{row.myScore}}
           </div>
           <div class="col grid-example s3"
                style="margin: 0">
             <img style="width: 48px;margin-top: 8px" src="{{row.icon}}">
           </div>
-          <div class="col grid-example s3" style="margin: 0;font-size: xx-large">
+          <div class="col grid-example s3 score" style="margin: 0;font-size: xx-large">
             {{row.secondScore}}
           </div>
         </div>

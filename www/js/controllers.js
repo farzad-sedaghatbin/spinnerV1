@@ -1056,6 +1056,14 @@ angular.module('starter.controllers', [])
       $rootScope.battle = data;
       menuService.stopLoading();
       $scope.loaded = true;
+      $timeout(function () {
+        var scores = $(".score");
+        angular.forEach(scores, function (member, index) {
+          if(member.innerText.length > 4){
+            $(member).css("font-size","large");
+          }
+        });
+      },1000);
     }
 
     function callTimeoutService(data1) {
@@ -1155,7 +1163,7 @@ angular.module('starter.controllers', [])
     };
     $scope.goBack = function () {
       $ionicHistory.goBack();
-    }
+    };
   })
   .controller('NewgameCtrl', function ($scope, $state, $ionicHistory, menuService, $timeout, $http, $rootScope, $ionicPopup) {
     function loadData(refresh) {
