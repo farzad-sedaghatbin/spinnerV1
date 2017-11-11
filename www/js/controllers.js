@@ -84,6 +84,7 @@ angular.module('starter.controllers', [])
     }
     $scope.doChallenge = function () {
       if (!$rootScope.gamer){
+        menuService.startLoading();
         $http.post("https://dagala.cfapps.io/api/1/tempUser").success(function (data, status, headers, config) {
           $http.defaults.headers.common['Authorization'] = data.token;
           data.pass = data.user;
@@ -99,7 +100,6 @@ angular.module('starter.controllers', [])
       }
     };
     $scope.challenge = function () {
-      menuService.startLoading();
       menuService.getDb().transaction(function (tx) {
         tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
           var len = results.rows.length, i, result = '';
