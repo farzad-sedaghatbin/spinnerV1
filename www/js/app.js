@@ -209,6 +209,61 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
       for (var i = 0; i < rowSize; i++) {
         $rootScope.rows.push(tiles.slice(i * 3, (i + 1) * 3));
       }
+      $rootScope.checkLevel = function(isCallingFromTimeout) {
+        if (isCallingFromTimeout) {
+          if ($rootScope.gamer.newLevel) {
+            menuService.myMessage("آفرین، سطح شما به "+ $rootScope.gamer.level + " ارتقا پیدا کرد", "وقت بازی تمام شد");
+          } else {
+            menuService.myMessage("وقت بازی تمام شد");
+          }
+        } else if ($rootScope.gamer.newLevel) {
+          menuService.myMessage("آفرین، سطح شما به "+ $rootScope.gamer.level + " ارتقا پیدا کرد");
+        }
+      };
+      $rootScope.sendToServer = function () {
+        menuService.getDb().transaction(function (tx) {
+          tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
+            var len = results.rows.length, i, result = '';
+            if (results.rows && results.rows.length !== 0) {
+              if (results.rows.item(0).val) {
+                tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
+                  var len = results.rows.length, i, result = '';
+                  if (results.rows && results.rows.length !== 0) {
+                    var vals = results.rows.item(0).val.split(",");
+                    if (vals[0] === "false") {
+                      menuService.startLoading();
+                      var serverUrl = "https://dagala.cfapps.io/api/1/endGame";
+                      $http.post(serverUrl, vals[1] + "," + vals[2] + "," + vals[3] + "," + vals[5]).success(function (data, status, headers, config) {
+                        data.pass = $rootScope.gamer.pass;
+                        data.token = $rootScope.gamer.token;
+                        $rootScope.saveGamer(data);
+                        menuService.stopLoading();
+                        $rootScope.checkLevel(false);
+                      }).catch(function (err) {
+                        menuService.stopLoading();
+                        menuService.myHandleError(err);
+                      });
+                    } else {
+                      var url = "https://dagala.cfapps.io/api/1/refresh";
+                      $http.post(url, $rootScope.gamer.user).success(function (data, status, headers, config) {
+                        data.pass = $rootScope.gamer.pass;
+                        data.token = $rootScope.gamer.token;
+                        $rootScope.saveGamer(data);
+                        $rootScope.checkLevel(false);
+                      }).catch(function (err) {
+                        menuService.myHandleError(err);
+                      });
+                    }
+                    tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
+                      tx.executeSql('DELETE FROM MYGAME WHERE name="wasInGame"');
+                    });
+                  }
+                }, null);
+              }
+            }
+          })
+        });
+      }
     });
   })
   .config(function ($stateProvider, $urlRouterProvider, $ionicNativeTransitionsProvider, $ionicConfigProvider) {
