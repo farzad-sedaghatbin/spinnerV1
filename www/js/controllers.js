@@ -132,7 +132,9 @@ angular.module('starter.controllers', [])
       $state.go("coining");
     };
     $scope.league = function () {
+      $rootScope.isEnded = false;
       $rootScope.isLeague = true;
+      $rootScope.isTrain = false;
       $state.go("league");
     };
     $scope.training = function () {
@@ -148,7 +150,7 @@ angular.module('starter.controllers', [])
     $scope.buy = function () {
       $state.go("buy")
     };
-    $scope.goToBattlefield = function () {
+    $scope.goToBattlefield = function (gameId, isEnded) {
       $rootScope.rowId = gameId;
       $rootScope.isEnded = isEnded;
       $rootScope.isLeague = false;
@@ -160,9 +162,9 @@ angular.module('starter.controllers', [])
           var len = results.rows.length, i, result = '';
           if (results.rows && results.rows.length !== 0) {
             $rootScope.sendToServer();
-            $scope.goToBattlefield();
+            $scope.goToBattlefield(gameId, isEnded);
           } else {
-            $scope.goToBattlefield();
+            $scope.goToBattlefield(gameId, isEnded);
           }
         })
       });
