@@ -1074,7 +1074,7 @@ angular.module('starter.controllers', [])
       $timeout(function () {
         var scores = $(".score");
         angular.forEach(scores, function (member, index) {
-          if(member.innerText.length > 4){
+          if(member.innerText && member.innerText.length > 4){
             $(member).css("font-size","large");
           }
         });
@@ -1389,16 +1389,6 @@ angular.module('starter.controllers', [])
     $scope.username;
     $scope.pass;
     $scope.tel;
-    $scope.$on("$ionicView.enter", function (scopes, states) {
-      $("#username").keypress(function(event){
-        var ew = event.which;
-        return (31 < ew && ew <= 122);
-      });
-      $("#pass").keypress(function(event){
-        var ew = event.which;
-        return (31 < ew && ew <= 122);
-      });
-    });
     $scope.selectAvatar = function () {
       $ionicModal.fromTemplateUrl('avatars.html', {
         scope: $scope
@@ -1412,10 +1402,19 @@ angular.module('starter.controllers', [])
       $rootScope.modal.hide()
     };
     $scope.signUp = function (form) {
+      var username = $("#username").val();
+      if (username.indexOf(" ") >= 0){
+        menuService.myMessage("نام کاربری نباید دارای فاصله باشد", "خطا");
+        return;
+      }
+      if (username.indexOf(",") >= 0){
+        menuService.myMessage("نام کاربری نباید دارای کاما(,) باشد", "خطا");
+        return;
+      }
       menuService.startLoading();
       var signUpUrl = "https://dagala.cfapps.io/api/1/signup";
       var d = {
-        username: $("#username").val(),
+        username: username,
         mobile: $("#tel").val(),
         password: $("#pass").val(),
         avatar: $scope.avatar,
