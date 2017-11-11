@@ -148,11 +148,24 @@ angular.module('starter.controllers', [])
     $scope.buy = function () {
       $state.go("buy")
     };
-    $scope.battlefield = function (gameId, isEnded) {
+    $scope.goToBattlefield = function () {
       $rootScope.rowId = gameId;
       $rootScope.isEnded = isEnded;
       $rootScope.isLeague = false;
       $state.go("battlefield");
+    };
+    $scope.battlefield = function (gameId, isEnded) {
+      menuService.getDb().transaction(function (tx) {
+        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
+          var len = results.rows.length, i, result = '';
+          if (results.rows && results.rows.length !== 0) {
+            $rootScope.sendToServer();
+            $scope.goToBattlefield();
+          } else {
+            $scope.goToBattlefield();
+          }
+        })
+      });
     };
     $scope.toggleHalfs = function () {
       if ($rootScope.halfs) {
