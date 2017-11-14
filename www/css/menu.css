@@ -429,6 +429,14 @@ span.font-36 {
   color: black;
   direction: rtl;
 }
+.row .col.s10-v2 {
+  width: 84.4444%;
+  min-height: 55px;
+  text-align: center;
+  color: black;
+  direction: rtl;
+  line-height: 55px;
+}
 .col.grid-example {
   line-height: 75px;
   margin: 7px 0;

@@ -1,0 +1,17 @@
+<ion-modal-view
+  style="min-height: 80%;width: 90%;top: 10%;left: 5%;border-radius: 5%;background: rgba(255,255,255,0.9);">
+  <ion-content class="padding">
+    <a ng-click="modal.hide()" class="closeButton"></a>
+    <div class="row" ng-repeat="row in rows">
+      <div class="col grid-example s3" ng-click="selected(row[0])">
+        <img src="{{row[0]}}" style="width: 42px">
+      </div>
+      <div class="col grid-example s3" ng-click="selected(row[1])">
+        <img src="{{row[1]}}" style="width: 42px">
+      </div>
+      <div class="col grid-example s3" ng-click="selected(row[2])">
+        <img src="{{row[2]}}" style="width: 42px">
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

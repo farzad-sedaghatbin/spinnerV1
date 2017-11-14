@@ -30,6 +30,25 @@
             نوبت حریفه
           </div>
         </div>
+        <div id="chat" class="animated-chat tada myText" ng-click="loadChatbox()">کری بخون</div>
+        <div style="overflow: auto" class="chatbox" id="chatbox">
+          <!--<span class="chat-text">Chatting Yuk!</span>-->
+          <div id="close-chat" ng-click="closeChatbox()"></div>
+          <div style="margin-left: 10px" class="row" ng-repeat="row in rows">
+            <div class="col grid-example s3" ng-click="selected(0,$index)">
+              <img id="0{{$index}}" src="{{row[0]}}" style="width: 42px;position: absolute">
+            </div>
+            <div class="col grid-example s3" ng-click="selected(1,$index)">
+              <img id="1{{$index}}" src="{{row[1]}}" style="width: 42px;position: absolute">
+            </div>
+            <div class="col grid-example s3" ng-click="selected(2,$index)">
+              <img id="2{{$index}}" src="{{row[2]}}" style="width: 42px;position: absolute">
+            </div>
+          </div>
+          <!--<div id="minim-chat" ng-click="minimChatbox()"><span class="minim-button">&minus;</span></div>-->
+          <div id="maxi-chat" ng-click="loadChatbox()"><span class="maxi-button">&plus;</span></div>
+        </div>
+
         <div class="row" style="margin-bottom: 10px">
           <div class="col grid-example s3"
                style="background: url(img/pic.png) no-repeat center;background-size: contain;">

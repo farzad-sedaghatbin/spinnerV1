@@ -987,7 +987,7 @@ angular.module('starter.controllers', [])
       }
     }
   })
-  .controller('BattlefieldCtrl', function ($scope, $state, $ionicHistory, menuService, $timeout, $http, $rootScope, $interval) {
+  .controller('BattlefieldCtrl', function ($scope, $state, $ionicHistory, menuService, $timeout, $http, $rootScope, $interval,$ionicModal) {
     $scope.loaded = false;
     var url;
     var param;
@@ -1156,6 +1156,25 @@ angular.module('starter.controllers', [])
       }).catch(function (err) {
         menuService.stopLoading();
         menuService.myHandleError(err);
+      });
+    };
+    $scope.selectStickers = function () {
+      $ionicModal.fromTemplateUrl('stickers.html', {
+        scope: $scope
+      }).then(function (modal) {
+        $rootScope.modal = modal;
+        modal.show();
+      });
+    };
+    $scope.loadChatbox = function(){var e=document.getElementById("maxi-chat");e.style.display="none";var e=document.getElementById("chatbox");e.style.margin="0";}
+    $scope.closeChatbox = function(){var e=document.getElementById("chatbox");e.style.margin="0 0 -1500px 0";}
+    $scope.minimChatbox = function(){var e=document.getElementById("maxi-chat");e.style.display="block";var e=document.getElementById("chatbox");e.style.margin="0 0 -460px 0";}
+
+    $scope.selected = function (pre,id) {
+      var el = $('#' + pre + id);
+      el.addClass('animated bounceOutRight');
+      el.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+        el.removeClass("animated bounceOutRight").addClass('animated bounceIn');
       });
     };
     $scope.refresh = function () {
