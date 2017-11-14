@@ -51,20 +51,20 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         navigator.app.exitApp();
 
       }
-      if(device.isVirtual){
-        alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
-        navigator.app.exitApp();
-      }
-      inappbilling.init();
-      tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
-      if(!$rootScope.myAudio){
-        $rootScope.myAudio = new Media("http://dagala.ir/Era_Ameno.mp3");
-        if (!$rootScope.isMute) {
-          $rootScope.myAudio.pause();
-        }else {
-          $rootScope.myAudio.play({numberOfLoops: 9999});
-        }
-      }
+      // if(device.isVirtual){
+      //   alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
+      //   navigator.app.exitApp();
+      // }
+      // inappbilling.init();
+      // tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
+      // if(!$rootScope.myAudio){
+      //   $rootScope.myAudio = new Media("http://dagala.ir/Era_Ameno.mp3");
+      //   if (!$rootScope.isMute) {
+      //     $rootScope.myAudio.pause();
+      //   }else {
+      //     $rootScope.myAudio.play({numberOfLoops: 9999});
+      //   }
+      // }
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
@@ -145,6 +145,36 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           data.pass = $rootScope.gamer.pass;
           data.token = $rootScope.gamer.token;
           $rootScope.saveGamer(data);
+          angular.forEach(data.friendly, function (member, index) {
+            $ionicPopup.alert({
+              title: '<span class="myText">درخواست بازی داری</span>',
+              template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">بازیکن با نام کاربری ' + member.second.user + ' درخواست بازی با تورو داره، باهاش بازی میکنی؟</div>',
+              buttons: [
+                {
+                  text: '<span class="myText">باشه</span>',
+                  onTap: function (e) {
+                    $rootScope.gamer.halfGame.push(member);
+                    $http.post("https://dagala.cfapps.io/api/1/acceptFriend", member.gameId)
+                      .success(function (suc) {
+                      })
+                      .error(function (err) {
+                        menuService.myHandleError(err);
+                      });
+                  }
+                },
+                {text: '<span class="myText">نه</span>',
+                  onTap: function (e) {
+                    $http.post("https://dagala.cfapps.io/api/1/rejectFriend", member.gameId)
+                      .success(function (suc) {
+                      })
+                      .error(function (err) {
+                        menuService.myHandleError(err);
+                      });
+                  }
+                }
+              ]
+            });
+          });
           if (refresh)
             scope.$broadcast('scroll.refreshComplete');
         }).catch(function (err) {
@@ -263,7 +293,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
             }
           })
         });
-      }
+      };
     });
   })
   .config(function ($stateProvider, $urlRouterProvider, $ionicNativeTransitionsProvider, $ionicConfigProvider) {
@@ -341,6 +371,16 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         url: '/league',
         controller: 'LeagueCtrl',
         templateUrl: 'league.html'
+      })
+      .state('select', {
+        url: '/select',
+        controller: 'SelectCtrl',
+        templateUrl: 'select.html'
+      })
+      .state('username', {
+        url: '/username',
+        controller: 'UsernameCtrl',
+        templateUrl: 'username.html'
       })
       .state('buy', {
         url: '/buy',

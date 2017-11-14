@@ -59,28 +59,11 @@ angular.module('starter.controllers', [])
         menuService.myMessage("سکه های شما کافی نیست. برای بدست آوردن سکه، به قسمت سکه در منو مراجعه کنید", "خطا");
         return;
       }
-      if ($rootScope.gamer.halfGame.length === 10) {
+      if ($rootScope.gamer.halfGame.length >= 10) {
         menuService.myMessage("شما به سقف تعداد بازی نیمه تمام رسیده اید", "خطا");
         return;
       }
-      $ionicPopup.alert({
-        title: '<span class="myText">توجه</span>',
-        template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
-        buttons: [
-          {
-            text: '<span class="myText">باشه</span>',
-            onTap: function (e) {
-              $rootScope.isTrain = false;
-              $rootScope.callService = true;
-              $rootScope.isLeague = false;
-              $rootScope.gamer.coins -= $rootScope.gamer.perGameCoins;
-              $rootScope.hasPaid = false;
-              $state.go("newgame");
-            }
-          },
-          {text: '<span class="myText">نه</span>'}
-        ]
-      });
+      $state.go("select");
     }
     $scope.doChallenge = function () {
       if (!$rootScope.gamer){
@@ -1337,6 +1320,66 @@ angular.module('starter.controllers', [])
     $scope.ranksBack = function () {
       $ionicHistory.goBack();
     };
+  })
+  .controller('SelectCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout,$ionicPopup) {
+    $scope.byChance = function () {
+      $ionicPopup.alert({
+        title: '<span class="myText">توجه</span>',
+        template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
+        buttons: [
+          {
+            text: '<span class="myText">باشه</span>',
+            onTap: function (e) {
+              $rootScope.isTrain = false;
+              $rootScope.callService = true;
+              $rootScope.isLeague = false;
+              $rootScope.gamer.coins -= $rootScope.gamer.perGameCoins;
+              $rootScope.hasPaid = false;
+              $state.go("newgame");
+            }
+          },
+          {text: '<span class="myText">نه</span>'}
+        ]
+      });
+    };
+    $scope.byUsername = function () {
+      $state.go("username");
+    };
+    $scope.goBack = function () {
+      $ionicHistory.goBack();
+    }
+  })
+  .controller('UsernameCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout,$ionicPopup) {
+    $scope.search = function (username) {
+      menuService.startLoading();
+      $http.post("https://dagala.cfapps.io/api/1/friendly",$rootScope.gamer.user + "," + username).success(function (data, status, headers, config) {
+        menuService.stopLoading();
+        $ionicPopup.alert({
+          title: '<span class="myText">توجه</span>',
+          template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
+          buttons: [
+            {
+              text: '<span class="myText">باشه</span>',
+              onTap: function (e) {
+                $rootScope.isTrain = false;
+                $rootScope.callService = true;
+                $rootScope.isLeague = false;
+                $rootScope.gamer.coins -= $rootScope.gamer.perGameCoins;
+                $rootScope.hasPaid = false;
+                menuService.myMessage("درخواست بازی برای کاربر مورد نظرت ارسال شد، بعد از تاییدِ دوستت می تونید باهم بازی کنید");
+              }
+            },
+            {text: '<span class="myText">نه</span>'}
+          ]
+        });
+      }).catch(function (err) {
+        menuService.stopLoading();
+        menuService.myHandleError(err, false);
+      });
+    };
+    $scope.goBack = function () {
+      $ionicHistory.goBack();
+    }
   })
   .controller('ForgetCtrl', function ($scope, $state, menuService, $http, $ionicHistory) {
     $scope.submit = function (username) {

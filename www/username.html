@@ -1,0 +1,28 @@
+<ion-view>
+  <ion-content class="page-background" scroll="false">
+    <div class="myText">
+      <div class="row">
+        <a class="col grid-example s6" style="text-align: left" ng-click="goBack()">
+          <img class="coins-ico" src="img/back.jpg" style="width: 56px"/>
+        </a>
+        <a class="col grid-example s6 mytitle">
+          دعوت دوست
+        </a>
+      </div>
+      <form name="forgetForm" ng-show="!forgetPassCodeForm" novalidate ng-submit="search(username)">
+        <div class="row" style="margin-top: 30%">
+          <input type="text" id="username" name="username" ng-model="username"
+                 ng-maxlength="60" class="myText" placeholder="نام کاربری"
+                 required
+                 style="background: url(img/input1.png);width: 100%;height: 100%;background-size: 100% 100%;margin-left: 30px;margin-right: 30px;padding-left: 40px;padding-right: 10px">
+        </div>
+        <div class="error-message myText" ng-show="forgetForm.username.$error.maxlength && forgetForm.username.$touched">
+          برای فیلد نام کاربری حداکثر 60 کاراکتر وارد کنید
+        </div>
+        <button type="submit" ng-disabled="forgetForm.$invalid" class="row gold-button" style="font-size: large;text-align: center;display: block;line-height: 60px;margin-top: 10%;border: none">
+          ثبت
+        </button>
+      </form>
+    </div>
+  </ion-content>
+</ion-view>
