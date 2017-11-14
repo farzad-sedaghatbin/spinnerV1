@@ -1064,6 +1064,24 @@ angular.module('starter.controllers', [])
           }
         });
       },1000);
+      var tiles = ['img/PNG/A01.png', 'img/PNG/A02.png', 'img/PNG/A03.png',
+        'img/PNG/FA04.png', 'img/PNG/FA05.png', 'img/PNG/FB01.png'];
+      showStickers(tiles)
+    }
+
+    function showStickers(stickers) {
+      if (stickers.length > 0){
+        var popped = stickers.pop();
+        var img = $('<img id="dynamic">');
+        img.attr('src', popped);
+        img.appendTo('#myContent');
+        img.css("width","72px").css("height","72px").css("position","absolute").css("top","200px").css("right","20px").css("animation-duration","3s").css("-webkit-animation-duration","3s");
+        img.addClass("animated bounceOutLeft");
+        img.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+          img.remove();
+          showStickers(stickers);
+        });
+      }
     }
 
     function callTimeoutService(data1) {
