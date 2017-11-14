@@ -154,6 +154,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
                   text: '<span class="myText">باشه</span>',
                   onTap: function (e) {
                     $rootScope.gamer.halfGame.push(member);
+                    $rootScope.saveGamer($rootScope.gamer);
                     $http.post("https://dagala.cfapps.io/api/1/acceptFriend", member.gameId)
                       .success(function (suc) {
                       })
