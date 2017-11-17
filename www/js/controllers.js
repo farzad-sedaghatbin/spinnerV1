@@ -1064,9 +1064,7 @@ angular.module('starter.controllers', [])
           }
         });
       },1000);
-      var tiles = ['img/PNG/A01.png', 'img/PNG/A02.png', 'img/PNG/A03.png',
-        'img/PNG/FA04.png', 'img/PNG/FA05.png', 'img/PNG/FB01.png'];
-      showStickers(tiles)
+      showStickers(data.messages)
     }
 
     function showStickers(stickers) {
