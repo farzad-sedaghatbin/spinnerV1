@@ -165,7 +165,7 @@ angular.module('starter.controllers', [])
       } else {
         $rootScope.halfs = true;
         $(".myhalfs").show("slow");
-        $("#halfIcon").css("background", "url(img/show.png) no-repeat center").css("background-size", "contain");
+        $("#halfIcon").css("background", "url(img/2-natije-2.png) no-repeat right").css("background-size", "contain");
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="halfs"', [], function (tx, results) {
             tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["halfs", false]);
@@ -186,7 +186,7 @@ angular.module('starter.controllers', [])
       } else {
         $rootScope.ends = true;
         $(".myends").show("slow");
-        $("#endIcon").css("background", "url(img/show.png) no-repeat center").css("background-size", "contain");
+        $("#endIcon").css("background", "url(img/2-natije-2.png) no-repeat right").css("background-size", "contain");
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="ends"', [], function (tx, results) {
             tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["ends", false]);
