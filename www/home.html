@@ -42,24 +42,27 @@
         </filter>
       </defs>
     </svg>
-    <div class="myText" style="float:left;margin-top: 10px">
-      <span style="display:inline;"><img id="cupT" class="home-badge-img" src="img/cup.png"/></span>
-      <span class="home-badge-text" style="display:inline;top: 10px;left: 40px;font-size: 25px">{{gamer.rating}}</span>
-    </div>
-    <div class="myText" style="float:left;clear: both">
-      <span style="display:inline;"><img id="coinT" class="home-badge-img" src="img/coin.png"/></span>
-      <span class="home-badge-text" style="display:inline;top: 45px;left: 40px;font-size: 25px">{{gamer.coins}}</span>
-    </div>
-    <div class="myText" style="float:left;clear: both">
-      <span style="display:inline;"><img id="gemT" class="home-badge-img" src="img/gem.png"/></span>
-      <span class="home-badge-text" style="display:inline;top: 80px;left: 40px;font-size: 25px">{{gamer.gem}}</span>
-    </div>
-    <div ng-if="gamer.exp" class="myText" style="float:left;clear: both">
-      <span style="display:inline;"><img class="home-badge-img" src="img/exp.png"/></span>
-      <span class="home-badge-text" style="display:inline;top: 115px;left: 40px;font-size: 25px">{{gamer.exp}}</span>
-    </div>
-    <div class="myText" style="float:left;clear: both" ng-click="speaker()">
-      <span style="display:inline;"><img id="speaker" class="home-badge-img" src="img/speaker.png"/></span>
+    <div class="background-info" style="float:left">
+      <div class="myText" style="float:left;margin-top: 10px">
+        <span style="display:inline;"><img id="cupT" class="home-badge-img" src="img/cup.png"/></span>
+        <span class="home-badge-text"
+              style="display:inline;top: 10px;left: 40px;font-size: 25px">{{gamer.rating}}</span>
+      </div>
+      <div class="myText" style="float:left;clear: both">
+        <span style="display:inline;"><img id="coinT" class="home-badge-img" src="img/coin.png"/></span>
+        <span class="home-badge-text" style="display:inline;top: 45px;left: 40px;font-size: 25px">{{gamer.coins}}</span>
+      </div>
+      <div class="myText" style="float:left;clear: both">
+        <span style="display:inline;"><img id="gemT" class="home-badge-img" src="img/gem.png"/></span>
+        <span class="home-badge-text" style="display:inline;top: 80px;left: 40px;font-size: 25px">{{gamer.gem}}</span>
+      </div>
+      <div ng-if="gamer.exp" class="myText" style="float:left;clear: both">
+        <span style="display:inline;"><img class="home-badge-img" src="img/exp.png"/></span>
+        <span class="home-badge-text" style="display:inline;top: 115px;left: 40px;font-size: 25px">{{gamer.exp}}</span>
+      </div>
+      <div class="myText" style="float:left;clear: both" ng-click="speaker()">
+        <span style="display:inline;"><img id="speaker" class="home-badge-img" src="img/speaker.png"/></span>
+      </div>
     </div>
     <div
       style="background: url(img/pic.png) no-repeat center;background-size: contain;right: 0;position: absolute;width: 75px;height: 75px"
@@ -92,7 +95,7 @@
       </div>
       <div class="row" style="margin-top: 20px">
         <div id="league" class="col grid-example s6 red-button" ng-click="league()" style="font-size: small">
-          جام
+          لیگ
         </div>
       </div>
       <div class="row" style="margin-top: 20px">
@@ -104,7 +107,7 @@
       </div>
       <div class="row" style="margin-top: 20px">
         <div class="col grid-example s6 green-button" ng-click="soon()" style="font-size: small">
-          به زودی
+          به زودی ...
         </div>
       </div>
       <div ng-if="gamer.halfGame.length > 0" style="margin-top: 20px">
@@ -175,6 +178,10 @@
         </div>
       </div>
     </div>
+    <div id="footer">
+      <div style="width: 64px;height:64px;float: right"><img src="img/help.png"></div><div style="width: 64px;height:64px;float: left"><img src="img/back.png"></div>
+    </div>
+
   </ion-content>
 </ion-view>
 
