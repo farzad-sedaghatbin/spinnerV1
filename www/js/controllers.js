@@ -1073,7 +1073,7 @@ angular.module('starter.controllers', [])
         var img = $('<img id="dynamic">');
         img.attr('src', popped);
         img.appendTo('#myContent');
-        img.css("width","72px").css("height","72px").css("position","absolute").css("top","200px").css("right","20px").css("animation-duration","3s").css("-webkit-animation-duration","3s");
+        img.css("width","72px").css("height","72px").css("position","absolute").css("top","200px").css("right","20px").css("animation-duration","4s").css("-webkit-animation-duration","4s");
         img.addClass("animated bounceOutLeft");
         img.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
           img.remove();
