@@ -71,8 +71,11 @@
       <div class="myText" style="float:left;clear: both">
         <span style="display:inline;"><img class="home-badge-img-2" src="img/10-keshoyi-4.png"/></span>
       </div>
-      <div class="myText" style="float:left;clear: both">
+      <div ng-if="!gamer.guest" class="myText" style="float:left;clear: both">
         <span style="display:inline;"><img class="home-badge-img-2" src="img/10-keshoyi-5.png"/></span>
+      </div>
+      <div ng-if="gamer.guest" class="myText" style="float:left;clear: both">
+        <span style="display:inline;"><img class="home-badge-img-2" src="img/10-keshoyi-6.png"/></span>
       </div>
       <div class="myText" style="float:left;clear: both">
         <span style="display:inline;"><img class="home-badge-img-2" src="img/10-keshoyi-1.png"/></span>
@@ -94,13 +97,6 @@
       <!--امتیاز : {{gamer.score}}-->
     <!--</div>-->
     <div class="myText">
-      <div ng-if="gamer.guest" class="row" style="margin-top: 30px">
-        <article class="notepad">
-          <p style="text-align: right;direction: rtl">لطفا حتما ثبت نام کنید یا با حساب ساخته شده وارد شوید. در صورت ثبت
-            نام امتیازات حساب مهمان منتقل خواهد شد</p>
-        </article>
-      </div>
-
       <div class="row" style="position: absolute;margin-top: 30px;margin-left: 30px">
         <div id="battle " class="col grid-example s6 blue-button" style="font-size: medium"
              ng-click="challenge()">
