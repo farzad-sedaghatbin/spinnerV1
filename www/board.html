@@ -1,71 +1,413 @@
 <ion-view>
-  <ion-content class="page-background">
-    <svg width="5px" height="5px">
-      <defs>
-        <filter id="shadowed-goo">
-
-          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"/>
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"/>
-          <feGaussianBlur in="goo" stdDeviation="3" result="shadow"/>
-          <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2"
-                         result="shadow"/>
-          <feOffset in="shadow" dx="1" dy="1" result="shadow"/>
-          <feBlend in2="shadow" in="goo" result="goo"/>
-          <feBlend in2="goo" in="SourceGraphic" result="mix"/>
-        </filter>
-        <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"/>
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"/>
-          <feBlend in2="goo" in="SourceGraphic" result="mix"/>
-        </filter>
-      </defs>
-    </svg>
+  <ion-content class="page-background" scroll="false">
     <div class="myText">
-    <div class="row" style="margin-top: 0">
-      <a class="col grid-example s6" style="text-align: left" ng-click="goBack()">
-        <img class="coins-ico" src="img/back.png" style="width: 56px"/>
-      </a>
-      <a id="title" class="col grid-example s6 mytitle">
-        دسته بندی
-      </a>.r
-    </div>
-    <div class="myhelp" style="width:100%;background-size: 72px 72px;background-position-x: left;">
-      <div ng-click="help()" style="width: 72px;float: left;">راهنما</div>
-      <div style="width: 60%;float: right;margin-top: 30px;display: none" id="clock"></div>
-    </div>
-    <div id="release" class="myText" ng-if="!isTrain && !hasPaid">
-      <div class="row coining4" style="background-size: 100% 100%;display: inline-block;position: relative;text-align: right;padding-right: 20px;margin-top: 0">
-        برای دیدن دو دسته بندی دیگر 10 سکه خرج کن
-      </div>
-      <div class="row">
-        <div class="col grid-example blue-button" ng-click="releaseMore()"
-             style="background-size: 35% 70%;font-size: small;line-height: 50px;text-align: center">
-         قبول
+
+      <div class="background-info" style="float:left">
+        <div class="myText" style="float:left;margin-top: 10px">
+          <span style="display:inline;"><img id="cupT" class="home-badge-img" src="img/cup.png"/></span>
+          <span class="home-badge-text"
+                style="display:inline;top: 28px;left: 80px;font-size: 15px">{{gamer.rating}}</span>
+        </div>
+        <div class="myText" style="float:left;clear: both">
+          <span style="display:inline;"><img id="coinT" class="home-badge-img" src="img/coin.png"/></span>
+          <span class="home-badge-text" style="display:inline;top: 100px;left: 70px;font-size: 15px">{{gamer.coins}}</span>
+        </div>
+        <div class="myText" style="float:left;clear: both">
+          <span style="display:inline;"><img id="gemT" class="home-badge-img" src="img/gem.png"/></span>
+          <span class="home-badge-text" style="display:inline;top: 172px;left: 80px;font-size: 15px">{{gamer.gem}}</span>
+        </div>
+        <div ng-if="gamer.exp" class="myText" style="float:left;clear: both">
+          <span style="display:inline;"><img class="home-badge-img" src="img/exp.png"/></span>
+          <span class="home-badge-text" style="display:inline;top: 115px;left: 40px;font-size: 25px">{{gamer.exp}}</span>
         </div>
       </div>
-    </div>
-    <!--<circle menuFunHandler="menuHander(data);" config="circularMenuConfig"></circle>-->
-    <div class=cicular_wrapper>
-      <div class="m">
-        <div class="btn trigger" ng-click="toglefun()"><span class="line"></span></div>
-        <div class="rotater" ng-repeat="imageObj in config.submenus">
-          <div style="height: 100px;width: 100px">
-            <a ng-click="menufun($index,imageObj.id,imageObj.adr)" id="{{'a' + $index}}" style="text-align: center;line-height: 70px;"
-               ng-class="{myDisable : imageObj.style2}" class="btn btn-icon myshadow">
-              <div ng-click="topRanks(imageObj.id)" id="{{ 'object1' + $index }}" class="menu-item1"
-                   style="background-color:transparent;pointer-events: none"><span style="display: none"
-                                                                                   class="{{ 'text' + $index }}">رکوردها</span>
-              </div>
-              <div ng-click="start(imageObj.id,imageObj.adr)" id="{{ 'object2' + $index }}" class="menu-item2"
-                   style="background-color:transparent;pointer-events: none"><span style="display: none"
-                                                                                   class="{{ 'text' + $index }}">شروع</span>
-              </div>
-              <i id="{{'i' + $index}}" style="color: white;" ng-style="imageObj.style">{{imageObj.text}}<img ng-if="imageObj.menuicon" style="width: 52px;height: 52px" src="{{imageObj.menuicon}}"/></i>
-            </a>
+      <div class="background-info" style="position: absolute;top: 210px;background: url('img/10-keshoyi.png');
+    background-size: 50px 80%;
+    background-repeat: no-repeat;
+    left: 10px;">
+        <div class="myText" style="float:left;margin-top: 10px">
+          <span style="display:inline;"><img class="home-badge-img-2" src="img/10-keshoyi-3.png"/></span>
+        </div>
+        <div class="myText" style="float:left;clear: both">
+          <span style="display:inline;"><img class="home-badge-img-2" src="img/10-keshoyi-4.png"/></span>
+        </div>
+        <div class="myText" style="float:left;clear: both">
+          <span style="display:inline;"><img class="home-badge-img-2" src="img/10-keshoyi-5.png"/></span>
+        </div>
+        <div class="myText" style="float:left;clear: both">
+          <span style="display:inline;"><img class="home-badge-img-2" src="img/10-keshoyi-1.png"/></span>
+        </div>
+      </div>
+      <div class="myText" style="position: absolute;left: 110px;top: 5px;" ng-click="speaker()">
+        <span style="display:inline;"><img id="speaker" style="width: 64px" class="home-badge-img" src="img/speaker.png"/></span>
+      </div>
+      <div
+        style="background: url(img/pic.png) no-repeat center;background-size: contain;right: 0;position: absolute;width: 175px;height: 80px;top: 0"
+        ng-click="selectAvatar()">
+        <img style="width: 42px;border-radius: 50%;position: absolute;right: 15px;top: 19px;" src="{{gamer.avatar}}">
+      </div>
+      <div class="myEText" style="color: white;position: absolute;top: 15px;right: 85px;font-size: 20px">{{gamer.user}}
+      </div>
+      <div ng-if="gamer" class="myText" style="color: white;position: absolute;top: 42px;right: 153px;font-size: 14px">{{gamer.level}}
+      </div>
+      <!--<div id="release" class="myText" ng-if="!isTrain && !hasPaid">-->
+        <!--<div class="row coining4"-->
+             <!--style="background-size: 100% 100%;display: inline-block;position: relative;text-align: right;padding-right: 20px;margin-top: 0">-->
+          <!--برای دیدن دو دسته بندی دیگر 10 سکه خرج کن-->
+        <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col grid-example blue-button" ng-click="releaseMore()"-->
+               <!--style="background-size: 35% 70%;font-size: small;line-height: 50px;text-align: center">-->
+            <!--قبول-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class=cicular_wrapper>-->
+      <!--<div class="m">-->
+      <!--<div class="btn trigger" ng-click="toglefun()"><span class="line"></span></div>-->
+      <!--<div class="rotater" ng-repeat="imageObj in config.submenus">-->
+      <!--<div style="height: 100px;width: 100px">-->
+      <!--<a ng-click="menufun($index,imageObj.id,imageObj.adr)" id="{{'a' + $index}}" style="text-align: center;line-height: 70px;"-->
+      <!--ng-class="{myDisable : imageObj.style2}" class="btn btn-icon myshadow">-->
+      <!--<div ng-click="topRanks(imageObj.id)" id="{{ 'object1' + $index }}" class="menu-item1"-->
+      <!--style="background-color:transparent;pointer-events: none"><span style="display: none"-->
+      <!--class="{{ 'text' + $index }}">رکوردها</span>-->
+      <!--</div>-->
+      <!--<div ng-click="start(imageObj.id,imageObj.adr)" id="{{ 'object2' + $index }}" class="menu-item2"-->
+      <!--style="background-color:transparent;pointer-events: none"><span style="display: none"-->
+      <!--class="{{ 'text' + $index }}">شروع</span>-->
+      <!--</div>-->
+      <!--<i id="{{'i' + $index}}" style="color: white;" ng-style="imageObj.style">{{imageObj.text}}<img ng-if="imageObj.menuicon" style="width: 52px;height: 52px" src="{{imageObj.menuicon}}"/></i>-->
+      <!--</a>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+  <div style="overflow: scroll;
+    height: 520px;
+    position: absolute;
+    width: 85%;
+    margin-left: 40px;
+    margin-top: 100px;">
+      <div class="row" style="background: url('img/11-game menu.png');background-size: 60% 100%;background-repeat: no-repeat;
+    background-position: center;position: relative;z-index: 2;
+    width: 100%;">
+      </div>
+      <div style="background: url('img/11-game menu7.png');display: none;
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+    margin-top: -30px;
+    z-index: 1;">
+        <div class="row" style="height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/car.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+        </div>
+        <div class="row" style="margin-top: -20px;height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/motor.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+        </div>
+        <div class="row" style="margin-top: -20px;height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/football.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+        </div>
+        <div class="row" style="margin-top: -20px;height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/karate.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
           </div>
         </div>
       </div>
+
+
+
+      <div class="row" style="background: url('img/11-game menu2.png');background-size: 60% 100%;background-repeat: no-repeat;
+    background-position: center;position: relative;z-index: 2;margin-top: 0;
+    width: 100%;">
+      </div>
+      <div style="background: url('img/11-game menu7.png');display: none;
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+    margin-top: -30px;
+    z-index: 1;">
+        <div class="row" style="height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/puzzle.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+        </div>
+        <div class="row" style="margin-top: -20px;height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/hexo.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+        </div>
+        <div class="row" style="margin-top: -20px;height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/diamond.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+        </div>
+        <div class="row" style="margin-top: -20px;height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/hegza.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row" style="background: url('img/11-game menu3.png');background-size: 60% 100%;background-repeat: no-repeat;
+    background-position: center;position: relative;z-index: 2;margin-top: 0;
+    width: 100%;">
+      </div>
+      <div style="background: url('img/11-game menu7.png');display: none;
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+    margin-top: -30px;
+    z-index: 1;">
+        <div class="row" style="height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/spinner.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+        </div>
+        <div class="row" style="margin-top: -20px;height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/mr.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+        </div>
+        <div class="row" style="margin-top: -20px;height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/orbit.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+        </div>
+        <div class="row" style="margin-top: -20px;height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/school.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row" style="background: url('img/11-game menu4.png');background-size: 60% 100%;background-repeat: no-repeat;
+    background-position: center;position: relative;z-index: 2;margin-top: 0;
+    width: 100%;">
+      </div>
+      <div style="background: url('img/11-game menu7.png');display: none;
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+    margin-top: -30px;
+    z-index: 1;">
+        <div class="row" style="height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/ninja.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+        </div>
+        <div class="row" style="margin-top: -20px;height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/space.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+        </div>
+        <div class="row" style="margin-top: -20px;height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/qubo.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+        </div>
+        <div class="row" style="margin-top: -20px;height: 65px">
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 28%;max-width: 42px;background-position-x: right">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+          <div class="col grid-example s2" ng-click="soon()" style="background: url('img/tire.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+          </div>
+        </div>
+      </div>
+  </div>
+
+      <div id="footer">
+        <div style="width: 90px;
+    background-image: url(img/back.png);
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0;
+    height: 100px;"></div>
+        <div style="width: 90px;
+    background-image: url(img/help.png);
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 100px;"></div>
+      </div>
     </div>
-    </div>
+
   </ion-content>
 </ion-view>
