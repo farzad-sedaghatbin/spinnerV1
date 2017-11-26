@@ -103,7 +103,7 @@ angular.module('starter.controllers', [])
       $state.go("ranks");
     };
     $scope.register = function () {
-      $state.go("signup")
+      $state.go("profile")
     };
     $scope.changePass = function () {
       $state.go("login")
@@ -1330,6 +1330,9 @@ angular.module('starter.controllers', [])
         $scope.isLogin = true;
       }
     }
+  })
+  .controller('ProfileCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout) {
+
   })
   .controller('RanksCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout) {
     function innerStart() {
