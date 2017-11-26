@@ -1284,9 +1284,9 @@ angular.module('starter.controllers', [])
   .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory) {
     $scope.username;
     $scope.pass;
-    var isLogin = true;
+    $scope.isLogin = true;
     $scope.$on("$ionicView.enter", function (scopes, states) {
-      isLogin = true;
+      $scope.isLogin = true;
     });
     $scope.doLogin = function () {
       var username = $("#username").val();
@@ -1316,18 +1316,18 @@ angular.module('starter.controllers', [])
     };
     var tab;
     $scope.switch = function () {
-      if (isLogin) {
+      if ($scope.isLogin) {
         $("#main").css("background", "url('img/register-body-form.png')");
         tab = $("#tab");
         tab.css("background", "url('img/LOGIN-OFFLINE.png')");
         tab.css("left", "20%");
-        isLogin = false;
+        $scope.isLogin = false;
       } else {
         $("#main").css("background", "url('img/login-body-form.png')");
         tab = $("#tab");
         tab.css("background", "url('img/register-OFFLINE.png')");
         tab.css("left", "50%");
-        isLogin = true;
+        $scope.isLogin = true;
       }
     }
   })

@@ -2,20 +2,58 @@
   <ion-content class="page-background" scroll="false">
     <div class="myText" style="width: 100%;height: 100%">
       <div id="main" class="row login-background" style="background: url('img/login-body-form.png');">
-        <span id="tab" ng-click="switch()" class="col grid-example s2 login-tab" style="background: url('img/register-OFFLINE.png')"></span>
+        <span id="tab" ng-click="switch()" class="col grid-example s2 login-tab"
+              style="background: url('img/register-OFFLINE.png')"></span>
 
-        <form ng-submit="doLogin()" name="loginForm" novalidate style="height: 100%;width: 100%;margin-top: 65%;margin-left: 15%;margin-right: 15%;">
-          <div style="height: 20px;display: inline-block;text-align: right;width: 88%;">
+        <form ng-if="isLogin" ng-submit="doLogin()" name="loginForm" novalidate
+              style="height: 100%;width: 100%;margin-top: 65%;margin-left: 15%;margin-right: 15%;">
+          <div style="height: 20px;display: inline-block;text-align: right;width: 90%;">
+            نام کاربری
+          </div>
+          <div style="height: 50px">
+            <input id="username1" type="text" ng-model="username" name="username" required ng-maxlength="60"
+                   style="background: url(img/input-01.png);width: 80%;height: 100%;background-size: 100% 100%;margin-left: 10%;padding-left: 40px;padding-right: 10px">
+          </div>
+          <div class="error-message myText"
+               ng-show="loginForm.username.$error.maxlength && loginForm.username.$touched">
+            برای فیلد نام کاربری حداکثر 60 کاراکتر وارد کنید
+          </div>
+          <div style="height: 20px;display: inline-block;text-align: right;width: 90%;">
+            کلمه عبور
+          </div>
+          <div style="height: 50px">
+            <input id="pass1" type="password" ng-model="pass" name="pass" required ng-maxlength="60"
+                   style="background: url(img/input-01.png);width: 80%;height: 100%;background-size: 100% 100%;margin-left: 10%;padding-left: 40px;padding-right: 10px">
+          </div>
+          <div class="error-message myText" ng-show="loginForm.pass.$error.maxlength && loginForm.pass.$touched">
+            برای فیلد کلمه عبور حداکثر 60 کاراکتر وارد کنید
+          </div>
+
+          <div style="height: 50px;background: url('img/7-login-3.png');background-size: 70% 70%;
+    background-repeat: no-repeat;
+    margin-top: 20px;
+    background-position: center;">
+          </div>
+          <button id="submitbtn" type="submit" class="row login-btn" ng-disabled="loginForm.$invalid"
+                  style="background: url(img/7-login-2.png);float: right">
+          </button>
+        </form>
+
+
+        <form ng-if="!isLogin" ng-submit="doLogin()" name="loginForm" novalidate
+              style="height: 100%;width: 100%;margin-top: 65%;margin-left: 15%;margin-right: 15%;">
+          <div style="height: 20px;display: inline-block;text-align: right;width: 90%;">
             نام کاربری
           </div>
           <div style="height: 50px">
             <input id="username" type="text" ng-model="username" name="username" required ng-maxlength="60"
                    style="background: url(img/input-01.png);width: 80%;height: 100%;background-size: 100% 100%;margin-left: 10%;padding-left: 40px;padding-right: 10px">
           </div>
-          <div class="error-message myText" ng-show="loginForm.username.$error.maxlength && loginForm.username.$touched">
+          <div class="error-message myText"
+               ng-show="loginForm.username.$error.maxlength && loginForm.username.$touched">
             برای فیلد نام کاربری حداکثر 60 کاراکتر وارد کنید
           </div>
-          <div style="height: 20px;display: inline-block;text-align: right;width: 88%;">
+          <div style="height: 20px;display: inline-block;text-align: right;width: 90%;">
             کلمه عبور
           </div>
           <div style="height: 50px">
@@ -26,33 +64,36 @@
             برای فیلد کلمه عبور حداکثر 60 کاراکتر وارد کنید
           </div>
 
-          <div style="height: 50px;background: url('img/7-log in-3.png');background-size: 70% 70%;
+          <div style="height: 50px;background: url('img/7-login-3.png');background-size: 70% 70%;
     background-repeat: no-repeat;
     margin-top: 20px;
     background-position: center;">
           </div>
 
-          <button type="submit" class="row" ng-disabled="loginForm.$invalid"
-                  style="border: none;
-    background: url(img/15-dokme.png);
-    background-size: 30%;
-    background-repeat: no-repeat;
-    background-position-x: right;
-    background-position-y: top;
-    height: 20%;margin-top: 0">
-            ورود
+
+          <button type="submit" class="row login-btn" ng-disabled="loginForm.$invalid"
+                  style="background: url(img/7-signup-4.png);float: right">
+          </button>
+          <button class="row login-btn"
+                  style="background: url(img/7-signup-2.png);float: left;">
+          </button>
+          <button class="row login-btn"
+                  style="background: url(img/7-signup-3.png);float: left;background-position-y: center !important;
+                  height: 12%;width: 20%;
+    position: absolute;
+    margin-left: 18%;">
           </button>
         </form>
 
       </div>
 
       <!--<div class="row">-->
-        <!--<a class="col grid-example s6" style="text-align: left" ng-click="goBack()">-->
-          <!--<img class="coins-ico" src="img/back.png" style="width: 56px"/>-->
-        <!--</a>-->
-        <!--<a class="col grid-example s6 mytitle">-->
-          <!--ورود-->
-        <!--</a>-->
+      <!--<a class="col grid-example s6" style="text-align: left" ng-click="goBack()">-->
+      <!--<img class="coins-ico" src="img/back.png" style="width: 56px"/>-->
+      <!--</a>-->
+      <!--<a class="col grid-example s6 mytitle">-->
+      <!--ورود-->
+      <!--</a>-->
       <!--</div>-->
 
     </div>
