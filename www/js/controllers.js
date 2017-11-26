@@ -1284,15 +1284,9 @@ angular.module('starter.controllers', [])
   .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory) {
     $scope.username;
     $scope.pass;
+    var isLogin = true;
     $scope.$on("$ionicView.enter", function (scopes, states) {
-      $("#username").keypress(function(event){
-        var ew = event.which;
-        return (31 < ew && ew <= 122);
-      });
-      $("#pass").keypress(function(event){
-        var ew = event.which;
-        return (31 < ew && ew <= 122);
-      });
+      isLogin = true;
     });
     $scope.doLogin = function () {
       var username = $("#username").val();
@@ -1319,6 +1313,22 @@ angular.module('starter.controllers', [])
     };
     $scope.goBack = function () {
       $ionicHistory.goBack();
+    };
+    var tab;
+    $scope.switch = function () {
+      if (isLogin) {
+        $("#main").css("background", "url('img/register-body-form.png')");
+        tab = $("#tab");
+        tab.css("background", "url('img/LOGIN-OFFLINE.png')");
+        tab.css("left", "20%");
+        isLogin = false;
+      } else {
+        $("#main").css("background", "url('img/login-body-form.png')");
+        tab = $("#tab");
+        tab.css("background", "url('img/register-OFFLINE.png')");
+        tab.css("left", "50%");
+        isLogin = true;
+      }
     }
   })
   .controller('RanksCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout) {

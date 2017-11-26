@@ -1,16 +1,8 @@
 <ion-view>
   <ion-content class="page-background" scroll="false">
     <div class="myText" style="width: 100%;height: 100%">
-      <div class="row" style="background: url('img/login-body-form.png');width: 100%;height: 100%;background-size: 80% 60%;
-    background-repeat: no-repeat;
-    background-position: center;">
-        <span class="col grid-example s2" style="background: url('img/register-OFFLINE.png');height: 10%;
-    top: 21%;
-    position: absolute;
-    left: 50%;
-    max-width: 30%;
-    background-size: contain;
-    background-repeat: no-repeat;"></span>
+      <div id="main" class="row login-background" style="background: url('img/login-body-form.png');">
+        <span id="tab" ng-click="switch()" class="col grid-example s2 login-tab" style="background: url('img/register-OFFLINE.png')"></span>
 
         <form ng-submit="doLogin()" name="loginForm" novalidate style="height: 100%;width: 100%;margin-top: 65%;margin-left: 15%;margin-right: 15%;">
           <div style="height: 20px;display: inline-block;text-align: right;width: 88%;">
@@ -34,14 +26,20 @@
             برای فیلد کلمه عبور حداکثر 60 کاراکتر وارد کنید
           </div>
 
+          <div style="height: 50px;background: url('img/7-log in-3.png');background-size: 70% 70%;
+    background-repeat: no-repeat;
+    margin-top: 20px;
+    background-position: center;">
+          </div>
+
           <button type="submit" class="row" ng-disabled="loginForm.$invalid"
                   style="border: none;
     background: url(img/15-dokme.png);
     background-size: 30%;
     background-repeat: no-repeat;
     background-position-x: right;
-    background-position-y: bottom;
-    height: 20%;">
+    background-position-y: top;
+    height: 20%;margin-top: 0">
             ورود
           </button>
         </form>
