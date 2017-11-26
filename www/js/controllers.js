@@ -108,9 +108,6 @@ angular.module('starter.controllers', [])
     $scope.changePass = function () {
       $state.go("login")
     };
-    $scope.forgetPass = function () {
-      $state.go("forget")
-    };
     $scope.coining = function () {
       $state.go("coining");
     };
@@ -1310,6 +1307,9 @@ angular.module('starter.controllers', [])
         menuService.stopLoading();
         menuService.myHandleError(err, true);
       });
+    };
+    $scope.forgetPass = function () {
+      $state.go("forget")
     };
     $scope.goBack = function () {
       $ionicHistory.goBack();
