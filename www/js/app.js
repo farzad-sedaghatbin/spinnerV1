@@ -343,6 +343,11 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         controller: 'ProfileCtrl',
         templateUrl: 'profile.html'
       })
+      .state('change-pass', {
+        url: '/change-pass',
+        controller: 'ChangePassCtrl',
+        templateUrl: 'change-pass.html'
+      })
       .state('signup', {
         url: '/signup',
         controller: 'SignupCtrl',

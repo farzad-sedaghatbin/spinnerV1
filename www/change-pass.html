@@ -1,0 +1,58 @@
+<ion-view>
+  <ion-content class="page-background" scroll="false">
+    <div class="myText" style="width: 100%;height: 100%">
+      <div id="main" class="row login-background" style="background: url('img/26-1.png');background-size: 90% 100% !important;">
+        <form name="confirmForm" novalidate ng-submit="submit(username)"
+              style="height: 100%;width: 100%;margin-top: 55%;margin-left: 15%;margin-right: 15%;">
+          <div style="height: 30px;display: block;text-align: right;width: 90%;background: url('img/26-6.png');
+          background-size: 70px;
+    background-repeat: no-repeat;
+    background-position-x: right;">
+          </div>
+          <div style="height: 50px">
+            <input type="text" id="code" name="code" ng-model="code"
+                   style="background: url(img/input-veify-02.png);width: 80%;height: 100%;background-size: 100% 100%;margin-left: 10%;padding-left: 40px;padding-right: 10px;background-repeat: no-repeat;background-position: center">
+          </div>
+          <div style="height: 30px;display: block;text-align: right;width: 90%;background: url('img/26-4.png');
+          background-size: 70px;
+    background-repeat: no-repeat;
+    background-position-x: right;">
+          </div>
+          <div style="height: 50px">
+            <input type="password" id="password" name="password" ng-model="password"
+                   class="myText" ng-minlength="6" ng-maxlength="50"
+                   style="background: url(img/input-01.png);width: 80%;height: 100%;background-size: 100% 100%;margin-left: 10%;padding-left: 40px;padding-right: 10px">
+          </div>
+          <div class="error-message myText"
+               ng-show="confirmForm.password.$error.minlength && confirmForm.password.$touched">&#1576;&#1585;&#1575;&#1740;&#32;&#1601;&#1740;&#1604;&#1583;&#32;&#1705;&#1604;&#1605;&#1607;&#32;&#1593;&#1576;&#1608;&#1585;&#32;&#1581;&#1583;&#1575;&#1602;&#1604;&#32;&#54;&#32;&#1705;&#1575;&#1585;&#1575;&#1705;&#1578;&#1585;&#32;&#1608;&#1575;&#1585;&#1583;&#32;&#1705;&#1606;&#1740;&#1583;</div>
+          <div class="error-message myText"
+               ng-show="confirmForm.password.$error.maxlength && confirmForm.password.$touched">برای فیلد کلمه عبور
+            حداکثر
+            50 کاراکتر وارد کنید
+          </div>
+
+          <div style="height: 30px;display: block;text-align: right;width: 90%;background: url('img/26-7.png');
+          background-size: 70px;
+    background-repeat: no-repeat;
+    background-position-x: right;">
+          </div>
+          <div style="height: 50px">
+            <input type="password" id="confirmPass" name="confirmPass"
+                   ng-model="confirmPass" class="myText"
+                   ng-change="checkPassword(confirmForm,password,confirmPass)" required
+                   style="background: url(img/input-01.png);width: 80%;height: 100%;background-size: 100% 100%;margin-left: 10%;padding-left: 40px;padding-right: 10px">
+          </div>
+          <div class="error-message myText"
+               ng-show="confirmForm.confirmPass.$error.validity && confirmForm.confirmPass.$touched">&#1601;&#1740;&#1604;&#1583;&#32;&#1578;&#1705;&#1585;&#1575;&#1585;&#32;&#1705;&#1604;&#1605;&#1607;&#32;&#1593;&#1576;&#1608;&#1585;&#32;&#1576;&#1575;&#32;&#1705;&#1604;&#1605;&#1607;&#32;&#1593;&#1576;&#1608;&#1585;&#32;&#1576;&#1575;&#1740;&#1583;&#32;&#1576;&#1585;&#1575;&#1576;&#1585;&#32;&#1576;&#1575;&#1588;&#1583;</div>
+
+
+          <button type="submit" ng-disabled="confirmForm.$invalid" class="row login-btn"
+                  style="background: url(img/7-signup-4.png);float: right;margin-top: 30px;
+    margin-right: -15px;">
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

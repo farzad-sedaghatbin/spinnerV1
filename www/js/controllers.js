@@ -1332,6 +1332,11 @@ angular.module('starter.controllers', [])
     }
   })
   .controller('ProfileCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout) {
+      $scope.changePass = function () {
+        $state.go("change-pass");
+      }
+  })
+  .controller('ChangePassCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout) {
 
   })
   .controller('RanksCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout) {

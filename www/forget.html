@@ -2,7 +2,7 @@
   <ion-content class="page-background" scroll="false">
     <div class="myText" style="width: 100%;height: 100%">
       <div id="main" class="row login-background" style="background: url('img/change-password.png');">
-        <form name="forgetForm" ng-show="forgetPassCodeForm" novalidate ng-submit="submit(username)"
+        <form name="forgetForm" ng-show="!forgetPassCodeForm" novalidate ng-submit="submit(username)"
               style="height: 100%;width: 100%;margin-top: 60%;margin-left: 15%;margin-right: 15%;">
           <div style="height: 30px;display: block;text-align: right;width: 90%;background: url('img/17-login-right5.png');
           background-size: 70px;
@@ -25,7 +25,7 @@
 
 
 
-        <form name="confirmForm" ng-show="!forgetPassCodeForm" novalidate ng-submit="submit(username)"
+        <form name="confirmForm" ng-show="forgetPassCodeForm" novalidate ng-submit="submit(username)"
               style="height: 100%;width: 100%;margin-top: 60%;margin-left: 15%;margin-right: 15%;">
           <div style="height: 35px;display: block;text-align: right;width: 78%;background: url('img/20-title.png');
           background-size: 70px;
