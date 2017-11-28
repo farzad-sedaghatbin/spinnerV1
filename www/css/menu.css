@@ -344,31 +344,35 @@ span.font-36 {
 }
 
 .coining1 {
-  margin-top: 50px;
-  line-height: 60px;
-  background: url(../img/coin1.png) no-repeat center;
+  height: 110px;
+  background: url(../img/24-2.png) no-repeat center;
   background-size: contain;
+  margin: 0;
+  padding: 0;
 }
 
 .coining2 {
-  margin-top: 20px;
-  line-height: 60px;
-  background: url(../img/coin2.png) no-repeat center;
+  height: 110px;
+  background: url(../img/24-3.png) no-repeat center;
   background-size: contain;
+  margin: 0;
+  padding: 0;
 }
 
 .coining3 {
-  margin-top: 20px;
-  line-height: 60px;
-  background: url(../img/coin3.png) no-repeat center;
+  height: 110px;
+  background: url(../img/24-4.png) no-repeat center;
   background-size: contain;
+  margin: 0;
+  padding: 0;
 }
 
 .coining4 {
-  margin-top: 20px;
-  line-height: 60px;
-  background: url(../img/coin4.png) no-repeat center;
+  height: 110px;
+  background: url(../img/24-5.png) no-repeat center;
   background-size: contain;
+  margin: 0;
+  padding: 0;
 }
 
 .row1 {

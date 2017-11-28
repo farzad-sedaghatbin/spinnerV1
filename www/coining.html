@@ -13,31 +13,13 @@
         <div ng-click="help()" style="width: 72px;float: left;">راهنما</div>
         <div style="width: 60%;float: right;margin-top: 30px;display: none" id="clock"></div>
       </div>
-    <div ng-if="isAndroid()" class="row coining1" style="background-size: 300px" ng-click="tapsell()">
-      <div class="col grid-example s6 coining-text-right" style="font-size: large">
-        20 سکه
-      </div>
-      <div class="col grid-example s6 coining-text-left" style="color: darkmagenta;">
-        تماشای ویدیو
-      </div>
+    <div ng-if="isAndroid()" class="row coining1" ng-click="tapsell()">
     </div>
-    <div class="row coining2" style="background-size: 300px" ng-click="wheel()">
-      <div class="col grid-example s6 coining-text-right" style="font-size: large">
-تا 45 سکه      </div>
-      <div class="col grid-example s6 coining-text-left" style="color: darkmagenta;">
-        گردونه شانسی
-      </div>
+    <div class="row coining2" ng-click="wheel()">
     </div>
-    <div class="row coining3" style="background-size: 300px" ng-click="invitation()">
-      <div class="col grid-example s6 coining-text-right" style="font-size: large">
-        150 سکه
-      </div>
-      <div class="col grid-example s6 coining-text-left" style="color: darkmagenta;">
-        معرفی دوستان
-      </div>
+    <div class="row coining3" ng-click="invitation()">
     </div>
-    <div class="row coining4" style="background-size: 300px;text-align: center;display: block" ng-click="buy()">
-      خرید
+    <div class="row coining4" ng-click="buy()">
     </div>
       <div class="row text-center" >
         <div class="col col-50">
