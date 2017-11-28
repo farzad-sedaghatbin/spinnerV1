@@ -1,7 +1,7 @@
 <ion-modal-view
-  style="min-height: 100%;width: 100%;background: rgb(255,255,255);left: 0;top: 0">
+  style="min-height: 100%;width: 100%;background: rgba(0,0,0,0.78);left: 0;top: 0">
   <ion-content style="padding-top: 10px">
-    <a ng-click="modal.hide()" class="closeButton"></a>
+    <a ng-click="modal.hide()" class="closeButton" style="background-position-x: right;position: relative;width: 100%;top: 5px"></a>
     <div class="row myText" ng-repeat="row in rows" style="height: 200px;margin: 0;padding: 0">
 
 
@@ -9,11 +9,13 @@
            style="height: 200px;background: url('{{row[0].icon}}');background-size: 100% 100%;background-repeat: no-repeat;margin: 0;padding: 0;display: inline-flex">
         <div ng-if="!row[0].coin" class="col grid-example s3 coining-text-right"
              style="font-size: smaller;text-align: center !important;margin-top: 135px;">
-          {{row[0].price}} ت
+          <span style="float: right;clear: right;height: 10px;margin-right: 30%;">{{row[0].price}} تومان</span>
+          <span style="float: right;clear: right;height: 10px;margin-right: 30%;">{{row[0].description}}</span>
         </div>
         <div ng-if="row[0].coin" class="col grid-example s3 coining-text-right"
              style="font-size: smaller;text-align: center !important;margin-top: 135px;">
-          {{row[0].price}} سکه
+          <span style="float: right;clear: right;height: 10px;margin-right: 30%;">{{row[0].price}} سکه</span>
+          <span style="float: right;clear: right;height: 10px;margin-right: 30%;">{{row[0].description}}</span>
         </div>
       </div>
 
@@ -22,11 +24,13 @@
            style="height: 200px;background: url('{{row[1].icon}}');background-size: 100% 100%;background-repeat: no-repeat;margin: 0;padding: 0;display: inline-flex">
         <div ng-if="!row[1].coin" class="col grid-example s3 coining-text-right"
              style="font-size: smaller;text-align: center !important;margin-top: 135px;">
-          {{row[1].price}} ت
+          <span style="float: right;clear: right;height: 10px;margin-right: 30%;">{{row[1].price}} تومان</span>
+          <span style="float: right;clear: right;height: 10px;margin-right: 30%;">{{row[1].description}}</span>
         </div>
         <div ng-if="row[1].coin" class="col grid-example s3 coining-text-right"
              style="font-size: smaller;text-align: center !important;margin-top: 135px;">
-          {{row[1].price}} سکه
+          <span style="float: right;clear: right;height: 10px;margin-right: 30%;">{{row[1].price}} سکه</span>
+          <span style="float: right;clear: right;height: 10px;margin-right: 30%;">{{row[1].description}}</span>
         </div>
       </div>
 
@@ -34,11 +38,13 @@
            style="height: 200px;background: url('{{row[2].icon}}');background-size: 100% 100%;background-repeat: no-repeat;margin: 0;padding: 0;display: inline-flex">
         <div ng-if="!row[2].coin" class="col grid-example s3 coining-text-right"
              style="font-size: smaller;text-align: center !important;margin-top: 135px;">
-          {{row[2].price}} ت
+          <span style="float: right;clear: right;height: 10px;margin-right: 30%;">{{row[2].price}} تومان</span>
+          <span style="float: right;clear: right;height: 10px;margin-right: 30%;">{{row[2].description}}</span>
         </div>
         <div ng-if="row[2].coin" class="col grid-example s3 coining-text-right"
              style="font-size: smaller;text-align: center !important;margin-top: 135px;">
-          {{row[2].price}} سکه
+          <span style="float: right;clear: right;height: 10px;margin-right: 30%;">{{row[2].price}} سکه</span>
+          <span style="float: right;clear: right;height: 10px;margin-right: 30%;">{{row[2].description}}</span>
         </div>
       </div>
 
