@@ -917,7 +917,12 @@ angular.module('starter.controllers', [])
     $scope.buy = function () {
       menuService.startLoading();
       $http.post("https://dagala.cfapps.io/api/1/marketObjects").success(function (data, status, headers, config) {
-        $scope.rows = data;
+        var tiles = data;
+        var rowSize = Math.ceil(tiles.length / 3);
+        $scope.rows = [];
+        for (var i = 0; i < rowSize; i++) {
+          $scope.rows.push(tiles.slice(i * 3, (i + 1) * 3));
+        }
         menuService.stopLoading();
         $ionicModal.fromTemplateUrl('buy.html', {
           scope: $scope
@@ -930,15 +935,15 @@ angular.module('starter.controllers', [])
         menuService.myHandleError(err);
       });
     };
-    $scope.doBuy = function (productId, price, icon, amount,id,isCoin) {
+    $scope.doBuy = function (row) {
       $rootScope.modal.hide();
-      if (isCoin){
-        if ($rootScope.gamer.coins < price){
+      if (row.coin){
+        if ($rootScope.gamer.coins < row.price){
           menuService.myMessage("سکه های شما کافی نیست", "خطا");
           return;
         }
         menuService.startLoading();
-        $http.post("https://dagala.cfapps.io/api/1/inventory", productId + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
+        $http.post("https://dagala.cfapps.io/api/1/inventory", row.name + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
           data.pass = $rootScope.gamer.pass;
           data.token = $rootScope.gamer.token;
           $rootScope.saveGamer(data);
@@ -950,30 +955,30 @@ angular.module('starter.controllers', [])
         });
       } else if ($rootScope.isAndroid()) {
         inappbilling.buy(function (data) {
-          $http.post("https://dagala.cfapps.io/api/1/inventory", productId + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
+          $http.post("https://dagala.cfapps.io/api/1/inventory", row.name + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
             inappbilling.consumePurchase(function () {
               menuService.myMessage("خرید شما با موفقیت انجام شد", "پیام");
-              if (icon.indexOf("coin") >= 0) {
-                $rootScope.gamer.coins += amount;
-              } else if (icon.indexOf("gem") >= 0) {
-                $rootScope.gamer.gem += amount;
+              if (row.icon.indexOf("coin") >= 0) {
+                $rootScope.gamer.coins += row.amount;
+              } else if (row.icon.indexOf("gem") >= 0) {
+                $rootScope.gamer.gem += row.amount;
               }
             }, function (e) {
               menuService.myMessage("خرید مجدد این محصول برای شما ممکن نخواهد بود، بدلیل خطای کافه بازار.برای رفع مشکل با ما تماس بگیرید", "خطا");
-            }, productId)
+            }, row.name)
           }).catch(function (err) {
             menuService.myHandleError(err);
           });
         }, function (e) {
           menuService.myMessage("خطا در برقراری ارتباط با کافه بازار", "خطا");
-        }, productId)
+        }, row.name)
       } else {
         menuService.startLoading();
         var url = "https://dagala.cfapps.io/api/1/factor";
-        $http.post(url, price + "," + $rootScope.gamer.user + "," + id).success(function (data, status, headers, config) {
+        $http.post(url, row.price + "," + $rootScope.gamer.user + "," + row.id).success(function (data, status, headers, config) {
           menuService.stopLoading();
           window.open(
-            "http://dagala.ir/bank.html?res=" + data + "&amount=" + parseInt(price) * 10,
+            "http://dagala.ir/bank.html?res=" + data + "&amount=" + parseInt(row.price) * 10,
             "_system",
             "hidden=no,location=no,clearsessioncache=yes,clearcache=yes"
           );
