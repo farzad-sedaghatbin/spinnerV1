@@ -163,7 +163,7 @@
       <!--</div>-->
       <!--</div>-->
 
-      <div ng-if="gamer.fullGame.length > 0" ng-class="{'margin-top-80': gamer.halfGame.length == 0}" style="height: 40%;
+      <div style="height: 40%;
       overflow-y: scroll;
       position: fixed;
     width: 100%;
@@ -172,7 +172,7 @@
                <!--style="background-size: 35% 100%;font-size: small;margin-left: 50px">-->
             <!--تمام شده ها-->
           <!--</div>-->
-          <div id="endIcon" ng-click="toggleEnds()"
+          <div id="endIcon" ng-click="toggleList()"
                style="background-size: contain;font-size: small;position: fixed;
                 right: 0;
                  width: 100px;height: 80px;top: 350px">
@@ -182,7 +182,7 @@
         background-repeat: no-repeat;
         height: 120px;
         background-position: center;
-        width: 400px" ng-repeat="row in gamer.fullGame">
+        width: 400px" ng-repeat="row in games">
           <div style="position: absolute;left: 118px;margin-top: 15px">
             <img style="width: 42px;margin-top: 12px;border-radius: 50%" src="{{row.second.avatar}}">
           </div>

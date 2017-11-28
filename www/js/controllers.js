@@ -149,44 +149,33 @@ angular.module('starter.controllers', [])
         })
       });
     };
-    $scope.toggleHalfs = function () {
-      if ($rootScope.halfs) {
-        $rootScope.halfs = false;
-        $(".myhalfs").hide("slow");
-        $("#halfIcon").css("background", "url(img/hide.png) no-repeat center").css("background-size", "contain");
+
+    $scope.toggleList = function () {
+      if ($scope.listState === "none"){
+        $scope.listState = "half";
+        $scope.games = $rootScope.gamer.halfGame;
+        $("#endIcon").css("background", "url(img/2-natije-1.png) no-repeat right").css("background-size", "contain");
         menuService.getDb().transaction(function (tx) {
-          tx.executeSql('DELETE FROM MYGAME WHERE name="halfs"', [], function (tx, results) {
-            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["halfs", true]);
+          tx.executeSql('DELETE FROM MYGAME WHERE name="listState"', [], function (tx, results) {
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["listState","none"]);
+          });
+        });
+      } else if ($scope.listState === "half"){
+        $scope.listState = "full";
+        $scope.games = $rootScope.gamer.fullGame;
+        $("#endIcon").css("background", "url(img/2-natije-3.png) no-repeat right").css("background-size", "contain");
+        menuService.getDb().transaction(function (tx) {
+          tx.executeSql('DELETE FROM MYGAME WHERE name="listState"', [], function (tx, results) {
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["listState","half"]);
           });
         });
       } else {
-        $rootScope.halfs = true;
-        $(".myhalfs").show("slow");
-        $("#halfIcon").css("background", "url(img/2-natije-2.png) no-repeat right").css("background-size", "contain");
-        menuService.getDb().transaction(function (tx) {
-          tx.executeSql('DELETE FROM MYGAME WHERE name="halfs"', [], function (tx, results) {
-            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["halfs", false]);
-          });
-        });
-      }
-    };
-    $scope.toggleEnds = function () {
-      if ($rootScope.ends) {
-        $rootScope.ends = false;
-        $(".myends").hide("slow");
-        $("#endIcon").css("background", "url(img/hide.png) no-repeat center").css("background-size", "contain");
-        menuService.getDb().transaction(function (tx) {
-          tx.executeSql('DELETE FROM MYGAME WHERE name="ends"', [], function (tx, results) {
-            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["ends", true]);
-          });
-        });
-      } else {
-        $rootScope.ends = true;
-        $(".myends").show("slow");
+        $scope.listState = "none";
+        $scope.games = [];
         $("#endIcon").css("background", "url(img/2-natije-2.png) no-repeat right").css("background-size", "contain");
         menuService.getDb().transaction(function (tx) {
-          tx.executeSql('DELETE FROM MYGAME WHERE name="ends"', [], function (tx, results) {
-            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["ends", false]);
+          tx.executeSql('DELETE FROM MYGAME WHERE name="listState"', [], function (tx, results) {
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["listState","full"]);
           });
         });
       }
@@ -194,25 +183,14 @@ angular.module('starter.controllers', [])
     $scope.$on("$ionicView.loaded",function () {
       $timeout(function () {
         menuService.getDb().transaction(function (tx) {
-          tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="halfs"', [], function (tx, results) {
+          tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="listState"', [], function (tx, results) {
             var len = results.rows.length, i, result = '';
             if (!results.rows || results.rows.length == 0) {
-              $rootScope.halfs = false;
+              $scope.listState = "none";
             } else {
-              $rootScope.halfs = results.rows.item(0).val === true || results.rows.item(0).val === "true";
+              $scope.listState = results.rows.item(0).val;
             }
-            $scope.toggleHalfs();
-          }, null);
-        });
-        menuService.getDb().transaction(function (tx) {
-          tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="ends"', [], function (tx, results) {
-            var len = results.rows.length, i, result = '';
-            if (!results.rows || results.rows.length == 0) {
-              $rootScope.ends = false;
-            } else {
-              $rootScope.ends = results.rows.item(0).val === true || results.rows.item(0).val === "true";
-            }
-            $scope.toggleEnds();
+            $scope.toggleList();
           }, null);
         });
       },600);
