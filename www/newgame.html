@@ -2,47 +2,59 @@
   <ion-content class="page-background" id="HomeController">
     <div class="myText">
       <div class="row">
-        <a class="col grid-example s6" ng-click="goBack()">
-          <div id="decline" class="myhelp" style="position: absolute;left: 0">
-            انصراف
-          </div>
+        <a class="col grid-example s6 avardgah">
         </a>
-        <a class="col grid-example s6 mytitle">
-          آوردگاه
-        </a>
-      </div>
-      <div class="myhelp" style="width:100%;background-size: 72px 72px;background-position-x: left;">
-        <div ng-click="help()" style="width: 72px;float: left;">راهنما</div>
-        <div style="width: 60%;float: right;margin-top: 30px;display: none" id="clock"></div>
       </div>
       <div ng-if="loaded">
         <div class="row" style="margin-bottom: 20px;margin-top: 40px">
-          <div id="playBtn" class="col grid-example s12 blue-button i"
-               style="background: url('img/button1.png') no-repeat center;background-size: 180px 60px;font-size: large;"
-               ng-click="play()">
-            بازی کن
+          <div class="col grid-example s6 enseraf"
+               ng-click="goBack()">
           </div>
+          <div class="col grid-example s6 game-play" ng-click="play()">
+          </div>
+
         </div>
 
-        <div class="row" style="margin-top: 60px">
-          <div class="col grid-example s3"
-               style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-            <img style="width: 42px;margin-top: 12px;border-radius: 50%" src="{{gamer.avatar}}">
+        <div class="row" style="margin-bottom: 10px;height: 100px;width: 80%;margin-left: 10%;">
+          <div class="col grid-example s4"
+               style="background: url(img/vs-03.png) no-repeat center;background-size: 100% 100%;margin: 0;padding: 0">
+            <img style="width: 42px;margin-top: 8px;border-radius: 50%;margin-right: 18px" src="{{gamer.avatar}}">
+            <span style="color: black;font-size: large;position: absolute;top: 265px;left: 20vw">من</span>
           </div>
-          <div class="col grid-example s3 rate-button" style="margin-right: 30px">
-            شما
+          <div id="yourscore" class="col grid-example s4 rate"
+               style="font-size: large;margin: 0;padding: 0;line-height: 55px">
           </div>
-          <div ng-if="battle.second" class="col grid-example s3 rate-button myEText" style="padding: 0;min-width: 35%">
-            {{battle.second.user}}
+          <div ng-if="battle.second" class="col grid-example s4"
+               style="background: url(img/vs-02.png) no-repeat center;background-size: 100% 100%;margin: 0;padding: 0">
+            <img style="width: 42px;margin-top: 8px;border-radius: 50%;margin-left: 18px" src="{{battle.second.avatar}}">
+            <div class="myEText" style="line-height: 20px;color: black;height: 30px;font-size: large">
+              {{battle.second.level}}
+            </div>
+            <div class="myEText" style="color: black;font-size: large;position: absolute;top: 248px;right: 10vw">
+              {{battle.second.user}}
+            </div>
           </div>
-          <div ng-if="battle.second" class="col grid-example s3"
-               style="background: url(img/pic.png) no-repeat center;background-size: contain;">
-            <img style="width: 42px;margin-top: 12px;border-radius: 50%" src="{{battle.second.avatar}}">
-          </div>
-          <div ng-if="!battle.second" class="col grid-example s6 unknown" style="margin-left: 40px;margin-right: 10px">
+          <div ng-if="!battle.second" class="col grid-example s4"
+               style="background: url(img/vs-02.png) no-repeat center;background-size: 100% 100%;margin: 0;padding: 0">
+            <img style="width: 42px;margin-top: 8px;border-radius: 50%;margin-left: 18px" src="img/unknown.png">
           </div>
         </div>
       </div>
+    </div>
+    <div id="footer">
+      <div style="width: 90px;
+    background-image: url(img/back.png);
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0;
+    height: 100px;"></div>
+      <div style="width: 90px;
+    background-image: url(img/help.png);
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 100px;"></div>
     </div>
   </ion-content>
 </ion-view>

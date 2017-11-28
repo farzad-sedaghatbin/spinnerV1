@@ -444,6 +444,12 @@ span.font-36 {
   background-size: 50%;
 }
 
+.enseraf {
+  line-height: 70px;
+  background: url(../img/cancel.png) no-repeat center;
+  background-size: 50%;
+}
+
 .nobate-harif {
   line-height: 70px;
   background: url(../img/waiting.png) no-repeat center;

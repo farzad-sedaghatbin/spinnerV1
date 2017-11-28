@@ -46,7 +46,7 @@
             <span style="color: black;font-size: large;position: absolute;top: 248px;left: 20vw">من</span>
             <div style="line-height: 40px;color: #d2dea6;font-size: large">{{myTurn}}</div>
           </div>
-          <div id="yourscore" ng-if="battle.user.user" class="col grid-example s4 rate"
+          <div id="yourscore" class="col grid-example s4 rate"
                style="font-size: large;margin: 0;padding: 0;line-height: 55px">
             {{battle.score}}
             {{battle.user.score}}
@@ -62,8 +62,9 @@
             </div>
             <div style="line-height: 0;color: #d2dea6;font-size: large">{{hisTurn}}</div>
           </div>
-          <div ng-if="!battle.user.user" class="col grid-example s6 unknown"
-               style="margin-left: 40px;margin-right: 40px;opacity: 0.8">
+          <div ng-if="!battle.user.user" class="col grid-example s4"
+               style="background: url(img/vs-02.png) no-repeat center;background-size: 100% 100%;margin: 0;padding: 0">
+            <img style="width: 42px;margin-top: 8px;border-radius: 50%;margin-left: 18px" src="img/unknown.png">
           </div>
         </div>
         <!--<div class="row" style="background: url('img/3.png') no-repeat center;background-size: 100%;margin-top: 20px">-->
