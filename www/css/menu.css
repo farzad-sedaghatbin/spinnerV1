@@ -329,8 +329,8 @@ span.font-36 {
 
 .rate {
   line-height: 60px;
-  background: url(../img/rate.png) no-repeat center;
-  background-size: contain;
+  background: url(../img/vs-01.png) no-repeat center;
+  background-size: 100% 100%;
 }
 
 .coining-text-left {
@@ -438,11 +438,10 @@ span.font-36 {
   color: whitesmoke;
 }
 
-.blue-button {
+.taslim {
   line-height: 70px;
-  background: url(../img/button1.png) no-repeat center;
-  background-size: contain;
-  opacity: 0.9;
+  background: url(../img/loss.png) no-repeat center;
+  background-size: 50%;
 }
 
 .green-button {
@@ -464,11 +463,10 @@ span.font-36 {
   background-size: contain;
 }
 
-.red-button {
+.game-play {
   line-height: 70px;
-  background: url(../img/red-button.png) no-repeat center;
-  background-size: contain;
-  opacity: 0.9;
+  background: url(../img/GAME-PLAY.png) no-repeat center;
+  background-size: 50%;
 }
 
 .gold-button {
