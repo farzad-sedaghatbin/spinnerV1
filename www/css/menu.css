@@ -463,6 +463,12 @@ span.font-36 {
   background-size: contain;
 }
 
+.avardgah {
+  line-height: 85px !important;
+  background: url(../img/23-6.png) no-repeat center;
+  background-size: contain;
+}
+
 .game-play {
   line-height: 70px;
   background: url(../img/GAME-PLAY.png) no-repeat center;
