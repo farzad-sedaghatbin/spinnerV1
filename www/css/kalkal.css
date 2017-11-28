@@ -8,7 +8,7 @@
 .minim-button{position:absolute;top:2px;right:26px;font-size:24px;border:1px solid #dedede;width:20px;background:#fefefe}
 .maxi-button{position:absolute;top:2px;right:26px;font-size:24px;border:1px solid #dedede;width:20px;background:#fefefe;}
 .chat-text{position:absolute;top:5px;left:10px;font-size:16px;}
-#chat{width:70px;border-radius:3px;padding:2px 8px;font-size:12px;background:#fff;-webkit-transform:translateZ(0);transform:translateZ(0);margin-left: 80px;position: absolute;top: 180px}
+#chat{width:70px;border-radius:3px;padding:2px 8px;font-size:12px;background:#fff;-webkit-transform:translateZ(0);transform:translateZ(0);margin-left: 80px;position: absolute;top: 200px}
 #chat:before{border-width:10px 11px 0 0;border-color:#A8A8A8 transparent transparent;left:7px;bottom:-10px}
 #chat:after{border-width:9px 8px 0 0;border-color:#fff transparent transparent;left:8px;bottom:-8px}
 #chat:hover{background:#ddd;-webkit-animation-name:hvr-pulse-grow;animation-name:hvr-pulse-grow;-webkit-animation-duration:.3s;animation-duration:.3s;-webkit-animation-timing-function:linear;animation-timing-function:linear;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-direction:alternate;animation-direction:alternate}

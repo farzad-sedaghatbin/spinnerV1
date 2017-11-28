@@ -1,5 +1,5 @@
 <ion-view>
-  <ion-content class="page-background" id="HomeController">
+  <ion-content class="page-background" id="HomeController" scroll="false">
     <ion-refresher on-refresh="refresh()" pulling-text="برای بارگزاری بکشید"
                    refreshing-text="در حال بارگزاری">
 
@@ -9,9 +9,9 @@
         <a class="col grid-example s6 avardgah myText">
         </a>
       </div>
-      <div style="width: 60%;float: right;margin-top: 10px;display: none" class="clock"></div>
-      <div ng-if="loaded">
-        <div ng-if="!isEnded" class="row" style="margin-bottom: 40px;margin-top: 0">
+        <div style="width: 60%;float: right;margin-top: 10px;display: none;position: absolute;left: 25%" class="clock"></div>
+      <div ng-if="loaded" style="margin-top: 40px;overflow: scroll">
+        <div ng-if="!isEnded" class="row" style="margin-bottom: 20px;margin-top: 0">
           <div ng-if="battle.user.user" id="taslim" class="col grid-example s6 taslim"
                ng-click="taslim()">
           </div>
@@ -43,7 +43,7 @@
           <div class="col grid-example s4"
                style="background: url(img/vs-03.png) no-repeat center;background-size: 100% 100%;margin: 0;padding: 0">
             <img style="width: 42px;margin-top: 8px;border-radius: 50%;margin-right: 18px" src="{{gamer.avatar}}">
-            <span style="color: black;font-size: large;position: absolute;top: 248px;left: 20vw">من</span>
+            <span style="color: black;font-size: large;position: absolute;top: 268px;left: 20vw">من</span>
             <div style="line-height: 40px;color: #d2dea6;font-size: large">{{myTurn}}</div>
           </div>
           <div id="yourscore" class="col grid-example s4 rate"
@@ -57,7 +57,7 @@
             <div class="myEText" style="line-height: 20px;color: black;height: 30px;font-size: large">سطح :
               {{battle.user.level}}
             </div>
-            <div class="myEText" style="color: black;font-size: large;position: absolute;top: 248px;right: 10vw">
+            <div class="myEText" style="color: black;font-size: large;position: absolute;top: 268px;right: 12vw;width: 70px;text-align: left;">
               {{battle.user.user}}
             </div>
             <div style="line-height: 0;color: #d2dea6;font-size: large">{{hisTurn}}</div>
@@ -90,7 +90,7 @@
           </div>
           <div class="col grid-example"
                style="min-width: 20%;padding-top: 10px">
-            <img style="width: 48px;margin-top: 8px" src="{{row.icon}}">
+            <img style="width: 48px;margin-top: 8px;margin-left: -5px" src="{{row.icon}}">
           </div>
           <div class="col grid-example s4 score"
                style="margin: 0;font-size: xx-large;padding-left: 0;min-width: 40%;text-align: left;padding-top: 10px">
