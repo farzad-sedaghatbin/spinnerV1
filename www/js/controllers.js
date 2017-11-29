@@ -885,7 +885,7 @@ angular.module('starter.controllers', [])
     $scope.goBack = function () {
       $ionicPopup.alert({
         title: '<span class="myText">اخطار</span>',
-        template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">آیا از انصراف اطمینان دارید؟</div>',
+        template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">آیا از انصراف اطمینان دارید؟</div>',
         buttons: [
           {
             text: '<img class="my-button" src="../img/bale.png">',
@@ -1116,10 +1116,10 @@ angular.module('starter.controllers', [])
         menuService.stopLoading();
         $ionicPopup.alert({
           title: '<span class="myText">توجه</span>',
-          template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
+          template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
           buttons: [
             {
-              text: '<span class="myText">باشه</span>',
+              text: '<img class="my-button" src="../img/bale.png">',
               onTap: function (e) {
                 $rootScope.isTrain = false;
                 $rootScope.callService = true;
@@ -1129,7 +1129,7 @@ angular.module('starter.controllers', [])
                 menuService.myMessage("درخواست بازی برای کاربر مورد نظرت ارسال شد، بعد از تاییدِ دوستت می تونید باهم بازی کنید");
               }
             },
-            {text: '<span class="myText">نه</span>'}
+            {text: '<img class="my-button" src="../img/kheir.png">'}
           ]
         });
       }).catch(function (err) {

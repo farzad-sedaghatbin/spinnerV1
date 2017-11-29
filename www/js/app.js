@@ -25,7 +25,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         } else if ($ionicHistory.currentStateName() == "newgame") {
           $ionicPopup.alert({
             title: '<span class="myText">اخطار</span>',
-            template: '<div class="myText" style="font-size: 24px;bottom: 12px;direction: rtl;text-align: right;line-height: 1.5em">آیا از انصراف اطمینان دارید؟</div>',
+            template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">آیا از انصراف اطمینان دارید؟</div>',
             buttons: [
               {
                 text: '<img class="my-button" src="../img/bale.png">',
@@ -116,11 +116,11 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
             menuService.stopLoading();
             $ionicPopup.alert({
               title: '<span class="myText">بروزرسانی</span>',
-              template: '<div class="myText" style="padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">    <div style="direction: rtl;padding-top: 20px;line-height: 3em;padding-right: 20px">' +
+              template: '<div class="myText" style="padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">    <div style="direction: rtl;padding-top: 20px;line-height: 3em;padding-right: 20px">' +
               '<span class="myText">رقیب شما بازی ای کرده که شما بدلیل عدم بروزرسانی آنرا ندارید. لطفا بازی را بروزرسانی کنید</span></div></div>',
               buttons: [
                 {
-                  text: '<span class="myText">باشه</span>',
+                  text: '<img class="my-button" src="../img/15-dokme.png">',
                   onTap: function (e) {
                     navigator.app.exitApp();
                   }
@@ -148,10 +148,10 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           angular.forEach(data.friendly, function (member, index) {
             $ionicPopup.alert({
               title: '<span class="myText">درخواست بازی داری</span>',
-              template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">بازیکن با نام کاربری ' + member.second.user + ' درخواست بازی با تورو داره، باهاش بازی میکنی؟</div>',
+              template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">بازیکن با نام کاربری ' + member.second.user + ' درخواست بازی با تورو داره، باهاش بازی میکنی؟</div>',
               buttons: [
                 {
-                  text: '<span class="myText">باشه</span>',
+                  text: '<img class="my-button" src="../img/bale.png">',
                   onTap: function (e) {
                     $rootScope.gamer.halfGame.push(member);
                     $rootScope.saveGamer($rootScope.gamer);
@@ -163,7 +163,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
                       });
                   }
                 },
-                {text: '<span class="myText">نه</span>',
+                {text: '<img class="my-button" src="../img/kheir.png">',
                   onTap: function (e) {
                     $http.post("https://dagala.cfapps.io/api/1/rejectFriend", member.gameId)
                       .success(function (suc) {

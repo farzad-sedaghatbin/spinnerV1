@@ -22,11 +22,11 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
     } else if (err && err.status == 418) {
       $ionicPopup.alert({
         title: '<span class="myText">بروزرسانی</span>',
-        template: '<div class="myText" style="padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">    <div style="direction: rtl;padding-top: 20px;line-height: 3em">' +
+        template: '<div class="myText" style="padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">    <div style="direction: rtl;padding-top: 20px;line-height: 3em">' +
         '<span class="myText">رقیب شما بازی ای کرده که شما بدلیل عدم بروزرسانی آنرا ندارید. لطفا بازی را بروزرسانی کنید</span></div></div>',
         buttons: [
           {
-            text: '<span class="myText">باشه</span>',
+            text: '<img class="my-button" src="../img/15-dokme.png">',
             onTap: function (e) {
               navigator.app.exitApp();
             }
@@ -43,7 +43,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
     var t = title ? title : '';
     $ionicPopup.alert({
       title: '<span class="myText">' + t + '</span>',
-      template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em;padding-right: 20px">' + msg + '</div>',
+      template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">' + msg + '</div>',
       buttons: [
         {text: '<img class="my-button" src="../img/15-dokme.png">'}
       ]
