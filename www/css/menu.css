@@ -460,7 +460,6 @@ span.font-36 {
   line-height: 70px;
   background: url(../img/green.png) no-repeat center;
   background-size: contain;
-  opacity: 0.9;
 }
 
 .board {
@@ -491,7 +490,18 @@ span.font-36 {
   line-height: 70px;
   background: url(../img/league.png) no-repeat center;
   background-size: contain;
-  opacity: 0.9;
+}
+
+.red-button {
+  line-height: 70px;
+  background: url(../img/red-button.png) no-repeat center;
+  background-size: contain;
+}
+
+.blue-button {
+  line-height: 70px;
+  background: url(../img/button1.png) no-repeat center;
+  background-size: contain;
 }
 
 .row .col.s6 {

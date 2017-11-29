@@ -33,24 +33,6 @@ angular.module('starter.controllers', [])
         $rootScope.isMute = true;
       }
     };
-    $scope.selectAvatar = function () {
-      $ionicModal.fromTemplateUrl('avatars.html', {
-        scope: $scope
-      }).then(function (modal) {
-        $rootScope.modal = modal;
-        modal.show();
-      });
-    };
-    $scope.selected = function (url) {
-      $rootScope.gamer.avatar = url;
-      $rootScope.modal.hide();
-      var serverUrl = "https://dagala.cfapps.io/api/1/changeAvatar";
-      $http.post(serverUrl, url + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
-        $rootScope.saveGamer($rootScope.gamer);
-      }).catch(function (err) {
-        menuService.myHandleError(err);
-      });
-    };
     $scope.refresh = function () {
       $rootScope.refreshGamer(true, $scope);
     };
@@ -102,11 +84,8 @@ angular.module('starter.controllers', [])
       $rootScope.selectedGame = null;
       $state.go("ranks");
     };
-    $scope.register = function () {
+    $scope.profile = function () {
       $state.go("profile")
-    };
-    $scope.changePass = function () {
-      $state.go("login")
     };
     $scope.coining = function () {
       $state.go("coining");
@@ -1261,7 +1240,7 @@ angular.module('starter.controllers', [])
       });
     };
   })
-  .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory) {
+  .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory,$ionicModal) {
     $scope.username;
     $scope.pass;
     $scope.isLogin = true;
@@ -1312,12 +1291,93 @@ angular.module('starter.controllers', [])
         tab.css("left", "50%");
         $scope.isLogin = true;
       }
-    }
+    };
+
+
+    $scope.avatar = 'img/7-signup-2.png';
+    $scope.username;
+    $scope.pass;
+    $scope.tel;
+    $scope.selectAvatar = function () {
+      $ionicModal.fromTemplateUrl('avatars.html', {
+        scope: $scope
+      }).then(function (modal) {
+        $rootScope.modal = modal;
+        modal.show();
+      });
+    };
+    $scope.selected = function (url) {
+      $scope.avatar = url;
+      $rootScope.modal.hide()
+    };
+    $scope.signUp = function (form) {
+      var username = $("#username").val();
+      if (username.indexOf(" ") >= 0){
+        menuService.myMessage("نام کاربری نباید دارای فاصله باشد", "خطا");
+        return;
+      }
+      if (username.indexOf(",") >= 0){
+        menuService.myMessage("نام کاربری نباید دارای کاما(,) باشد", "خطا");
+        return;
+      }
+      menuService.startLoading();
+      var signUpUrl = "https://dagala.cfapps.io/api/1/signup";
+      var d = {
+        username: username,
+        mobile: $("#tel").val(),
+        password: $("#pass").val(),
+        avatar: $scope.avatar,
+        tempUser: $rootScope.gamer.user
+      };
+      $http.post(signUpUrl, d)
+        .success(function (data, status, headers, config) {
+          if (data === 400) {
+            menuService.myMessage("کاربر دیگری با این نام کاربری قبلا ثبت نام کرده", "خطا");
+            menuService.stopLoading();
+          } else {
+            menuService.myMessage("ثبت نام شما با موفقیت انجام شد");
+            $rootScope.gamer.user = d.username;
+            $rootScope.gamer.pass = d.password;
+            $rootScope.gamer.token = data.token;
+            $rootScope.saveGamer(data);
+            $state.go("home");
+            menuService.stopLoading();
+          }
+        })
+        .error(function (err) {
+          menuService.stopLoading();
+          menuService.myHandleError(err);
+        });
+    };
   })
-  .controller('ProfileCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout) {
+  .controller('ProfileCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $ionicModal) {
       $scope.changePass = function () {
         $state.go("change-pass");
-      }
+      };
+    $scope.login = function () {
+      $state.go("login")
+    };
+    $scope.selectAvatar = function () {
+      $ionicModal.fromTemplateUrl('avatars.html', {
+        scope: $scope
+      }).then(function (modal) {
+        $rootScope.modal = modal;
+        modal.show();
+      });
+    };
+    $scope.selected = function (url) {
+      $rootScope.gamer.avatar = url;
+      $rootScope.modal.hide();
+      var serverUrl = "https://dagala.cfapps.io/api/1/changeAvatar";
+      $http.post(serverUrl, url + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
+        $rootScope.saveGamer($rootScope.gamer);
+      }).catch(function (err) {
+        menuService.myHandleError(err);
+      });
+    };
+    $scope.goBack = function () {
+      $ionicHistory.goBack();
+    }
   })
   .controller('ChangePassCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout) {
 
@@ -1466,61 +1526,7 @@ angular.module('starter.controllers', [])
     }
   })
   .controller('SignupCtrl', function ($scope, $ionicModal, menuService, $http, $state, $rootScope, $ionicHistory) {
-    $scope.avatar = 'img/default.png';
-    $scope.username;
-    $scope.pass;
-    $scope.tel;
-    $scope.selectAvatar = function () {
-      $ionicModal.fromTemplateUrl('avatars.html', {
-        scope: $scope
-      }).then(function (modal) {
-        $rootScope.modal = modal;
-        modal.show();
-      });
-    };
-    $scope.selected = function (url) {
-      $scope.avatar = url;
-      $rootScope.modal.hide()
-    };
-    $scope.signUp = function (form) {
-      var username = $("#username").val();
-      if (username.indexOf(" ") >= 0){
-        menuService.myMessage("نام کاربری نباید دارای فاصله باشد", "خطا");
-        return;
-      }
-      if (username.indexOf(",") >= 0){
-        menuService.myMessage("نام کاربری نباید دارای کاما(,) باشد", "خطا");
-        return;
-      }
-      menuService.startLoading();
-      var signUpUrl = "https://dagala.cfapps.io/api/1/signup";
-      var d = {
-        username: username,
-        mobile: $("#tel").val(),
-        password: $("#pass").val(),
-        avatar: $scope.avatar,
-        tempUser: $rootScope.gamer.user
-      };
-      $http.post(signUpUrl, d)
-        .success(function (data, status, headers, config) {
-          if (data === 400) {
-            menuService.myMessage("کاربر دیگری با این نام کاربری قبلا ثبت نام کرده", "خطا");
-            menuService.stopLoading();
-          } else {
-            menuService.myMessage("ثبت نام شما با موفقیت انجام شد");
-            $rootScope.gamer.user = d.username;
-            $rootScope.gamer.pass = d.password;
-            $rootScope.gamer.token = data.token;
-            $rootScope.saveGamer(data);
-            $state.go("home");
-            menuService.stopLoading();
-          }
-        })
-        .error(function (err) {
-          menuService.stopLoading();
-          menuService.myHandleError(err);
-        });
-    };
+
     $scope.goBack = function () {
       $ionicHistory.goBack();
     }

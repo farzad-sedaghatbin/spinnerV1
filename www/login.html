@@ -44,7 +44,7 @@
         </form>
 
 
-        <form ng-if="!isLogin" ng-submit="doLogin()" name="signupForm" novalidate
+        <form ng-if="!isLogin" ng-submit="signUp()" name="signupForm" novalidate
               style="height: 100%;width: 100%;margin-top: 65%;margin-left: 15%;margin-right: 15%;">
           <div style="height: 30px;display: block;text-align: right;width: 90%;background: url('img/17-login-right5.png');
           background-size: 70px;
@@ -91,19 +91,32 @@
           <button type="submit" class="row login-btn" ng-disabled="signupForm.$invalid"
                   style="background: url(img/7-signup-4.png);float: right">
           </button>
-          <button type="button" class="row login-btn"
-                  style="background: url(img/7-signup-2.png);float: left;">
+          <button ng-click="selectAvatar()" type="button" class="row login-btn"
+                  style="background: url('{{avatar}}');float: left;">
           </button>
-          <button type="button" class="row login-btn"
+          <button ng-click="selectAvatar()" type="button" class="row login-btn"
                   style="background: url(img/7-signup-3.png);float: left;background-position-y: center !important;
                   height: 12%;width: 20%;
     position: absolute;
     margin-left: 18%;">
           </button>
         </form>
-
       </div>
-
+    </div>
+    <div id="footer">
+      <div ng-click="goBack()" style="width: 90px;
+    background-image: url(img/back.png);
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0;
+    height: 100px;"></div>
+      <div style="width: 90px;
+    background-image: url(img/help.png);
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 100px;"></div>
     </div>
   </ion-content>
 </ion-view>

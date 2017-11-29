@@ -21,39 +21,19 @@
       <a on-hold="ranks()" ng-click="ranks()" style="font-size: x-small" class="menu-item-omid myText"> خفن ها </a>
       <a on-hold="help()" ng-click="help()" style="font-size: x-small" class="menu-item-omid myText"> راهنما </a>
     </nav>
-    <!-- filters -->
-    <svg width="5px" height="5px">
-      <defs>
-        <filter id="shadowed-goo">
 
-          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"/>
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"/>
-          <feGaussianBlur in="goo" stdDeviation="3" result="shadow"/>
-          <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2"
-                         result="shadow"/>
-          <feOffset in="shadow" dx="1" dy="1" result="shadow"/>
-          <feBlend in2="shadow" in="goo" result="goo"/>
-          <feBlend in2="goo" in="SourceGraphic" result="mix"/>
-        </filter>
-        <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"/>
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"/>
-          <feBlend in2="goo" in="SourceGraphic" result="mix"/>
-        </filter>
-      </defs>
-    </svg>
     <div class="background-info" style="float:left">
-      <div class="myText" style="float:left;margin-top: 10px">
+      <div ng-click="ranks()" class="myText" style="float:left;margin-top: 10px">
         <span style="display:inline;"><img id="cupT" class="home-badge-img" src="img/cup.png"/></span>
         <span class="home-badge-text"
               style="display:inline;top: 28px;left: 80px;font-size: 15px">{{gamer.rating}}</span>
       </div>
-      <div class="myText" style="float:left;clear: both">
-        <span style="display:inline;"><img id="coinT" class="home-badge-img" src="img/coin.png"/></span>
+      <div ng-click="coining()" class="myText" style="float:left;clear: both">
+        <span style="display:inline;"><img id="coinT" class="home-badge-img" src="img/home-coin.png"/></span>
         <span class="home-badge-text" style="display:inline;top: 100px;left: 70px;font-size: 15px">{{gamer.coins}}</span>
       </div>
-      <div class="myText" style="float:left;clear: both">
-        <span style="display:inline;"><img id="gemT" class="home-badge-img" src="img/gem.png"/></span>
+      <div ng-click="coining()" class="myText" style="float:left;clear: both">
+        <span style="display:inline;"><img id="gemT" class="home-badge-img" src="img/home-gem.png"/></span>
         <span class="home-badge-text" style="display:inline;top: 172px;left: 80px;font-size: 15px">{{gamer.gem}}</span>
       </div>
       <div ng-if="gamer.exp" class="myText" style="float:left;clear: both">
@@ -61,32 +41,13 @@
         <span class="home-badge-text" style="display:inline;top: 115px;left: 40px;font-size: 25px">{{gamer.exp}}</span>
       </div>
     </div>
-    <div class="background-info" style="position: absolute;top: 210px;background: url('img/10-keshoyi.png');
-    background-size: 50px 80%;
-    background-repeat: no-repeat;
-    left: 10px;">
-      <div class="myText" style="float:left;margin-top: 10px">
-        <span style="display:inline;"><img class="home-badge-img-2" src="img/10-keshoyi-3.png"/></span>
-      </div>
-      <div class="myText" style="float:left;clear: both">
-        <span style="display:inline;"><img class="home-badge-img-2" src="img/10-keshoyi-4.png"/></span>
-      </div>
-      <div ng-if="!gamer.guest" class="myText" style="float:left;clear: both">
-        <span style="display:inline;"><img class="home-badge-img-2" src="img/10-keshoyi-5.png"/></span>
-      </div>
-      <div ng-if="gamer.guest" class="myText" style="float:left;clear: both">
-        <span style="display:inline;"><img class="home-badge-img-2" src="img/10-keshoyi-6.png"/></span>
-      </div>
-      <div class="myText" style="float:left;clear: both">
-        <span style="display:inline;"><img class="home-badge-img-2" src="img/10-keshoyi-1.png"/></span>
-      </div>
-    </div>
+
     <div class="myText" style="position: absolute;left: 110px;top: 5px;" ng-click="speaker()">
       <span style="display:inline;"><img id="speaker" style="width: 64px" class="home-badge-img" src="img/speaker.png"/></span>
     </div>
     <div
       style="background: url(img/pic.png) no-repeat center;background-size: contain;right: 0;position: absolute;width: 175px;height: 80px;top: 0"
-      ng-click="selectAvatar()">
+      ng-click="profile()">
       <img style="width: 30%;position: absolute;left: 30px;top: 42px;height: 15px;" src="img/bar-full-profile.png">
       <img style="width: 42px;border-radius: 50%;position: absolute;right: 15px;top: 19px;" src="{{gamer.avatar}}">
     </div>
