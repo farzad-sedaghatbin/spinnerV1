@@ -86,9 +86,13 @@ angular.module('starter.controllers', [])
       $state.go("ranks");
     };
     $rootScope.profile = function () {
+      if ($rootScope.modal)
+        $rootScope.modal.hide();
       $state.go("profile")
     };
     $rootScope.coining = function () {
+      if ($rootScope.modal)
+        $rootScope.modal.hide();
       $state.go("coining");
     };
     $scope.league = function () {
@@ -183,7 +187,7 @@ angular.module('starter.controllers', [])
     var last;
     $scope.openBoard = function (cat) {
       var lastC = $("#" + last);
-      if (cat === last){
+      if (cat === last) {
         lastC.hide();
         last = null;
         return;
@@ -197,307 +201,9 @@ angular.module('starter.controllers', [])
       menuService.boardTutorial();
     }, 700);
 
-    $scope.releaseMore = function () {
-      $ionicPopup.alert({
-        title: '<span class="myText">اخطار</span>',
-        template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">آیا از خرید اطمینان دارید؟</div>',
-        buttons: [
-          {
-            text: '<span class="myText">بله</span>',
-            onTap: function (e) {
-              if ($rootScope.gamer.coins < 60) {
-                menuService.myMessage("سکه های شما برای آزاد کردن دسته بندی ها کافی نیست", "خطا");
-                return;
-              }
-              menuService.startLoading();
-              $http.post("https://dagala.cfapps.io/api/1/expandMenu", $rootScope.gamer.user).success(function (data, status, headers, config) {
-                menuService.stopLoading();
-                $scope.config.submenus = [
-                  {
-                    menuicon: '',
-                    adr: 'javascript:;',
-                    text: 'فکری',
-                    style: {"font-size": "large"},
-                    id: 1,
-                    style2: false
-                  },
-                  {
-                    menuicon: '',
-                    adr: 'javascript:;',
-                    text: 'مهارتی',
-                    style: {"font-size": "large"},
-                    id: 2,
-                    style2: false
-                  },
-                  {
-                    menuicon: '',
-                    adr: 'javascript:;',
-                    text: 'پرشی',
-                    style: {"font-size": "large"},
-                    id: 3,
-                    style2: false
-                  },
-                  {
-                    menuicon: '',
-                    adr: 'javascript:;',
-                    text: 'ورزشی',
-                    style: {"font-size": "large"},
-                    id: 4,
-                    style2: false
-                  }
-                ];
-                $rootScope.gamer.coins -= 60;
-                $rootScope.hasPaid = true;
-              }).catch(function (err) {
-                menuService.stopLoading();
-                menuService.myHandleError(err);
-              });
-            }
-          },
-          {text: '<span class="myText">نه</span>'}
-        ]
-      });
-    };
-
     $scope.disable = function (id) {
       return $.inArray(id, menuService.getPlayedGames()) > -1;
     };
-    var index = null;
-    var text;
-    $scope.menufun = function (s, id, url) {
-      if (root) {
-        switch (id) {
-          case 1:
-            $scope.config.submenus = [{
-              menuicon: 'img/puzzle.png',
-              adr: 'puzzle/www.gameeapp.com/game/FGM7TVW2Ma.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 5,
-              style2: $.inArray('img/puzzle.png', menuService.getPlayedGames()) > -1
-            }, {
-              menuicon: 'img/hexo.png',
-              adr: 'hexon/www.gameeapp.com/game/xRkQk0iwI3.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 7,
-              style2: $.inArray('img/hexo.png', menuService.getPlayedGames()) > -1
-            }, {
-              menuicon: 'img/diamond.png',
-              adr: 'diamond/gamee/game/index.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 10,
-              style2: $.inArray('img/diamond.png', menuService.getPlayedGames()) > -1
-            }, {
-              menuicon: 'img/hegza.png',
-              adr: 'hegza/gamee/game/index.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 11,
-              style2: $.inArray('img/hegza.png', menuService.getPlayedGames()) > -1
-            }];
-            text = "فکری";
-            break;
-          case 2:
-            $scope.config.submenus = [{
-              menuicon: 'img/spinner.png',
-              adr: 'spinner/www.gameeapp.com/game/ipUMpcUES.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 2,
-              style2: $.inArray('img/spinner.png', menuService.getPlayedGames()) > -1
-            }, {
-              menuicon: 'img/mr.png',
-              adr: 'mr/www.gameeapp.com/game/WmHdqig.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 8,
-              style2: $.inArray('img/mr.png', menuService.getPlayedGames()) > -1
-            }, {
-              menuicon: 'img/orbit.png',
-              adr: 'orbit/gamee/game/index.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 12,
-              style2: $.inArray('img/orbit.png', menuService.getPlayedGames()) > -1
-            }, {
-              menuicon: 'img/school.png',
-              adr: 'school/gamee/game/index.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 13,
-              style2: $.inArray('img/school.png', menuService.getPlayedGames()) > -1
-            }];
-            text = "مهارتی";
-            break;
-          case 3:
-            $scope.config.submenus = [{
-              menuicon: 'img/ninja.png',
-              adr: 'ninja/www.gameeapp.com/game/G1oy49taR.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 3,
-              style2: $.inArray('img/ninja.png', menuService.getPlayedGames()) > -1
-            }, {
-              menuicon: 'img/space.png',
-              adr: 'space/www.gameeapp.com/game/ibBTDViUP.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 1,
-              style2: $.inArray('img/space.png', menuService.getPlayedGames()) > -1
-            }, {
-              menuicon: 'img/qubo.png',
-              adr: 'qubo/www.gameeapp.com/game/u0yXP5o.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 9,
-              style2: $.inArray('img/qubo.png', menuService.getPlayedGames()) > -1
-            }, {
-              menuicon: 'img/tire.png',
-              adr: 'tire/gamee/game/index.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 14,
-              style2: $.inArray('img/tire.png', menuService.getPlayedGames()) > -1
-            }];
-            text = "پرشی";
-            break;
-          case 4:
-            $scope.config.submenus = [{
-              menuicon: 'img/motor.png',
-              adr: 'motor/www.gameeapp.com/game/kAHVRl.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 4,
-              style2: $.inArray('img/motor.png', menuService.getPlayedGames()) > -1
-            }, {
-              menuicon: 'img/car.png',
-              adr: 'car/www.gameeapp.com/game/oFfW2omiW.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 6,
-              style2: $.inArray('img/car.png', menuService.getPlayedGames()) > -1
-            }, {
-              menuicon: 'img/football.png',
-              adr: 'football/gamee/game/index.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 15,
-              style2: $.inArray('img/football.png', menuService.getPlayedGames()) > -1
-            }, {
-              menuicon: 'img/karate.png',
-              adr: 'karate/gamee/game/index.html',
-              text: '',
-              style: {"font-size": "large"},
-              id: 16,
-              style2: $.inArray('img/karate.png', menuService.getPlayedGames()) > -1
-            }];
-            text = "ورزشی";
-            break;
-        }
-        root = false;
-        var myEl = angular.element(document.querySelector('.m'));
-        myEl.toggleClass("active");
-        $timeout(function () {
-          myEl.toggleClass('omid');
-        }, 100);
-        if (!$rootScope.isTrain) {
-          $("#release").css("display", "none");
-        }
-        $("#title").text(text);
-      } else {
-        if ($rootScope.isTrain) {
-          if (index === null) {
-            index = s;
-            $("#a" + index).animate({
-              height: '60px',
-              width: '60px'
-            }, 300);
-            $("#i" + index).css("line-height", "60px");
-            whichgoo(s);
-            $(".text" + index).show(500);
-          }
-          else {
-            $(".text" + index).hide(500);
-            $('#object1' + index).css({
-              'background-color': 'transparent',
-              'transform': 'none',
-              'pointerEvents': 'none'
-            });
-            $('#object2' + index).css({
-              'background-color': 'transparent',
-              'transform': 'none',
-              'pointerEvents': 'none'
-            });
-            $("#a" + index).delay(300).animate({
-              height: '70px',
-              width: '70px'
-            }, 300);
-            $("#i" + index).delay(100).animate({
-              'line-height': '70px'
-            }, 300);
-            if (s !== index) {
-              index = s;
-              $("#a" + index).animate({
-                height: '60px',
-                width: '60px'
-              }, 300);
-              $("#i" + index).css("line-height", "60px");
-              whichgoo(s);
-              $(".text" + index).show(500);
-            } else {
-              index = null;
-            }
-          }
-        } else {
-          $scope.start(id, url);
-        }
-      }
-    };
-    function whichgoo(s) {
-      switch (s) {
-        case 0:
-          gooyi(58, 49, 10, 70);
-          break;
-        case 1:
-          gooyi(35, -42, -25, -36);
-          break;
-        case 2:
-          gooyi(35, -42, -25, -36);
-          break;
-        case 3:
-          gooyi(-38, 48, 10, 72);
-          break;
-        case 4:
-          gooyi(-35, -25, 30, -45);
-          break;
-        case 5:
-          gooyi(-35, 45, 30, 62);
-          break;
-        case 6:
-          gooyi(58, 39, 7, 65);
-          break;
-        case 7:
-          gooyi(65, 25, 51, -30);
-          break;
-
-      }
-    }
-
-    function gooyi(x1, y1, x2, y2) {
-      $('#object1' + index).css({
-        'background-color': 'green',
-        'transform': 'translate(' + x1 + 'px, ' + y1 + 'px)',
-        'pointerEvents': 'auto'
-      });
-      $('#object2' + index).css({
-        'background-color': 'green',
-        'transform': 'translate(' + x2 + 'px,' + y2 + 'px)',
-        'pointerEvents': 'auto'
-      });
-    }
-
     $scope.help = function () {
       menuService.boardHelp();
     };
@@ -509,7 +215,6 @@ angular.module('starter.controllers', [])
         }).catch(function (err) {
           menuService.stopLoading();
           menuService.myHandleError(err);
-          renderRoot();
         });
       } else {
         if ($rootScope.isTrain) {
@@ -527,7 +232,6 @@ angular.module('starter.controllers', [])
           }).catch(function (err) {
             menuService.stopLoading();
             menuService.myHandleError(err);
-            renderRoot();
           });
         }
       }
@@ -551,7 +255,6 @@ angular.module('starter.controllers', [])
       }
     };
     $scope.topRanks = function (id) {
-      index = null;
       menuService.startLoading();
       $http.post("https://dagala.cfapps.io/api/1/records", id + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
         $scope.ranks = data;
