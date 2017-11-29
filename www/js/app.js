@@ -25,10 +25,10 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         } else if ($ionicHistory.currentStateName() == "newgame") {
           $ionicPopup.alert({
             title: '<span class="myText">اخطار</span>',
-            template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">آیا از انصراف اطمینان دارید؟</div>',
+            template: '<div class="myText" style="font-size: 24px;bottom: 12px;direction: rtl;text-align: right;line-height: 1.5em">آیا از انصراف اطمینان دارید؟</div>',
             buttons: [
               {
-                text: '<span class="myText">بله</span>',
+                text: '<img class="my-button" src="../img/bale.png">',
                 onTap: function (e) {
                   var serverUrl = "https://dagala.cfapps.io/api/1/cancelRequest";
                   $http.post(serverUrl, $rootScope.battle.gameId).success(function (data, status, headers, config) {
@@ -38,7 +38,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
                   $ionicHistory.goBack();
                 }
               },
-              {text: '<span class="myText">نه</span>'}
+              {text: '<img class="my-button" src="../img/kheir.png">'}
             ]
           });
         } else {

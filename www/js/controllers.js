@@ -888,7 +888,7 @@ angular.module('starter.controllers', [])
         template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">آیا از انصراف اطمینان دارید؟</div>',
         buttons: [
           {
-            text: '<span class="myText">بله</span>',
+            text: '<img class="my-button" src="../img/bale.png">',
             onTap: function (e) {
               var serverUrl = "https://dagala.cfapps.io/api/1/cancelRequest";
               $http.post(serverUrl, $rootScope.battle.gameId).success(function (data, status, headers, config) {
@@ -898,7 +898,7 @@ angular.module('starter.controllers', [])
               $ionicHistory.goBack();
             }
           },
-          {text: '<span class="myText">نه</span>'}
+          {text: '<img class="my-button" src="../img/kheir.png">'}
         ]
       });
     };
@@ -1085,10 +1085,10 @@ angular.module('starter.controllers', [])
     $scope.byChance = function () {
       $ionicPopup.alert({
         title: '<span class="myText">توجه</span>',
-        template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
+        template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
         buttons: [
           {
-            text: '<span class="myText">باشه</span>',
+            text: '<img class="my-button" src="../img/bale.png">',
             onTap: function (e) {
               $rootScope.isTrain = false;
               $rootScope.callService = true;
@@ -1098,7 +1098,7 @@ angular.module('starter.controllers', [])
               $state.go("newgame");
             }
           },
-          {text: '<span class="myText">نه</span>'}
+          {text: '<img class="my-button" src="../img/kheir.png">'}
         ]
       });
     };

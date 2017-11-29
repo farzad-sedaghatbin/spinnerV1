@@ -697,15 +697,11 @@ span.font-36 {
   background-repeat: no-repeat !important;
 }
 
+.my-button{
+  width: 72px;float: right;
+}
 .popup-buttons .button {
-  background: url(../img/15-dokme.png) no-repeat;
-  background-size: 30% 120%;
-  height: 80px;
-  background-position-y: center;
-  background-position-x: right;
-  text-align: right;
-  padding-right: 30px;
-  margin-right: 20px !important;
+  background: transparent;
 }
 
 .background-info {
