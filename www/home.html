@@ -4,23 +4,6 @@
                    refreshing-text="در حال بارگزاری">
 
     </ion-refresher>
-    <nav class="menu-omid">
-      <input type="checkbox" href="#" class="menu-open-omid" name="menu-open" id="menu-open"/>
-      <label class="menu-open-button" for="menu-open">
-        <span class="hamburger hamburger-1"></span>
-        <span class="hamburger hamburger-2"></span>
-        <span class="hamburger hamburger-3"></span>
-      </label>
-      <a ng-if="gamer.guest" on-hold="register()" ng-click="register()" style="font-size: x-small"
-         class="menu-item-omid myText"> ثبت نام </a>
-      <a on-hold="changePass()" ng-click="changePass()" style="font-size: x-small" class="menu-item-omid myText">
-        ورود </a>
-      <a on-hold="register()" ng-click="register()" style="font-size: xx-small" class="menu-item-omid myText">
-        بازیابی رمز </a>
-      <a on-hold="coining()" ng-click="coining()" style="font-size: 8px" class="menu-item-omid myText"> سکه </a>
-      <a on-hold="ranks()" ng-click="ranks()" style="font-size: x-small" class="menu-item-omid myText"> خفن ها </a>
-      <a on-hold="help()" ng-click="help()" style="font-size: x-small" class="menu-item-omid myText"> راهنما </a>
-    </nav>
 
     <div class="background-info" style="float:left">
       <div ng-click="ranks()" class="myText" style="float:left;margin-top: 10px">
@@ -55,84 +38,40 @@
     </div>
     <div ng-if="gamer" class="myText" style="color: white;position: absolute;top: 42px;right: 153px;font-size: 14px">{{gamer.level}}
     </div>
-    <!--<div ng-if="gamer" class="myText" style="color: white;position: absolute;top: 68px;right: 70px;font-size: 14px">-->
-      <!--امتیاز : {{gamer.score}}-->
-    <!--</div>-->
+
     <div class="myText">
-      <div class="row" style="position: absolute;margin-top: 30px;margin-left: 30px">
-        <div id="battle " class="col grid-example s6 blue-button" style="font-size: medium"
+      <div class="row" style="position: absolute;margin-top: 60px;margin-left: 110px">
+        <div id="battle " class="col grid-example s6 blue-button" style="font-size: medium;max-width: 60%"
              ng-click="challenge()">
 
           حریف میطلبم
 
         </div>
       </div>
-      <div class="row" style="margin-top: 100px;position: absolute;margin-left: 30px">
-        <div id="league" class="col grid-example s6 red-button" ng-click="league()" style="font-size: small">
+      <div class="row" style="margin-top: 130px;position: absolute;margin-left: 110px">
+        <div id="league" class="col grid-example s6 red-button" ng-click="league()" style="font-size: medium;max-width: 60%">
           لیگ
         </div>
       </div>
-      <div class="row" style="margin-top: 170px;position: absolute;margin-left: 30px">
-        <div id="train" class="col grid-example s6 gold-button" ng-click=" training()" style="font-size: medium">
+      <div class="row" style="margin-top: 200px;position: absolute;margin-left: 110px">
+        <div id="train" class="col grid-example s6 gold-button" ng-click=" training()" style="font-size: medium;max-width: 60%">
 
           تمرین میکنم
 
         </div>
       </div>
-      <div class="row" style="margin-top: 235px;position: absolute;margin-left: 30px">
-        <div class="col grid-example s6 green-button" ng-click="soon()" style="font-size: small">
+      <div class="row" style="margin-top: 265px;position: absolute;margin-left: 110px">
+        <div class="col grid-example s6 green-button" ng-click="soon()" style="font-size: medium;max-width: 60%">
           به زودی ...
         </div>
       </div>
-      <!--<div ng-if="gamer.halfGame.length > 0" style="margin-top: 20px">-->
-        <!--<div class="row">-->
-          <!--<div class="col grid-example s10"-->
-               <!--style="background-size: 35% 100%;font-size: small;margin-left: 50px">-->
-            <!--نا تمام ها-->
-          <!--</div>-->
-          <!--<div id="halfIcon" class="col grid-example s2" ng-click="toggleHalfs()"-->
-               <!--style="background-size: contain;font-size: small;">-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="row myhalfs" style="margin-bottom: 10px;background: url('img/win.png')"-->
-             <!--ng-repeat="row in gamer.halfGame">-->
-          <!--<div ng-if="row.second.user" class="col grid-example s3"-->
-               <!--style="background: url(img/pic.png) no-repeat center;background-size: contain;">-->
-            <!--<img style="width: 42px;margin-top: 12px;border-radius: 50%;" src="{{row.second.avatar}}">-->
-          <!--</div>-->
-          <!--<div ng-if="row.second.user" class="col grid-example s3 rate-button myEText" style="margin-right: 5px">-->
-            <!--{{row.second.user}}-->
-          <!--</div>-->
-          <!--<div ng-if="!row.second.user" class="col grid-example s3" style="margin-right: 5px">-->
-          <!--</div>-->
-          <!--<div ng-if="!row.second.user" class="col grid-example s3 unknown" style="margin-right: 5px;opacity: 0.8">-->
-          <!--</div>-->
-          <!--<div class="col grid-example s3 rate" style="margin-left: 5px">-->
-            <!--<div style="line-height: 35px">{{row.score}}</div>-->
-            <!--<div style="line-height: 5px;font-size: smaller">{{row.scoreStatus}}</div>-->
-            <!--<div style="line-height: 25px;font-size: xx-small">{{row.status}}</div>-->
-          <!--</div>-->
-          <!--<div class="col grid-example s3 battlefield" style="color: white;font-size: smaller"-->
-               <!--ng-click="battlefield(row.gameId,false)">-->
-            <!--جزییات-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-
-      <!--<div class="row" style="padding-top: 20px">-->
-      <!--<div class="col grid-example s4 shelf" style="min-height: 30px;">-->
-      <!--</div>-->
-      <!--</div>-->
 
       <div style="height: 40%;
       overflow-y: scroll;
       position: fixed;
     width: 100%;
     bottom: 0;">
-          <!--<div class="col grid-example s12"-->
-               <!--style="background-size: 35% 100%;font-size: small;margin-left: 50px">-->
-            <!--تمام شده ها-->
-          <!--</div>-->
+
           <div id="endIcon" ng-click="toggleList()"
                style="background-size: contain;font-size: small;position: fixed;
                 right: 0;
@@ -153,11 +92,7 @@
             {{row.second.user}}
           </div>
           <div style="line-height: 35px;position: absolute;left: 220px;margin-top: 31px;">{{row.score}}</div>
-          <!--<div style="line-height: 25px;font-size: smaller">{{row.status}}</div>-->
-          <!--<div style="color: white;font-size: smaller"-->
-               <!--ng-click="battlefield(row.gameId,true)">-->
-            <!--جزییات-->
-          <!--</div>-->
+
         </div>
       </div>
     </div>
