@@ -116,7 +116,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
             menuService.stopLoading();
             $ionicPopup.alert({
               title: '<span class="myText">بروزرسانی</span>',
-              template: '<div class="myText" style="padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">    <div style="direction: rtl;padding-top: 20px;line-height: 3em">' +
+              template: '<div class="myText" style="padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">    <div style="direction: rtl;padding-top: 20px;line-height: 3em;padding-right: 20px">' +
               '<span class="myText">رقیب شما بازی ای کرده که شما بدلیل عدم بروزرسانی آنرا ندارید. لطفا بازی را بروزرسانی کنید</span></div></div>',
               buttons: [
                 {

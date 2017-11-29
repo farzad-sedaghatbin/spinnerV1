@@ -43,7 +43,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
     var t = title ? title : '';
     $ionicPopup.alert({
       title: '<span class="myText">' + t + '</span>',
-      template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em">' + msg + '</div>',
+      template: '<div class="myText" style="font-size: 24px;padding-bottom: 10px;direction: rtl;text-align: right;line-height: 1.5em;padding-right: 20px">' + msg + '</div>',
       buttons: [
         {text: '<span class="myText">باشه</span>'}
       ]
