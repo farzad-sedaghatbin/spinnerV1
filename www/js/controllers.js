@@ -12,14 +12,14 @@ angular.module('starter.controllers', [])
 
 
     $rootScope.isMute = false;
-    $scope.speaker = function () {
+    $rootScope.speaker = function () {
       if ($rootScope.isMute) {
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="mute"', [], function (tx, results) {
             tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["mute", false]);
           });
         });
-        $rootScope.myAudio.play({ numberOfLoops: 9999 });
+        $rootScope.myAudio.play({numberOfLoops: 9999});
         $("#speaker").attr("src", "img/speaker.png");
         $rootScope.isMute = false;
       } else {
@@ -47,8 +47,9 @@ angular.module('starter.controllers', [])
       }
       $state.go("select");
     }
+
     $scope.doChallenge = function () {
-      if (!$rootScope.gamer){
+      if (!$rootScope.gamer) {
         menuService.startLoading();
         $http.post("https://dagala.cfapps.io/api/1/tempUser").success(function (data, status, headers, config) {
           $http.defaults.headers.common['Authorization'] = data.token;
@@ -84,10 +85,10 @@ angular.module('starter.controllers', [])
       $rootScope.selectedGame = null;
       $state.go("ranks");
     };
-    $scope.profile = function () {
+    $rootScope.profile = function () {
       $state.go("profile")
     };
-    $scope.coining = function () {
+    $rootScope.coining = function () {
       $state.go("coining");
     };
     $scope.league = function () {
@@ -130,22 +131,22 @@ angular.module('starter.controllers', [])
     };
 
     $scope.toggleList = function () {
-      if ($scope.listState === "none"){
+      if ($scope.listState === "none") {
         $scope.listState = "half";
         $scope.games = $rootScope.gamer.halfGame;
         $("#endIcon").css("background", "url(img/2-natije-1.png) no-repeat right").css("background-size", "contain");
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="listState"', [], function (tx, results) {
-            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["listState","none"]);
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["listState", "none"]);
           });
         });
-      } else if ($scope.listState === "half"){
+      } else if ($scope.listState === "half") {
         $scope.listState = "full";
         $scope.games = $rootScope.gamer.fullGame;
         $("#endIcon").css("background", "url(img/2-natije-3.png) no-repeat right").css("background-size", "contain");
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="listState"', [], function (tx, results) {
-            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["listState","half"]);
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["listState", "half"]);
           });
         });
       } else {
@@ -154,12 +155,12 @@ angular.module('starter.controllers', [])
         $("#endIcon").css("background", "url(img/2-natije-2.png) no-repeat right").css("background-size", "contain");
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="listState"', [], function (tx, results) {
-            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["listState","full"]);
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["listState", "full"]);
           });
         });
       }
     };
-    $scope.$on("$ionicView.loaded",function () {
+    $scope.$on("$ionicView.loaded", function () {
       $timeout(function () {
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="listState"', [], function (tx, results) {
@@ -172,73 +173,29 @@ angular.module('starter.controllers', [])
             $scope.toggleList();
           }, null);
         });
-      },600);
+      }, 600);
     });
     $timeout(function () {
       menuService.homeTutorial();
     }, 700);
   })
   .controller('BoardCtrl', function ($scope, $timeout, $ionicHistory, menuService, $http, $rootScope, $state, $ionicModal, $ionicPopup) {
+    var last;
+    $scope.openBoard = function (cat) {
+      var lastC = $("#" + last);
+      if (cat === last){
+        lastC.hide();
+        last = null;
+        return;
+      }
+      lastC.hide();
+      $("#" + cat).show();
+      last = cat;
+    };
     var root = true;
     $timeout(function () {
       menuService.boardTutorial();
     }, 700);
-    function renderRoot() {
-      var myEl = angular.element(document.querySelector('.m'));
-      if (!root) {
-        myEl.toggleClass('omid');
-        $timeout(function () {
-          myEl.toggleClass('active');
-        }, 500);
-      } else {
-        $timeout(function () {
-          if (!myEl.hasClass('active'))
-            myEl.toggleClass('active');
-        }, 400);
-      }
-      $timeout(function () {
-        root = true;
-        if ($rootScope.isTrain || $rootScope.hasPaid) {
-          $scope.config = {
-            status: true,
-            submenus: [
-              {menuicon: '', adr: 'javascript:;', text: 'فکری', style: {"font-size": "large"}, id: 1, style2: false},
-              {menuicon: '', adr: 'javascript:;', text: 'مهارتی', style: {"font-size": "large"}, id: 2, style2: false},
-              {menuicon: '', adr: 'javascript:;', text: 'پرشی', style: {"font-size": "large"}, id: 3, style2: false},
-              {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: 4, style2: false}
-            ]
-          };
-        } else if (!$rootScope.newMenu) {
-          $rootScope.newMenu = [];
-          var arr = [];
-          while (arr.length < 2) {
-            var randomnumber = Math.floor(Math.random() * 4) + 1;
-            if (arr.indexOf(randomnumber) > -1) continue;
-            arr[arr.length] = randomnumber;
-          }
-          $scope.config = {
-            status: true,
-            submenus: [
-              {menuicon: '', adr: 'javascript:;', text: 'فکری', style: {"font-size": "large"}, id: 1, style2: false},
-              {menuicon: '', adr: 'javascript:;', text: 'مهارتی', style: {"font-size": "large"}, id: 2, style2: false},
-              {menuicon: '', adr: 'javascript:;', text: 'پرشی', style: {"font-size": "large"}, id: 3, style2: false},
-              {menuicon: '', adr: 'javascript:;', text: 'ورزشی', style: {"font-size": "large"}, id: 4, style2: false}
-            ]
-          };
-          angular.forEach($scope.config.submenus, function (member, index) {
-            if (arr.indexOf(member.id) > -1) {
-              $rootScope.newMenu.push(member);
-            }
-          });
-          $scope.config.submenus = $rootScope.newMenu;
-        } else {
-          $scope.config = {
-            status: true,
-            submenus: $rootScope.newMenu
-          };
-        }
-      }, 300)
-    }
 
     $scope.releaseMore = function () {
       $ionicPopup.alert({
@@ -301,21 +258,9 @@ angular.module('starter.controllers', [])
         ]
       });
     };
-    $scope.$on("$ionicView.enter", function (scopes, states) {
-      renderRoot();
-    });
-    $scope.toglefun = function ($config) {
-      var myEl = angular.element(document.querySelector('.m'));
-      if (root) {
-        myEl.toggleClass('active');
-      } else {
-        renderRoot();
-        if (!$rootScope.isTrain) {
-          $("#release").css("display", "block");
-        }
-        $("#title").text("دسته بندی");
-      }
 
+    $scope.disable = function (id) {
+      return $.inArray(id, menuService.getPlayedGames()) > -1;
     };
     var index = null;
     var text;
@@ -330,21 +275,21 @@ angular.module('starter.controllers', [])
               style: {"font-size": "large"},
               id: 5,
               style2: $.inArray('img/puzzle.png', menuService.getPlayedGames()) > -1
-            },{
+            }, {
               menuicon: 'img/hexo.png',
               adr: 'hexon/www.gameeapp.com/game/xRkQk0iwI3.html',
               text: '',
               style: {"font-size": "large"},
               id: 7,
               style2: $.inArray('img/hexo.png', menuService.getPlayedGames()) > -1
-            },{
+            }, {
               menuicon: 'img/diamond.png',
               adr: 'diamond/gamee/game/index.html',
               text: '',
               style: {"font-size": "large"},
               id: 10,
               style2: $.inArray('img/diamond.png', menuService.getPlayedGames()) > -1
-            },{
+            }, {
               menuicon: 'img/hegza.png',
               adr: 'hegza/gamee/game/index.html',
               text: '',
@@ -362,21 +307,21 @@ angular.module('starter.controllers', [])
               style: {"font-size": "large"},
               id: 2,
               style2: $.inArray('img/spinner.png', menuService.getPlayedGames()) > -1
-            },{
+            }, {
               menuicon: 'img/mr.png',
               adr: 'mr/www.gameeapp.com/game/WmHdqig.html',
               text: '',
               style: {"font-size": "large"},
               id: 8,
               style2: $.inArray('img/mr.png', menuService.getPlayedGames()) > -1
-            },{
+            }, {
               menuicon: 'img/orbit.png',
               adr: 'orbit/gamee/game/index.html',
               text: '',
               style: {"font-size": "large"},
               id: 12,
               style2: $.inArray('img/orbit.png', menuService.getPlayedGames()) > -1
-            },{
+            }, {
               menuicon: 'img/school.png',
               adr: 'school/gamee/game/index.html',
               text: '',
@@ -394,21 +339,21 @@ angular.module('starter.controllers', [])
               style: {"font-size": "large"},
               id: 3,
               style2: $.inArray('img/ninja.png', menuService.getPlayedGames()) > -1
-            },{
+            }, {
               menuicon: 'img/space.png',
               adr: 'space/www.gameeapp.com/game/ibBTDViUP.html',
               text: '',
               style: {"font-size": "large"},
               id: 1,
               style2: $.inArray('img/space.png', menuService.getPlayedGames()) > -1
-            },{
+            }, {
               menuicon: 'img/qubo.png',
               adr: 'qubo/www.gameeapp.com/game/u0yXP5o.html',
               text: '',
               style: {"font-size": "large"},
               id: 9,
               style2: $.inArray('img/qubo.png', menuService.getPlayedGames()) > -1
-            },{
+            }, {
               menuicon: 'img/tire.png',
               adr: 'tire/gamee/game/index.html',
               text: '',
@@ -426,21 +371,21 @@ angular.module('starter.controllers', [])
               style: {"font-size": "large"},
               id: 4,
               style2: $.inArray('img/motor.png', menuService.getPlayedGames()) > -1
-            },{
+            }, {
               menuicon: 'img/car.png',
               adr: 'car/www.gameeapp.com/game/oFfW2omiW.html',
               text: '',
               style: {"font-size": "large"},
               id: 6,
               style2: $.inArray('img/car.png', menuService.getPlayedGames()) > -1
-            },{
+            }, {
               menuicon: 'img/football.png',
               adr: 'football/gamee/game/index.html',
               text: '',
               style: {"font-size": "large"},
               id: 15,
               style2: $.inArray('img/football.png', menuService.getPlayedGames()) > -1
-            },{
+            }, {
               menuicon: 'img/karate.png',
               adr: 'karate/gamee/game/index.html',
               text: '',
@@ -571,7 +516,7 @@ angular.module('starter.controllers', [])
           menuService.getDb().transaction(function (tx) {
             tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
               tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "true," + id + "," + $rootScope.gamer.token + ",0," + $rootScope.homeURL + "," + $rootScope.gamer.user], function (tx, results) {
-                $rootScope.changeUrl(url,false);
+                $rootScope.changeUrl(url, false);
               });
             });
           });
@@ -587,8 +532,9 @@ angular.module('starter.controllers', [])
         }
       }
     }
+
     $scope.start = function (id, url) {
-      if (!$rootScope.gamer){
+      if (!$rootScope.gamer) {
         menuService.startLoading();
         $http.post("https://dagala.cfapps.io/api/1/tempUser").success(function (data, status, headers, config) {
           $http.defaults.headers.common['Authorization'] = data.token;
@@ -639,7 +585,7 @@ angular.module('starter.controllers', [])
         } else if (data === "200") {
           menuService.myMessage("امتیاز شما و معرف شما ثبت شد");
           $rootScope.gamer.coins += 150;
-        } else if (data === "333"){
+        } else if (data === "333") {
           menuService.myMessage("شما حداکثر 3 تا از دوستانتون رو میتونید معرفی کنید", "خطا");
         }
       }).catch(function (err) {
@@ -676,7 +622,7 @@ angular.module('starter.controllers', [])
 
     $scope.$on("$ionicView.enter", function (scopes, states) {
       $timeout(function () {
-        if (!$rootScope.gamer){
+        if (!$rootScope.gamer) {
           menuService.startLoading();
           $http.post("https://dagala.cfapps.io/api/1/tempUser").success(function (data, status, headers, config) {
             $http.defaults.headers.common['Authorization'] = data.token;
@@ -773,7 +719,7 @@ angular.module('starter.controllers', [])
       $ionicHistory.goBack();
     }
   })
-  .controller('WheelCtrl', function ($scope, $state, $ionicHistory, menuService, $http, $rootScope,$timeout) {
+  .controller('WheelCtrl', function ($scope, $state, $ionicHistory, menuService, $http, $rootScope, $timeout) {
     var wasHit;
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
       wasHit = false;
@@ -804,7 +750,7 @@ angular.module('starter.controllers', [])
           } else {
             menuService.myMessage("شما سهمیه امروز خود را دریافت کردید", "خطا");
           }
-        },2500);
+        }, 2500);
       }).catch(function (err) {
         menuService.myHandleError(err);
       });
@@ -831,7 +777,7 @@ angular.module('starter.controllers', [])
     };
     $scope.tapsell = function () {
       menuService.startLoading();
-      $http.post("https://dagala.cfapps.io/api/1/videoLimit",$rootScope.gamer.user).success(function (data, status, headers, config) {
+      $http.post("https://dagala.cfapps.io/api/1/videoLimit", $rootScope.gamer.user).success(function (data, status, headers, config) {
         menuService.stopLoading();
         if (data === 201) {
           menuService.myMessage("در هر ساعت می توانید فقط یک ویدیو تماشا کنید", "خطا");
@@ -894,8 +840,8 @@ angular.module('starter.controllers', [])
     };
     $scope.doBuy = function (row) {
       $rootScope.modal.hide();
-      if (row.coin){
-        if ($rootScope.gamer.coins < row.price){
+      if (row.coin) {
+        if ($rootScope.gamer.coins < row.price) {
           menuService.myMessage("سکه های شما کافی نیست", "خطا");
           return;
         }
@@ -946,10 +892,11 @@ angular.module('starter.controllers', [])
       }
     }
   })
-  .controller('BattlefieldCtrl', function ($scope, $state, $ionicHistory, menuService, $timeout, $http, $rootScope, $interval,$ionicModal) {
+  .controller('BattlefieldCtrl', function ($scope, $state, $ionicHistory, menuService, $timeout, $http, $rootScope, $interval, $ionicModal) {
     $scope.loaded = false;
     var url;
     var param;
+
     function loadData(refresh) {
       if ($rootScope.isLeague) {
         url = "https://dagala.cfapps.io/api/1/detailLeague";
@@ -1018,21 +965,21 @@ angular.module('starter.controllers', [])
       $timeout(function () {
         var scores = $(".score");
         angular.forEach(scores, function (member, index) {
-          if(member.innerText && member.innerText.length > 4){
-            $(member).css("font-size","large");
+          if (member.innerText && member.innerText.length > 4) {
+            $(member).css("font-size", "large");
           }
         });
-      },1000);
+      }, 1000);
       showStickers(data.messages)
     }
 
     function showStickers(stickers) {
-      if (stickers.length > 0){
+      if (stickers.length > 0) {
         var popped = stickers.pop();
         var img = $('<img id="dynamic">');
         img.attr('src', popped);
         img.appendTo('#myContent');
-        img.css("width","72px").css("height","72px").css("position","absolute").css("top","200px").css("right","20px").css("animation-duration","4s").css("-webkit-animation-duration","4s");
+        img.css("width", "72px").css("height", "72px").css("position", "absolute").css("top", "200px").css("right", "20px").css("animation-duration", "4s").css("-webkit-animation-duration", "4s");
         img.addClass("animated bounceOutLeft");
         img.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
           img.remove();
@@ -1081,9 +1028,9 @@ angular.module('starter.controllers', [])
         menuService.startLoading();
         var serverUrl = "https://dagala.cfapps.io/api/1/joinGame";
         $http.post(serverUrl, $rootScope.battle.gameId + "," + $rootScope.battle.gameDTOS[$rootScope.battle.gameDTOS.length - 1].challengeId + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
-          if (!data.lastUrl){
-            menuService.myMessage("این بازی تمام شده است","خطا");
-            $rootScope.refreshGamer(false,null);
+          if (!data.lastUrl) {
+            menuService.myMessage("این بازی تمام شده است", "خطا");
+            $rootScope.refreshGamer(false, null);
             menuService.stopLoading();
             return;
           }
@@ -1096,9 +1043,9 @@ angular.module('starter.controllers', [])
         menuService.startLoading();
         var serverUrl = "https://dagala.cfapps.io/api/1/joinGame";
         $http.post(serverUrl, $rootScope.battle.gameId + "," + $rootScope.battle.url + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
-          if (!data.lastUrl){
-            menuService.myMessage("این بازی تمام شده است","خطا");
-            $rootScope.refreshGamer(false,null);
+          if (!data.lastUrl) {
+            menuService.myMessage("این بازی تمام شده است", "خطا");
+            $rootScope.refreshGamer(false, null);
             menuService.stopLoading();
             return;
           }
@@ -1141,11 +1088,24 @@ angular.module('starter.controllers', [])
         modal.show();
       });
     };
-    $scope.loadChatbox = function(){var e=document.getElementById("maxi-chat");e.style.display="none";var e=document.getElementById("chatbox");e.style.margin="0";}
-    $scope.closeChatbox = function(){var e=document.getElementById("chatbox");e.style.margin="0 0 -1500px 0";}
-    $scope.minimChatbox = function(){var e=document.getElementById("maxi-chat");e.style.display="block";var e=document.getElementById("chatbox");e.style.margin="0 0 -460px 0";}
+    $scope.loadChatbox = function () {
+      var e = document.getElementById("maxi-chat");
+      e.style.display = "none";
+      var e = document.getElementById("chatbox");
+      e.style.margin = "0";
+    }
+    $scope.closeChatbox = function () {
+      var e = document.getElementById("chatbox");
+      e.style.margin = "0 0 -1500px 0";
+    }
+    $scope.minimChatbox = function () {
+      var e = document.getElementById("maxi-chat");
+      e.style.display = "block";
+      var e = document.getElementById("chatbox");
+      e.style.margin = "0 0 -460px 0";
+    }
 
-    $scope.selected = function (pre,id) {
+    $scope.selected = function (pre, id) {
       var el = $('#' + pre + id);
       el.addClass('animated bounceOutRight');
       el.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
@@ -1204,9 +1164,9 @@ angular.module('starter.controllers', [])
         menuService.startLoading();
         var serverUrl = "https://dagala.cfapps.io/api/1/joinGame";
         $http.post(serverUrl, $rootScope.battle.gameId + "," + $rootScope.battle.challengeList[$rootScope.battle.challengeList.length - 1].id).success(function (data, status, headers, config) {
-          if (!data.lastUrl){
-            menuService.myMessage("این بازی تمام شده است","خطا");
-            $rootScope.refreshGamer(false,null);
+          if (!data.lastUrl) {
+            menuService.myMessage("این بازی تمام شده است", "خطا");
+            $rootScope.refreshGamer(false, null);
             return;
           }
           $rootScope.goToGame(data.lastUrl, data.challengeId)
@@ -1240,7 +1200,7 @@ angular.module('starter.controllers', [])
       });
     };
   })
-  .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory,$ionicModal) {
+  .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $ionicModal) {
     $scope.username;
     $scope.pass;
     $scope.isLogin = true;
@@ -1312,11 +1272,11 @@ angular.module('starter.controllers', [])
     };
     $scope.signUp = function (form) {
       var username = $("#username").val();
-      if (username.indexOf(" ") >= 0){
+      if (username.indexOf(" ") >= 0) {
         menuService.myMessage("نام کاربری نباید دارای فاصله باشد", "خطا");
         return;
       }
-      if (username.indexOf(",") >= 0){
+      if (username.indexOf(",") >= 0) {
         menuService.myMessage("نام کاربری نباید دارای کاما(,) باشد", "خطا");
         return;
       }
@@ -1351,9 +1311,9 @@ angular.module('starter.controllers', [])
     };
   })
   .controller('ProfileCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $ionicModal) {
-      $scope.changePass = function () {
-        $state.go("change-pass");
-      };
+    $scope.changePass = function () {
+      $state.go("change-pass");
+    };
     $scope.login = function () {
       $state.go("login")
     };
@@ -1394,9 +1354,10 @@ angular.module('starter.controllers', [])
         menuService.myHandleError(err);
       });
     }
+
     $scope.$on("$ionicView.enter", function (scopes, states) {
       $timeout(function () {
-        if (!$rootScope.gamer){
+        if (!$rootScope.gamer) {
           menuService.startLoading();
           $http.post("https://dagala.cfapps.io/api/1/tempUser").success(function (data, status, headers, config) {
             $http.defaults.headers.common['Authorization'] = data.token;
@@ -1417,7 +1378,7 @@ angular.module('starter.controllers', [])
       $ionicHistory.goBack();
     };
   })
-  .controller('SelectCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout,$ionicPopup) {
+  .controller('SelectCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout, $ionicPopup) {
     $scope.byChance = function () {
       $ionicPopup.alert({
         title: '<span class="myText">توجه</span>',
@@ -1445,10 +1406,10 @@ angular.module('starter.controllers', [])
       $ionicHistory.goBack();
     }
   })
-  .controller('UsernameCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout,$ionicPopup) {
+  .controller('UsernameCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout, $ionicPopup) {
     $scope.search = function (username) {
       menuService.startLoading();
-      $http.post("https://dagala.cfapps.io/api/1/friendly",$rootScope.gamer.user + "," + username).success(function (data, status, headers, config) {
+      $http.post("https://dagala.cfapps.io/api/1/friendly", $rootScope.gamer.user + "," + username).success(function (data, status, headers, config) {
         menuService.stopLoading();
         $ionicPopup.alert({
           title: '<span class="myText">توجه</span>',

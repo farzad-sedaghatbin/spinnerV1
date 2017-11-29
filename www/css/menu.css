@@ -719,6 +719,7 @@ span.font-36 {
 
 .home-badge-img {
   width: 110px;
+z-index: 1000
 }
 
 .home-badge-img-2 {
