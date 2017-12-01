@@ -4,18 +4,18 @@
     <div class="myText">
 
       <div class="background-info" style="float:left">
-        <div class="myText" style="float:left;margin-top: 10px">
+        <div ng-click="ranks()" class="myText" style="float:left;margin-top: 10px">
           <span style="display:inline;"><img id="cupT" class="home-badge-img" src="img/cup.png"/></span>
           <span class="home-badge-text"
-                style="display:inline;top: 28px;left: 80px;font-size: 15px">{{gamer.rating}}</span>
+                style="display:inline;top: 15px;left: 50px;font-size: 15px">{{gamer.rating}}</span>
         </div>
         <div ng-click="coining()" class="myText" style="float:left;clear: both">
           <span style="display:inline;"><img id="coinT" class="home-badge-img" src="img/home-coin.png"/></span>
-          <span class="home-badge-text" style="display:inline;top: 100px;left: 70px;font-size: 15px">{{gamer.coins}}</span>
+          <span class="home-badge-text" style="display:inline;top: 68px;left: 50px;font-size: 15px">{{gamer.coins}}</span>
         </div>
         <div ng-click="coining()" class="myText" style="float:left;clear: both">
           <span style="display:inline;"><img id="gemT" class="home-badge-img" src="img/home-gem.png"/></span>
-          <span class="home-badge-text" style="display:inline;top: 172px;left: 80px;font-size: 15px">{{gamer.gem}}</span>
+          <span class="home-badge-text" style="display:inline;top: 120px;left: 50px;font-size: 15px">{{gamer.gem}}</span>
         </div>
         <div ng-if="gamer.exp" class="myText" style="float:left;clear: both">
           <span style="display:inline;"><img class="home-badge-img" src="img/exp.png"/></span>
@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <div class="myText" style="position: absolute;left: 110px;top: 5px;" ng-click="speaker()">
+      <div class="myText" style="position: absolute;left: 100px;top: 5px;" ng-click="speaker()">
         <span style="display:inline;"><img id="speaker" style="width: 64px" class="home-badge-img" src="img/speaker.png"/></span>
       </div>
       <div ng-click="profile()"
@@ -36,44 +36,45 @@
       </div>
     </div>
 
+    <ion-content scroll="true">
     <div style="position: absolute;
-    left: 65px;
+    left: 10%;
     top: 120px;
     overflow: auto;
     height: 80%;
     width: 80%;">
       <div ng-repeat="row in ranks.users" class="row" style="background: url('img/12-khafanha.png') center center / 100% 100px no-repeat;
     height: 100px;
-    width: 60%;
-    margin-left: 15%;">
-        <div class="col grid-example s4 coining-text-left myEText" style="color: darkmagenta;text-align: center !important;position: absolute;left: 45%;margin-top: 40px;">
+    width: 80%;
+    margin-left: 11%;">
+        <div class="col grid-example s4 coining-text-left myEText" style="color: black;text-align: center !important;position: absolute;left: 55%;margin-top: 40px;">
           <b>{{row.user}}</b>
         </div>
-        <div class="col grid-example s4 coining-text-left myEText" style="color: darkmagenta;text-align: center !important;padding-left: 0;padding-top: 10px">
+        <div class="col grid-example s4 coining-text-left myEText" style="color: black;text-align: center !important;padding-left: 0;padding-top: 10px">
           <b>{{$index + 1}}</b>
         </div>
-        <div class="col grid-example s4 coining-text-right" style="font-size: large;color: darkblue;padding-left: 0;padding-right: 0;padding-top: 10px;min-width: 35%;text-align: left !important;">
+        <div class="col grid-example s4 coining-text-right" style="font-size: small;color: black;padding-left: 2%;padding-right: 0;padding-top: 10px;min-width: 35%;text-align: left !important;">
           <b>{{row.score}}</b>
         </div>
-        <div class="col grid-example s4" style="padding-top: 5px">
-          <img style="width: 42px;" src="{{row.avatar}}">
+        <div class="col grid-example s4" style="margin-right: 5%">
+          <img style="width: 48px;" src="{{row.avatar}}">
         </div>
       </div>
     </div>
+    </ion-content>
 
-
-      <div ng-click="ranksBack()" style="width: 90px;
+      <div ng-click="ranksBack()" style="width: 70px;
     background-image: url(img/back.png);
     background-size: 100% 100%;
     position: fixed;
     bottom: 0;
-    height: 100px;"></div>
-      <div style="width: 90px;
+    height: 80px;"></div>
+      <div style="width: 70px;
     background-image: url(img/help.png);
     background-size: 100% 100%;
     position: fixed;
     bottom: 0;
     right: 0;
-    height: 100px;"></div>
+    height: 80px;"></div>
   </ion-content>
 </ion-modal-view>
