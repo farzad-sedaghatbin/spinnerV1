@@ -343,7 +343,7 @@ angular.module('starter.controllers', [])
           menuService.startLoading();
           loadData(false);
         }
-      }, 700)
+      }, 400)
     });
     $scope.refresh = function () {
       loadData(true);
@@ -717,7 +717,7 @@ angular.module('starter.controllers', [])
       $timeout(function () {
         menuService.startLoading();
         loadData(false);
-      }, 700);
+      }, 400);
       refreshInterval = $interval(function () {
         loadData(false);
       }, 60000);
@@ -811,11 +811,12 @@ angular.module('starter.controllers', [])
       e.style.margin = "0 0 -460px 0";
     }
 
-    $scope.selected = function (pre, id) {
-      var el = $('#' + pre + id);
+    $scope.selected = function (id) {
+      var el = $('#' + id);
       el.addClass('animated bounceOutRight');
       el.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
         el.removeClass("animated bounceOutRight").addClass('animated bounceIn');
+        $scope.closeChatbox();
       });
     };
     $scope.refresh = function () {
@@ -860,7 +861,7 @@ angular.module('starter.controllers', [])
         } else {
           $scope.loaded = true;
         }
-      }, 700)
+      }, 400)
     });
     $scope.help = function () {
       menuService.newGameHelp();
@@ -1078,7 +1079,7 @@ angular.module('starter.controllers', [])
         } else {
           innerStart();
         }
-      }, 700);
+      }, 400);
     });
     $scope.ranksBack = function () {
       $ionicHistory.goBack();
