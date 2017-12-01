@@ -1,0 +1,32 @@
+helpGame {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  display: inline-block;
+  z-index: 10
+}
+
+.helpGame, .helpGame span {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px
+}
+
+.helpGame span {
+  width: 35px;
+  height: 35px;
+  left: 10px;
+  bottom: 10px;
+  border-radius: 8px;
+  background: url(../assets/svg/ic-pause1.svg) center center no-repeat rgba(255, 255, 255, .8);
+  display: inline-block;
+  -webkit-background-size: 19px 17px;
+  -moz-background-size: 19px 17px;
+  -o-background-size: 19px 17px;
+  background-size: 19px 17px
+}
