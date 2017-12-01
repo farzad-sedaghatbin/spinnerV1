@@ -715,7 +715,8 @@ span.font-36 {
 }
 
 .home-badge-img {
-  width: 110px;
+  margin-top: -2px;
+  width: 80px;
 z-index: 1000
 }
 
@@ -724,7 +725,7 @@ z-index: 1000
 }
 
 .home-badge-text {
-  color: white;
+  color: black;
   margin-top: 5px;
   position: absolute;
 }
