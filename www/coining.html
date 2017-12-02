@@ -1,18 +1,10 @@
 <ion-view>
-  <ion-content class="page-background">
-    <div class="myText">
-      <div class="row">
-        <a class="col grid-example s6" style="text-align: left" ng-click="goBack()">
-          <img class="coins-ico" src="img/back.png" style="width: 56px"/>
-        </a>
-        <a class="col grid-example s6 mytitle">
-          سکه خواری
-        </a>
-      </div>
-      <div class="myhelp" style="width:100%;background-size: 72px 72px;background-position-x: left;">
-        <div ng-click="help()" style="width: 72px;float: left;">راهنما</div>
-        <div style="width: 60%;float: right;margin-top: 30px;display: none" id="clock"></div>
-      </div>
+  <ion-content class="page-background" scroll="false">
+    <div class="row">
+      <a class="col grid-example s6 coin-title">
+      </a>
+    </div>
+    <div class="myText" style="overflow: scroll;height: 90%;">
     <div ng-if="isAndroid()" class="row coining1" ng-click="tapsell()">
     </div>
     <div class="row coining2" ng-click="wheel()">
@@ -30,5 +22,18 @@
         </div>
       </div>
     </div>
+    <div ng-click="goBack()" style="width: 70px;
+    background-image: url(img/back.png);
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0;
+    height: 80px;"></div>
+    <div style="width: 70px;
+    background-image: url(img/help.png);
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 80px;"></div>
   </ion-content>
 </ion-view>

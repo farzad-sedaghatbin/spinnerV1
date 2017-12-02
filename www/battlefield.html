@@ -23,8 +23,8 @@
         <div id="chat" class="animated-chat tada myText" ng-click="loadChatbox()">کری بخون</div>
         <div style="overflow: auto" class="chatbox" id="chatbox">
           <!--<span class="chat-text">Chatting Yuk!</span>-->
-          <!--<div id="close-chat" ng-click="closeChatbox()"></div>-->
-          <div class="row">
+          <div id="close-chat" ng-click="closeChatbox()"></div>
+          <div class="row" style="margin-top: 30px">
             <div id="7" class="col grid-example s4" ng-click="selected(7)" style="background: url(img/PNG/ANGRY.png) no-repeat center;background-size: cover">
             </div>
             <div id="8" class="col grid-example s4" ng-click="selected(8)" style="background: url(img/PNG/CRRAY.png) no-repeat center;background-size: cover">
@@ -59,7 +59,6 @@
                style="background: url(img/vs-03.png) no-repeat center;background-size: 100% 100%;margin: 0;padding: 0">
             <img style="width: 42px;margin-top: 8px;border-radius: 50%;margin-right: 18px" src="{{gamer.avatar}}">
             <span style="color: black;font-size: large;position: absolute;top: 265px;left: 20vw;text-align: center">من</span>
-            <div style="line-height: 40px;color: #d2dea6;font-size: large">{{myTurn}}</div>
           </div>
           <div id="yourscore" class="col grid-example s4 rate"
                style="font-size: large;margin: 0;padding: 0;line-height: 55px">
@@ -73,7 +72,6 @@
             <div class="myEText my-overflow-text" style="color: black;font-size: small;position: absolute;top: 265px;right: 12vw;width: 20%;">
               {{battle.user.user}}
             </div>
-            <div style="line-height: 0;color: #d2dea6;font-size: large">{{hisTurn}}</div>
           </div>
           <div ng-if="!battle.user.user" class="col grid-example s4"
                style="background: url(img/vs-02.png) no-repeat center;background-size: 100% 100%;margin: 0;padding: 0">
