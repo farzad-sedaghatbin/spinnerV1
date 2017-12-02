@@ -138,7 +138,7 @@ angular.module('starter.controllers', [])
       if ($scope.listState === "none") {
         $scope.listState = "half";
         $scope.games = $rootScope.gamer.halfGame;
-        $("#endIcon").css("background", "url(img/2-natije-1.png) no-repeat right").css("background-size", "contain");
+        $("#endIcon").css("background", "url(img/2-natije-2.png) no-repeat right").css("background-size", "contain");
         $("#header").css("background", "url(img/half.png) no-repeat center").css("background-size", "20%");
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="listState"', [], function (tx, results) {
@@ -148,7 +148,7 @@ angular.module('starter.controllers', [])
       } else if ($scope.listState === "half") {
         $scope.listState = "full";
         $scope.games = $rootScope.gamer.fullGame;
-        $("#endIcon").css("background", "url(img/2-natije-3.png) no-repeat right").css("background-size", "contain");
+        $("#endIcon").css("background", "url(img/2-natije-1.png) no-repeat right").css("background-size", "contain");
         $("#header").css("background", "url(img/ended.png) no-repeat center").css("background-size", "20%");
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="listState"', [], function (tx, results) {
@@ -158,7 +158,7 @@ angular.module('starter.controllers', [])
       } else {
         $scope.listState = "none";
         $scope.games = [];
-        $("#endIcon").css("background", "url(img/2-natije-2.png) no-repeat right").css("background-size", "contain");
+        $("#endIcon").css("background", "url(img/2-natije-3.png) no-repeat right").css("background-size", "contain");
         $("#header").css("background", "none");
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="listState"', [], function (tx, results) {

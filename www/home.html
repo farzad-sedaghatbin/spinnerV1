@@ -84,14 +84,14 @@
           <div id="endIcon" ng-click="toggleList()"
                style="background-size: contain;font-size: small;position: fixed;
                 right: 0;
-                 width: 100px;height: 80px;top: 350px;background: url(img/2-natije-1.png) no-repeat right;background-size: contain">
+                 width: 100px;height: 80px;top: 350px;background: url(img/2-natije-2.png) no-repeat right;background-size: contain">
           </div>
           <div ng-click="notification()"
                style="background-size: contain;font-size: small;position: fixed;
                 left: 0;
                  width: 100px;height: 80px;top: 350px;background: url(img/notification.png) no-repeat left;background-size: contain">
           </div>
-        <div ng-click="battlefield(row.gameId,false)" class="row myends" style="margin-bottom: 10px;background: url('img/win.png');
+        <div ng-click="battlefield(row.gameId,false)" class="row myends" style="margin-bottom: 10px;background: url('img/{{row.status}}.png');
         background-size: 60% 100%;
         background-repeat: no-repeat;
         height: 140px;
