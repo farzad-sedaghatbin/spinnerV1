@@ -919,8 +919,8 @@ angular.module('starter.controllers', [])
       $scope.isLogin = true;
     });
     $scope.doLogin = function () {
-      var username = $("#username").val();
-      var pass = $("#pass").val();
+      var username = $("#username1").val();
+      var pass = $("#pass1").val();
       menuService.startLoading();
       delete $http.defaults.headers.common.Authorization;
       var url = "https://dagala.cfapps.io/api/1/user_authenticate";
