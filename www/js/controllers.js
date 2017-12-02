@@ -167,6 +167,9 @@ angular.module('starter.controllers', [])
         });
       }
     };
+    $scope.notification = function () {
+
+    };
     $scope.$on("$ionicView.loaded", function () {
       $timeout(function () {
         $scope.games = $rootScope.gamer.halfGame;
