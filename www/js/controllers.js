@@ -169,6 +169,7 @@ angular.module('starter.controllers', [])
     };
     $scope.$on("$ionicView.loaded", function () {
       $timeout(function () {
+        $scope.games = $rootScope.gamer.halfGame;
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="listState"', [], function (tx, results) {
             var len = results.rows.length, i, result = '';
