@@ -295,6 +295,16 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           })
         });
       };
+      this.keyboardShowHandler = function (e) {
+        $('body').animate({ 'marginTop': - e.keyboardHeight + 'px' }, 200);
+      };
+
+      this.keyboardHideHandler = function () {
+        $('body').animate({ 'marginTop': 0 + 'px' }, 200);
+      };
+
+      window.addEventListener('native.keyboardshow', this.keyboardShowHandler);
+      window.addEventListener('native.keyboardhide', this.keyboardHideHandler);
     });
   })
   .config(function ($stateProvider, $urlRouterProvider, $ionicNativeTransitionsProvider, $ionicConfigProvider) {
