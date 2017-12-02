@@ -754,7 +754,7 @@ z-index: 1000
 .closeButton {
   display: block;
   position: absolute;
-  top: -5px;
+  top: 5%;
   right: 20px;
   width: 27px;
   height: 27px;
