@@ -296,7 +296,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         });
       };
       this.keyboardShowHandler = function (e) {
-        $('body').animate({ 'marginTop': - e.keyboardHeight + 'px' }, 200);
+        $('body').animate({ 'marginTop': - (e.keyboardHeight-200) + 'px' }, 200);
       };
 
       this.keyboardHideHandler = function () {
