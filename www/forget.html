@@ -10,12 +10,12 @@
     background-position-x: right;">
           </div>
           <div style="height: 50px">
-            <input id="username" name="username" ng-model="username" required ng-maxlength="60"
+            <input id="username" name="username" ng-model="username" required ng-maxlength="17"
                    style="background: url(img/input-01.png);width: 80%;height: 100%;background-size: 100% 100%;margin-left: 10%;padding-left: 40px;padding-right: 10px;border: none">
           </div>
           <div class="error-message myText"
                ng-show="forgetForm.username.$error.maxlength && forgetForm.username.$touched">
-            برای فیلد نام کاربری حداکثر 60 کاراکتر وارد کنید
+            حداکثر 17 کاراکتر وارد کنید
           </div>
 
           <button id="submitbtn" type="submit" class="row login-btn" ng-disabled="forgetForm.$invalid"
@@ -53,7 +53,7 @@
           <div class="error-message myText"
                ng-show="confirmForm.password.$error.minlength && confirmForm.password.$touched">&#1576;&#1585;&#1575;&#1740;&#32;&#1601;&#1740;&#1604;&#1583;&#32;&#1705;&#1604;&#1605;&#1607;&#32;&#1593;&#1576;&#1608;&#1585;&#32;&#1581;&#1583;&#1575;&#1602;&#1604;&#32;&#54;&#32;&#1705;&#1575;&#1585;&#1575;&#1705;&#1578;&#1585;&#32;&#1608;&#1575;&#1585;&#1583;&#32;&#1705;&#1606;&#1740;&#1583;</div>
           <div class="error-message myText"
-               ng-show="confirmForm.password.$error.maxlength && confirmForm.password.$touched">برای فیلد کلمه عبور
+               ng-show="confirmForm.password.$error.maxlength && confirmForm.password.$touched">
             حداکثر
             50 کاراکتر وارد کنید
           </div>

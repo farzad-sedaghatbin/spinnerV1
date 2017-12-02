@@ -145,9 +145,10 @@ ul {
 }
 
 .error-message {
-  padding: 3px 20px 3px 5px;
+  direction: rtl;
+  padding: 3px 15% 3px 5px;
   margin: 0;
-  color: rgb(0, 18, 255);
+  color: red;
   font-size: 16px;
   text-align: right;
 }
@@ -487,6 +488,10 @@ span.font-36 {
 
 .board-title {
   background: url(../img/01.png) no-repeat center;
+  background-size: 40%;
+}
+.invite-title {
+  background: url(../img/05.png) no-repeat center;
   background-size: 40%;
 }
 

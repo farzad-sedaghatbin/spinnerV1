@@ -1,7 +1,5 @@
 <ion-view>
   <ion-content scroll="false">
-    <img ng-click="goBack()" class="coins-ico" src="img/back.png"
-         style="width: 56px;top: 10px;left: 10px;position: absolute;display: block;z-index: 1000;"/>
     <div class="roulette">
       <div class="spinneromid">
         <div class="triangle">
@@ -43,5 +41,11 @@
       </div>
       <div class="buttonomid button-spin" ng-click="spin()"><span class="myText">بچرخون</span></div>
     </div>
+    <div ng-click="goBack()" style="width: 70px;z-index: 1000;
+    background-image: url(img/back.png);
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0;
+    height: 80px;"></div>
   </ion-content>
 </ion-view>
