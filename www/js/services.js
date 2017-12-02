@@ -26,7 +26,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
         '<span class="myText">رقیب شما بازی ای کرده که شما بدلیل عدم بروزرسانی آنرا ندارید. لطفا بازی را بروزرسانی کنید</span></div></div>',
         buttons: [
           {
-            text: '<img class="my-button" src="../img/15-dokme.png">',
+            text: '<img class="my-button" src="./img/15-dokme.png">',
             onTap: function (e) {
               navigator.app.exitApp();
             }
@@ -45,7 +45,7 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
       title: '<span class="myText">' + t + '</span>',
       template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">' + msg + '</div>',
       buttons: [
-        {text: '<img class="my-button" src="../img/15-dokme.png">'}
+        {text: '<img class="my-button" src="./img/15-dokme.png">'}
       ]
     });
     $(".popup").css("width", "90%");

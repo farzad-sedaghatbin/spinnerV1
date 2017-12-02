@@ -896,7 +896,7 @@ angular.module('starter.controllers', [])
         template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">آیا از انصراف اطمینان دارید؟</div>',
         buttons: [
           {
-            text: '<img class="my-button" src="../img/bale.png">',
+            text: '<img class="my-button" src="./img/bale.png">',
             onTap: function (e) {
               var serverUrl = "https://dagala.cfapps.io/api/1/cancelRequest";
               $http.post(serverUrl, $rootScope.battle.gameId).success(function (data, status, headers, config) {
@@ -906,7 +906,7 @@ angular.module('starter.controllers', [])
               $ionicHistory.goBack();
             }
           },
-          {text: '<img class="my-button" src="../img/kheir.png">'}
+          {text: '<img class="my-button" src="./img/kheir.png">'}
         ]
       });
     };
@@ -1096,7 +1096,7 @@ angular.module('starter.controllers', [])
         template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
         buttons: [
           {
-            text: '<img class="my-button" src="../img/bale.png">',
+            text: '<img class="my-button" src="./img/bale.png">',
             onTap: function (e) {
               $rootScope.isTrain = false;
               $rootScope.callService = true;
@@ -1106,7 +1106,7 @@ angular.module('starter.controllers', [])
               $state.go("newgame");
             }
           },
-          {text: '<img class="my-button" src="../img/kheir.png">'}
+          {text: '<img class="my-button" src="./img/kheir.png">'}
         ]
       });
     };
@@ -1127,7 +1127,7 @@ angular.module('starter.controllers', [])
           template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
           buttons: [
             {
-              text: '<img class="my-button" src="../img/bale.png">',
+              text: '<img class="my-button" src="./img/bale.png">',
               onTap: function (e) {
                 $rootScope.isTrain = false;
                 $rootScope.callService = true;
@@ -1137,7 +1137,7 @@ angular.module('starter.controllers', [])
                 menuService.myMessage("درخواست بازی برای کاربر مورد نظرت ارسال شد، بعد از تاییدِ دوستت می تونید باهم بازی کنید");
               }
             },
-            {text: '<img class="my-button" src="../img/kheir.png">'}
+            {text: '<img class="my-button" src="./img/kheir.png">'}
           ]
         });
       }).catch(function (err) {

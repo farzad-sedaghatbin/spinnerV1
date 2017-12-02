@@ -28,7 +28,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
             template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">آیا از انصراف اطمینان دارید؟</div>',
             buttons: [
               {
-                text: '<img class="my-button" src="../img/bale.png">',
+                text: '<img class="my-button" src="./img/bale.png">',
                 onTap: function (e) {
                   var serverUrl = "https://dagala.cfapps.io/api/1/cancelRequest";
                   $http.post(serverUrl, $rootScope.battle.gameId).success(function (data, status, headers, config) {
@@ -38,7 +38,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
                   $ionicHistory.goBack();
                 }
               },
-              {text: '<img class="my-button" src="../img/kheir.png">'}
+              {text: '<img class="my-button" src="./img/kheir.png">'}
             ]
           });
         } else {
@@ -120,7 +120,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
               '<span class="myText">رقیب شما بازی ای کرده که شما بدلیل عدم بروزرسانی آنرا ندارید. لطفا بازی را بروزرسانی کنید</span></div></div>',
               buttons: [
                 {
-                  text: '<img class="my-button" src="../img/15-dokme.png">',
+                  text: '<img class="my-button" src="./img/15-dokme.png">',
                   onTap: function (e) {
                     navigator.app.exitApp();
                   }
@@ -151,7 +151,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
               template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">بازیکن با نام کاربری ' + member.second.user + ' درخواست بازی با تورو داره، باهاش بازی میکنی؟</div>',
               buttons: [
                 {
-                  text: '<img class="my-button" src="../img/bale.png">',
+                  text: '<img class="my-button" src="./img/bale.png">',
                   onTap: function (e) {
                     $rootScope.gamer.halfGame.push(member);
                     $rootScope.saveGamer($rootScope.gamer);
@@ -163,7 +163,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
                       });
                   }
                 },
-                {text: '<img class="my-button" src="../img/kheir.png">',
+                {text: '<img class="my-button" src="./img/kheir.png">',
                   onTap: function (e) {
                     $http.post("https://dagala.cfapps.io/api/1/rejectFriend", member.gameId)
                       .success(function (suc) {
