@@ -675,8 +675,8 @@ angular.module('starter.controllers', [])
       $timeout(function () {
         var scores = $(".score");
         angular.forEach(scores, function (member, index) {
-          if (member.innerText && member.innerText.length > 4) {
-            $(member).css("font-size", "large");
+          if (member.innerText && member.innerText.length > 11) {
+            $(member).css("font-size", "x-small");
           }
         });
       }, 1000);

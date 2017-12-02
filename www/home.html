@@ -8,36 +8,24 @@
     <div class="background-info" style="float:left">
       <div ng-click="ranks()" class="myText" style="float:left;margin-top: 10px">
         <span style="display:inline;"><img id="cupT" class="home-badge-img" src="img/cup.png"/></span>
-        <span class="home-badge-text"
+        <span class="home-badge-text my-overflow-text"
               style="display:inline;top: 15px;left: 50px;width: 25px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: x-small;text-align: center">{{gamer.rating}}</span>
+    font-size: x-small;">{{gamer.rating}}</span>
       </div>
       <div ng-click="coining()" class="myText" style="float:left;clear: both">
         <span style="display:inline;"><img id="coinT" class="home-badge-img" src="img/home-coin.png"/></span>
-        <span class="home-badge-text" style="display:inline;top: 68px;left: 50px;width: 25px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: x-small;text-align: center">{{gamer.coins}}</span>
+        <span class="home-badge-text my-overflow-text" style="display:inline;top: 68px;left: 50px;width: 25px;
+    font-size: x-small;">{{gamer.coins}}</span>
       </div>
       <div ng-click="coining()" class="myText" style="float:left;clear: both">
         <span style="display:inline;"><img id="gemT" class="home-badge-img" src="img/home-gem.png"/></span>
-        <span class="home-badge-text" style="display:inline;top: 120px;left: 50px;width: 25px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: x-small;text-align: center">{{gamer.gem}}</span>
+        <span class="home-badge-text my-overflow-text" style="display:inline;top: 120px;left: 50px;width: 25px;
+    font-size: x-small;">{{gamer.gem}}</span>
       </div>
       <div ng-if="gamer.exp" class="myText" style="float:left;clear: both">
         <span style="display:inline;"><img class="home-badge-img" src="img/exp.png"/></span>
-        <span class="home-badge-text" style="display:inline;top: 115px;left: 40px;width: 25px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: x-small;text-align: center">{{gamer.exp}}</span>
+        <span class="home-badge-text my-overflow-text" style="display:inline;top: 115px;left: 40px;width: 25px;
+    font-size: x-small;">{{gamer.exp}}</span>
       </div>
     </div>
 
@@ -50,13 +38,9 @@
       <img style="width: 30%;position: absolute;left: 30px;top: 42px;height: 15px;" src="img/bar-full-profile.png">
       <img style="width: 42px;border-radius: 50%;position: absolute;right: 15px;top: 19px;" src="{{gamer.avatar}}">
     </div>
-    <div class="myEText" style="color: black;position: absolute;top: 15px;right: 70px;
-        white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    <div class="myEText my-overflow-text" style="color: black;position: absolute;top: 15px;right: 70px;
     font-size: small;
-    width: 100px;
-    text-align: center;">{{gamer.user}}
+    width: 100px;">{{gamer.user}}
     </div>
     <div ng-if="gamer" class="myText" style="color: black;position: absolute;top: 42px;right: 153px;font-size: small">{{gamer.level}}
     </div>
@@ -115,10 +99,9 @@
           <div style="position: absolute;left: 24%">
             <img style="width: 20%;margin-top: 10%;border-radius: 50%" src="{{row.second.avatar}}">
           </div>
-          <div style="position: absolute;left: 20%;
+          <div class="my-overflow-text" style="position: absolute;left: 20%;
     margin-top: 105px;
-    width: 20%;
-    text-align: center;">
+    width: 23%;font-size: x-small">
             {{row.second.user}}
           </div>
           <div style="line-height: 35px;position: absolute;left: 57%;margin-top: 41px;">{{row.score}}</div>

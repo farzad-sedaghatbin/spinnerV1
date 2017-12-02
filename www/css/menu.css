@@ -750,7 +750,12 @@ z-index: 1000
 .margin-top-80 {
   margin-top: 20px;
 }
-
+.my-overflow-text{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
 .closeButton {
   display: block;
   position: absolute;
