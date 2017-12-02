@@ -361,6 +361,15 @@ angular.module('starter.controllers', [])
         modal.show();
       });
     };
+    $scope.desc = function (index) {
+      $scope.des = $scope.leagues[index].description;
+      $ionicModal.fromTemplateUrl('leg-desc.html', {
+        scope: $scope
+      }).then(function (modal) {
+        $rootScope.modal = modal;
+        modal.show();
+      });
+    };
     $scope.help = function () {
       menuService.leagueHelp();
     };
