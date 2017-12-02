@@ -86,12 +86,12 @@
                 right: 0;
                  width: 100px;height: 80px;top: 350px;background: url(img/2-natije-2.png) no-repeat right;background-size: contain">
           </div>
-          <div ng-click="notification()"
+          <div ng-if="gamer.modal" ng-click="notification()"
                style="background-size: contain;font-size: small;position: fixed;
                 left: 0;
                  width: 100px;height: 80px;top: 350px;background: url(img/notification.png) no-repeat left;background-size: contain">
           </div>
-        <div ng-click="battlefield(row.gameId,false)" class="row myends" style="margin-bottom: 10px;background: url('img/{{row.status}}.png');
+        <div ng-click="battlefield(row.gameId,false)" class="row myends" style="margin-bottom: 10px;background: url('img/{{row.scoreStatus}}.png');
         background-size: 60% 100%;
         background-repeat: no-repeat;
         height: 140px;

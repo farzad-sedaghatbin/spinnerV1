@@ -168,7 +168,7 @@ angular.module('starter.controllers', [])
       }
     };
     $scope.notification = function () {
-
+      menuService.myMessage($rootScope.gamer.modal);
     };
     $scope.$on("$ionicView.loaded", function () {
       $timeout(function () {

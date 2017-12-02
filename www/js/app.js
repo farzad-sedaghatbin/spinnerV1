@@ -140,7 +140,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         });
       };
       $rootScope.refreshGamer = function (refresh, scope) {
-        var url = "https://dagala.cfapps.io/api/1/refresh";
+        var url = "https://dagala.cfapps.io/api/2/refresh";
         $http.post(url, $rootScope.gamer.user).success(function (data, status, headers, config) {
           data.pass = $rootScope.gamer.pass;
           data.token = $rootScope.gamer.token;
