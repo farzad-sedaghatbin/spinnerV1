@@ -1,46 +1,16 @@
 <ion-view>
   <ion-content class="page-background" scroll="false">
     <div class="myText">
-
-      <div class="background-info" style="float:left">
-        <div ng-click="ranks()" class="myText" style="float:left;margin-top: 10px">
-          <span style="display:inline;"><img id="cupT" class="home-badge-img" src="img/cup.png"/></span>
-          <span class="home-badge-text"
-                style="display:inline;top: 15px;left: 50px;font-size: 15px">{{gamer.rating}}</span>
-        </div>
-        <div ng-click="coining()" class="myText" style="float:left;clear: both">
-          <span style="display:inline;"><img id="coinT" class="home-badge-img" src="img/home-coin.png"/></span>
-          <span class="home-badge-text" style="display:inline;top: 68px;left: 50px;font-size: 15px">{{gamer.coins}}</span>
-        </div>
-        <div ng-click="coining()" class="myText" style="float:left;clear: both">
-          <span style="display:inline;"><img id="gemT" class="home-badge-img" src="img/home-gem.png"/></span>
-          <span class="home-badge-text" style="display:inline;top: 120px;left: 50px;font-size: 15px">{{gamer.gem}}</span>
-        </div>
-        <div ng-if="gamer.exp" class="myText" style="float:left;clear: both">
-          <span style="display:inline;"><img class="home-badge-img" src="img/exp.png"/></span>
-          <span class="home-badge-text" style="display:inline;top: 115px;left: 40px;font-size: 25px">{{gamer.exp}}</span>
-        </div>
+      <div class="row">
+        <a class="col grid-example s6 board-title">
+        </a>
       </div>
-
-      <div class="myText" style="position: absolute;left: 100px;top: 5px;" ng-click="speaker()">
-        <span style="display:inline;"><img id="speaker" style="width: 64px" class="home-badge-img" src="img/speaker.png"/></span>
-      </div>
-      <div
-        style="background: url(img/pic.png) no-repeat center;background-size: contain;right: 0;position: absolute;width: 175px;height: 80px;top: 0"
-        ng-click="profile()">
-        <img style="width: 42px;border-radius: 50%;position: absolute;right: 15px;top: 19px;" src="{{gamer.avatar}}">
-      </div>
-      <div class="myEText" style="color: white;position: absolute;top: 15px;right: 85px;font-size: 20px">{{gamer.user}}
-      </div>
-      <div ng-if="gamer" class="myText" style="color: white;position: absolute;top: 42px;right: 153px;font-size: 14px">{{gamer.level}}
-      </div>
-
   <div style="overflow-y: scroll;
     height: 520px;
     position: absolute;
     width: 90%;
     margin-left: 23%;
-    margin-top: 100px;
+    margin-top: 20px;
     overflow-x: hidden;">
       <div class="row" ng-click="openBoard('sport')" style="background: url('img/11-game menu.png');background-size: 60% 100%;background-repeat: no-repeat;
     background-position: left;position: relative;z-index: 2;

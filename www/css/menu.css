@@ -468,10 +468,14 @@ span.font-36 {
   background-size: 100% 100%;
 }
 
-.mytitle {
-  line-height: 85px !important;
-  background: url(../img/title.png) no-repeat center;
-  background-size: contain;
+.leg-title {
+  background: url(../img/06.png) no-repeat center;
+  background-size: 40%;
+}
+
+.board-title {
+  background: url(../img/01.png) no-repeat center;
+  background-size: 40%;
 }
 
 .avardgah {
