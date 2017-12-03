@@ -735,8 +735,10 @@ span.font-36 {
 }
 
 .myDisable {
-  background: #dddddd !important;
-  pointer-events: none
+  background: url('../img/a06.png') !important;
+  background-size: 42px 42px !important;
+  background-repeat: no-repeat !important;
+  pointer-events: none !important;
 }
 
 .home-badge-img {
