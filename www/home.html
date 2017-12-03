@@ -47,7 +47,7 @@
 
     <div class="myText">
       <div class="row" style="position: absolute;margin-top: 60px;margin-left: 15%;max-width: 70%;">
-        <div id="battle " class="col grid-example s6 blue-button" style="font-size: large;max-width: 100%"
+        <div id="battle" on-hold="scale('battle')" on-release="removeScale('battle')" class="col grid-example s6 blue-button" style="font-size: large;max-width: 100%"
              ng-click="challenge()">
 
           حریف میطلبم
@@ -55,19 +55,19 @@
         </div>
       </div>
       <div class="row" style="margin-top: 130px;position: absolute;margin-left: 15%;max-width: 70%;">
-        <div id="league" class="col grid-example s6 red-button" ng-click="league()" style="font-size: large;max-width: 100%">
+        <div id="league" on-hold="scale('league')" on-release="removeScale('league')" class="col grid-example s6 red-button" ng-click="league()" style="font-size: large;max-width: 100%">
           لیگ
         </div>
       </div>
       <div class="row" style="margin-top: 200px;position: absolute;margin-left: 15%;max-width: 70%;">
-        <div id="train" class="col grid-example s6 gold-button" ng-click=" training()" style="font-size: large;max-width: 100%">
+        <div id="train" on-hold="scale('train')" on-release="removeScale('train')" class="col grid-example s6 gold-button" ng-click=" training()" style="font-size: large;max-width: 100%">
 
           تمرین میکنم
 
         </div>
       </div>
       <div class="row" style="margin-top: 265px;position: absolute;margin-left: 15%;max-width: 70%;">
-        <div class="col grid-example s6 green-button" ng-click="soon()" style="font-size: large;max-width: 100%">
+        <div id="soon" on-hold="scale('soon')" on-release="removeScale('soon')" class="col grid-example s6 green-button" ng-click="soon()" style="font-size: large;max-width: 100%">
           به زودی ...
         </div>
       </div>

@@ -189,6 +189,12 @@ angular.module('starter.controllers', [])
     $timeout(function () {
       menuService.homeTutorial();
     }, 700);
+    $rootScope.scale = function (id) {
+      $("#" + id).addClass("scaling")
+    };
+    $rootScope.removeScale = function (id) {
+      $("#" + id).removeClass("scaling")
+    }
   })
   .controller('BoardCtrl', function ($scope, $timeout, $ionicHistory, menuService, $http, $rootScope, $state, $ionicModal, $ionicPopup) {
     var last;

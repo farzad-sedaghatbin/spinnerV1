@@ -5,10 +5,10 @@
         <a class="col grid-example s6 select-title">
         </a>
       </div>
-      <div class="row red-button" style="background-size: 60%;text-align: center;display: block;margin-top: 80px;line-height: 140px;height: 150px;" ng-click="byUsername()">
+      <div id="select-user" on-hold="scale('select-user')" on-release="removeScale('select-user')" class="row red-button" style="background-size: 60%;text-align: center;display: block;margin-top: 80px;line-height: 140px;height: 150px;" ng-click="byUsername()">
         انتخاب با نام کاربری
       </div>
-      <div class="row blue-button" style="background-size: 60%;text-align: center;display: block;line-height: 140px;height: 150px;" ng-click="byChance()">
+      <div id="select-chance" on-hold="scale('select-chance')" on-release="removeScale('select-chance')" class="row blue-button" style="background-size: 60%;text-align: center;display: block;line-height: 140px;height: 150px;" ng-click="byChance()">
         حریف شانسی
       </div>
     </div>

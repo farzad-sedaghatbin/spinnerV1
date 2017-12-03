@@ -831,3 +831,25 @@ height: 10% !important;
   background-position-y: top !important;
   height: 20%;margin-top: 0;border: none;
 }
+.scaling{
+  -webkit-animation-name: scalex;
+  -webkit-animation-duration:3s;
+  -webkit-animation-iteration-count:infinite;
+  -webkit-animation-timing-function:ease-in-out;
+  -moz-animation-name: scale;
+  -moz-animation-duration:3s;
+  -moz-animation-iteration-count:infinite;
+  -moz-animation-timing-function:ease-in-out;
+}
+
+@-webkit-keyframes scalex{
+  from {-webkit-transform: scale(1);}
+  65% {-webkit-transform: scale(0.9);}
+  to {-webkit-transform: scale(1);}
+}
+
+@-moz-keyframes scale{
+  from {-moz-transform: scale(0.9);}
+  65% {-moz-transform: scale(1.0);}
+  to {-moz-transform: scale(0.9);}
+}
