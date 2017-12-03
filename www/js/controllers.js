@@ -209,7 +209,7 @@ angular.module('starter.controllers', [])
     }, 700);
 
     $scope.disable = function (id) {
-      return true;
+      return $.inArray(id, menuService.getPlayedGames()) > -1;
     };
     $scope.help = function () {
       menuService.boardHelp();
