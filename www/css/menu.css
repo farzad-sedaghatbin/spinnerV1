@@ -844,12 +844,12 @@ height: 10% !important;
 
 @-webkit-keyframes scalex{
   from {-webkit-transform: scale(1);}
-  65% {-webkit-transform: scale(0.9);}
+  65% {-webkit-transform: scale(0.8);}
   to {-webkit-transform: scale(1);}
 }
 
 @-moz-keyframes scale{
   from {-moz-transform: scale(1);}
-  65% {-moz-transform: scale(0.9);}
+  65% {-moz-transform: scale(0.8);}
   to {-moz-transform: scale(1);}
 }
