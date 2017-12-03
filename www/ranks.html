@@ -12,20 +12,20 @@
     overflow: auto;
     height: 80%;
     width: 80%;">
-      <div ng-repeat="row in ranks.users" class="row" style="background: url('img/12-khafanha.png') center center / 100% 100px no-repeat;
+      <div ng-repeat="row in ranks.users" class="row" style="background: url('img/12-khafanha.png') center center / 90% 80px no-repeat;
     height: 100px;
     width: 80%;
     margin-left: 11%;">
-        <div class="col grid-example s4 coining-text-left myEText" style="color: black;text-align: center !important;position: absolute;left: 55%;margin-top: 40px;">
+        <div class="col grid-example s4 coining-text-left myEText" style="color: black;text-align: center !important;position: absolute;left: 55%;margin-top: 42px;">
           <b>{{row.user}}</b>
         </div>
-        <div class="col grid-example s4 coining-text-left myEText" style="color: black;text-align: center !important;padding-left: 0;padding-top: 10px">
+        <div class="col grid-example s4 coining-text-left myEText" style="color: black;text-align: center !important;padding-left: 2%;padding-top: 10px;padding-right: 0;max-width: 20%">
           <b>{{$index + 1}}</b>
         </div>
-        <div class="col grid-example s4 coining-text-right" style="font-size: small;color: black;padding-left: 2%;padding-right: 0;padding-top: 10px;min-width: 35%;text-align: left !important;">
+        <div class="col grid-example s4 coining-text-right" style="font-size: small;color: black;padding-left: 0;padding-right: 0;padding-top: 10px;text-align: center !important;max-width: 30%">
           <b>{{row.score}}</b>
         </div>
-        <div class="col grid-example s4" style="margin-right: 5%">
+        <div class="col grid-example s4" style="margin-left: 6%;margin-top: 4%">
           <img style="width: 48px;" src="{{row.avatar}}">
         </div>
       </div>
