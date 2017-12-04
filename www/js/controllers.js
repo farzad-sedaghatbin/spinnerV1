@@ -198,29 +198,31 @@ angular.module('starter.controllers', [])
   })
   .controller('BoardCtrl', function ($scope, $timeout, $ionicHistory, menuService, $http, $rootScope, $state, $ionicModal, $ionicPopup) {
 
-    $scope.chooseGames = function() {
+    $scope.chooseGames = function () {
+      $rootScope.challengeMenu = [];
       var arr = [];
-      while (arr.length < 4) {
-        var randomnumber = Math.floor(Math.random() * 16) + 1;
-        if (arr.indexOf(randomnumber) > -1) continue;
-        arr[arr.length] = randomnumber;
+      if ($rootScope.submenus.length - ( menuService.getPlayedGames().length + $rootScope.boughtMenu.length) < 4) {
+        $rootScope.boughtMenu = [];
+      }
+      for (var i = Math.floor(Math.random() * 16) + 1, j = 0; j < 16; j++,i++) {
+        if (i === (16 + 1))
+          i = 1;
+        if (arr.indexOf(i) > -1 || menuService.getPlayedGames().indexOf(i) > -1 || $rootScope.boughtMenu.indexOf(i) > -1) continue;
+        arr[arr.length] = i;
+        if (arr.length === 4)
+          break;
       }
       angular.forEach($rootScope.submenus, function (member, index) {
-        if (arr.indexOf(member.id) > -1 && menuService.getPlayedGames().indexOf(member.menuicon) < 0 && $rootScope.boughtMenu.indexOf(member.id) < 0) {
+        if (arr.indexOf(member.id) > -1) {
           $rootScope.challengeMenu.push(member);
           $rootScope.boughtMenu.push(member.id);
         }
       });
-      if ($rootScope.challengeMenu.length === 0) {
-        $rootScope.boughtMenu = [];
-        chooseGames();
-      } else {
-        menuService.getDb().transaction(function (tx) {
-          tx.executeSql('DELETE FROM MYGAME WHERE name="cMenu"', [], function (tx, results) {
-            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["cMenu", JSON.stringify($rootScope.challengeMenu)]);
-          });
+      menuService.getDb().transaction(function (tx) {
+        tx.executeSql('DELETE FROM MYGAME WHERE name="cMenu"', [], function (tx, results) {
+          tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["cMenu", JSON.stringify($rootScope.challengeMenu)]);
         });
-      }
+      });
     };
 
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
@@ -734,7 +736,7 @@ angular.module('starter.controllers', [])
         }
         menuService.resetPlayedGames();
         angular.forEach(data.gameDTOS, function (member, index) {
-          menuService.addPlayedGames(member.icon);
+          menuService.addPlayedGames(member.id);
         });
       }
     }
