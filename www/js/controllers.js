@@ -197,6 +197,58 @@ angular.module('starter.controllers', [])
     }
   })
   .controller('BoardCtrl', function ($scope, $timeout, $ionicHistory, menuService, $http, $rootScope, $state, $ionicModal, $ionicPopup) {
+
+    $scope.chooseGames = function() {
+      var arr = [];
+      while (arr.length < 4) {
+        var randomnumber = Math.floor(Math.random() * 16) + 1;
+        if (arr.indexOf(randomnumber) > -1) continue;
+        arr[arr.length] = randomnumber;
+      }
+      angular.forEach($rootScope.submenus, function (member, index) {
+        if (arr.indexOf(member.id) > -1 && menuService.getPlayedGames().indexOf(member.menuicon) < 0 && $rootScope.boughtMenu.indexOf(member.id) < 0) {
+          $rootScope.challengeMenu.push(member);
+          $rootScope.boughtMenu.push(member.id);
+        }
+      });
+      if ($rootScope.challengeMenu.length === 0) {
+        $rootScope.boughtMenu = [];
+        chooseGames();
+      } else {
+        menuService.getDb().transaction(function (tx) {
+          tx.executeSql('DELETE FROM MYGAME WHERE name="cMenu"', [], function (tx, results) {
+            tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["cMenu", JSON.stringify($rootScope.challengeMenu)]);
+          });
+        });
+      }
+    };
+
+    $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
+      if ($rootScope.isTrain && $rootScope.challengeMenu.length === 0)
+        $scope.chooseGames();
+    });
+
+    $scope.releaseMore = function () {
+      $ionicPopup.alert({
+        title: '<span class="myText">اخطار</span>',
+        template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای آزادسازی 4 بازی دیگر، 50 سکه باید بپردازید. آیا از اینکار اطمینان دارید؟</div>',
+        buttons: [
+          {
+            text: '<img class="my-button" src="./img/bale.png">',
+            onTap: function (e) {
+              if ($rootScope.gamer.coins < 50) {
+                menuService.myMessage("سکه های شما برای آزادسازی بازی کافی نیست");
+                return;
+              }
+              $rootScope.gamer.coins -= 50;
+              $scope.chooseGames();
+            }
+          },
+          {text: '<img class="my-button" src="./img/kheir.png">'}
+        ]
+      });
+    };
+
     var last;
     $scope.openBoard = function (cat) {
       var lastC = $("#" + last);
@@ -222,6 +274,10 @@ angular.module('starter.controllers', [])
     };
     function innerStart(id, url) {
       menuService.startLoading();
+      menuService.getDb().transaction(function (tx) {
+        tx.executeSql('DELETE FROM MYGAME WHERE name="cMenu"', [], function (tx, results) {
+        });
+      });
       if ($rootScope.isLeague && $rootScope.battle.status === "10") {
         $http.post("https://dagala.cfapps.io/api/1/createLeagueGame", $rootScope.leagueId + "," + id + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
           $rootScope.goToGame(url, data);

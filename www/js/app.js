@@ -305,6 +305,82 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
 
       window.addEventListener('native.keyboardshow', this.keyboardShowHandler);
       window.addEventListener('native.keyboardhide', this.keyboardHideHandler);
+
+      $rootScope.submenus = [{
+        menuicon: 'img/puzzle.png',
+        adr: 'puzzle/www.gameeapp.com/game/FGM7TVW2Ma.html',
+        id: 5
+      },{
+        menuicon: 'img/hexo.png',
+        adr: 'hexon/www.gameeapp.com/game/xRkQk0iwI3.html',
+        id: 7
+      },{
+        menuicon: 'img/diamond.png',
+        adr: 'diamond/gamee/game/index.html',
+        id: 10
+      },{
+        menuicon: 'img/hegza.png',
+        adr: 'hegza/gamee/game/index.html',
+        id: 11
+      },{
+        menuicon: 'img/spinner.png',
+        adr: 'spinner/www.gameeapp.com/game/ipUMpcUES.html',
+        id: 2
+      },{
+        menuicon: 'img/mr.png',
+        adr: 'mr/www.gameeapp.com/game/WmHdqig.html',
+        id: 8
+      },{
+        menuicon: 'img/orbit.png',
+        adr: 'orbit/gamee/game/index.html',
+        id: 12
+      },{
+        menuicon: 'img/school.png',
+        adr: 'school/gamee/game/index.html',
+        id: 13
+      },{
+        menuicon: 'img/ninja.png',
+        adr: 'ninja/www.gameeapp.com/game/G1oy49taR.html',
+        id: 3
+      },{
+        menuicon: 'img/space.png',
+        adr: 'space/www.gameeapp.com/game/ibBTDViUP.html',
+        id: 1
+      },{
+        menuicon: 'img/qubo.png',
+        adr: 'qubo/www.gameeapp.com/game/u0yXP5o.html',
+        id: 9
+      },{
+        menuicon: 'img/tire.png',
+        adr: 'tire/gamee/game/index.html',
+        id: 14
+      },{
+        menuicon: 'img/motor.png',
+        adr: 'motor/www.gameeapp.com/game/kAHVRl.html',
+        id: 4
+      },{
+        menuicon: 'img/car.png',
+        adr: 'car/www.gameeapp.com/game/oFfW2omiW.html',
+        id: 6
+      },{
+        menuicon: 'img/football.png',
+        adr: 'football/gamee/game/index.html',
+        id: 15
+      },{
+        menuicon: 'img/karate.png',
+        adr: 'karate/gamee/game/index.html',
+        id: 16
+      }];
+      $rootScope.challengeMenu = [];
+      $rootScope.boughtMenu = [];
+      menuService.getDb().transaction(function (tx) {
+        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="cMenu"', [], function (tx, results) {
+          var len = results.rows.length;
+          if (results.rows && results.rows.length !== 0) {
+            $rootScope.challengeMenu = JSON.parse(results.rows.item(0).val);
+          }
+        }, null);
+      });
     });
   })
   .config(function ($stateProvider, $urlRouterProvider, $ionicNativeTransitionsProvider, $ionicConfigProvider) {

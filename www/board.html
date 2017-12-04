@@ -1,6 +1,6 @@
 <ion-view>
   <ion-content class="page-background" scroll="false">
-    <div class="myText">
+    <div ng-if="!isTrain" class="myText">
       <div class="row">
         <a class="col grid-example s6 board-title">
         </a>
@@ -330,5 +330,69 @@
     height: 80px;"></div>
     </div>
 
+    <div ng-if="isTrain" class="myText">
+      <div class="row" style="position: absolute;margin-top: 100px;max-width: 70%;margin-left: 15%">
+        <div id="battle" on-hold="scale('battle')" on-release="removeScale('battle')"
+             class="col grid-example s6 blue-button" style="font-size: large;max-width: 100%"
+             ng-click="releaseMore()">
+4 تا بازی دیگه میخوام
+        </div>
+      </div>
+      <div class="row">
+        <a class="col grid-example s6 board-title">
+        </a>
+      </div>
+      <div style="overflow-y: scroll;
+    height: 520px;
+    position: absolute;
+    width: 90%;
+    margin-left: 23%;
+    margin-top: 140px;
+    overflow-x: hidden;">
+
+        <div class="row" ng-click="openBoard('challenge')" style="background: url('img/11-game menu4.png');background-size: 60% 100%;background-repeat: no-repeat;
+    background-position: left;position: relative;z-index: 2;margin-top: 0;
+    width: 100%;">
+        </div>
+        <div id="challenge" style="background: url('img/11-game menu7.png');display: none;
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    background-position: left;
+    width: 120%;
+    height: 200px;
+    margin-top: -30px;
+    z-index: 1;">
+          <div ng-repeat="row in challengeMenu" class="row" style="height: 40px;padding-top: 13px;margin: 0" >
+            <div class="col grid-example s2" ng-click="topRanks(row.id)" style="background: url('img/11-game menu9.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat;
+    margin-left: 5%;max-width: 42px;background-position-x: right">
+            </div>
+            <div class="col grid-example s2" ng-click="start(row.id,row.adr)" style="background: url('img/11-game menu8.png');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+            </div>
+            <div class="col grid-example s2" style="background: url('{{row.menuicon}}');
+    background-size: 42px 42px;
+    background-repeat: no-repeat">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div ng-click="goBack()" style="width: 70px;
+    background-image: url(img/back.png);
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0;
+    height: 80px;"></div>
+      <div style="width: 70px;
+    background-image: url(img/help.png);
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 80px;"></div>
+    </div>
   </ion-content>
 </ion-view>
