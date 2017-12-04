@@ -226,7 +226,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
-      if ($rootScope.isTrain && $rootScope.challengeMenu.length === 0)
+      if (!$rootScope.isTrain && $rootScope.challengeMenu.length === 0)
         $scope.chooseGames();
     });
 
