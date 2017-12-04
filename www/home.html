@@ -1,10 +1,11 @@
 <ion-view hide-nav-bar="true">
   <ion-content class="page-background">
-    <ion-refresher on-refresh="refresh()" pulling-text="برای بارگزاری بکشید"
-                   refreshing-text="در حال بارگزاری">
 
-    </ion-refresher>
+    <ion-content>
+      <ion-refresher on-refresh="refresh()" pulling-text="برای بارگزاری بکشید"
+                     refreshing-text="در حال بارگزاری">
 
+      </ion-refresher>
     <div class="background-info" style="float:left">
       <div ng-click="ranks()" class="myText" style="float:left;margin-top: 10px">
         <span style="display:inline;"><img id="cupT" class="home-badge-img" src="img/cup.png"/></span>
@@ -42,80 +43,84 @@
     font-size: small;
     width: 100px;">{{gamer.user}}
     </div>
-    <div ng-if="gamer" class="myText" style="color: black;position: absolute;top: 42px;right: 153px;font-size: small">{{gamer.level}}
+    <div ng-if="gamer" class="myText" style="color: black;position: absolute;top: 42px;right: 153px;font-size: small">
+      {{gamer.level}}
     </div>
 
-    <div class="myText">
-      <div class="row" style="position: absolute;margin-top: 60px;margin-left: 15%;max-width: 70%;">
-        <div id="battle" on-hold="scale('battle')" on-release="removeScale('battle')" class="col grid-example s6 blue-button" style="font-size: large;max-width: 100%"
-             ng-click="challenge()">
+    <div class="row" style="position: absolute;margin-top: 60px;margin-left: 15%;max-width: 70%;">
+      <div id="battle" on-hold="scale('battle')" on-release="removeScale('battle')"
+           class="col grid-example s6 blue-button" style="font-size: large;max-width: 100%"
+           ng-click="challenge()">
 
-          حریف میطلبم
+        حریف میطلبم
 
-        </div>
       </div>
-      <div class="row" style="margin-top: 130px;position: absolute;margin-left: 15%;max-width: 70%;">
-        <div id="league" on-hold="scale('league')" on-release="removeScale('league')" class="col grid-example s6 red-button" ng-click="league()" style="font-size: large;max-width: 100%">
-          لیگ
-        </div>
+    </div>
+    <div class="row" style="margin-top: 130px;position: absolute;margin-left: 15%;max-width: 70%;">
+      <div id="league" on-hold="scale('league')" on-release="removeScale('league')"
+           class="col grid-example s6 red-button" ng-click="league()" style="font-size: large;max-width: 100%">
+        لیگ
       </div>
-      <div class="row" style="margin-top: 200px;position: absolute;margin-left: 15%;max-width: 70%;">
-        <div id="train" on-hold="scale('train')" on-release="removeScale('train')" class="col grid-example s6 gold-button" ng-click=" training()" style="font-size: large;max-width: 100%">
+    </div>
+    <div class="row" style="margin-top: 200px;position: absolute;margin-left: 15%;max-width: 70%;">
+      <div id="train" on-hold="scale('train')" on-release="removeScale('train')" class="col grid-example s6 gold-button"
+           ng-click=" training()" style="font-size: large;max-width: 100%">
 
-          تمرین میکنم
+        تمرین میکنم
 
-        </div>
       </div>
-      <div class="row" style="margin-top: 265px;position: absolute;margin-left: 15%;max-width: 70%;">
-        <div id="soon" on-hold="scale('soon')" on-release="removeScale('soon')" class="col grid-example s6 green-button" ng-click="soon()" style="font-size: large;max-width: 100%">
-          به زودی ...
-        </div>
+    </div>
+    <div class="row" style="margin-top: 265px;position: absolute;margin-left: 15%;max-width: 70%;">
+      <div id="soon" on-hold="scale('soon')" on-release="removeScale('soon')" class="col grid-example s6 green-button"
+           ng-click="soon()" style="font-size: large;max-width: 100%">
+        به زودی ...
       </div>
+    </div>
 
-      <div id="header" class="row" style="margin-top: 350px;position: absolute;">
-      </div>
+    <div id="header" class="row" style="margin-top: 350px;position: absolute;">
+    </div>
 
-      <div style="height: 35%;
+
+    <div id="endIcon" ng-click="toggleList()"
+         style="background-size: contain;font-size: small;position: fixed;
+                right: 0;
+                 width: 100px;height: 80px;top: 350px;background: url(img/2-natije-2.png) no-repeat right;background-size: contain">
+    </div>
+    <div ng-if="gamer.modal" ng-click="notification()"
+         style="background-size: contain;font-size: small;position: fixed;
+                left: 0;
+                 width: 100px;height: 80px;top: 350px;background: url(img/notification.png) no-repeat left;background-size: contain">
+    </div>
+    </ion-content>
+    <div style="height: 35%;
       overflow-y: scroll;
       position: fixed;
     width: 100%;
     bottom: 0;">
-
-          <div id="endIcon" ng-click="toggleList()"
-               style="background-size: contain;font-size: small;position: fixed;
-                right: 0;
-                 width: 100px;height: 80px;top: 350px;background: url(img/2-natije-2.png) no-repeat right;background-size: contain">
-          </div>
-          <div ng-if="gamer.modal" ng-click="notification()"
-               style="background-size: contain;font-size: small;position: fixed;
-                left: 0;
-                 width: 100px;height: 80px;top: 350px;background: url(img/notification.png) no-repeat left;background-size: contain">
-          </div>
-        <div ng-click="battlefield(row.gameId,false)" class="row myends" style="margin-bottom: 10px;background: url('img/{{row.scoreStatus}}.png');
+      <div ng-click="battlefield(row.gameId,false)" class="row myends" style="margin-bottom: 10px;background: url('img/{{row.scoreStatus}}.png');
         background-size: 60% 100%;
         background-repeat: no-repeat;
         height: 140px;
         background-position: center;" ng-repeat="row in games">
-          <div style="position: absolute;left: 24%">
-            <img style="width: 20%;margin-top: 10%;border-radius: 50%" src="{{row.second.avatar}}">
-          </div>
-          <div class="my-overflow-text" style="position: absolute;left: 20%;
+        <div style="position: absolute;left: 24%">
+          <img style="width: 20%;margin-top: 10%;border-radius: 50%" src="{{row.second.avatar}}">
+        </div>
+        <div class="my-overflow-text" style="position: absolute;left: 20%;
     margin-top: 105px;
     width: 23%;font-size: x-small">
-            {{row.second.user}}
-          </div>
-          <div style="line-height: 35px;position: absolute;left: 57%;margin-top: 41px;">{{row.score}}</div>
-
+          {{row.second.user}}
         </div>
+        <div style="line-height: 35px;position: absolute;left: 57%;margin-top: 41px;">{{row.score}}</div>
+
       </div>
     </div>
-      <div style="width: 70px;
+    <div style="width: 70px;
     background-image: url(img/back.png);
     background-size: 100% 100%;
     position: fixed;
     bottom: 0;
     height: 80px;"></div>
-      <div style="width: 70px;
+    <div style="width: 70px;
     background-image: url(img/help.png);
     background-size: 100% 100%;
     position: fixed;
