@@ -46,25 +46,25 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         }
       }, 101);//registerBackButton
 
-      // if (window.navigator.simulator === true) {
-      //   alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
-      //   navigator.app.exitApp();
-      //
-      // }
-      // if(device.isVirtual){
-      //   alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
-      //   navigator.app.exitApp();
-      // }
-      // inappbilling.init();
-      // tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
-      // if(!$rootScope.myAudio){
-      //   $rootScope.myAudio = new Media("http://dagala.ir/Era_Ameno.mp3");
-      //   if (!$rootScope.isMute) {
-      //     $rootScope.myAudio.pause();
-      //   }else {
-      //     $rootScope.myAudio.play({numberOfLoops: 9999});
-      //   }
-      // }
+      if (window.navigator.simulator === true) {
+        alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
+        navigator.app.exitApp();
+
+      }
+      if(device.isVirtual){
+        alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
+        navigator.app.exitApp();
+      }
+      inappbilling.init();
+      tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
+      if(!$rootScope.myAudio){
+        $rootScope.myAudio = new Media("http://dagala.ir/Era_Ameno.mp3");
+        if (!$rootScope.isMute) {
+          $rootScope.myAudio.pause();
+        }else {
+          $rootScope.myAudio.play({numberOfLoops: 9999});
+        }
+      }
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(false);
@@ -298,7 +298,8 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
       };
       this.keyboardShowHandler = function (e) {
         $('form').animate({ 'marginTop': '30%' }, 200);
-        $('#main').removeClass("login-background").addClass("login-background-keyboard");
+        $('.login-background').addClass("login-background-keyboard");
+        $('.login-background').removeClass("login-background");
         $("#backBtn").css("display","none");
         $("#helpBtn").css("display","none");
         $("#tab").css("margin-top","-18%");
@@ -306,7 +307,8 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
 
       this.keyboardHideHandler = function () {
         $('form').animate({ 'marginTop': '60%' }, 200);
-        $('#main').removeClass("login-background-keyboard").addClass("login-background");
+        $('.login-background-keyboard').addClass("login-background");
+        $('.login-background-keyboard').removeClass("login-background-keyboard");
         $("#backBtn").css("display","block");
         $("#helpBtn").css("display","block");
         $("#tab").css("margin-top","0");
