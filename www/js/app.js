@@ -297,11 +297,13 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         });
       };
       this.keyboardShowHandler = function (e) {
-        $('body').animate({ 'marginTop': - (e.keyboardHeight-200) + 'px' }, 200);
+        $('form').animate({ 'marginTop': '30%' }, 200);
+        $('#main').animate({ 'backgroundSize': '80% 90% !important' }, 200);
       };
 
       this.keyboardHideHandler = function () {
-        $('body').animate({ 'marginTop': 0 + 'px' }, 200);
+        $('form').animate({ 'marginTop': '60%' }, 200);
+        $('#main').animate({ 'backgroundSize': '80% 60% !important' }, 200);
       };
 
       window.addEventListener('native.keyboardshow', this.keyboardShowHandler);
