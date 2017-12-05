@@ -311,7 +311,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         $('.login-background-keyboard').removeClass("login-background-keyboard");
         $("#backBtn").css("display","block");
         $("#helpBtn").css("display","block");
-        $("#tab").css("margin-top","0");
+        $("#tab").css("margin-top","1.5%");
       };
 
       window.addEventListener('native.keyboardshow', this.keyboardShowHandler);
