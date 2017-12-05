@@ -1098,7 +1098,23 @@ angular.module('starter.controllers', [])
         });
     };
   })
-  .controller('ProfileCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $ionicModal,$ionicPopup) {
+  .controller('ProfileCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $ionicModal,$ionicPopup,$timeout) {
+
+    $scope.$on("$ionicView.enter", function (scopes, states) {
+      $timeout(function () {
+        menuService.startLoading();
+        $http.post("https://dagala.cfapps.io/api/1/purchaseAvatar", url + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
+          menuService.stopLoading();
+          $rootScope.gamer.avatar = url;
+          $rootScope.modal.hide();
+          $rootScope.saveGamer($rootScope.gamer);
+        }).catch(function (err) {
+          menuService.stopLoading();
+          menuService.myHandleError(err);
+        });
+      }, 400);
+    });
+
     $scope.changePass = function () {
       $state.go("change-pass");
     };
