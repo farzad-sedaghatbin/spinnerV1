@@ -298,6 +298,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
       };
       this.keyboardShowHandler = function (e) {
         $('form').animate({ 'marginTop': '30%' }, 200);
+        $('#main').removeClass("login-background");
         $('#main').css('background-size', '80% 100% !important');
         $("#backBtn").css("display","none");
         $("#helpBtn").css("display","none");
@@ -306,7 +307,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
 
       this.keyboardHideHandler = function () {
         $('form').animate({ 'marginTop': '60%' }, 200);
-        $('#main').css('background-size', '80% 60% !important');
+        $('#main').addClass("login-background");
         $("#backBtn").css("display","block");
         $("#helpBtn").css("display","block");
         $("#tab").css("margin-top","0");
