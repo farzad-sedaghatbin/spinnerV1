@@ -893,6 +893,10 @@ angular.module('starter.controllers', [])
       el.addClass('animated bounceOutRight');
       el.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
         el.removeClass("animated bounceOutRight").addClass('animated bounceIn');
+        $http.post("https://dagala.cfapps.io/api/1/message",  $rootScope.gamer.user + "," + $rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
+        }).catch(function (err) {
+          menuService.myHandleError(err);
+        });
         $scope.closeChatbox();
       });
     };
