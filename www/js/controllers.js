@@ -1104,7 +1104,7 @@ angular.module('starter.controllers', [])
     function loadData(refresh) {
       $timeout(function () {
         menuService.startLoading();
-        $http.post("https://dagala.cfapps.io/api/1/profile", $rootScope.userForProfile ? $rootScope.userForProfile : $rootScope.gamer.user).success(function (data, status, headers, config) {
+        $http.post("https://dagala.cfapps.io/api/1/profile", $rootScope.userForProfile).success(function (data, status, headers, config) {
           menuService.stopLoading();
           $rootScope.profileData = data;
           if (refresh)
