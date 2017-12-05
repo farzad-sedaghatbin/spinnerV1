@@ -1094,7 +1094,7 @@ angular.module('starter.controllers', [])
         });
     };
   })
-  .controller('ProfileCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $ionicModal) {
+  .controller('ProfileCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $ionicModal,$ionicPopup) {
     $scope.changePass = function () {
       $state.go("change-pass");
     };
@@ -1110,14 +1110,43 @@ angular.module('starter.controllers', [])
       });
     };
     $scope.selected = function (url) {
-      $rootScope.gamer.avatar = url;
-      $rootScope.modal.hide();
-      var serverUrl = "https://dagala.cfapps.io/api/1/changeAvatar";
-      $http.post(serverUrl, url + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
-        $rootScope.saveGamer($rootScope.gamer);
-      }).catch(function (err) {
-        menuService.myHandleError(err);
-      });
+      if (url.indexOf("poli" > -1)){
+        $ionicPopup.alert({
+          title: '<span class="myText">توجه</span>',
+          template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای انتخاب این آواتار باید 1000 سکه بپردازید. آیا تمایل دارید؟</div>',
+          buttons: [
+            {
+              text: '<img class="my-button" src="./img/bale.png">',
+              onTap: function (e) {
+                if ($rootScope.gamer.coins < 1000){
+                  menuService.myMessage("سکه های شما برای انتخاب این آواتار کافی نیست");
+                  return;
+                }
+                menuService.startLoading();
+                $http.post("https://dagala.cfapps.io/api/1/purchaseAvatar", url + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
+                  menuService.stopLoading();
+                  $rootScope.gamer.avatar = url;
+                  $rootScope.modal.hide();
+                  $rootScope.saveGamer($rootScope.gamer);
+                }).catch(function (err) {
+                  menuService.stopLoading();
+                  menuService.myHandleError(err);
+                });
+              }
+            },
+            {text: '<img class="my-button" src="./img/kheir.png">'}
+          ]
+        });
+      } else {
+        $rootScope.gamer.avatar = url;
+        $rootScope.modal.hide();
+        var serverUrl = "https://dagala.cfapps.io/api/1/changeAvatar";
+        $http.post(serverUrl, url + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
+          $rootScope.saveGamer($rootScope.gamer);
+        }).catch(function (err) {
+          menuService.myHandleError(err);
+        });
+      }
     };
     $scope.goBack = function () {
       $ionicNativeTransitions.goBack();
