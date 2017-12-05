@@ -1,6 +1,6 @@
 'use strict';
 angular.module('starter.controllers', [])
-  .controller('HomeCtrl', function ($scope, $state, $ionicModal, $rootScope, menuService, $http, $ionicPopup, $timeout,$ionicNativeTransitions) {
+  .controller('HomeCtrl', function ($scope, $state, $ionicModal, $rootScope, menuService, $http, $ionicPopup, $timeout, $ionicNativeTransitions) {
     $rootScope.homeURL = window.location.href;
     $scope.$on("$ionicView.enter", function (scopes, states) {
       $rootScope.sendToServer();
@@ -85,9 +85,10 @@ angular.module('starter.controllers', [])
       $rootScope.selectedGame = null;
       $state.go("ranks");
     };
-    $rootScope.profile = function () {
+    $rootScope.profile = function (username) {
       if ($rootScope.modal)
         $rootScope.modal.hide();
+      $rootScope.userForProfile = username;
       $state.go("profile")
     };
     $rootScope.coining = function () {
@@ -120,15 +121,15 @@ angular.module('starter.controllers', [])
       $rootScope.isLeague = false;
       $state.go("battlefield");
     };
-    $scope.battlefield = function (gameId, isEnded) {
+    $scope.battlefield = function (gameId) {
       menuService.getDb().transaction(function (tx) {
         tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
           var len = results.rows.length, i, result = '';
           if (results.rows && results.rows.length !== 0) {
             $rootScope.sendToServer();
-            $scope.goToBattlefield(gameId, isEnded);
+            $scope.goToBattlefield(gameId, $scope.listState === "full");
           } else {
-            $scope.goToBattlefield(gameId, isEnded);
+            $scope.goToBattlefield(gameId, $scope.listState === "full");
           }
         })
       });
@@ -204,7 +205,7 @@ angular.module('starter.controllers', [])
       if ($rootScope.submenus.length - ( menuService.getPlayedGames().length + $rootScope.boughtMenu.length) < 4) {
         $rootScope.boughtMenu = [];
       }
-      for (var i = Math.floor(Math.random() * 16) + 1, j = 0; j < 16; j++,i++) {
+      for (var i = Math.floor(Math.random() * 16) + 1, j = 0; j < 16; j++, i++) {
         if (i === (16 + 1))
           i = 1;
         if (arr.indexOf(i) > -1 || menuService.getPlayedGames().indexOf(i) > -1 || $rootScope.boughtMenu.indexOf(i) > -1) continue;
@@ -893,7 +894,7 @@ angular.module('starter.controllers', [])
       el.addClass('animated bounceOutRight');
       el.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
         el.removeClass("animated bounceOutRight").addClass('animated bounceIn');
-        $http.post("https://dagala.cfapps.io/api/1/message",  $rootScope.gamer.user + "," + $rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
+        $http.post("https://dagala.cfapps.io/api/1/message", $rootScope.gamer.user + "," + $rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
         }).catch(function (err) {
           menuService.myHandleError(err);
         });
@@ -1098,23 +1099,31 @@ angular.module('starter.controllers', [])
         });
     };
   })
-  .controller('ProfileCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $ionicModal,$ionicPopup,$timeout) {
+  .controller('ProfileCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $ionicModal, $ionicPopup, $timeout) {
 
-    $scope.$on("$ionicView.enter", function (scopes, states) {
+    function loadData(refresh) {
       $timeout(function () {
         menuService.startLoading();
-        $http.post("https://dagala.cfapps.io/api/1/purchaseAvatar", url + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
+        $http.post("https://dagala.cfapps.io/api/1/profile", $rootScope.userForProfile ? $rootScope.userForProfile : $rootScope.gamer.user).success(function (data, status, headers, config) {
           menuService.stopLoading();
-          $rootScope.gamer.avatar = url;
-          $rootScope.modal.hide();
-          $rootScope.saveGamer($rootScope.gamer);
+          $rootScope.profileData = data;
+          if (refresh)
+            $scope.$broadcast('scroll.refreshComplete');
         }).catch(function (err) {
           menuService.stopLoading();
           menuService.myHandleError(err);
+          if (refresh)
+            $scope.$broadcast('scroll.refreshComplete');
         });
       }, 400);
+    };
+    $scope.$on("$ionicView.enter", function (scopes, states) {
+      if (!$rootScope.profileData || $rootScope.userForProfile !== $rootScope.profileData.username)
+        loadData(false);
     });
-
+  $scope.refresh = function () {
+    loadData(true);
+  };
     $scope.changePass = function () {
       $state.go("change-pass");
     };
@@ -1130,7 +1139,7 @@ angular.module('starter.controllers', [])
       });
     };
     $scope.selected = function (url) {
-      if (url.indexOf("poli" > -1)){
+      if (url.indexOf("poli") > -1) {
         $ionicPopup.alert({
           title: '<span class="myText">توجه</span>',
           template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای انتخاب این آواتار باید 1000 سکه بپردازید. آیا تمایل دارید؟</div>',
@@ -1138,7 +1147,7 @@ angular.module('starter.controllers', [])
             {
               text: '<img class="my-button" src="./img/bale.png">',
               onTap: function (e) {
-                if ($rootScope.gamer.coins < 1000){
+                if ($rootScope.gamer.coins < 1000) {
                   menuService.myMessage("سکه های شما برای انتخاب این آواتار کافی نیست");
                   return;
                 }
