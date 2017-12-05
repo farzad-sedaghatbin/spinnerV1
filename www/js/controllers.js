@@ -438,7 +438,7 @@ angular.module('starter.controllers', [])
       menuService.leagueHelp();
     };
     $scope.joinLeague = function (row) {
-      if ($rootScope.gamer.gem < row.cost) {
+      if ($rootScope.gamer.gem < row.costNum) {
         menuService.myMessage("الماس شما برای ورود به این لیگ کافی نیست", "خطا");
         return;
       }
@@ -450,7 +450,7 @@ angular.module('starter.controllers', [])
       $http.post("https://dagala.cfapps.io/api/1/requestLeague", row.id + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
         menuService.stopLoading();
         if (data === 200) {
-          $rootScope.gamer.gem -= row.cost;
+          $rootScope.gamer.gem -= row.costNum;
           menuService.myMessage("شما با موفقیت عضو این لیگ شدید", "پیام");
           row.status = 1;
         } else if (data === 201) {
