@@ -1,6 +1,6 @@
 'use strict';
 angular.module('starter.controllers', [])
-  .controller('HomeCtrl', function ($scope, $state, $ionicModal, $rootScope, menuService, $http, $ionicPopup, $timeout) {
+  .controller('HomeCtrl', function ($scope, $state, $ionicModal, $rootScope, menuService, $http, $ionicPopup, $timeout,$ionicNativeTransitions) {
     $rootScope.homeURL = window.location.href;
     $scope.$on("$ionicView.enter", function (scopes, states) {
       $rootScope.sendToServer();
@@ -196,7 +196,7 @@ angular.module('starter.controllers', [])
       $("#" + id).removeClass("scaling")
     }
   })
-  .controller('BoardCtrl', function ($scope, $timeout, $ionicHistory, menuService, $http, $rootScope, $state, $ionicModal, $ionicPopup) {
+  .controller('BoardCtrl', function ($scope, $timeout, $ionicNativeTransitions, menuService, $http, $rootScope, $state, $ionicModal, $ionicPopup) {
 
     $scope.chooseGames = function () {
       $rootScope.challengeMenu = [];
@@ -345,10 +345,10 @@ angular.module('starter.controllers', [])
       $rootScope.modal.hide();
     };
     $scope.goBack = function () {
-      $ionicHistory.goBack();
+      $ionicNativeTransitions.goBack();
     }
   })
-  .controller('InvitationCtrl', function ($scope, $state, $ionicHistory, $http, $rootScope, menuService) {
+  .controller('InvitationCtrl', function ($scope, $state, $ionicNativeTransitions, $http, $rootScope, menuService) {
     $scope.username;
     $scope.submit = function () {
       menuService.startLoading();
@@ -368,10 +368,10 @@ angular.module('starter.controllers', [])
       });
     };
     $scope.goBack = function () {
-      $ionicHistory.goBack();
+      $ionicNativeTransitions.goBack();
     }
   })
-  .controller('LeagueCtrl', function ($scope, $state, $ionicHistory, $http, $rootScope, menuService, $timeout, $ionicModal) {
+  .controller('LeagueCtrl', function ($scope, $state, $ionicNativeTransitions, $http, $rootScope, menuService, $timeout, $ionicModal) {
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
       $scope.loaded = false;
     });
@@ -499,10 +499,10 @@ angular.module('starter.controllers', [])
       $rootScope.modal.hide();
     };
     $scope.goBack = function () {
-      $ionicHistory.goBack();
+      $ionicNativeTransitions.goBack();
     }
   })
-  .controller('WheelCtrl', function ($scope, $state, $ionicHistory, menuService, $http, $rootScope, $timeout) {
+  .controller('WheelCtrl', function ($scope, $state, $ionicNativeTransitions, menuService, $http, $rootScope, $timeout) {
     var wasHit;
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
       wasHit = false;
@@ -539,15 +539,15 @@ angular.module('starter.controllers', [])
       });
     };
     $scope.goBack = function () {
-      $ionicHistory.goBack();
+      $ionicNativeTransitions.goBack();
     }
   })
-  .controller('CoiningCtrl', function ($scope, $state, $ionicHistory, menuService, $ionicModal, $rootScope, $http, $timeout) {
+  .controller('CoiningCtrl', function ($scope, $state, $ionicNativeTransitions, menuService, $ionicModal, $rootScope, $http, $timeout) {
     $timeout(function () {
       menuService.coiningTutorial();
     }, 700);
     $scope.goBack = function () {
-      $ionicHistory.goBack();
+      $ionicNativeTransitions.goBack();
     };
     $scope.wheel = function () {
       $state.go("wheel");
@@ -675,7 +675,7 @@ angular.module('starter.controllers', [])
       }
     }
   })
-  .controller('BattlefieldCtrl', function ($scope, $state, $ionicHistory, menuService, $timeout, $http, $rootScope, $interval, $ionicModal) {
+  .controller('BattlefieldCtrl', function ($scope, $state, $ionicNativeTransitions, menuService, $timeout, $http, $rootScope, $interval, $ionicModal) {
     $scope.loaded = false;
     var url;
     var param;
@@ -900,10 +900,10 @@ angular.module('starter.controllers', [])
       loadData(true);
     };
     $scope.goBack = function () {
-      $ionicHistory.goBack();
+      $ionicNativeTransitions.goBack();
     };
   })
-  .controller('NewgameCtrl', function ($scope, $state, $ionicHistory, menuService, $timeout, $http, $rootScope, $ionicPopup) {
+  .controller('NewgameCtrl', function ($scope, $state, $ionicNativeTransitions, menuService, $timeout, $http, $rootScope, $ionicPopup) {
     function loadData(refresh) {
       var url = "https://dagala.cfapps.io/api/1/requestGame";
       $http.post(url, $rootScope.gamer.user).success(function (data, status, headers, config) {
@@ -976,7 +976,7 @@ angular.module('starter.controllers', [])
               }).catch(function (err) {
                 menuService.myHandleError(err);
               });
-              $ionicHistory.goBack();
+              $ionicNativeTransitions.goBack();
             }
           },
           {text: '<img class="my-button" src="./img/kheir.png">'}
@@ -984,7 +984,7 @@ angular.module('starter.controllers', [])
       });
     };
   })
-  .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $ionicModal) {
+  .controller('LoginCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $ionicModal) {
     $scope.username;
     $scope.pass;
     $scope.isLogin = true;
@@ -1018,7 +1018,7 @@ angular.module('starter.controllers', [])
       $state.go("forget")
     };
     $scope.goBack = function () {
-      $ionicHistory.goBack();
+      $ionicNativeTransitions.goBack();
     };
     var tab;
     $scope.switch = function () {
@@ -1094,7 +1094,7 @@ angular.module('starter.controllers', [])
         });
     };
   })
-  .controller('ProfileCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $ionicModal) {
+  .controller('ProfileCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $ionicModal) {
     $scope.changePass = function () {
       $state.go("change-pass");
     };
@@ -1120,13 +1120,13 @@ angular.module('starter.controllers', [])
       });
     };
     $scope.goBack = function () {
-      $ionicHistory.goBack();
+      $ionicNativeTransitions.goBack();
     }
   })
-  .controller('ChangePassCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout) {
+  .controller('ChangePassCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $timeout) {
 
   })
-  .controller('RanksCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout) {
+  .controller('RanksCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $timeout) {
     function innerStart() {
       menuService.startLoading();
       $http.post("https://dagala.cfapps.io/api/1/topPlayer", $rootScope.gamer.user).success(function (data, status, headers, config) {
@@ -1159,10 +1159,10 @@ angular.module('starter.controllers', [])
       }, 400);
     });
     $scope.ranksBack = function () {
-      $ionicHistory.goBack();
+      $ionicNativeTransitions.goBack();
     };
   })
-  .controller('SelectCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout, $ionicPopup) {
+  .controller('SelectCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $timeout, $ionicPopup) {
     $scope.byChance = function () {
       $ionicPopup.alert({
         title: '<span class="myText">توجه</span>',
@@ -1187,10 +1187,10 @@ angular.module('starter.controllers', [])
       $state.go("username");
     };
     $scope.goBack = function () {
-      $ionicHistory.goBack();
+      $ionicNativeTransitions.goBack();
     }
   })
-  .controller('UsernameCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicHistory, $timeout, $ionicPopup) {
+  .controller('UsernameCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $timeout, $ionicPopup) {
     $scope.search = function (username) {
       menuService.startLoading();
       $http.post("https://dagala.cfapps.io/api/1/friendly", $rootScope.gamer.user + "," + username).success(function (data, status, headers, config) {
@@ -1219,10 +1219,10 @@ angular.module('starter.controllers', [])
       });
     };
     $scope.goBack = function () {
-      $ionicHistory.goBack();
+      $ionicNativeTransitions.goBack();
     }
   })
-  .controller('ForgetCtrl', function ($scope, $state, menuService, $http, $ionicHistory) {
+  .controller('ForgetCtrl', function ($scope, $state, menuService, $http, $ionicNativeTransitions) {
     $scope.submit = function (username) {
       menuService.startLoading();
       var signUpUrl = "https://dagala.cfapps.io/api/1/forget";
@@ -1267,13 +1267,13 @@ angular.module('starter.controllers', [])
       form.confirmPass.$setValidity("validity", !result);
     };
     $scope.goBack = function () {
-      $ionicHistory.goBack();
+      $ionicNativeTransitions.goBack();
     }
   })
-  .controller('SignupCtrl', function ($scope, $ionicModal, menuService, $http, $state, $rootScope, $ionicHistory) {
+  .controller('SignupCtrl', function ($scope, $ionicModal, menuService, $http, $state, $rootScope, $ionicNativeTransitions) {
 
     $scope.goBack = function () {
-      $ionicHistory.goBack();
+      $ionicNativeTransitions.goBack();
     }
   });
 
