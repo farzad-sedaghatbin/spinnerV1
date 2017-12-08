@@ -1,6 +1,6 @@
 <ion-view>
   <ion-content class="page-background" id="HomeController" scroll="false">
-    <ion-refresher on-refresh="refresh()" pulling-text="برای بارگزاری بکشید"
+    <ion-refresher ng-if="!isEnded" on-refresh="refresh()" pulling-text="برای بارگزاری بکشید"
                    refreshing-text="در حال بارگزاری">
 
     </ion-refresher>
