@@ -127,9 +127,9 @@ angular.module('starter.controllers', [])
           var len = results.rows.length, i, result = '';
           if (results.rows && results.rows.length !== 0) {
             $rootScope.sendToServer();
-            $scope.goToBattlefield(gameId, $scope.listState === "full");
+            $scope.goToBattlefield(gameId, $rootScope.listState === "full");
           } else {
-            $scope.goToBattlefield(gameId, $scope.listState === "full");
+            $scope.goToBattlefield(gameId, $rootScope.listState === "full");
           }
         })
       });
@@ -178,9 +178,9 @@ angular.module('starter.controllers', [])
           tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="listState"', [], function (tx, results) {
             var len = results.rows.length, i, result = '';
             if (!results.rows || results.rows.length == 0) {
-              $scope.listState = "none";
+              $rootScope.listState = "none";
             } else {
-              $scope.listState = results.rows.item(0).val;
+              $rootScope.listState = results.rows.item(0).val;
             }
             $scope.toggleList();
           }, null);
