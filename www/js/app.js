@@ -176,6 +176,12 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
               ]
             });
           });
+          if ($rootScope.listState === "half"){
+            $rootScope.games = $rootScope.gamer.halfGame;
+          }
+          if ($rootScope.listState === "full"){
+            $rootScope.games = $rootScope.gamer.fullGame;
+          }
           if (refresh)
             scope.$broadcast('scroll.refreshComplete');
         }).catch(function (err) {

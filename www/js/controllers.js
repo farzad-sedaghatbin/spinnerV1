@@ -136,9 +136,9 @@ angular.module('starter.controllers', [])
     };
 
     $scope.toggleList = function () {
-      if ($scope.listState === "none") {
-        $scope.listState = "half";
-        $scope.games = $rootScope.gamer.halfGame;
+      if ($rootScope.listState === "none") {
+        $rootScope.listState = "half";
+        $rootScope.games = $rootScope.gamer.halfGame;
         $("#endIcon").css("background", "url(img/2-natije-2.png) no-repeat right").css("background-size", "contain");
         $("#header").css("background", "url(img/half.png) no-repeat center").css("background-size", "20%");
         menuService.getDb().transaction(function (tx) {
@@ -146,9 +146,9 @@ angular.module('starter.controllers', [])
             tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["listState", "none"]);
           });
         });
-      } else if ($scope.listState === "half") {
-        $scope.listState = "full";
-        $scope.games = $rootScope.gamer.fullGame;
+      } else if ($rootScope.listState === "half") {
+        $rootScope.listState = "full";
+        $rootScope.games = $rootScope.gamer.fullGame;
         $("#endIcon").css("background", "url(img/2-natije-1.png) no-repeat right").css("background-size", "contain");
         $("#header").css("background", "url(img/ended.png) no-repeat center").css("background-size", "20%");
         menuService.getDb().transaction(function (tx) {
@@ -157,8 +157,8 @@ angular.module('starter.controllers', [])
           });
         });
       } else {
-        $scope.listState = "none";
-        $scope.games = [];
+        $rootScope.listState = "none";
+        $rootScope.games = [];
         $("#endIcon").css("background", "url(img/2-natije-3.png) no-repeat right").css("background-size", "contain");
         $("#header").css("background", "none");
         menuService.getDb().transaction(function (tx) {
