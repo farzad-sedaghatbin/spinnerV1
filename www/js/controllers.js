@@ -511,6 +511,9 @@ angular.module('starter.controllers', [])
     $scope.ranksBack = function () {
       $rootScope.modal.hide();
     };
+    $scope.set_margin = function (index) {
+      return { 'margin-top': (index * 250)+"px" }
+    }
     $scope.goBack = function () {
       $ionicNativeTransitions.goBack();
     }
