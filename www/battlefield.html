@@ -10,7 +10,7 @@
         </a>
       </div>
         <div style="width: 60%;float: right;margin-top: 10px;display: none;position: absolute;left: 24%" class="clock"></div>
-      <div ng-if="loaded" style="overflow: scroll">
+      <div ng-if="loaded" style="overflow: scroll;margin-top: 40px">
         <div ng-if="!isEnded" class="row" style="margin-bottom: 20px;margin-top: 0">
           <div ng-if="battle.user.user" id="taslim" class="col grid-example s6 taslim"
                ng-click="taslim()">
@@ -59,7 +59,7 @@
           <div class="col grid-example s4"
                style="background: url(img/vs-03.png) no-repeat center;background-size: 100% 100%;margin: 0;padding: 0">
             <img style="width: 42px;margin-top: 8px;border-radius: 50%;margin-right: 18px" src="{{gamer.avatar}}">
-            <span id="me" style="color: black;font-size: large;position: absolute;top: 225px;left: 20vw;text-align: center">من</span>
+            <span id="me" style="color: black;font-size: large;position: absolute;top: 265px;left: 20vw;text-align: center">من</span>
           </div>
           <div id="yourscore" class="col grid-example s4 rate"
                style="font-size: large;margin: 0;padding: 0;line-height: 55px">
@@ -70,12 +70,15 @@
                style="background: url(img/vs-02.png) no-repeat center;background-size: 100% 100%;margin: 0;padding: 0">
             <img style="width: 42px;margin-top: 8px;border-radius: 50%;margin-left: 18px" src="{{battle.user.avatar}}">
             <div class="myEText" style="line-height: 20px;color: black;font-size: large;position: absolute;margin-top: -38px;margin-right: 3.5%;">{{battle.user.level}}</div>
-            <div id="him" class="myEText my-overflow-text" style="color: black;font-size: small;position: absolute;top: 225px;right: 12vw;width: 20%;">
+            <div id="him" class="myEText my-overflow-text" style="color: black;font-size: small;position: absolute;top: 265px;right: 12vw;width: 20%;">
               {{battle.user.user}}
             </div>
           </div>
           <div ng-if="!battle.user.user" class="col grid-example s4"
                style="background: url(img/vs-02.png) no-repeat center;background-size: 100% 100%;margin: 0;padding: 0">
+            <div class="myEText my-overflow-text" style="color: black;font-size: small;position: absolute;top: 265px;right: 12vw;width: 20%;">
+              نامشخص
+            </div>
             <!--<img style="width: 42px;margin-top: 8px;border-radius: 50%;margin-left: 18px" src="img/unknown.png">-->
           </div>
         </div>
