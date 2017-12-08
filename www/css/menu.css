@@ -840,11 +840,11 @@ height: 10% !important;
 }
 .scaling{
   -webkit-animation-name: scalex;
-  -webkit-animation-duration:2s;
+  -webkit-animation-duration:1s;
   -webkit-animation-iteration-count:infinite;
   -webkit-animation-timing-function:ease-in-out;
   -moz-animation-name: scale;
-  -moz-animation-duration:2s;
+  -moz-animation-duration:1s;
   -moz-animation-iteration-count:infinite;
   -moz-animation-timing-function:ease-in-out;
 }
