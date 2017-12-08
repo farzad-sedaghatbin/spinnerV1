@@ -176,12 +176,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
               ]
             });
           });
-          if ($rootScope.listState === "half"){
-            $rootScope.games = $rootScope.gamer.halfGame;
-          }
-          if ($rootScope.listState === "full"){
-            $rootScope.games = $rootScope.gamer.fullGame;
-          }
+          $rootScope.refreshHomeList();
           if (refresh)
             scope.$broadcast('scroll.refreshComplete');
         }).catch(function (err) {
@@ -189,6 +184,14 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           if (refresh)
             scope.$broadcast('scroll.refreshComplete');
         });
+      };
+      $rootScope.refreshHomeList = function () {
+        if ($rootScope.listState === "half"){
+          $rootScope.games = $rootScope.gamer.halfGame;
+        }
+        if ($rootScope.listState === "full"){
+          $rootScope.games = $rootScope.gamer.fullGame;
+        }
       };
       var prepareUser = function (result) {
         if (result) {
@@ -257,6 +260,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         } else if ($rootScope.gamer.newLevel) {
           menuService.myMessage("آفرین، سطح شما به "+ $rootScope.gamer.level + " ارتقا پیدا کرد");
         }
+        $rootScope.refreshHomeList();
       };
       $rootScope.sendToServer = function () {
         menuService.getDb().transaction(function (tx) {
