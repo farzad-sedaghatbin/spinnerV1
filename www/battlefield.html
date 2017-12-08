@@ -59,9 +59,9 @@
           <div class="col grid-example s4"
                style="background: url(img/vs-03.png) no-repeat center;background-size: 100% 100%;margin: 0;padding: 0">
             <img style="width: 42px;margin-top: 8px;border-radius: 50%;margin-right: 18px" src="{{gamer.avatar}}">
-            <span id="me" style="color: black;font-size: large;position: absolute;top: 265px;left: 20vw;text-align: center">من</span>
+            <span id="me" class="myText" style="color: black;font-size: large;position: absolute;top: 265px;left: 20vw;text-align: center">من</span>
           </div>
-          <div id="yourscore" class="col grid-example s4 rate"
+          <div id="yourscore" class="col myEText grid-example s4 rate"
                style="font-size: large;margin: 0;padding: 0;line-height: 55px">
             {{battle.user.score}}
             {{battle.score}}
@@ -83,12 +83,12 @@
           </div>
         </div>
 
-        <div style="max-height: 88vw;overflow: scroll;">
+        <div style="max-height: 88vw;overflow: scroll; e" class="myEText">
         <div class="row"
              style="margin-top: 10px;background: url('img/23-5.png') no-repeat center;background-size: 80% 100%;height: 100px"
              ng-repeat="row in battle.gameDTOS">
           <div class="col grid-example s4 score"
-               style="margin: 0;font-size: small;padding-left: 60px;min-width: 40%;padding-top: 13px;text-align: center">
+               style="margin: 0;font-size: large;padding-left: 60px;min-width: 40%;padding-top: 13px;text-align: center">
             <span>{{row.myScore}}</span>
           </div>
           <div class="col grid-example"
@@ -96,7 +96,7 @@
             <img style="width: 48px;margin-top: 7px;margin-left: -9px" src="{{row.icon}}">
           </div>
           <div class="col grid-example s4 score"
-               style="margin: 0;font-size: small;padding-left: 0;min-width: 40%;text-align: center;padding-top: 13px;padding-right: 60px;">
+               style="margin: 0;font-size: large;padding-left: 0;min-width: 40%;text-align: center;padding-top: 13px;padding-right: 60px;">
             <span>{{row.secondScore}}</span>
           </div>
         </div>

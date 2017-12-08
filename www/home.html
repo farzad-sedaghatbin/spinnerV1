@@ -9,24 +9,24 @@
     <div class="background-info" style="float:left">
       <div ng-click="ranks()" class="myText" style="float:left;margin-top: 10px">
         <span style="display:inline;"><img id="cupT" class="home-badge-img" src="img/cup.png"/></span>
-        <span class="home-badge-text my-overflow-text"
+        <span class="home-badge-text my-overflow-text myEText"
               style="display:inline;top: 15px;left: 50px;width: 25px;
-    font-size: x-small;">{{gamer.rating}}</span>
+    font-size: medium;">{{gamer.rating}}</span>
       </div>
       <div ng-click="coining()" class="myText" style="float:left;clear: both">
         <span style="display:inline;"><img id="coinT" class="home-badge-img" src="img/home-coin.png"/></span>
-        <span class="home-badge-text my-overflow-text" style="display:inline;top: 68px;left: 50px;width: 25px;
-    font-size: x-small;">{{gamer.coins}}</span>
+        <span class="home-badge-text my-overflow-text myEText" style="display:inline;top: 68px;left: 50px;width: 25px;
+    font-size:medium;">{{gamer.coins}}</span>
       </div>
       <div ng-click="coining()" class="myText" style="float:left;clear: both">
         <span style="display:inline;"><img id="gemT" class="home-badge-img" src="img/home-gem.png"/></span>
-        <span class="home-badge-text my-overflow-text" style="display:inline;top: 120px;left: 50px;width: 25px;
-    font-size: x-small;">{{gamer.gem}}</span>
+        <span class="home-badge-text my-overflow-text myEText" style="display:inline;top: 120px;left: 50px;width: 25px;
+    font-size: medium;">{{gamer.gem}}</span>
       </div>
       <div ng-if="gamer.exp" class="myText" style="float:left;clear: both">
         <span style="display:inline;"><img class="home-badge-img" src="img/exp.png"/></span>
-        <span class="home-badge-text my-overflow-text" style="display:inline;top: 115px;left: 40px;width: 25px;
-    font-size: x-small;">{{gamer.exp}}</span>
+        <span class="home-badge-text my-overflow-text myEText" style="display:inline;top: 115px;left: 40px;width: 25px;
+    font-size: medium;">{{gamer.exp}}</span>
       </div>
     </div>
 
@@ -49,7 +49,7 @@
 
     <div class="row" style="position: absolute;margin-top: 60px;margin-left: 15%;max-width: 70%;">
       <div id="battle" on-hold="scale('battle')" on-release="removeScale('battle')"
-           class="col grid-example s6 blue-button" style="font-size: large;max-width: 100%"
+           class="col grid-example s6 blue-button myText" style="font-size: large;max-width: 100%"
            ng-click="challenge()">
 
         حریف میطلبم
@@ -58,12 +58,12 @@
     </div>
     <div class="row" style="margin-top: 130px;position: absolute;margin-left: 15%;max-width: 70%;">
       <div id="league" on-hold="scale('league')" on-release="removeScale('league')"
-           class="col grid-example s6 red-button" ng-click="league()" style="font-size: large;max-width: 100%">
+           class="col grid-example s6 red-button myText" ng-click="league()" style="font-size: large;max-width: 100%">
         لیگ
       </div>
     </div>
     <div class="row" style="margin-top: 200px;position: absolute;margin-left: 15%;max-width: 70%;">
-      <div id="train" on-hold="scale('train')" on-release="removeScale('train')" class="col grid-example s6 gold-button"
+      <div id="train" on-hold="scale('train')" on-release="removeScale('train')" class=" myText col grid-example s6 gold-button"
            ng-click=" training()" style="font-size: large;max-width: 100%">
 
         تمرین میکنم
@@ -71,7 +71,7 @@
       </div>
     </div>
     <div class="row" style="margin-top: 265px;position: absolute;margin-left: 15%;max-width: 70%;">
-      <div id="soon" on-hold="scale('soon')" on-release="removeScale('soon')" class="col grid-example s6 green-button"
+      <div id="soon" on-hold="scale('soon')" on-release="removeScale('soon')" class="col myText grid-example s6 green-button"
            ng-click="soon()" style="font-size: large;max-width: 100%">
         به زودی ...
       </div>
@@ -105,12 +105,13 @@
         <div style="position: absolute;left: 24%">
           <img style="width: 20%;margin-top: 10%;border-radius: 50%" src="{{row.second.avatar}}">
         </div>
-        <div class="my-overflow-text" style="position: absolute;left: 20%;
+        <div class="myEText my-overflow-text" style=" position: absolute;left: 20%;
     margin-top: 105px;
-    width: 23%;font-size: x-small">
+    width: 23%;font-size: medium">
           {{row.second.user}}
         </div>
-        <div style="line-height: 35px;position: absolute;left: 57%;margin-top: 41px;">{{row.score}}</div>
+        <div style="line-height: 35px;position: absolute;left: 57%;margin-top: 41px; font-size: large" class="myEText">{{row.score}}</div>
+        <div style="line-height: 35px;position: absolute;left: 57%;margin-top: 41px; font-size: large" class="myEText">{{row.score}}</div>
 
       </div>
     </div>

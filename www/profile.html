@@ -20,7 +20,7 @@
     width: 100px;
     text-align: center;">{{profileData.username}}
       </div>
-      <div ng-if="gamer" class="myText" style="color: black;position: absolute;top: 42px;right: 153px;font-size: small">{{profileData.level}}
+      <div ng-if="gamer" class="myEText" style="color: black;position: absolute;top: 42px;right: 153px;font-size: small">{{profileData.level}}
       </div>
 
       <div class="row" style="top: 15%;
@@ -42,7 +42,7 @@
       <div class="row" style="background: url('img/21-13.png') no-repeat center;background-size: 80% 100%;
       top: 30%;
     position: absolute;right: 1%">
-        <div class="col grid-example s6" style="margin: 0;">
+        <div class="col myEText grid-example s6" style="margin: 0;  font-size: large">
           {{profileData.score}}
         </div>
         <div class="col grid-example s6" style="margin: 0;background: url('img/21-12.png');background-size: 20%;
@@ -55,7 +55,7 @@
 
       <div class="row" style="top: 35%;
     position: absolute;right: 1%">
-        <div class="col grid-example s6" style="margin: 0;">
+        <div class="col myEText grid-example s6" style="margin: 0;  font-size: large">
           {{profileData.win}}
         </div>
         <div class="col grid-example s6" style="margin: 0;background: url('img/21-10.png');background-size: 20%;
@@ -68,7 +68,7 @@
       <div class="row" style="background: url('img/21-13.png') no-repeat center;background-size: 79% 100%;
       top: 40%;
     position: absolute;right: 1%">
-        <div class="col grid-example s6" style="margin: 0;">
+        <div class="col myEText grid-example s6" style="margin: 0;  font-size: large">
           {{profileData.lose}}
         </div>
         <div class="col grid-example s6" style="margin: 0;background: url('img/21-11.png');background-size: 20%;
@@ -78,8 +78,8 @@
         </div>
       </div>
 
-      <div class="row" style="background: url('img/21-2.png') no-repeat center;background-size: 80%;
-      top: 50%;height: 30%;
+      <div class="row myEText" style="background: url('img/21-2.png') no-repeat center;background-size: 80%;
+      top: 50%;height: 30%; font-size: xx-large;
     position: absolute;right: 3px">
         <span style="position: absolute;left: 31%;top: 42%;">{{profileData.silverCup}}</span>
         <span style="position: absolute;left: 49%;top: 22%;">{{profileData.goldCup}}</span>

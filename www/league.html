@@ -9,7 +9,7 @@
       </div>
 
       <div style="height: 65%;margin-top: 10%;overflow-y: scroll;position: relative">
-      <div ng-if="loaded" ng-style="set_margin($index)" class="row" ng-repeat="row in leagues" style="background: url(img/leg_body.png) center center / 100% 80% no-repeat;
+      <div ng-if="loaded" ng-style="set_margin($index)" class="myText row" ng-repeat="row in leagues" style="background: url(img/leg_body.png) center center / 100% 80% no-repeat;
     height: 250px;
     width: 80%;display: inline;
     margin-left: 10%;position: absolute">
@@ -26,7 +26,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;"></div>
-          <div style="line-height: 15px;font-size: medium;width: 60px">{{row.left}}/{{row.capacity}}</div>
+          <div class="myEText" style="line-height: 15px;font-size: large;width: 60px">{{row.left}}/{{row.capacity}}</div>
         </div>
 
         <div class="col grid-example s3" style="padding: 0;margin-top: 40px;min-width: 60px">
@@ -35,7 +35,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;"></div>
-          <div style="line-height: 15px;font-size: medium;width: 60px">{{row.startDate}}</div>
+          <div class="myEText" style="line-height: 15px;font-size: medium;width: 60px">{{row.startDate}}</div>
           <div ng-if="row.status == 0" ng-click="joinLeague(row)" style="line-height: 60px;font-size: medium;background: url('img/btn-leg.png');width: 20%;
     height: 60px;
     background-repeat: no-repeat;
@@ -69,7 +69,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;"></div>
-          <div style="line-height: 15px;font-size: medium;width: 60px">{{row.cost}}</div>
+          <div class="myEText" style="line-height: 15px;font-size: medium;width: 60px">{{row.cost}}</div>
           <div ng-click="desc(row.i)"  style="line-height: 60px;font-size: medium;background: url('img/btn-leg.png');width: 20%;
     height: 60px;
     background-repeat: no-repeat;
@@ -83,7 +83,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;"></div>
-          <div style="line-height: 15px;font-size: medium;width: 60px">{{row.minLevel}}</div>
+          <div class="myEText" style="line-height: 15px;font-size: medium;width: 60px">{{row.minLevel}}</div>
           <div ng-click="prices(row.i)" style="line-height: 60px;font-size: medium;background: url('img/btn-leg.png');width: 20%;
     height: 60px;
     background-repeat: no-repeat;

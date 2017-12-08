@@ -4,8 +4,18 @@
     url('font/IRANSansMobile_Black.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
+}@font-face {
+  font-family: 'myFontEn';
+  src:
+    url('font/english.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
 }
 .myText {
   font-family: myFont, sans-serif;
+  font-weight: bolder;
+}
+.myTextEn {
+  font-family: myFontEn, sans-serif;
   font-weight: bolder;
 }
