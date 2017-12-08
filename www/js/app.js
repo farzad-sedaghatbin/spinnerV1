@@ -13,7 +13,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         if ($rootScope.modal && $rootScope.modal.isShown()) {
           $rootScope.modal.hide();
         } else if ($ionicHistory.currentStateName() == "home") {
-          if (backbutton == 0) {
+          if (backbutton === 0) {
             backbutton++;
             window.plugins.toast.showShortBottom('برای خروج دوباره لمس کنید');
             $timeout(function () {
@@ -46,29 +46,29 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         }
       }, 101);//registerBackButton
 
-      if (window.navigator.simulator === true) {
-        alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
-        navigator.app.exitApp();
-
-      }
-      if(device.isVirtual){
-        alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
-        navigator.app.exitApp();
-      }
-      inappbilling.init();
-      tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
-      if(!$rootScope.myAudio){
-        $rootScope.myAudio = new Media("http://dagala.ir/Era_Ameno.mp3");
-        if (!$rootScope.isMute) {
-          $rootScope.myAudio.pause();
-        }else {
-          $rootScope.myAudio.play({numberOfLoops: 9999});
-        }
-      }
-      if (window.cordova && window.cordova.plugins.Keyboard) {
-        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        cordova.plugins.Keyboard.disableScroll(false);
-      }
+      // if (window.navigator.simulator === true) {
+      //   alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
+      //   navigator.app.exitApp();
+      //
+      // }
+      // if(device.isVirtual){
+      //   alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
+      //   navigator.app.exitApp();
+      // }
+      // inappbilling.init();
+      // tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
+      // if(!$rootScope.myAudio){
+      //   $rootScope.myAudio = new Media("http://dagala.ir/Era_Ameno.mp3");
+      //   if (!$rootScope.isMute) {
+      //     $rootScope.myAudio.pause();
+      //   }else {
+      //     $rootScope.myAudio.play({numberOfLoops: 9999});
+      //   }
+      // }
+      // if (window.cordova && window.cordova.plugins.Keyboard) {
+      //   cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      //   cordova.plugins.Keyboard.disableScroll(false);
+      // }
       document.addEventListener("pause", function () {
         if (!$rootScope.isMute) {
           $rootScope.myAudio.pause();

@@ -195,6 +195,18 @@ angular.module('starter.controllers', [])
     };
     $rootScope.removeScale = function (id) {
       $("#" + id).removeClass("scaling")
+    };
+    var backbutton = 0;
+    $scope.goBack = function () {
+      if (backbutton === 0) {
+        backbutton++;
+        window.plugins.toast.showShortBottom('برای خروج دوباره لمس کنید');
+        $timeout(function () {
+          backbutton = 0;
+        }, 2000);
+      } else {
+        navigator.app.exitApp();
+      }
     }
   })
   .controller('BoardCtrl', function ($scope, $timeout, $ionicNativeTransitions, menuService, $http, $rootScope, $state, $ionicModal, $ionicPopup) {
