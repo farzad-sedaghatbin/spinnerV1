@@ -24,8 +24,8 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           }
         } else if ($ionicHistory.currentStateName() == "newgame") {
           $ionicPopup.alert({
-            title: '<span class="myText">اخطار</span>',
-            template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">آیا از انصراف اطمینان دارید؟</div>',
+            title: '<span class="myText">هشدار</span>',
+            template: '<div class="myText" style="font-size: 18px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">آیا از انصراف اطمینان دارید؟</div>',
             buttons: [
               {
                 text: '<img class="my-button" src="./img/bale.png">',
@@ -148,7 +148,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           angular.forEach(data.friendly, function (member, index) {
             $ionicPopup.alert({
               title: '<span class="myText">درخواست بازی داری</span>',
-              template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">بازیکن با نام کاربری ' + member.second.user + ' درخواست بازی با تورو داره، باهاش بازی میکنی؟</div>',
+              template: '<div class="myText" style="font-size: 18px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">بازیکن با نام کاربری ' + member.second.user + ' درخواست بازی با تورو داره، باهاش بازی میکنی؟</div>',
               buttons: [
                 {
                   text: '<img class="my-button" src="./img/bale.png">',

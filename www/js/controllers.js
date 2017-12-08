@@ -512,7 +512,7 @@ angular.module('starter.controllers', [])
       $rootScope.modal.hide();
     };
     $scope.set_margin = function (index) {
-      return { 'margin-top': (index * 250)+"px" }
+      return {'margin-top': (index * 250) + "px"}
     }
     $scope.goBack = function () {
       $ionicNativeTransitions.goBack();
@@ -1136,9 +1136,9 @@ angular.module('starter.controllers', [])
       if (!$rootScope.profileData || $rootScope.userForProfile !== $rootScope.profileData.username)
         loadData(false);
     });
-  $scope.refresh = function () {
-    loadData(true);
-  };
+    $scope.refresh = function () {
+      loadData(true);
+    };
     $scope.changePass = function () {
       $state.go("change-pass");
     };
@@ -1239,7 +1239,7 @@ angular.module('starter.controllers', [])
     $scope.byChance = function () {
       $ionicPopup.alert({
         title: '<span class="myText">توجه</span>',
-        template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
+        template: '<div class="myText" style="font-size: 18px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
         buttons: [
           {
             text: '<img class="my-button" src="./img/bale.png">',
@@ -1270,7 +1270,7 @@ angular.module('starter.controllers', [])
         menuService.stopLoading();
         $ionicPopup.alert({
           title: '<span class="myText">توجه</span>',
-          template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
+          template: '<div class="myText" style="font-size: 18px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
           buttons: [
             {
               text: '<img class="my-button" src="./img/bale.png">',
