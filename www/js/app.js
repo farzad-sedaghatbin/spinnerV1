@@ -263,7 +263,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
             var len = results.rows.length, i, result = '';
             if (results.rows && results.rows.length !== 0) {
-              if (results.rows.item(0).val) {
+              if (results.rows.item(0).val === "true") {
                 tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
                   var len = results.rows.length, i, result = '';
                   if (results.rows && results.rows.length !== 0) {
