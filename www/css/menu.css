@@ -347,7 +347,7 @@ span.font-36 {
 .coining1 {
   height: 110px;
   background: url(../img/24-2.png) no-repeat center;
-  background-size: contain;
+  background-size: 75%;
   margin: 0;
   padding: 0;
 }
@@ -355,7 +355,7 @@ span.font-36 {
 .coining2 {
   height: 110px;
   background: url(../img/24-3.png) no-repeat center;
-  background-size: contain;
+  background-size: 75%;
   margin: 0;
   padding: 0;
 }
@@ -363,7 +363,7 @@ span.font-36 {
 .coining3 {
   height: 110px;
   background: url(../img/24-4.png) no-repeat center;
-  background-size: contain;
+  background-size: 75%;
   margin: 0;
   padding: 0;
 }
@@ -371,7 +371,7 @@ span.font-36 {
 .coining4 {
   height: 110px;
   background: url(../img/24-5.png) no-repeat center;
-  background-size: contain;
+  background-size: 75%;
   margin: 0;
   padding: 0;
 }
