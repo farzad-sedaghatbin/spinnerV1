@@ -780,6 +780,7 @@ z-index: 1000
   width: 27px;
   height: 27px;
   background: url('../img/close-button.png') no-repeat center center;
+  background-size: contain;
 }
 
 #jpwTooltip {
