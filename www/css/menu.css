@@ -14,7 +14,7 @@
 
 @font-face {
   font-family: 'myEFont';
-  src: url('font/Autobu.ttf') format('truetype');
+  src: url('font/english.otf') format('opentype');
   font-weight: 900;
   font-style: normal;
 }
