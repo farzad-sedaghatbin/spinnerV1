@@ -1244,7 +1244,6 @@ angular.module('starter.controllers', [])
           menuService.stopLoading();
         })
         .error(function (err) {
-          $scope.closeModal(form);
           menuService.myHandleError(err);
           menuService.stopLoading();
         });
