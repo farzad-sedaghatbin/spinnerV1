@@ -644,7 +644,7 @@ angular.module('starter.controllers', [])
     $scope.doBuy = function (row) {
       $rootScope.modal.hide();
       if ($rootScope.gamer.guest){
-        menuService.myMessage("برای خرید سکه باید ثبت نام کنید", "خطا");
+        menuService.myMessage("برای خرید باید ثبت نام کنید", "خطا");
         return;
       }
       if (row.coin) {
