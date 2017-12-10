@@ -46,6 +46,9 @@
     },
     "cordova-plugin-media": {
       "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "phonegap-plugin-local-notification": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
     }
   },
   "dependent_plugins": {
