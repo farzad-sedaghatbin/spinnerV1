@@ -724,6 +724,9 @@ span.font-36 {
 .my-button{
   width: 72px;float: right;
 }
+.my-maintenance{
+  width: 100%;
+}
 .popup-buttons .button {
   border: none;
   background: transparent;
