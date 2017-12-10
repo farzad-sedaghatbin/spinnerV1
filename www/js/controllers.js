@@ -1186,7 +1186,7 @@ angular.module('starter.controllers', [])
       });
     };
     $scope.selected = function (url) {
-      if (url.indexOf("poli") > -1) {
+      if (url.indexOf("poli") > -1 && jQuery.inArray(url, $rootScope.profileData.avatars) < 0) {
         $ionicPopup.alert({
           title: '<span class="myText">توجه</span>',
           template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای انتخاب این آواتار باید 1000 سکه بپردازید. آیا تمایل دارید؟</div>',
@@ -1204,6 +1204,7 @@ angular.module('starter.controllers', [])
                   $rootScope.gamer.avatar = url;
                   $rootScope.modal.hide();
                   $rootScope.saveGamer($rootScope.gamer);
+                  $rootScope.profileData.avatars.push(url);
                 }).catch(function (err) {
                   menuService.stopLoading();
                   menuService.myHandleError(err);
