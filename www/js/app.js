@@ -153,12 +153,16 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
                 {
                   text: '<img class="my-button" src="./img/bale.png">',
                   onTap: function (e) {
-                    $rootScope.gamer.halfGame.push(member);
-                    $rootScope.saveGamer($rootScope.gamer);
+                    menuService.startLoading();
                     $http.post("https://dagala.cfapps.io/api/1/acceptFriend", member.gameId)
                       .success(function (suc) {
+                        menuService.stopLoading();
+                        $rootScope.gamer.halfGame.push(member);
+                        $rootScope.saveGamer($rootScope.gamer);
+                        $rootScope.refreshHomeList();
                       })
                       .error(function (err) {
+                        menuService.stopLoading();
                         menuService.myHandleError(err);
                       });
                   }

@@ -384,7 +384,7 @@ angular.module('starter.controllers', [])
       $ionicNativeTransitions.goBack();
     }
   })
-  .controller('LeagueCtrl', function ($scope, $state, $ionicNativeTransitions, $http, $rootScope, menuService, $timeout, $ionicModal) {
+  .controller('LeagueCtrl', function ($scope, $state, $ionicNativeTransitions, $http, $rootScope, menuService, $timeout, $ionicModal,$ionicPopup) {
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
       $scope.loaded = false;
     });
@@ -452,7 +452,19 @@ angular.module('starter.controllers', [])
     };
     $scope.joinLeague = function (row) {
       if ($rootScope.gamer.guest){
-        menuService.myMessage("برای عضویت در لیگ باید ثبت نام کنید", "خطا");
+        $ionicPopup.alert({
+          title: '<span class="myText">خطا</span>',
+          template: '<div class="myText" style="padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">    <div style="direction: rtl;padding-top: 20px;line-height: 3em">' +
+          '<span class="myText">برای عضویت در لیگ باید ثبت نام کنید</span></div></div>',
+          buttons: [
+            {
+              text: '<img class="my-button" src="./img/15-dokme.png">',
+              onTap: function (e) {
+                $rootScope.profile($rootScope.gamer.user)
+              }
+            }
+          ]
+        });
         return;
       }
       if ($rootScope.gamer.gem < row.costNum) {
@@ -562,7 +574,7 @@ angular.module('starter.controllers', [])
       $ionicNativeTransitions.goBack();
     }
   })
-  .controller('CoiningCtrl', function ($scope, $state, $ionicNativeTransitions, menuService, $ionicModal, $rootScope, $http, $timeout) {
+  .controller('CoiningCtrl', function ($scope, $state, $ionicNativeTransitions, menuService, $ionicModal, $rootScope, $http, $timeout,$ionicPopup) {
     $timeout(function () {
       menuService.coiningTutorial();
     }, 700);
@@ -644,7 +656,19 @@ angular.module('starter.controllers', [])
     $scope.doBuy = function (row) {
       $rootScope.modal.hide();
       if ($rootScope.gamer.guest){
-        menuService.myMessage("برای خرید باید ثبت نام کنید", "خطا");
+        $ionicPopup.alert({
+          title: '<span class="myText">خطا</span>',
+          template: '<div class="myText" style="padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">    <div style="direction: rtl;padding-top: 20px;line-height: 3em">' +
+          '<span class="myText">برای خرید باید ثبت نام کنید</span></div></div>',
+          buttons: [
+            {
+              text: '<img class="my-button" src="./img/15-dokme.png">',
+              onTap: function (e) {
+                $rootScope.profile($rootScope.gamer.user)
+              }
+            }
+          ]
+        });
         return;
       }
       if (row.coin) {
@@ -1276,24 +1300,11 @@ angular.module('starter.controllers', [])
       menuService.startLoading();
       $http.post("https://dagala.cfapps.io/api/1/friendly", $rootScope.gamer.user + "," + username).success(function (data, status, headers, config) {
         menuService.stopLoading();
-        $ionicPopup.alert({
-          title: '<span class="myText">توجه</span>',
-          template: '<div class="myText" style="font-size: 18px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
-          buttons: [
-            {
-              text: '<img class="my-button" src="./img/bale.png">',
-              onTap: function (e) {
-                $rootScope.isTrain = false;
-                $rootScope.callService = true;
-                $rootScope.isLeague = false;
-                $rootScope.gamer.coins -= $rootScope.gamer.perGameCoins;
-                $rootScope.hasPaid = false;
-                menuService.myMessage("درخواست بازی برای کاربر مورد نظرت ارسال شد، بعد از تاییدِ دوستت می تونید باهم بازی کنید");
-              }
-            },
-            {text: '<img class="my-button" src="./img/kheir.png">'}
-          ]
-        });
+        if (data === 201) {
+          menuService.myMessage("نام کاربری اشتباه می باشد", "خطا");
+          return;
+        }
+        menuService.myMessage("درخواست بازی برای کاربر مورد نظرت ارسال شد، بعد از تاییدِ ایشون، می تونید باهم بازی کنید");
       }).catch(function (err) {
         menuService.stopLoading();
         menuService.myHandleError(err, false);
