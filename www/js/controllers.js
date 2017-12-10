@@ -451,6 +451,10 @@ angular.module('starter.controllers', [])
       menuService.leagueHelp();
     };
     $scope.joinLeague = function (row) {
+      if ($rootScope.gamer.guest){
+        menuService.myMessage("برای عضویت در لیگ باید ثبت نام کنید", "خطا");
+        return;
+      }
       if ($rootScope.gamer.gem < row.costNum) {
         menuService.myMessage("الماس شما برای ورود به این لیگ کافی نیست", "خطا");
         return;
@@ -639,6 +643,10 @@ angular.module('starter.controllers', [])
     };
     $scope.doBuy = function (row) {
       $rootScope.modal.hide();
+      if ($rootScope.gamer.guest){
+        menuService.myMessage("برای خرید سکه باید ثبت نام کنید", "خطا");
+        return;
+      }
       if (row.coin) {
         if ($rootScope.gamer.coins < row.price) {
           menuService.myMessage("سکه های شما کافی نیست", "خطا");
