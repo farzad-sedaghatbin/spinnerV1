@@ -91,12 +91,12 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         db.transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
             tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["score", "false," + $rootScope.battle.gameId + "," + challengeId + ",0," + $rootScope.homeURL + "," + $rootScope.gamer.user], function (tx, results) {
-              $rootScope.changeUrl(url, true);
+              $rootScope.changeUrl(url, true, challengeId);
             });
           });
         });
       };
-      $rootScope.changeUrl = function (url, isNotTrain) {
+      $rootScope.changeUrl = function (url, isNotTrain, challengeId) {
         $.ajax({
           type: 'GET',
           url: url,
@@ -123,7 +123,14 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
                 {
                   text: '<img class="my-button" src="./img/15-dokme.png">',
                   onTap: function (e) {
-                    navigator.app.exitApp();
+                    menuService.startLoading();
+                    $http.post("https://dagala.cfapps.io/api/1/rollback", $rootScope.battle.gameId + "," + challengeId).success(function (data, status, headers, config) {
+                      menuService.stopLoading();
+                      navigator.app.exitApp();
+                    }).catch(function (err) {
+                      menuService.stopLoading();
+                      navigator.app.exitApp();
+                    });
                   }
                 }
               ]
