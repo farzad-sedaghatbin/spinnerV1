@@ -44,6 +44,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         } else {
           $ionicHistory.goBack();
         }
+        menuService.stopLoading();
       }, 101);//registerBackButton
 
       // if (window.navigator.simulator === true) {
