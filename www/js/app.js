@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ionic-native-transitions'])
 
-  .run(function ($ionicPlatform, $http, $rootScope, $ionicHistory, $timeout, $ionicPopup, menuService) {
+  .run(function ($ionicPlatform, $http, $rootScope, $ionicHistory, $timeout, $ionicPopup, menuService,$interval) {
     $ionicPlatform.ready(function () {
       var backbutton = 0;
       $ionicPlatform.registerBackButtonAction(function (e) {
@@ -406,6 +406,26 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           }
         }, null);
       });
+      var refreshInterval;
+      function onPause() {
+        refreshInterval = $interval(function () {
+          $http.post("https://dagala.cfapps.io/api/1/turn", $rootScope.gamer.user).success(function (data, status, headers, config) {
+            if (data){
+              cordova.plugins.notification.local.schedule({
+                title: 'نوبت بازی شماست',
+                icon: 'http://dagala.ir/img/logo.png'
+              });
+            }
+          }).catch(function (err) {
+          });
+        }, 60000);
+      }
+
+      function onResume() {
+        $interval.cancel(refreshInterval);
+      }
+      document.addEventListener("pause", onPause, false);
+      document.addEventListener("resume", onResume, false);
     });
   })
   .config(function ($stateProvider, $urlRouterProvider, $ionicNativeTransitionsProvider, $ionicConfigProvider) {
