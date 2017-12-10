@@ -1228,8 +1228,29 @@ angular.module('starter.controllers', [])
       $ionicNativeTransitions.goBack();
     }
   })
-  .controller('ChangePassCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $timeout) {
-
+  .controller('ChangePassCtrl', function ($scope, $state, $rootScope, $http, menuService,$ionicNativeTransitions) {
+    $scope.checkPassword = function (form, password, confirmPass) {
+      var result = password !== confirmPass;
+      $scope.result = result;
+      form.confirmPass.$setValidity("validity", !result);
+    };
+    $scope.submit = function (pass) {
+      menuService.startLoading();
+      var url = "https://dagala.cfapps.io/api/1/changePassword";
+      $http.post(url, $rootScope.gamer.user + "," + pass)
+        .success(function () {
+          menuService.myMessage("کلمه عبور با موفقیت تغییر کرد");
+          menuService.stopLoading();
+        })
+        .error(function (err) {
+          $scope.closeModal(form);
+          menuService.myHandleError(err);
+          menuService.stopLoading();
+        });
+    };
+    $scope.goBack = function () {
+      $ionicNativeTransitions.goBack();
+    }
   })
   .controller('RanksCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $timeout) {
     function innerStart() {
