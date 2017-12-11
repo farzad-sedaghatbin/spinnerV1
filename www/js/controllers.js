@@ -207,6 +207,13 @@ angular.module('starter.controllers', [])
       } else {
         navigator.app.exitApp();
       }
+    };
+    $scope.set_style = function (url) {
+      if (url.indexOf("poli") > -1){
+        return {'margin-top': "7%","margin-left": "-7%"}
+      } else {
+        return {'margin-top': "18%","margin-left": "-2%"}
+      }
     }
   })
   .controller('BoardCtrl', function ($scope, $timeout, $ionicNativeTransitions, menuService, $http, $rootScope, $state, $ionicModal, $ionicPopup) {
