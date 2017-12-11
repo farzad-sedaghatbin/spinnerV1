@@ -140,7 +140,7 @@ angular.module('starter.controllers', [])
         $rootScope.listState = "half";
         $rootScope.games = $rootScope.gamer.halfGame;
         $("#endIcon").css("background", "url(img/2-natije-2.png) no-repeat right").css("background-size", "contain");
-        $("#header").css("background", "url(img/half.png) no-repeat center").css("background-size", "20%");
+        $("#header").css("background", "url(img/half.png) no-repeat center").css("background-size", "35%");
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="listState"', [], function (tx, results) {
             tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["listState", "none"]);
@@ -150,7 +150,7 @@ angular.module('starter.controllers', [])
         $rootScope.listState = "full";
         $rootScope.games = $rootScope.gamer.fullGame;
         $("#endIcon").css("background", "url(img/2-natije-1.png) no-repeat right").css("background-size", "contain");
-        $("#header").css("background", "url(img/ended.png) no-repeat center").css("background-size", "20%");
+        $("#header").css("background", "url(img/ended.png) no-repeat center").css("background-size", "35%");
         menuService.getDb().transaction(function (tx) {
           tx.executeSql('DELETE FROM MYGAME WHERE name="listState"', [], function (tx, results) {
             tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["listState", "half"]);
