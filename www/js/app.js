@@ -147,47 +147,50 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           });
         });
       };
+      $rootScope.friendRequests = function (data) {
+        angular.forEach(data.friendly, function (member, index) {
+          $ionicPopup.alert({
+            title: '<span class="myText">درخواست بازی داری</span>',
+            template: '<div class="myText" style="font-size: 18px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">بازیکن با نام کاربری ' + member.second.user + ' درخواست بازی با تورو داره، باهاش بازی میکنی؟</div>',
+            buttons: [
+              {
+                text: '<img class="my-button" src="./img/bale.png">',
+                onTap: function (e) {
+                  menuService.startLoading();
+                  $http.post("https://dagala.cfapps.io/api/1/acceptFriend", member.gameId)
+                    .success(function (suc) {
+                      menuService.stopLoading();
+                      $rootScope.gamer.halfGame.push(member);
+                      $rootScope.saveGamer($rootScope.gamer);
+                      $rootScope.refreshHomeList();
+                    })
+                    .error(function (err) {
+                      menuService.stopLoading();
+                      menuService.myHandleError(err);
+                    });
+                }
+              },
+              {text: '<img class="my-button" src="./img/kheir.png">',
+                onTap: function (e) {
+                  $http.post("https://dagala.cfapps.io/api/1/rejectFriend", member.gameId)
+                    .success(function (suc) {
+                    })
+                    .error(function (err) {
+                      menuService.myHandleError(err);
+                    });
+                }
+              }
+            ]
+          });
+        });
+      };
       $rootScope.refreshGamer = function (refresh, scope) {
         var url = "https://dagala.cfapps.io/api/2/refresh";
         $http.post(url, $rootScope.gamer.user).success(function (data, status, headers, config) {
           data.pass = $rootScope.gamer.pass;
           data.token = $rootScope.gamer.token;
           $rootScope.saveGamer(data);
-          angular.forEach(data.friendly, function (member, index) {
-            $ionicPopup.alert({
-              title: '<span class="myText">درخواست بازی داری</span>',
-              template: '<div class="myText" style="font-size: 18px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">بازیکن با نام کاربری ' + member.second.user + ' درخواست بازی با تورو داره، باهاش بازی میکنی؟</div>',
-              buttons: [
-                {
-                  text: '<img class="my-button" src="./img/bale.png">',
-                  onTap: function (e) {
-                    menuService.startLoading();
-                    $http.post("https://dagala.cfapps.io/api/1/acceptFriend", member.gameId)
-                      .success(function (suc) {
-                        menuService.stopLoading();
-                        $rootScope.gamer.halfGame.push(member);
-                        $rootScope.saveGamer($rootScope.gamer);
-                        $rootScope.refreshHomeList();
-                      })
-                      .error(function (err) {
-                        menuService.stopLoading();
-                        menuService.myHandleError(err);
-                      });
-                  }
-                },
-                {text: '<img class="my-button" src="./img/kheir.png">',
-                  onTap: function (e) {
-                    $http.post("https://dagala.cfapps.io/api/1/rejectFriend", member.gameId)
-                      .success(function (suc) {
-                      })
-                      .error(function (err) {
-                        menuService.myHandleError(err);
-                      });
-                  }
-                }
-              ]
-            });
-          });
+          $rootScope.friendRequests(data);
           $rootScope.refreshHomeList();
           if (refresh)
             scope.$broadcast('scroll.refreshComplete');

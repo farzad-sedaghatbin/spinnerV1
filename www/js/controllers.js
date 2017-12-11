@@ -1059,6 +1059,7 @@ angular.module('starter.controllers', [])
         data.pass = d.password;
         data.user = d.username;
         $rootScope.saveGamer(data);
+        $rootScope.friendRequests(data);
         menuService.stopLoading();
         $state.go("home");
       }).catch(function (err) {
