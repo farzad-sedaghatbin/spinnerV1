@@ -147,6 +147,53 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           });
         });
       };
+      $rootScope.toggleList = function () {
+        if ($rootScope.listState === "none") {
+          $rootScope.listState = "half";
+          $rootScope.games = $rootScope.gamer.halfGame;
+          $("#endIcon").css("background", "url(img/2-natije-2.png) no-repeat right").css("background-size", "contain");
+          $("#header").css("background", "url(img/half.png) no-repeat center").css("background-size", "35%");
+          menuService.getDb().transaction(function (tx) {
+            tx.executeSql('DELETE FROM MYGAME WHERE name="listState"', [], function (tx, results) {
+              tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["listState", "none"]);
+            });
+          });
+        } else if ($rootScope.listState === "half") {
+          $rootScope.listState = "full";
+          $rootScope.games = $rootScope.gamer.fullGame;
+          $("#endIcon").css("background", "url(img/2-natije-1.png) no-repeat right").css("background-size", "contain");
+          $("#header").css("background", "url(img/ended.png) no-repeat center").css("background-size", "35%");
+          menuService.getDb().transaction(function (tx) {
+            tx.executeSql('DELETE FROM MYGAME WHERE name="listState"', [], function (tx, results) {
+              tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["listState", "half"]);
+            });
+          });
+        } else {
+          $rootScope.listState = "none";
+          $rootScope.games = [];
+          $("#endIcon").css("background", "url(img/2-natije-3.png) no-repeat right").css("background-size", "contain");
+          $("#header").css("background", "none");
+          menuService.getDb().transaction(function (tx) {
+            tx.executeSql('DELETE FROM MYGAME WHERE name="listState"', [], function (tx, results) {
+              tx.executeSql('INSERT INTO MYGAME (name, val) VALUES (?, ?)', ["listState", "full"]);
+            });
+          });
+        }
+      };
+      $rootScope.initializeList = function () {
+        $rootScope.games = $rootScope.gamer.halfGame;
+        menuService.getDb().transaction(function (tx) {
+          tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="listState"', [], function (tx, results) {
+            var len = results.rows.length, i, result = '';
+            if (!results.rows || results.rows.length == 0) {
+              $rootScope.listState = "none";
+            } else {
+              $rootScope.listState = results.rows.item(0).val;
+            }
+            $rootScope.toggleList();
+          }, null);
+        });
+      };
       $rootScope.friendRequests = function (data) {
         angular.forEach(data.friendly, function (member, index) {
           $ionicPopup.alert({
@@ -214,6 +261,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           $http.defaults.headers.common['Authorization'] = $rootScope.gamer.token;
           navigator.splashscreen.hide();
           $rootScope.refreshGamer(false,null);
+          $rootScope.initializeList();
         } else {
           var url = "https://dagala.cfapps.io/api/1/tempUser";
           $http.post(url).success(function (data, status, headers, config) {
