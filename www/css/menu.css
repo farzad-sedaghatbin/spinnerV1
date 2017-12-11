@@ -151,6 +151,8 @@ ul {
   color: red;
   font-size: 16px;
   text-align: right;
+  position: absolute;
+  right: 10%;
 }
 
 ::-webkit-input-placeholder { /* Chrome */
