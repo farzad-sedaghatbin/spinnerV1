@@ -892,12 +892,12 @@ angular.module('starter.controllers', [])
       e.style.margin = "0 0 -460px 0";
     }
 
-    $scope.selected = function (id) {
+    $scope.selected = function (id,url) {
       var el = $('#' + id);
       el.addClass('animated bounceOutRight');
       el.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
         el.removeClass("animated bounceOutRight").addClass('animated bounceIn');
-        $http.post("https://dagala.cfapps.io/api/1/message", $rootScope.gamer.user + "," + $rootScope.battle.gameId + "," + id).success(function (data, status, headers, config) {
+        $http.post("https://dagala.cfapps.io/api/1/message", $rootScope.gamer.user + "," + $rootScope.battle.gameId + "," + url).success(function (data, status, headers, config) {
         }).catch(function (err) {
           menuService.myHandleError(err);
         });
