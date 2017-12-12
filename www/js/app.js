@@ -470,7 +470,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           $rootScope.stopNotify();
         $rootScope.refreshInterval = $interval(function () {
           $http.post("https://dagala.cfapps.io/api/1/turn", $rootScope.gamer.user).success(function (data, status, headers, config) {
-            if (data){
+            if (data === 200 || data === '200'){
               cordova.plugins.notification.local.schedule({
                 title: 'نوبت بازی شماست',
                 icon: 'http://dagala.ir/img/logo.png'
