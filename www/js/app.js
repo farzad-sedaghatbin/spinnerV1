@@ -465,9 +465,10 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           }
         }, null);
       });
-      var refreshInterval;
-      function onPause() {
-        refreshInterval = $interval(function () {
+      $rootScope.startNotify = function() {
+        if ($rootScope.refreshInterval)
+          $rootScope.stopNotify();
+        $rootScope.refreshInterval = $interval(function () {
           $http.post("https://dagala.cfapps.io/api/1/turn", $rootScope.gamer.user).success(function (data, status, headers, config) {
             if (data){
               cordova.plugins.notification.local.schedule({
@@ -478,13 +479,13 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           }).catch(function (err) {
           });
         }, 60000);
-      }
+      };
 
-      function onResume() {
-        $interval.cancel(refreshInterval);
-      }
-      document.addEventListener("pause", onPause, false);
-      document.addEventListener("resume", onResume, false);
+      $rootScope.stopNotify = function() {
+        $interval.cancel($rootScope.refreshInterval);
+      };
+      document.addEventListener("pause", $rootScope.startNotify(), false);
+      document.addEventListener("resume", $rootScope.stopNotify(), false);
     });
   })
   .config(function ($stateProvider, $urlRouterProvider, $ionicNativeTransitionsProvider, $ionicConfigProvider) {

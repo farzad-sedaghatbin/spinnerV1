@@ -8,6 +8,7 @@ angular.module('starter.controllers', [])
         $rootScope.timedOut = false;
         $rootScope.checkLevel(true);
       }
+      $rootScope.startNotify();
     },700);
 
     $rootScope.isMute = false;
