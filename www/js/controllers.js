@@ -1016,6 +1016,7 @@ angular.module('starter.controllers', [])
         data.user = d.username;
         $rootScope.saveGamer(data);
         $rootScope.friendRequests(data);
+        $rootScope.initializeList();
         menuService.stopLoading();
         $state.go("home");
       }).catch(function (err) {
