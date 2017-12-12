@@ -1,8 +1,10 @@
 <ion-view>
   <ion-content class="page-background" scroll="false">
-    <ion-refresher on-refresh="refresh()" pulling-text="برای بارگزاری بکشید"
-                   refreshing-text="در حال بارگزاری">
-    </ion-refresher>
+    <div class="myText">
+      <ion-content>
+        <ion-refresher on-refresh="refresh()" pulling-text="برای بارگزاری بکشید"
+                       refreshing-text="در حال بارگزاری">
+        </ion-refresher>
       <div class="row">
         <a class="col grid-example s6 leg-title">
         </a>
@@ -92,6 +94,8 @@
         </div>
       </div>
       </div>
+      </ion-content>
+    </div>
     <div ng-click="goBack()" style="width: 70px;
     background-image: url(img/back.png);
     background-size: 100% 100%;

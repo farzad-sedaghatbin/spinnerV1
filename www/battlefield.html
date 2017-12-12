@@ -1,10 +1,11 @@
 <ion-view>
   <ion-content class="page-background" id="HomeController" scroll="false">
-    <ion-refresher ng-if="!isEnded" on-refresh="refresh()" pulling-text="برای بارگزاری بکشید"
-                   refreshing-text="در حال بارگزاری">
-
-    </ion-refresher>
     <div class="myText" id="myContent">
+      <ion-content>
+        <ion-refresher ng-if="!isEnded" on-refresh="refresh()" pulling-text="برای بارگزاری بکشید"
+                       refreshing-text="در حال بارگزاری">
+
+        </ion-refresher>
       <div class="row">
         <a class="col grid-example s6 avardgah">
         </a>
@@ -114,6 +115,7 @@
         </div>
         </div>
       </div>
+      </ion-content>
     </div>
       <div ng-click="goBack()" style="width: 70px;
     background-image: url(img/back.png);

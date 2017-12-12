@@ -158,7 +158,7 @@ angular.module('starter.controllers', [])
       }
     };
     $scope.set_style = function (url) {
-      if (url.indexOf("poli") > -1){
+      if (url && url.indexOf("poli") > -1){
         return {'margin-top': "7%","margin-left": "-7%"}
       } else {
         return {'margin-top': "18%","margin-left": "-2%"}
