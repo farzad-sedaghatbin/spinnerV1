@@ -65,17 +65,20 @@ angular.module('starter.controllers', [])
       }
     };
     $scope.challenge = function () {
-      menuService.getDb().transaction(function (tx) {
-        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
-          var len = results.rows.length, i, result = '';
-          if (results.rows && results.rows.length !== 0) {
-            $rootScope.sendToServer();
-            $scope.doChallenge();
-          } else {
-            $scope.doChallenge();
-          }
-        })
-      });
+      $("#harif").one("transitionend",
+        function(event) {
+          menuService.getDb().transaction(function (tx) {
+            tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
+              var len = results.rows.length, i, result = '';
+              if (results.rows && results.rows.length !== 0) {
+                $rootScope.sendToServer();
+                $scope.doChallenge();
+              } else {
+                $scope.doChallenge();
+              }
+            })
+          });
+        });
     };
     $scope.soon = function () {
       menuService.myMessage("خبرهای جالبی تو راهه");
@@ -96,17 +99,23 @@ angular.module('starter.controllers', [])
       $state.go("coining");
     };
     $scope.league = function () {
-      $rootScope.isEnded = false;
-      $rootScope.isLeague = true;
-      $rootScope.isTrain = false;
-      $state.go("league");
+      $("#league").one("transitionend",
+        function(event) {
+          $rootScope.isEnded = false;
+          $rootScope.isLeague = true;
+          $rootScope.isTrain = false;
+          $state.go("league");
+        });
     };
     $scope.training = function () {
-      menuService.resetPlayedGames();
-      $rootScope.battle = null;
-      $rootScope.isTrain = true;
-      $rootScope.isLeague = false;
-      $state.go("board");
+      $("#train").one("transitionend",
+        function(event) {
+          menuService.resetPlayedGames();
+          $rootScope.battle = null;
+          $rootScope.isTrain = true;
+          $rootScope.isLeague = false;
+          $state.go("board");
+        });
     };
     $scope.help = function () {
       menuService.homeHelp();
@@ -139,12 +148,6 @@ angular.module('starter.controllers', [])
     $timeout(function () {
       menuService.homeTutorial();
     }, 700);
-    $rootScope.scale = function (id) {
-      $("#" + id).addClass("scaling")
-    };
-    $rootScope.removeScale = function (id) {
-      $("#" + id).removeClass("scaling")
-    };
     var backbutton = 0;
     $scope.goBack = function () {
       if (backbutton === 0) {
@@ -1248,27 +1251,33 @@ angular.module('starter.controllers', [])
   })
   .controller('SelectCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $timeout, $ionicPopup) {
     $scope.byChance = function () {
-      $ionicPopup.alert({
-        title: '<span class="myText">توجه</span>',
-        template: '<div class="myText" style="font-size: 18px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
-        buttons: [
-          {
-            text: '<img class="my-button" src="./img/bale.png">',
-            onTap: function (e) {
-              $rootScope.isTrain = false;
-              $rootScope.callService = true;
-              $rootScope.isLeague = false;
-              $rootScope.gamer.coins -= $rootScope.gamer.perGameCoins;
-              $rootScope.hasPaid = false;
-              $state.go("newgame");
-            }
-          },
-          {text: '<img class="my-button" src="./img/kheir.png">'}
-        ]
-      });
+      $("#select-chance").one("transitionend",
+        function(event) {
+          $ionicPopup.alert({
+            title: '<span class="myText">توجه</span>',
+            template: '<div class="myText" style="font-size: 18px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
+            buttons: [
+              {
+                text: '<img class="my-button" src="./img/bale.png">',
+                onTap: function (e) {
+                  $rootScope.isTrain = false;
+                  $rootScope.callService = true;
+                  $rootScope.isLeague = false;
+                  $rootScope.gamer.coins -= $rootScope.gamer.perGameCoins;
+                  $rootScope.hasPaid = false;
+                  $state.go("newgame");
+                }
+              },
+              {text: '<img class="my-button" src="./img/kheir.png">'}
+            ]
+          });
+        });
     };
     $scope.byUsername = function () {
-      $state.go("username");
+      $("#select-user").one("transitionend",
+        function(event) {
+          $state.go("username");
+        });
     };
     $scope.goBack = function () {
       $ionicNativeTransitions.goBack();

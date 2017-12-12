@@ -723,9 +723,6 @@ span.font-36 {
   background-repeat: no-repeat !important;
 }
 
-.my-button{
-  width: 72px;float: right;
-}
 .my-maintenance{
   width: 100%;
 }
@@ -844,25 +841,18 @@ height: 10% !important;
   background-position-y: top !important;
   height: 20%;margin-top: 0;border: none;
 }
-.scaling{
-  -webkit-animation-name: scalex;
-  -webkit-animation-duration:1s;
-  -webkit-animation-iteration-count:infinite;
-  -webkit-animation-timing-function:ease-in-out;
-  -moz-animation-name: scale;
-  -moz-animation-duration:1s;
-  -moz-animation-iteration-count:infinite;
-  -moz-animation-timing-function:ease-in-out;
+.my-button{
+  -webkit-transition: all 0.1s ease;
+  transition: all .1s ease;
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+.my-button:active{
+  -webkit-transform: translate(2px, 5px) scale(0.9,0.9);
+  transform: translate(0px, 5px) scale(0.9,0.9);
+}
+.my-button:hover{
+  -webkit-transform: translate(2px, 5px) scale(0.9,0.9);
+  transform: translate(0px, 5px) scale(0.9,0.9);
 }
 
-@-webkit-keyframes scalex{
-  from {-webkit-transform: scale(1);}
-  65% {-webkit-transform: scale(0.8);}
-  to {-webkit-transform: scale(1);}
-}
-
-@-moz-keyframes scale{
-  from {-moz-transform: scale(1);}
-  65% {-moz-transform: scale(0.8);}
-  to {-moz-transform: scale(1);}
-}
