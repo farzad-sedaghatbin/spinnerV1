@@ -36,14 +36,14 @@
     <div
       style="background: url(img/pic.png) no-repeat center;background-size: contain;right: 0;position: absolute;width: 175px;height: 80px;top: 0"
       ng-click="profile(gamer.user)">
-      <img ng-style="{'width' : gamer.nextLevel}" style="position: absolute;left: 30px;top: 42px;height: 15px;" src="img/bar-full-profile.png">
-      <img style="width: 35%;border-radius: 50%;position: absolute;right: 5px;top: 10px;" src="{{gamer.avatar}}">
+      <img id="progress" ng-style="{'width' : gamer.nextLevel}" style="position: absolute;left: 30px;top: 42px;height: 15px;" src="img/bar-full-profile.png">
+      <img id="profile" style="width: 35%;border-radius: 50%;position: absolute;right: 5px;top: 10px;" src="{{gamer.avatar}}">
     </div>
     <div class="myEText my-overflow-text" style="color: black;position: absolute;top: 15px;right: 70px;
     font-size: small;
     width: 100px;">{{gamer.user}}
     </div>
-    <div ng-if="gamer" class="myText" style="color: black;position: absolute;top: 42px;right: 153px;font-size: small">
+    <div id="level" ng-if="gamer" class="myText" style="color: black;position: absolute;top: 42px;right: 153px;font-size: small">
       {{gamer.level}}
     </div>
 
@@ -81,7 +81,7 @@
 
 
     <div id="endIcon" ng-click="toggleList()"
-         style="background-size: contain;font-size: small;position: fixed;
+         style="background-size: contain;font-size: small;position: absolute;
                 right: 0;z-index: 50;
                  width: 100px;height: 80px;top: 49%;background: url(img/2-natije-2.png) no-repeat right;background-size: contain;">
     </div>
@@ -123,7 +123,7 @@
     position: fixed;
     bottom: 0;
     height: 80px;"></div>
-    <div style="width: 70px;z-index: 80;
+    <div ng-click="help()" style="width: 70px;z-index: 80;
     background-image: url(img/help.png);
     background-size: 100% 100%;
     position: fixed;

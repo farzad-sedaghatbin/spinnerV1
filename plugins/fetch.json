@@ -137,12 +137,12 @@
     "is_top_level": true,
     "variables": {}
   },
-  "phonegap-plugin-local-notification": {
+  "cordova-plugin-badge": {
     "source": {
       "type": "registry",
-      "id": "phonegap-plugin-local-notification"
+      "id": "cordova-plugin-badge@>=0.8.5"
     },
-    "is_top_level": true,
+    "is_top_level": false,
     "variables": {}
   }
 }

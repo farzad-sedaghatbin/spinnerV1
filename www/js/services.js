@@ -100,20 +100,20 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
           offsetArrowHorizontal: -120
         }
       }, {
-        wrapper: '#battle',
+        wrapper: '#harif',
         popup: {
           content: 'اگر دنبال یه حریف شانسی هستی تا تواناییهاتو به چالش بکشی جاش اینجاست',
           type: 'tooltip',
           position: 'bottom',
-          offsetArrowHorizontal: 100
+          offsetArrowHorizontal: -120
         }
       }, {
-        wrapper: '.menu-open-button',
+        wrapper: '#endIcon',
         popup: {
-          content: 'اینم منو، حتما بهش سر بزن',
+          content: 'تو اینجا سه حالت میتونید انتخاب کنید مشاهده بازی های تمام شده , ناتمام ها یا هیچکدام ',
           type: 'tooltip',
-          position: 'bottom',
-          offsetArrowHorizontal: -80
+          position: 'top',
+          offsetArrowHorizontal: 100
         }
       }, {
         wrapper: '#cupT',
@@ -135,6 +135,30 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
         wrapper: '#gemT',
         popup: {
           content: 'تعداد الماسهایتان که برای شرکت در لیگها لازم دارید',
+          type: 'tooltip',
+          position: 'bottom',
+          offsetArrowHorizontal: -300
+        }
+      }, {
+        wrapper: '#level',
+        popup: {
+          content: 'درجه شما در بازی',
+          type: 'tooltip',
+          position: 'bottom',
+          offsetArrowHorizontal: -300
+        }
+      }, {
+        wrapper: '#profile',
+        popup: {
+          content: 'از اینجا میتونید برید تو ناحیه داگالایی',
+          type: 'tooltip',
+          position: 'bottom',
+          offsetArrowHorizontal: -300
+        }
+      }, {
+        wrapper: '#progress',
+        popup: {
+          content: 'اینجا میتونید ببینید چقدر مونده که به درجه بعدی برید',
           type: 'tooltip',
           position: 'bottom',
           offsetArrowHorizontal: -300
@@ -228,24 +252,8 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
       name: 'introduction',
       steps: [{
         popup: {
-          content: 'اینجا لیگ های ما رو میبینی. برای ورود به لیگ باید الماس داشته باشی',
+          content: 'اینجا لیگ های ما رو میبینی. برای ورود به لیگ باید هزینه و لول مورد نیاز رو داشته باشی',
           type: 'modal'
-        }
-      }, {
-        wrapper: '#joinLeague',
-        popup: {
-          content: 'برای عضویت تو لیگ این دکمه رو بزن. بعد از عضویت از همینجا وضعیت لیگ رو پیگیری کن. با پایین کشیدن صفحه اطلاعات بروز میشه',
-          type: 'tooltip',
-          position: 'bottom',
-          offsetArrowHorizontal: -140
-        }
-      }, {
-        wrapper: '#prices',
-        popup: {
-          content: 'برای دیدن جوایز نفرات برتر اینو بزن',
-          type: 'tooltip',
-          position: 'bottom',
-          offsetArrowHorizontal: -120
         }
       }]
     });
@@ -322,6 +330,14 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
           content: 'اینجا میتونی رتبه برترین های بازی رو ببینی',
           type: 'modal'
         }
+      }, {
+        wrapper: '#cupT',
+        popup: {
+          content: 'رتبه شما را نشان می دهد',
+          type: 'tooltip',
+          position: 'bottom',
+          offsetArrowHorizontal: -300
+        }
       }]
     });
     $('ion-content').pagewalkthrough('show');
@@ -364,15 +380,15 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
       }, {
         wrapper: '#yourscore',
         popup: {
-          content: 'امتیاز تو',
+          content: 'امتیاز ها',
           type: 'tooltip',
           position: 'bottom',
           offsetArrowHorizontal: -120
         }
       }, {
-        wrapper: '#hisscore',
+        wrapper: '#chat',
         popup: {
-          content: 'امتیاز حریف',
+          content: 'اینجا میتونی برای حریفت کری بخونی',
           type: 'tooltip',
           position: 'bottom',
           offsetArrowHorizontal: 10

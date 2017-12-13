@@ -1246,6 +1246,9 @@ angular.module('starter.controllers', [])
         }
       }, 400);
     });
+    $scope.help = function () {
+      menuService.ranksHelp();
+    };
     $scope.ranksBack = function () {
       $ionicNativeTransitions.goBack();
     };
