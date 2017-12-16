@@ -22,7 +22,7 @@
           </div>
         </div>
         <div ng-if="isEnded" class="row" style="margin-bottom: 20px;margin-top: 0"></div>
-        <div id="chat" class="animated-chat tada myText" ng-click="loadChatbox()">کری بخون</div>
+        <div id="chat" ng-if="!isEnded" class="animated-chat tada myText" ng-click="loadChatbox()">کری بخون</div>
         <div style="overflow: auto" class="chatbox" id="chatbox">
           <!--<span class="chat-text">Chatting Yuk!</span>-->
           <div id="close-chat" ng-click="closeChatbox()"></div>

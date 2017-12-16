@@ -37,7 +37,7 @@ angular.module('starter.controllers', [])
       $rootScope.refreshGamer(true, $scope);
     };
     function innerChallenge() {
-      if ($rootScope.gamer.coins < $rootScope.gamer.perGameCoins) {
+      if ($rootScope.gamer.coinNum < $rootScope.gamer.perGameCoins) {
         menuService.myMessage("سکه های شما کافی نیست. برای بدست آوردن سکه، به قسمت سکه در منو مراجعه کنید", "خطا");
         return;
       }
@@ -211,10 +211,11 @@ angular.module('starter.controllers', [])
           {
             text: '<img class="my-button" src="./img/bale.png">',
             onTap: function (e) {
-              if ($rootScope.gamer.coins < 50) {
+              if ($rootScope.gamer.coinNum < 50) {
                 menuService.myMessage("سکه های شما برای آزادسازی بازی کافی نیست");
                 return;
               }
+              if ($.isNumeric($rootScope.gamer.coins))
               $rootScope.gamer.coins -= 50;
               $scope.chooseGames();
             }
@@ -331,6 +332,7 @@ angular.module('starter.controllers', [])
           menuService.myMessage("نام کاربری اشتباه می باشد", "خطا");
         } else if (data === "200") {
           menuService.myMessage("امتیاز شما و معرف شما ثبت شد");
+          if ($.isNumeric($rootScope.gamer.coins))
           $rootScope.gamer.coins += 150;
         } else if (data === "333") {
           menuService.myMessage("شما حداکثر 3 تا از دوستانتون رو میتونید معرفی کنید", "خطا");
@@ -514,6 +516,7 @@ angular.module('starter.controllers', [])
       );
       $spinner.addClass(preffix + value);
       $http.post("https://dagala.cfapps.io/api/1/rouletteWheel", value + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
+        if ($.isNumeric($rootScope.gamer.coins))
         $rootScope.gamer.coins += data;
         $timeout(function () {
           if (data) {
@@ -564,6 +567,7 @@ angular.module('starter.controllers', [])
                 if (result['action'] === 'onAdShowFinished') {
                   if (result['completed'] && result['rewarded']) {
                     $http.post("https://dagala.cfapps.io/api/1/videoWatch", $rootScope.gamer.user).success(function (data, status, headers, config) {
+                      if ($.isNumeric($rootScope.gamer.coins))
                       $rootScope.gamer.coins += 20;
                       menuService.myMessage("20 سکه به شما تعلق گرفت", "پیام");
                     }).catch(function (err) {
@@ -632,7 +636,7 @@ angular.module('starter.controllers', [])
         return;
       }
       if (row.coin) {
-        if ($rootScope.gamer.coins < row.price) {
+        if ($rootScope.gamer.coinNum < row.price) {
           menuService.myMessage("سکه های شما کافی نیست", "خطا");
           return;
         }
@@ -653,6 +657,7 @@ angular.module('starter.controllers', [])
             inappbilling.consumePurchase(function () {
               menuService.myMessage("خرید شما با موفقیت انجام شد", "پیام");
               if (row.icon.indexOf("coin") >= 0) {
+                if ($.isNumeric($rootScope.gamer.coins))
                 $rootScope.gamer.coins += row.amount;
               } else if (row.icon.indexOf("gem") >= 0) {
                 $rootScope.gamer.gem += row.amount;
@@ -1160,7 +1165,7 @@ angular.module('starter.controllers', [])
             {
               text: '<img class="my-button" src="./img/bale.png">',
               onTap: function (e) {
-                if ($rootScope.gamer.coins < 1000) {
+                if ($rootScope.gamer.coinNum < 1000) {
                   menuService.myMessage("سکه های شما برای انتخاب این آواتار کافی نیست");
                   return;
                 }
@@ -1271,6 +1276,7 @@ angular.module('starter.controllers', [])
                   $rootScope.isTrain = false;
                   $rootScope.callService = true;
                   $rootScope.isLeague = false;
+                  if ($.isNumeric($rootScope.gamer.coins))
                   $rootScope.gamer.coins -= $rootScope.gamer.perGameCoins;
                   $rootScope.hasPaid = false;
                   $state.go("newgame");
