@@ -770,7 +770,7 @@ angular.module('starter.controllers', [])
         var img = $('<img id="dynamic">');
         img.attr('src', popped);
         img.appendTo('#myContent');
-        img.css("width", "72px").css("height", "72px").css("position", "absolute").css("top", "200px").css("right", "20px").css("animation-duration", "4s").css("-webkit-animation-duration", "4s");
+        img.css("width", "72px").css("height", "72px").css("position", "absolute").css("top", "200px").css("right", "20px").css("animation-duration", "4.2s").css("-webkit-animation-duration", "4.2s");
         img.addClass("animated bounceOutLeft");
         img.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
           img.remove();
@@ -884,10 +884,14 @@ angular.module('starter.controllers', [])
       e.style.display = "none";
       var e = document.getElementById("chatbox");
       e.style.margin = "0";
+      $("#backBtn").css("display","none");
+      $("#helpBtn").css("display","none");
     }
     $scope.closeChatbox = function () {
       var e = document.getElementById("chatbox");
       e.style.margin = "0 0 -1500px 0";
+      $("#backBtn").css("display","block");
+      $("#helpBtn").css("display","block");
     }
     $scope.minimChatbox = function () {
       var e = document.getElementById("maxi-chat");
