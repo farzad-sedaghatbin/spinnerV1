@@ -23,6 +23,18 @@
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "ir.redmind.dagala"
     },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "cordova-plugin-media": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "ir.redmind.dagala"
+    },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "ir.redmind.dagala"
     },
@@ -40,25 +52,16 @@
     },
     "tapsell-v3-cordova-plugin": {
       "PACKAGE_NAME": "ir.redmind.dagala"
-    },
-    "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "ir.redmind.dagala"
-    },
-    "cordova-plugin-media": {
-      "PACKAGE_NAME": "ir.redmind.dagala"
-    },
-    "cordova-plugin-local-notification": {
-      "PACKAGE_NAME": "ir.redmind.dagala"
     }
   },
   "dependent_plugins": {
-    "pushe-cordova-plugin": {
+    "cordova-plugin-badge": {
       "PACKAGE_NAME": "ir.redmind.dagala"
     },
     "cordova-plugin-file": {
       "PACKAGE_NAME": "ir.redmind.dagala"
     },
-    "cordova-plugin-badge": {
+    "pushe-cordova-plugin": {
       "PACKAGE_NAME": "ir.redmind.dagala"
     }
   }
