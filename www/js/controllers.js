@@ -1149,6 +1149,8 @@ angular.module('starter.controllers', [])
       $state.go("login")
     };
     $scope.selectAvatar = function () {
+      if ($rootScope.profileData.username !== $rootScope.gamer.user)
+        return;
       $ionicModal.fromTemplateUrl('avatars.html', {
         scope: $scope
       }).then(function (modal) {
@@ -1173,6 +1175,7 @@ angular.module('starter.controllers', [])
                 $http.post("https://dagala.cfapps.io/api/1/purchaseAvatar", url + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
                   menuService.stopLoading();
                   $rootScope.gamer.avatar = url;
+                  $rootScope.profileData.avatar = url;
                   $rootScope.modal.hide();
                   $rootScope.saveGamer($rootScope.gamer);
                   $rootScope.profileData.avatars.push(url);
@@ -1187,6 +1190,7 @@ angular.module('starter.controllers', [])
         });
       } else {
         $rootScope.gamer.avatar = url;
+        $rootScope.profileData.avatar = url;
         $rootScope.modal.hide();
         var serverUrl = "https://dagala.cfapps.io/api/1/changeAvatar";
         $http.post(serverUrl, url + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
