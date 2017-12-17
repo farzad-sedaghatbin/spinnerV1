@@ -478,7 +478,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
             }
           }).catch(function (err) {
           });
-        }, 60000);
+        }, 300000);
       };
 
       $rootScope.stopNotify = function() {
