@@ -923,6 +923,13 @@ angular.module('starter.controllers', [])
     $scope.goBack = function () {
       $ionicNativeTransitions.goBack();
     };
+    $scope.setAvatarWidth = function (url) {
+      if (url && url.indexOf("poli") > -1){
+        return {'width': "45%"}
+      } else {
+        return {'width': "65%"}
+      }
+    }
   })
   .controller('NewgameCtrl', function ($scope, $state, $ionicNativeTransitions, menuService, $timeout, $http, $rootScope, $ionicPopup) {
     function loadData(refresh) {

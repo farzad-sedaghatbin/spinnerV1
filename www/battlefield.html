@@ -73,7 +73,7 @@
           </div>
           <div ng-click="profile(battle.user.user)" ng-if="battle.user.user" class="col grid-example s4"
                style="background: url(img/vs-02.png) no-repeat center;background-size: 100% 100%;margin: 0;padding: 0">
-            <img style="width: 65%;border-radius: 50%;margin-left: 18px" src="{{battle.user.avatar}}">
+            <img ng-style="setAvatarWidth(battle.user.avatar)" style="border-radius: 50%;margin-left: 18px" src="{{battle.user.avatar}}">
             <div class="myEText" style="color: black;font-size: large;position: absolute;margin-top: -21%;margin-right: 3.5%;">{{battle.user.level}}</div>
             <div id="him" class="myEText my-overflow-text" style="color: black;font-size: small;position: absolute;right: 12%;
     width: 20%;
