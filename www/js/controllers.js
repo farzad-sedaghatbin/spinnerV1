@@ -1198,13 +1198,17 @@ angular.module('starter.controllers', [])
       $scope.result = result;
       form.confirmPass.$setValidity("validity", !result);
     };
-    $scope.submit = function (pass) {
+    $scope.submit = function (pass,old) {
       menuService.startLoading();
       var url = "https://dagala.cfapps.io/api/1/changePassword";
-      $http.post(url, $rootScope.gamer.user + "," + pass)
+      $http.post(url, $rootScope.gamer.user + "," + pass + "," + old)
         .success(function () {
-          menuService.myMessage("کلمه عبور با موفقیت تغییر کرد");
           menuService.stopLoading();
+          if (data === 201 || data === "201") {
+            menuService.myMessage("رمز عبور قبلی اشتباه می باشد", "خطا");
+            return;
+          }
+          menuService.myMessage("کلمه عبور با موفقیت تغییر کرد");
         })
         .error(function (err) {
           menuService.myHandleError(err);
