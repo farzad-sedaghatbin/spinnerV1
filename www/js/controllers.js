@@ -2,15 +2,16 @@
 angular.module('starter.controllers', [])
   .controller('HomeCtrl', function ($scope, $state, $ionicModal, $rootScope, menuService, $http, $ionicPopup, $timeout) {
     $rootScope.homeURL = window.location.href;
-    $timeout(function () {
-      $rootScope.sendToServer();
-      if ($rootScope.timedOut) {
-        $rootScope.timedOut = false;
-        $rootScope.checkLevel(true);
-      }
-      $rootScope.startNotify();
-    },700);
-
+    $scope.$on("$ionicView.enter", function (scopes, states) {
+      $timeout(function () {
+        $rootScope.sendToServer();
+        if ($rootScope.timedOut) {
+          $rootScope.timedOut = false;
+          $rootScope.checkLevel(true);
+        }
+        $rootScope.startNotify();
+      },600);
+    });
     $rootScope.isMute = false;
     $rootScope.speaker = function () {
       if ($rootScope.isMute) {
