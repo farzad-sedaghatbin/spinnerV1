@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ionic-native-transitions'])
 
-  .run(function ($ionicPlatform, $http, $rootScope, $ionicHistory, $timeout, $ionicPopup, menuService,$interval) {
+  .run(function ($ionicPlatform, $http, $rootScope, $ionicHistory, $timeout, $ionicPopup, menuService, $interval) {
     $ionicPlatform.ready(function () {
       var backbutton = 0;
       $ionicPlatform.registerBackButtonAction(function (e) {
@@ -52,19 +52,15 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         navigator.app.exitApp();
 
       }
-      if(device.isVirtual){
+      if (device.isVirtual) {
         alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
         navigator.app.exitApp();
       }
       inappbilling.init();
       tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
-      if(!$rootScope.myAudio){
+      if (!$rootScope.myAudio) {
         $rootScope.myAudio = new Media("http://dagala.ir/Era_Ameno.mp3");
-        if (!$rootScope.isMute) {
-          $rootScope.myAudio.pause();
-        }else {
-          $rootScope.myAudio.play({numberOfLoops: 9999});
-        }
+        $rootScope.myAudio.play({numberOfLoops: 9999});
       }
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -77,7 +73,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
       }, false);
       document.addEventListener("resume", function () {
         if (!$rootScope.isMute) {
-          $rootScope.myAudio.play({ numberOfLoops: 9999 });
+          $rootScope.myAudio.play({numberOfLoops: 9999});
         }
       }, false);
       if (window.StatusBar) {
@@ -217,7 +213,8 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
                     });
                 }
               },
-              {text: '<img class="my-button" src="./img/kheir.png">',
+              {
+                text: '<img class="my-button" src="./img/kheir.png">',
                 onTap: function (e) {
                   $http.post("https://dagala.cfapps.io/api/1/rejectFriend", member.gameId)
                     .success(function (suc) {
@@ -248,10 +245,10 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         });
       };
       $rootScope.refreshHomeList = function () {
-        if ($rootScope.listState === "half"){
+        if ($rootScope.listState === "half") {
           $rootScope.games = $rootScope.gamer.halfGame;
         }
-        if ($rootScope.listState === "full"){
+        if ($rootScope.listState === "full") {
           $rootScope.games = $rootScope.gamer.fullGame;
         }
       };
@@ -260,7 +257,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           $rootScope.gamer = JSON.parse(result);
           $http.defaults.headers.common['Authorization'] = $rootScope.gamer.token;
           navigator.splashscreen.hide();
-          $rootScope.refreshGamer(false,null);
+          $rootScope.refreshGamer(false, null);
           $rootScope.initializeList();
         } else {
           var url = "https://dagala.cfapps.io/api/1/tempUser";
@@ -306,22 +303,22 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         'img/PNG/FB04.png', 'img/PNG/B02.png', 'img/PNG/B03.png', 'img/PNG/B04.png', 'img/PNG/FE05.png', 'img/PNG/FE01.png', 'img/PNG/FE02.png',
         'img/PNG/B05.png', 'img/PNG/C01.png', 'img/PNG/E01.png', 'img/PNG/FD01.png', 'img/PNG/FD02.png', 'img/PNG/FD03.png', 'img/PNG/G01.png', 'img/PNG/G03.png', 'img/PNG/O03.png', 'img/PNG/FH01.png',
         'img/PNG/FH02.png', 'img/PNG/FH05.png', 'img/PNG/N01.png', 'img/PNG/N02.png', 'img/PNG/N03.png', 'img/PNG/N04.png', 'img/PNG/N05.png',
-        'img/PNG/poli1.png','img/PNG/poli2.png','img/PNG/poli3.png','img/PNG/poli4.png','img/PNG/poli5.png','img/PNG/poli6.png','img/PNG/poli7.png',
-        'img/PNG/poli8.png','img/PNG/poli9.png','img/PNG/poli10.png'];
+        'img/PNG/poli1.png', 'img/PNG/poli2.png', 'img/PNG/poli3.png', 'img/PNG/poli4.png', 'img/PNG/poli5.png', 'img/PNG/poli6.png', 'img/PNG/poli7.png',
+        'img/PNG/poli8.png', 'img/PNG/poli9.png', 'img/PNG/poli10.png'];
       var rowSize = Math.ceil(tiles.length / 3);
       $rootScope.rows = [];
       for (var i = 0; i < rowSize; i++) {
         $rootScope.rows.push(tiles.slice(i * 3, (i + 1) * 3));
       }
-      $rootScope.checkLevel = function(isCallingFromTimeout) {
+      $rootScope.checkLevel = function (isCallingFromTimeout) {
         if (isCallingFromTimeout) {
           if ($rootScope.gamer.newLevel) {
-            menuService.myMessage("آفرین، سطح شما به "+ $rootScope.gamer.level + " ارتقا پیدا کرد", "وقت بازی تمام شد");
+            menuService.myMessage("آفرین، سطح شما به " + $rootScope.gamer.level + " ارتقا پیدا کرد", "وقت بازی تمام شد");
           } else {
             menuService.myMessage("وقت بازی تمام شد");
           }
         } else if ($rootScope.gamer.newLevel) {
-          menuService.myMessage("آفرین، سطح شما به "+ $rootScope.gamer.level + " ارتقا پیدا کرد");
+          menuService.myMessage("آفرین، سطح شما به " + $rootScope.gamer.level + " ارتقا پیدا کرد");
         }
         $rootScope.refreshHomeList();
       };
@@ -370,21 +367,21 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         });
       };
       this.keyboardShowHandler = function (e) {
-        $('form').animate({ 'marginTop': '30%' }, 200);
+        $('form').animate({'marginTop': '30%'}, 200);
         $('.login-background').addClass("login-background-keyboard");
         $('.login-background').removeClass("login-background");
-        $("#backBtn").css("display","none");
-        $("#helpBtn").css("display","none");
-        $("#tab").css("margin-top","-18%");
+        $("#backBtn").css("display", "none");
+        $("#helpBtn").css("display", "none");
+        $("#tab").css("margin-top", "-18%");
       };
 
       this.keyboardHideHandler = function () {
-        $('form').animate({ 'marginTop': '60%' }, 200);
+        $('form').animate({'marginTop': '60%'}, 200);
         $('.login-background-keyboard').addClass("login-background");
         $('.login-background-keyboard').removeClass("login-background-keyboard");
-        $("#backBtn").css("display","block");
-        $("#helpBtn").css("display","block");
-        $("#tab").css("margin-top","1.5%");
+        $("#backBtn").css("display", "block");
+        $("#helpBtn").css("display", "block");
+        $("#tab").css("margin-top", "1.5%");
       };
 
       window.addEventListener('native.keyboardshow', this.keyboardShowHandler);
@@ -394,63 +391,63 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         menuicon: 'img/puzzle.png',
         adr: 'puzzle/www.gameeapp.com/game/FGM7TVW2Ma.html',
         id: 5
-      },{
+      }, {
         menuicon: 'img/hexo.png',
         adr: 'hexon/www.gameeapp.com/game/xRkQk0iwI3.html',
         id: 7
-      },{
+      }, {
         menuicon: 'img/diamond.png',
         adr: 'diamond/gamee/game/index.html',
         id: 10
-      },{
+      }, {
         menuicon: 'img/hegza.png',
         adr: 'hegza/gamee/game/index.html',
         id: 11
-      },{
+      }, {
         menuicon: 'img/spinner.png',
         adr: 'spinner/www.gameeapp.com/game/ipUMpcUES.html',
         id: 2
-      },{
+      }, {
         menuicon: 'img/mr.png',
         adr: 'mr/www.gameeapp.com/game/WmHdqig.html',
         id: 8
-      },{
+      }, {
         menuicon: 'img/orbit.png',
         adr: 'orbit/gamee/game/index.html',
         id: 12
-      },{
+      }, {
         menuicon: 'img/school.png',
         adr: 'school/gamee/game/index.html',
         id: 13
-      },{
+      }, {
         menuicon: 'img/ninja.png',
         adr: 'ninja/www.gameeapp.com/game/G1oy49taR.html',
         id: 3
-      },{
+      }, {
         menuicon: 'img/space.png',
         adr: 'space/www.gameeapp.com/game/ibBTDViUP.html',
         id: 1
-      },{
+      }, {
         menuicon: 'img/qubo.png',
         adr: 'qubo/www.gameeapp.com/game/u0yXP5o.html',
         id: 9
-      },{
+      }, {
         menuicon: 'img/tire.png',
         adr: 'tire/gamee/game/index.html',
         id: 14
-      },{
+      }, {
         menuicon: 'img/motor.png',
         adr: 'motor/www.gameeapp.com/game/kAHVRl.html',
         id: 4
-      },{
+      }, {
         menuicon: 'img/car.png',
         adr: 'car/www.gameeapp.com/game/oFfW2omiW.html',
         id: 6
-      },{
+      }, {
         menuicon: 'img/football.png',
         adr: 'football/gamee/game/index.html',
         id: 15
-      },{
+      }, {
         menuicon: 'img/karate.png',
         adr: 'karate/gamee/game/index.html',
         id: 16
@@ -465,12 +462,12 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           }
         }, null);
       });
-      $rootScope.startNotify = function() {
+      $rootScope.startNotify = function () {
         if ($rootScope.refreshInterval)
           $rootScope.stopNotify();
         $rootScope.refreshInterval = $interval(function () {
           $http.post("https://dagala.cfapps.io/api/1/turn", $rootScope.gamer.user).success(function (data, status, headers, config) {
-            if (data === 200 || data === '200'){
+            if (data === 200 || data === '200') {
               cordova.plugins.notification.local.schedule({
                 title: 'نوبت بازی شماست',
                 icon: 'http://dagala.ir/img/logo.png'
@@ -481,7 +478,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         }, 300000);
       };
 
-      $rootScope.stopNotify = function() {
+      $rootScope.stopNotify = function () {
         $interval.cancel($rootScope.refreshInterval);
       };
       document.addEventListener("pause", $rootScope.startNotify(), false);
