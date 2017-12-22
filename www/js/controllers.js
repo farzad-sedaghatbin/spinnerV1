@@ -1200,7 +1200,7 @@ angular.module('starter.controllers', [])
     };
     $scope.submit = function (pass,old) {
       menuService.startLoading();
-      var url = "https://dagala.cfapps.io/api/1/changePassword";
+      var url = "https://dagala.cfapps.io/api/2/changePassword";
       $http.post(url, $rootScope.gamer.user + "," + pass + "," + old)
         .success(function () {
           menuService.stopLoading();
