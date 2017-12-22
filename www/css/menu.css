@@ -775,6 +775,7 @@ z-index: 1000
   text-align: center;
 }
 .closeButton {
+  z-index: 1000;
   display: block;
   position: absolute;
   top: 5%;

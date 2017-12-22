@@ -885,26 +885,13 @@ angular.module('starter.controllers', [])
       });
     };
     $scope.loadChatbox = function () {
-      var e = document.getElementById("maxi-chat");
-      e.style.display = "none";
-      var e = document.getElementById("chatbox");
-      e.style.margin = "0";
-      $("#backBtn").css("display","none");
-      $("#helpBtn").css("display","none");
-    }
-    $scope.closeChatbox = function () {
-      var e = document.getElementById("chatbox");
-      e.style.margin = "0 0 -1500px 0";
-      $("#backBtn").css("display","block");
-      $("#helpBtn").css("display","block");
-    }
-    $scope.minimChatbox = function () {
-      var e = document.getElementById("maxi-chat");
-      e.style.display = "block";
-      var e = document.getElementById("chatbox");
-      e.style.margin = "0 0 -460px 0";
-    }
-
+      $ionicModal.fromTemplateUrl('kori.html', {
+        scope: $scope
+      }).then(function (modal) {
+        $rootScope.modal = modal;
+        modal.show();
+      });
+    };
     $scope.selected = function (id,url) {
       var el = $('#' + id);
       el.addClass('animated bounceOutRight');
@@ -914,7 +901,7 @@ angular.module('starter.controllers', [])
         }).catch(function (err) {
           menuService.myHandleError(err);
         });
-        $scope.closeChatbox();
+        $rootScope.modal.remove();
       });
     };
     $scope.refresh = function () {
