@@ -162,13 +162,6 @@ angular.module('starter.controllers', [])
         navigator.app.exitApp();
       }
     };
-    $scope.set_style = function (url) {
-      if (url && url.indexOf("poli") > -1){
-        return {'margin-top': "10%","margin-left": "-5%"}
-      } else {
-        return {'margin-top': "12%","margin-left": "-4%"}
-      }
-    }
   })
   .controller('BoardCtrl', function ($scope, $timeout, $ionicNativeTransitions, menuService, $http, $rootScope, $state, $ionicModal, $ionicPopup) {
 
