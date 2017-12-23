@@ -23,7 +23,7 @@
       <div class="myEText" style="color: black;position: absolute;top: 42px;right: 153px;font-size: small">{{profileData.level}}
       </div>
 
-      <div ng-if="profileData.username === gamer.user" class="row" style="top: 15%;
+      <div ng-if="profileData.username.toLowerCase() === gamer.user.toLowerCase()" class="row" style="top: 15%;
     position: absolute;right: 3px">
         <div ng-click="login()" class="col grid-example s6" style="background: url('img/21-8.png');background-size: 80% 60%;margin-left: 13%;
     background-repeat: no-repeat;
