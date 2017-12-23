@@ -1117,7 +1117,7 @@ angular.module('starter.controllers', [])
       }, 400);
     };
     $scope.$on("$ionicView.enter", function (scopes, states) {
-      if (!$rootScope.profileData || $rootScope.userForProfile !== $rootScope.profileData.username)
+      if (!$rootScope.profileData || $rootScope.userForProfile.toLowerCase() !== $rootScope.profileData.username.toLowerCase())
         loadData(false);
     });
     $scope.refresh = function () {
