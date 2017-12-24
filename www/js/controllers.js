@@ -510,14 +510,15 @@ angular.module('starter.controllers', [])
       );
       $spinner.addClass(preffix + value);
       $http.post("https://dagala.cfapps.io/api/1/rouletteWheel", value + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
+        var coin = parseInt(data);
         if ($.isNumeric($rootScope.gamer.coins))
-        $rootScope.gamer.coins += data;
+        $rootScope.gamer.coins +=
         $timeout(function () {
-          if (data) {
-            if (data >= 0) {
-              menuService.myMessage(data + " سکه دریافت کردید", "پیام");
+          if (coin) {
+            if (coin >= 0) {
+              menuService.myMessage(coin + " سکه دریافت کردید", "پیام");
             } else {
-              menuService.myMessage(Math.abs(data) + " سکه از شما کم شد", "پیام");
+              menuService.myMessage(Math.abs(coin) + " سکه از شما کم شد", "پیام");
             }
           } else {
             menuService.myMessage("شما سهمیه امروز خود را دریافت کردید", "خطا");
@@ -1079,6 +1080,10 @@ angular.module('starter.controllers', [])
       };
       $http.post(signUpUrl, d)
         .success(function (data, status, headers, config) {
+          if ($rootScope.gamer.guest) {
+            menuService.myMessage("شما قبلا ثبت نام کرده اید", "خطا");
+            return;
+          }
           if (data === 400) {
             menuService.myMessage("کاربر دیگری با این نام کاربری قبلا ثبت نام کرده", "خطا");
             menuService.stopLoading();
