@@ -58,9 +58,13 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
       }
       inappbilling.init();
       tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
-      if (!$rootScope.myAudio) {
+      if(!$rootScope.myAudio){
         $rootScope.myAudio = new Media("http://dagala.ir/Era_Ameno.mp3");
-        $rootScope.myAudio.play({numberOfLoops: 9999});
+        if (!$rootScope.isMute) {
+          $rootScope.myAudio.pause();
+        }else {
+          $rootScope.myAudio.play({numberOfLoops: 9999});
+        }
       }
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
