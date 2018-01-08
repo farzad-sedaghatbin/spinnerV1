@@ -484,8 +484,9 @@ angular.module('starter.controllers', [])
       $rootScope.modal.hide();
     };
     $scope.set_margin = function (index) {
-      return {'margin-top': (index * 250) + "px"}
-    }
+      if (index > 0)
+      return {'margin-top': ((index * 250)+50) + "px"}
+    };
     $scope.goBack = function () {
       $ionicNativeTransitions.goBack();
     }
