@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ionic-native-transitions'])
 
-  .run(function ($ionicPlatform, $http, $rootScope, $ionicHistory, $timeout, $ionicPopup, menuService, $interval) {
+  .run(function ($ionicPlatform, $http, $rootScope, $ionicHistory, $timeout, $ionicPopup, menuService, $interval,$ionicNativeTransitions) {
     $ionicPlatform.ready(function () {
       var backbutton = 0;
       $ionicPlatform.registerBackButtonAction(function (e) {
@@ -35,14 +35,14 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
                   }).catch(function (err) {
                     menuService.myHandleError(err);
                   });
-                  $ionicHistory.goBack();
+                  $ionicNativeTransitions.goBack();
                 }
               },
               {text: '<img class="my-button" src="./img/kheir.png">'}
             ]
           });
         } else {
-          $ionicHistory.goBack();
+          $ionicNativeTransitions.goBack();
         }
         menuService.stopLoading();
       }, 101);//registerBackButton
