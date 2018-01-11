@@ -1,5 +1,5 @@
 function myLoading() {
-  var parent = $("<div></div>");
+  var parent = $("<div style='pointer-events: none'></div>");
   parent.addClass("omid_spinner");
   var spinner = $("<div></div>");
   var dot1 = $("<div></div>");

@@ -1,1 +1,73 @@
-/* Empty. Add your own CSS if you like */
+
+.my-header{
+  top: 48%;position: absolute;z-index: 20;width: 50%;left: 25%;
+}
+
+.home-avatar{
+  width: 40%;border-radius: 50%;margin-top:12%;margin-left:-4%
+}
+
+.my-clock{
+  width: 60%;float: right;margin-top: 10px;display: none;position: absolute;left: 24%
+}
+.battle-avatar{
+  width: 65%;
+}
+.battle-level{
+  color: black;font-size: large;position: absolute;margin-top: -21%;margin-right: 3.5%;
+}
+.battle-name{
+  color: black;font-size: small;position: absolute;right: 12%;
+  width: 20%;
+  height: 4%;
+  line-height: 200%;
+  margin-top: -9vw;
+}
+.my-list{
+  height: 40%;
+  overflow-y: scroll;
+  position: fixed;
+  width: 100%;
+  bottom: 0;z-index: 10
+}
+@media only screen and (min-width: 500px) {
+  .my-header {
+    top: 55%
+  }
+  .home-avatar {
+    width: 30%;margin-top:0;margin-left:0
+  }
+  .my-clock {
+    margin-top: 20px;left: 35%
+  }
+  .row {
+    height: 130px;
+  }
+  .battle-avatar{
+    width: 40%;
+  }
+  .battle-level{
+    margin-top: -13%;margin-right: 4.5%;
+  }
+  .battle-name{
+    margin-top: -6.5vw;
+  }
+  .my-list{
+    height: 30%;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .my-clock {
+    margin-top: 20px;left: 40%
+  }
+  .row {
+    height: 130px;
+  }
+  .battle-avatar{
+    width: 45%;
+    margin-top: -15px;
+  }
+  .battle-level{
+    margin-top: -12%;margin-right: 4.5%;
+  }
+}

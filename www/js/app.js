@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ionic-native-transitions'])
 
-  .run(function ($ionicPlatform, $http, $rootScope, $ionicHistory, $timeout, $ionicPopup, menuService, $interval) {
+  .run(function ($ionicPlatform, $http, $rootScope, $ionicHistory, $timeout, $ionicPopup, menuService, $interval,$ionicNativeTransitions) {
     $ionicPlatform.ready(function () {
       var backbutton = 0;
       $ionicPlatform.registerBackButtonAction(function (e) {
@@ -35,37 +35,41 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
                   }).catch(function (err) {
                     menuService.myHandleError(err);
                   });
-                  $ionicHistory.goBack();
+                  $ionicNativeTransitions.goBack();
                 }
               },
               {text: '<img class="my-button" src="./img/kheir.png">'}
             ]
           });
         } else {
-          $ionicHistory.goBack();
+          $ionicNativeTransitions.goBack();
         }
         menuService.stopLoading();
       }, 101);//registerBackButton
 
-      // if (window.navigator.simulator === true) {
-      //   alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
-      //   navigator.app.exitApp();
-      //
-      // }
-      // if (device.isVirtual) {
-      //   alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
-      //   navigator.app.exitApp();
-      // }
-      // inappbilling.init();
-      // tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
-      // if (!$rootScope.myAudio) {
-      //   $rootScope.myAudio = new Media("http://dagala.ir/Era_Ameno.mp3");
-      //   $rootScope.myAudio.play({numberOfLoops: 9999});
-      // }
-      // if (window.cordova && window.cordova.plugins.Keyboard) {
-      //   cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      //   cordova.plugins.Keyboard.disableScroll(false);
-      // }
+      if (window.navigator.simulator === true) {
+        alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
+        navigator.app.exitApp();
+
+      }
+      if (device.isVirtual) {
+        alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
+        navigator.app.exitApp();
+      }
+      inappbilling.init();
+      tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
+      if(!$rootScope.myAudio){
+        $rootScope.myAudio = new Media("http://dagala.ir/Era_Ameno.mp3");
+        if (!$rootScope.isMute) {
+          $rootScope.myAudio.pause();
+        }else {
+          $rootScope.myAudio.play({numberOfLoops: 9999});
+        }
+      }
+      if (window.cordova && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        cordova.plugins.Keyboard.disableScroll(false);
+      }
       document.addEventListener("pause", function () {
         if (!$rootScope.isMute) {
           $rootScope.myAudio.pause();

@@ -76,7 +76,7 @@
       <!--</div>-->
     <!--</div>-->
 
-    <div id="header" class="row" style="top: 48%;position: absolute;z-index: 20;width: 50%;left: 25%;">
+    <div id="header" class="row my-header">
     </div>
 
 
@@ -91,18 +91,14 @@
                  width: 100px;height: 80px;top: 49%;background: url(img/notification.png) no-repeat left;background-size: contain;">
     </div>
     </ion-content>
-    <div style="height: 40%;
-      overflow-y: scroll;
-      position: fixed;
-    width: 100%;
-    bottom: 0;z-index: 10">
+    <div class="my-list">
       <div class="row myends" style="margin-bottom: 10px;background: url('img/{{row.scoreStatus}}.png');
         background-size: 60% 100%;
         background-repeat: no-repeat;
         height: 140px;z-index: 30;
         background-position: center;" ng-repeat="row in $root.games">
         <div ng-click="battlefield(row.gameId)"  style="position: absolute;left: 24%;height: 50%;z-index: 30;width: 50%">
-          <img style="width: 40%;border-radius: 50%;margin-top:12%;margin-left:-4%" src="{{row.second.avatar}}">
+          <img class="home-avatar" src="{{row.second.avatar}}">
         </div>
         <div ng-if="row.status === '1'" style="position: absolute;left: 67%">
           <img style="width: 15%;margin-top: 40%;border-radius: 50%" src="img/timer.png">
