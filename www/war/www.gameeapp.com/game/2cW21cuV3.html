@@ -9,7 +9,7 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js"><!--<![endif]-->
 
-<!-- Mirrored from www.gameeapp.com/game/2cW21cuV3 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Jan 2018 15:38:31 GMT -->
+<!-- Mirrored from www.gameeapp.com/game/2cW21cuV3 by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 14 Jan 2018 12:11:02 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
 	<meta charset="utf-8">
@@ -27,7 +27,8 @@
 </head>
 
 
-<body ontouchstart="">
+<body ontouchstart="" data-game-id="184" data-viber-bot-service-id="gamee">
+
 <div style="position: absolute;z-index: 1000;display: none" class="alert alert-danger myText" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="hideAlert()">
     <span aria-hidden="true">&times;</span>
@@ -45,7 +46,17 @@
   <div class="loading_bar"></div>
 </div>
 
+
 <div class="l_pageBody" id="gameeDesktop">
+
+	<header class="l_pageHeader">
+		<div class="l_fullwidth">
+
+			<div class="pageHeader-middle">
+			</div>
+
+		</div>
+	</header>
 
 	<div class="l_pageBody-inside">
 
@@ -53,6 +64,7 @@
 
 			<main class="b_content">
 				<!-- More options menu /-->
+
 
 				<div class="b_content-leftWrap">
 					<div class="b_content-leftAppWrap">
@@ -74,6 +86,7 @@
 							<div class="b_content-leftAppOverlayPlay js-overlay js-overlayPlay">
 
 								<div class="startOverlay">
+
 
 								<div class="child-pushSpace"><span>Push Space to Play</span></div>
 
@@ -148,11 +161,6 @@
 					</div>
 				</div>
 
-
-
-
-				<!-- Embed overlay /-->
-
 			</main>
 		</div>
 	</div>
@@ -163,10 +171,14 @@
 <!-- Gamee for mobile phone /-->
 <div id="gameeMobile" class="FullScreenPortrait">
 
+		<div id="mobile-embed">
+		</div>
+
+
 		<div id="canvasWrap">
 			<!-- Your score on the top /-->
 			<div class="your_score v2">
-				<div class="this_border">امتیاز: <span class="totalScore">0</span></div>
+				<div class="this_border">Score: <span class="totalScore">0</span></div>
 			</div>
 
 			<!-- Rank status on the top /-->
@@ -175,8 +187,44 @@
 			<div class="overlay" id="overlay-end">
 				<div class="inner">
 
+                    <div class="scrollerWrap">
+						<div class="scrollerIn">
+							<div class="transform">
 
-					<div class="fullscreen-control control-fs-restart" style="position: relative;margin: 0"></div>
+								<div class="ranks-wrap">
+
+									<div class="tab-nav">
+									</div>
+
+									<div class="tabs">
+										<div class="tab tab-rankings visible">
+
+
+										</div>
+
+
+										<div class="tab tab-community">
+											<div class="community-cover "></div>
+
+
+
+
+
+
+										</div>
+									</div>
+
+									<div class="relatedGames">
+										<div class="scrollArea">
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="fullscreen-control control-fs-restart"></div>
 
 					<div class="noTouchScrollUp"></div>
 				</div>
@@ -185,13 +233,42 @@
 			<div class="overlay" id="overlay-start">
 				<div class="inner">
 
+					<div class="scrollerWrap">
+						<div class="scrollerIn">
+							<div class="transform">
 
-					<div class="fullscreen-control control-fs-play visible" style="position: relative;margin: 0"></div>
+								<div class="ranks-wrap visible">
+
+									<div class="tab-nav">
+
+										<div class="tab-link hidden" data-href="community">
+										</div>
+									</div>
+
+									<div class="tabs">
+										<div class="tab tab-rankings visible">
+
+										</div> <!-- End of tab rankings /-->
+
+										<div class="tab tab-community">
+											<div class="community-cover "></div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="fullscreen-control control-fs-play visible"></div>
 
 				</div>
 			</div>
 
-			<iframe id="gameeFrameMobile" name="game" class="gameFrame" data-src="../data/index.html" frameborder="0" scrolling="no" width="320" height="320" style=""></iframe>
+			<iframe id="gameeFrameMobile" name="game" class="gameFrame" data-src="../data/index.html" frameborder="0" scrolling="no" width="100%" height="320" style=""></iframe>
 		</div> <!-- Canvas wrap /-->
 
 
@@ -201,7 +278,6 @@
         <div class="cLayout restart" id="restart" style="min-width: 100%">
           <div id="control-restart" class="control"></div>
           <div onclick="goHome()" style="width: 105px;height: 105px;position: relative;top: 2px;display: inline-block;border-radius: 100%;background: url('../detail/assets/controls/home.png') no-repeat;background-size: auto 100%;z-index: 10000" class="control"></div>
-
         </div>
 
         <div class="cLayout play" id="play" style="min-width: 100%">
@@ -243,13 +319,14 @@
 
 
 
-  <div id="alert"><p>لطفا موبایل خود را بچرخانید</p></div>
+		<div id="alert"><p>Please rotate your phone to enjoy GAMEE</p></div>
 </div> <!-- end of mobile /-->
 
 <!-- Javascript /-->
 <script data-pace-options='{ "ajax": false }' type="text/javascript" src="../detail/js/vendor/pace.min.js"></script>
 <script src="../../ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="../detail/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
+<script>window.localization = {"youVsFriend":"You vs friend","leaderboards":"Leaderboards","seeAll":"See all","challengeFriends":"Challenge friends","youScored":"You scored","highscoreIs":"Highscore is","newHighscore":"New highscore","score":"Score","ranked0OfX":"Ranked 0 of X","byGamee":"By [gamee]","embedGame":"Embed game","howToPlay":"How to play","pause":"pause","restart":"Restart","arrows":"Arrows","spacebar":"Spacebar","copyAndPasteThisCodeIntoYourWebsite":"Copy and paste this code into your website","copyEmbedCode":"Copy embed code","copiedToClipboard":"Copied to clipboard","byEmbeddingThisGameYouAgreeToOurTermsLink":"By embedding this game, you agree to our [terms link].","termsOfService":"By embedding this game, you agree to<br>our <a href=\"%link%\" title=\"Terms of use\" target=\"_blank\">terms of Service<\/a>.","paused":"Paused","gamesYouMightLike":"Games you might like","failedToLoadLeaderboards":"Failed to load leaderboards","reload":"Reload","socialGamingEndlessFun":"Social gaming, endless fun!","beat":"Beat","highscoreBeat":"Highscore beat","pushSpaceToPlay":"Push Space to Play","pushSpaceToContinue":"Push Space to Continue","plays":"Plays","connectFacebookToSeeLeaderboards":"Connect Facebook to see leaderboards","connect":"Connect","logInToPlayWithFriends":"Log in to play with your friends","continueWithFacebook":"Continue with Facebook","pleaseRotateYourPhoneToEnjoyGAMEE":"Please rotate your phone to enjoy GAMEE","sorryThisGameDoesnTWorkInMobile":"Sorry! This game doesn’t work in mobile browsers yet. Download GAMEE to play right away.","addPlayers":"Add players","me":"me","sendScore":"Send score","friends":"friends","friend":"friend"}</script>
 <script src="../detail/js/vendor/scroller.min.js"></script>
 <script src="../detail/js/libs.min5e1f.js?v=2"></script>
 <script src="../detail/js/func.minae24.js?v=14"></script>
@@ -261,15 +338,14 @@
         innerHeight = window.innerHeight,
         GAcode = 'UA-57181946-7';
 
-
 	var gameGlobals = {
-		game_name: "WarFriends",
+		game_name: "",
 		game_img: "",
-		game_genre: "Arcade",
+		game_genre: "",
 		game_source: source,
 		game_url: "",
 		game_fullUrl: "",
-		game_code: "2cW21cuV3",
+		game_code: "",
 		game_id: 184,
 		offerTelegramSubscription: null,
 		mixPanelToken: ""
@@ -298,12 +374,15 @@
 		$.getScript("../detail/js/gameUIdesktop.min.js");
 	}
 
+	function facebookUserSubscribed() {
+
+	}
+
 </script>
 
 <script type="text/javascript" src="../detail/js/gameeWeb.min.js"></script>
 
-
 </body>
 
-<!-- Mirrored from www.gameeapp.com/game/2cW21cuV3 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Jan 2018 15:38:52 GMT -->
+<!-- Mirrored from www.gameeapp.com/game/2cW21cuV3 by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 14 Jan 2018 12:11:29 GMT -->
 </html>
