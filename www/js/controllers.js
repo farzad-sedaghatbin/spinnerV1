@@ -236,6 +236,13 @@ angular.module('starter.controllers', [])
       menuService.boardTutorial();
     }, 700);
 
+    $timeout(function () {
+      if (!$rootScope.isTrain){
+        $("#challenge").show();
+        last = 'challenge';
+      }
+    }, 0);
+
     $scope.disable = function (id) {
       return $.inArray(id, menuService.getPlayedGames()) > -1;
     };
