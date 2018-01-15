@@ -171,8 +171,8 @@ angular.module('starter.controllers', [])
       if ($rootScope.submenus.length - ( menuService.getPlayedGames().length + $rootScope.boughtMenu.length) < 4) {
         $rootScope.boughtMenu = [];
       }
-      for (var i = Math.floor(Math.random() * 16) + 1, j = 0; j < 16; j++, i++) {
-        if (i === (16 + 1))
+      for (var i = Math.floor(Math.random() * 20) + 1, j = 0; j < 20; j++, i++) {
+        if (i === (20 + 1))
           i = 1;
         if (arr.indexOf(i) > -1 || menuService.getPlayedGames().indexOf(i) > -1 || $rootScope.boughtMenu.indexOf(i) > -1) continue;
         arr[arr.length] = i;
