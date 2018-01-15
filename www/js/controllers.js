@@ -10,7 +10,7 @@ angular.module('starter.controllers', [])
           $rootScope.checkLevel(true);
         }
         $rootScope.startNotify();
-      },600);
+      }, 600);
     });
     $rootScope.isMute = false;
     $rootScope.speaker = function () {
@@ -68,7 +68,7 @@ angular.module('starter.controllers', [])
     };
     $scope.challenge = function () {
       $("#harif").one("transitionend",
-        function(event) {
+        function (event) {
           menuService.getDb().transaction(function (tx) {
             tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
               var len = results.rows.length, i, result = '';
@@ -102,7 +102,7 @@ angular.module('starter.controllers', [])
     };
     $scope.league = function () {
       $("#league").one("transitionend",
-        function(event) {
+        function (event) {
           $rootScope.isEnded = false;
           $rootScope.isLeague = true;
           $rootScope.isTrain = false;
@@ -111,7 +111,7 @@ angular.module('starter.controllers', [])
     };
     $scope.training = function () {
       $("#train").one("transitionend",
-        function(event) {
+        function (event) {
           menuService.resetPlayedGames();
           $rootScope.battle = null;
           $rootScope.isTrain = true;
@@ -200,17 +200,17 @@ angular.module('starter.controllers', [])
     $scope.releaseMore = function () {
       $ionicPopup.alert({
         title: '<span class="myText">اخطار</span>',
-        template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای آزادسازی 4 بازی دیگر، 50 سکه باید بپردازید. آیا از اینکار اطمینان دارید؟</div>',
+        template: '<div class="myText" style="font-size: 24px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای آزادسازی 4 بازی دیگر، 10 سکه باید بپردازید. آیا از اینکار اطمینان دارید؟</div>',
         buttons: [
           {
             text: '<img class="my-button" src="./img/bale.png">',
             onTap: function (e) {
-              if ($rootScope.gamer.coinNum < 50) {
+              if ($rootScope.gamer.coinNum < 10) {
                 menuService.myMessage("سکه های شما برای آزادسازی بازی کافی نیست");
                 return;
               }
               if ($.isNumeric($rootScope.gamer.coins))
-              $rootScope.gamer.coins -= 50;
+                $rootScope.gamer.coins -= 10;
               $scope.chooseGames();
             }
           },
@@ -237,7 +237,7 @@ angular.module('starter.controllers', [])
     }, 700);
 
     $timeout(function () {
-      if (!$rootScope.isTrain){
+      if (!$rootScope.isTrain) {
         $("#challenge").show();
         last = 'challenge';
       }
@@ -334,7 +334,7 @@ angular.module('starter.controllers', [])
         } else if (data === "200") {
           menuService.myMessage("امتیاز شما و معرف شما ثبت شد");
           if ($.isNumeric($rootScope.gamer.coins))
-          $rootScope.gamer.coins += 150;
+            $rootScope.gamer.coins += 150;
         } else if (data === "333") {
           menuService.myMessage("شما حداکثر 3 تا از دوستانتون رو میتونید معرفی کنید", "خطا");
         }
@@ -347,7 +347,7 @@ angular.module('starter.controllers', [])
       $ionicNativeTransitions.goBack();
     }
   })
-  .controller('LeagueCtrl', function ($scope, $state, $ionicNativeTransitions, $http, $rootScope, menuService, $timeout, $ionicModal,$ionicPopup) {
+  .controller('LeagueCtrl', function ($scope, $state, $ionicNativeTransitions, $http, $rootScope, menuService, $timeout, $ionicModal, $ionicPopup) {
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
       $scope.loaded = false;
     });
@@ -414,7 +414,7 @@ angular.module('starter.controllers', [])
       menuService.leagueHelp();
     };
     $scope.joinLeague = function (row) {
-      if ($rootScope.gamer.guest){
+      if ($rootScope.gamer.guest) {
         $ionicPopup.alert({
           title: '<span class="myText">خطا</span>',
           template: '<div class="myText" style="padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">    <div style="direction: rtl;padding-top: 20px;line-height: 3em">' +
@@ -492,7 +492,7 @@ angular.module('starter.controllers', [])
     };
     $scope.set_margin = function (index) {
       if (index > 0)
-      return {'margin-top': ((index * 250)+50) + "px"}
+        return {'margin-top': ((index * 250) + 50) + "px"}
     };
     $scope.goBack = function () {
       $ionicNativeTransitions.goBack();
@@ -541,7 +541,7 @@ angular.module('starter.controllers', [])
       $ionicNativeTransitions.goBack();
     }
   })
-  .controller('CoiningCtrl', function ($scope, $state, $ionicNativeTransitions, menuService, $ionicModal, $rootScope, $http, $timeout,$ionicPopup) {
+  .controller('CoiningCtrl', function ($scope, $state, $ionicNativeTransitions, menuService, $ionicModal, $rootScope, $http, $timeout, $ionicPopup) {
     $timeout(function () {
       menuService.coiningTutorial();
     }, 700);
@@ -572,7 +572,7 @@ angular.module('starter.controllers', [])
                   if (result['completed'] && result['rewarded']) {
                     $http.post("https://dagala.cfapps.io/api/1/videoWatch", $rootScope.gamer.user).success(function (data, status, headers, config) {
                       if ($.isNumeric($rootScope.gamer.coins))
-                      $rootScope.gamer.coins += 20;
+                        $rootScope.gamer.coins += 20;
                       menuService.myMessage("20 سکه به شما تعلق گرفت", "پیام");
                     }).catch(function (err) {
                       menuService.myHandleError(err);
@@ -623,7 +623,7 @@ angular.module('starter.controllers', [])
     };
     $scope.doBuy = function (row) {
       $rootScope.modal.hide();
-      if ($rootScope.gamer.guest){
+      if ($rootScope.gamer.guest) {
         $ionicPopup.alert({
           title: '<span class="myText">خطا</span>',
           template: '<div class="myText" style="padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">    <div style="direction: rtl;padding-top: 20px;line-height: 3em">' +
@@ -662,7 +662,7 @@ angular.module('starter.controllers', [])
               menuService.myMessage("خرید شما با موفقیت انجام شد", "پیام");
               if (row.icon.indexOf("coin") >= 0) {
                 if ($.isNumeric($rootScope.gamer.coins))
-                $rootScope.gamer.coins += row.amount;
+                  $rootScope.gamer.coins += row.amount;
               } else if (row.icon.indexOf("gem") >= 0) {
                 $rootScope.gamer.gem += row.amount;
               }
@@ -896,7 +896,7 @@ angular.module('starter.controllers', [])
         modal.show();
       });
     };
-    $scope.selected = function (id,url) {
+    $scope.selected = function (id, url) {
       var el = $('#' + id);
       el.addClass('animated bounceOutRight');
       el.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
@@ -1199,13 +1199,13 @@ angular.module('starter.controllers', [])
       $ionicNativeTransitions.goBack();
     }
   })
-  .controller('ChangePassCtrl', function ($scope, $state, $rootScope, $http, menuService,$ionicNativeTransitions) {
+  .controller('ChangePassCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions) {
     $scope.checkPassword = function (form, password, confirmPass) {
       var result = password !== confirmPass;
       $scope.result = result;
       form.confirmPass.$setValidity("validity", !result);
     };
-    $scope.submit = function (pass,old) {
+    $scope.submit = function (pass, old) {
       menuService.startLoading();
       var url = "https://dagala.cfapps.io/api/2/changePassword";
       $http.post(url, $rootScope.gamer.user + "," + pass + "," + old)
@@ -1268,7 +1268,7 @@ angular.module('starter.controllers', [])
   .controller('SelectCtrl', function ($scope, $state, $rootScope, $http, menuService, $ionicNativeTransitions, $timeout, $ionicPopup) {
     $scope.byChance = function () {
       $("#select-chance").one("transitionend",
-        function(event) {
+        function (event) {
           $ionicPopup.alert({
             title: '<span class="myText">توجه</span>',
             template: '<div class="myText" style="font-size: 18px;padding: 12px;direction: rtl;text-align: right;line-height: 1.5em">برای شروع بازی ' + $rootScope.gamer.perGameCoins + ' سکه از شما کم می شود، تمایل دارید؟</div>',
@@ -1280,7 +1280,7 @@ angular.module('starter.controllers', [])
                   $rootScope.callService = true;
                   $rootScope.isLeague = false;
                   if ($.isNumeric($rootScope.gamer.coins))
-                  $rootScope.gamer.coins -= $rootScope.gamer.perGameCoins;
+                    $rootScope.gamer.coins -= $rootScope.gamer.perGameCoins;
                   $rootScope.hasPaid = false;
                   $state.go("newgame");
                 }
@@ -1292,7 +1292,7 @@ angular.module('starter.controllers', [])
     };
     $scope.byUsername = function () {
       $("#select-user").one("transitionend",
-        function(event) {
+        function (event) {
           $state.go("username");
         });
     };
