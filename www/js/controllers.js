@@ -512,8 +512,9 @@ angular.module('starter.controllers', [])
       $spinner.addClass(preffix + value);
       $http.post("https://dagala.cfapps.io/api/1/rouletteWheel", value + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
         var coin = parseInt(data);
-        if ($.isNumeric($rootScope.gamer.coins))
-        $rootScope.gamer.coins +=
+        if ($.isNumeric($rootScope.gamer.coins)) {
+          $rootScope.gamer.coins += coin;
+        }
         $timeout(function () {
           if (coin) {
             if (coin >= 0) {
@@ -524,7 +525,7 @@ angular.module('starter.controllers', [])
           } else {
             menuService.myMessage("شما سهمیه امروز خود را دریافت کردید", "خطا");
           }
-        }, 2500);
+        }, 2000);
       }).catch(function (err) {
         menuService.myHandleError(err);
       });
