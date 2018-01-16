@@ -17,19 +17,6 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
         myMessage("لطفا مجددا اطلاعات حساب خود را وارد نمایید", "خطا");
         $state.go("login");
       }
-    } else if (err && (err.status == 0 || err.status == -1)) {
-      var networkState = navigator.connection.type;
-      if (networkState === Connection.NONE) {
-        window.plugins.toast.showShortBottom('لطفا اتصال اینترنت خود را بررسی کنید');
-      } else {
-        $ionicPopup.alert({
-          template: '<img class="my-maintenance" src="./img/gem.png">',
-          buttons: [
-            {text: '<img class="my-button" src="http://dagala.ir/img/maintenance.png">'}
-          ]
-        });
-      $(".popup").css("width", "95%");
-      }
     } else if (err && err.status == 418) {
       $ionicPopup.alert({
         title: '<span class="myText">بروزرسانی</span>',
