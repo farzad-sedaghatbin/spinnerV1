@@ -439,19 +439,19 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         adr: 'karate/gamee/game/index.html',
         id: 16
       }, {
-        menuicon: 'img/car.png',
+        menuicon: 'img/sniper.png',
         adr: 'war/www.gameeapp.com/game/2cW21cuV3.html',
         id: 17
       }, {
-        menuicon: 'img/car.png',
+        menuicon: 'img/delivery.png',
         adr: 'delivery/www.gameeapp.com/game/KubUJQ.html',
         id: 18
       }, {
-        menuicon: 'img/car.png',
+        menuicon: 'img/meteoric.png',
         adr: 'meteoric/www.gameeapp.com/game/PrQHx2nBaS.html',
         id: 19
       }, {
-        menuicon: 'img/car.png',
+        menuicon: 'img/flight.png',
         adr: 'flight/www.gameeapp.com/game/0fmMKCljn.html',
         id: 20
       }];
