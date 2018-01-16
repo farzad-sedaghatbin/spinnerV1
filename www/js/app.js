@@ -124,7 +124,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
                   text: '<img class="my-button" src="./img/15-dokme.png">',
                   onTap: function (e) {
                     menuService.startLoading();
-                    $http.post("https://dagala.cfapps.io/api/1/rollback", $rootScope.battle.gameId + "," + challengeId).success(function (data, status, headers, config) {
+                    $http.post("https://dagala.cfapps.io/api/1/rollback", $rootScope.battle.gameId + "," + challengeId + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
                       menuService.stopLoading();
                       navigator.app.exitApp();
                     }).catch(function (err) {
