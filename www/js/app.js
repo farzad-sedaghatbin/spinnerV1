@@ -370,23 +370,6 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           })
         });
       };
-      this.keyboardShowHandler = function (e) {
-        $('form').animate({'marginTop': '30%'}, 200);
-        $('.login-background').addClass("login-background-keyboard");
-        $('.login-background').removeClass("login-background");
-        $("#backBtn").css("display", "none");
-        $("#helpBtn").css("display", "none");
-        $("#tab").css("margin-top", "-18%");
-      };
-
-      this.keyboardHideHandler = function () {
-        $('form').animate({'marginTop': '60%'}, 200);
-        $('.login-background-keyboard').addClass("login-background");
-        $('.login-background-keyboard').removeClass("login-background-keyboard");
-        $("#backBtn").css("display", "block");
-        $("#helpBtn").css("display", "block");
-        $("#tab").css("margin-top", "1.5%");
-      };
 
       window.addEventListener('native.keyboardshow', this.keyboardShowHandler);
       window.addEventListener('native.keyboardhide', this.keyboardHideHandler);
