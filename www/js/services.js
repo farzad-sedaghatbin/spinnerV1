@@ -10,13 +10,9 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
     myStopLoading();
   };
   var myHandleError = function (err, isFromLogin) {
-    if (err && err.status == 401) {
-      if (isFromLogin) {
-        myMessage("نام کاربری یا رمز عبور اشتباه می باشد", "خطا");
-      } else {
-        myMessage("لطفا مجددا اطلاعات حساب خود را وارد نمایید", "خطا");
-        $state.go("login");
-      }
+    if (err && err.status === 401) {
+      myMessage("لطفا مجددا اطلاعات حساب خود را وارد نمایید");
+      $state.go("login");
     } else if (err && err.status == 418) {
       $ionicPopup.alert({
         title: '<span class="myText">بروزرسانی</span>',
@@ -413,9 +409,9 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
     ranksHelp: ranksHelp,
     battlefieldTutorial: battlefieldTutorial,
     battlefieldHelp: battlefieldHelp,
-    addPlayedGames : addPlayedGames,
-    getPlayedGames : getPlayedGames,
-    resetPlayedGames : resetPlayedGames
+    addPlayedGames: addPlayedGames,
+    getPlayedGames: getPlayedGames,
+    resetPlayedGames: resetPlayedGames
   };
 })
   .service('authHttpResponseInterceptor', ['$q', function ($q) {
