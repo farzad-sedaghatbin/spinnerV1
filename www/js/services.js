@@ -11,6 +11,11 @@ app.service('menuService', function ($ionicLoading, $ionicPopup, $state, $http, 
   };
   var myHandleError = function (err, isFromLogin) {
     if (err && err.status === 401) {
+      $rootScope.gamer = null;
+      db.transaction(function (tx) {
+        tx.executeSql('DELETE FROM MYGAME', [], function (tx, results) {
+        });
+      });
       myMessage("لطفا مجددا اطلاعات حساب خود را وارد نمایید");
       $state.go("login");
     } else if (err && err.status == 418) {
