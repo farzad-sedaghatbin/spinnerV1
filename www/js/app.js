@@ -47,20 +47,20 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         menuService.stopLoading();
       }, 101);//registerBackButton
 
-      // if (window.navigator.simulator === true) {
-      //   alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
-      //   navigator.app.exitApp();
-      //
-      // }
-      // if (device.isVirtual) {
-      //   alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
-      //   navigator.app.exitApp();
-      // }
-      // inappbilling.init();
-      // tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
-      // if(!$rootScope.myAudio){
-      //   $rootScope.myAudio = new Media("http://dagala.ir/Era_Ameno.mp3");
-      // }
+      if (window.navigator.simulator === true) {
+        alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
+        navigator.app.exitApp();
+
+      }
+      if (device.isVirtual) {
+        alert("بر روی شبیه ساز قابلیت اجرا وجود ندارد");
+        navigator.app.exitApp();
+      }
+      inappbilling.init();
+      tapsell.initialize('rnljdeagkbdqakojgecndcrbbfkgdfpdjqfnhablpjbpghfjsftnchctaqlejblmqdkmga');
+      if(!$rootScope.myAudio){
+        $rootScope.myAudio = new Media("http://dagala.ir/Era_Ameno.mp3");
+      }
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(false);
@@ -450,7 +450,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         id: 19
       }, {
         menuicon: 'img/flight.png',
-        adr: 'flight/www.gameeapp.com/game/0fmMKCljn.html',
+        adr: 'snake/www.gameeapp.com/game/VVXl2nY.html',
         id: 20
       }];
       $rootScope.challengeMenu = [];
