@@ -373,13 +373,17 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
       window.addEventListener('native.keyboardhide', keyboardHideHandler);
 
       function keyboardShowHandler() {
-        $('form').css("margin-top","30%");
+        $('form').css("margin-top","25%");
         $('button').css("display","none");
+        $('#backBtn').css("display","none");
+        $('#helpBtn').css("display","none");
       }
 
       function keyboardHideHandler() {
         $('form').css("margin-top","65%");
         $('button').css("display","block");
+        $('#backBtn').css("display","block");
+        $('#helpBtn').css("display","block");
       }
 
       $rootScope.submenus = [{
