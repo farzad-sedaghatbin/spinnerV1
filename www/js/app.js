@@ -369,9 +369,6 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         });
       };
 
-      window.addEventListener('native.keyboardshow', this.keyboardShowHandler);
-      window.addEventListener('native.keyboardhide', this.keyboardHideHandler);
-
       $rootScope.submenus = [{
         menuicon: 'img/puzzle.png',
         adr: 'puzzle/www.gameeapp.com/game/FGM7TVW2Ma.html',
