@@ -63,7 +63,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
       }
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        cordova.plugins.Keyboard.disableScroll(true);
+        cordova.plugins.Keyboard.disableScroll(false);
       }
       document.addEventListener("pause", function () {
         if (!$rootScope.isMute) {
@@ -369,6 +369,19 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         });
       };
 
+      window.addEventListener('native.keyboardshow', keyboardShowHandler);
+      window.addEventListener('native.keyboardhide', keyboardHideHandler);
+
+      function keyboardShowHandler() {
+        $('form').css("margin-top","50%");
+        $('button').css("display","none");
+      }
+
+      function keyboardHideHandler() {
+        $('form').css("margin-top","65%");
+        $('button').css("display","block");
+      }
+
       $rootScope.submenus = [{
         menuicon: 'img/puzzle.png',
         adr: 'puzzle/www.gameeapp.com/game/FGM7TVW2Ma.html',
@@ -446,7 +459,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         adr: 'meteoric/www.gameeapp.com/game/PrQHx2nBaS.html',
         id: 19
       }, {
-        menuicon: 'img/snake.png',
+        menuicon: 'img/flight.png',
         adr: 'snake/www.gameeapp.com/game/VVXl2nY.html',
         id: 20
       }];
