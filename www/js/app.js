@@ -63,7 +63,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
       }
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        cordova.plugins.Keyboard.disableScroll(false);
+        cordova.plugins.Keyboard.disableScroll(true);
       }
       document.addEventListener("pause", function () {
         if (!$rootScope.isMute) {
