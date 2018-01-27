@@ -373,7 +373,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
       window.addEventListener('native.keyboardhide', keyboardHideHandler);
 
       function keyboardShowHandler() {
-        $('form').css("margin-top","50%");
+        $('form').css("margin-top","25%");
         $('button').css("display","none");
       }
 
