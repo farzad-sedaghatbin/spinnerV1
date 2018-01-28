@@ -377,7 +377,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         $('button').css("display","none");
         $('#backBtn').css("display","none");
         $('#helpBtn').css("display","none");
-        $('#tab').css("top","6% !important");
+        $('#tab').css("margin-top","-6% !important");
       }
 
       function keyboardHideHandler() {
@@ -385,7 +385,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         $('button').css("display","block");
         $('#backBtn').css("display","block");
         $('#helpBtn').css("display","block");
-        $('#tab').css("top","12% !important");
+        $('#tab').css("margin-top","0 !important");
       }
 
       $rootScope.submenus = [{
