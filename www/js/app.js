@@ -377,7 +377,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         $('button').css("display","none");
         $('#backBtn').css("display","none");
         $('#helpBtn').css("display","none");
-        $('#tab').css("top","6% !important");
+        $('#tab').css("top","3% !important");
       }
 
       function keyboardHideHandler() {
