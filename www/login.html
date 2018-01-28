@@ -1,10 +1,9 @@
 <ion-view>
   <ion-content class="page-background" scroll="false">
+                  <span id="tab" ng-click="switch()" class="col grid-example s2 login-tab"
+                        style="background: url('img/register-OFFLINE.png')"></span>
     <div class="myText" style="width: 100%;height: 100%">
       <div id="main" class="row login-background" style="background: url('img/login-body-form.png');">
-        <span id="tab" ng-click="switch()" class="col grid-example s2 login-tab"
-              style="background: url('img/register-OFFLINE.png')"></span>
-
         <form ng-if="isLogin" ng-submit="doLogin()" name="loginForm" novalidate
               style="height: 100%;width: 100%;margin-top: 65%;margin-left: 15%;margin-right: 15%;">
           <div style="height: 30px;display: block;text-align: right;width: 90%;background: url('img/17-login-right5.png');
