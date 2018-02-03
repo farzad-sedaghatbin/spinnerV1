@@ -435,7 +435,7 @@ angular.module('starter.controllers', [])
         return;
       }
       if (row.priceType === 'coin' && $rootScope.gamer.coinNum < row.costNum) {
-        menuService.myMessage("الماس شما برای ورود به این لیگ کافی نیست", "خطا");
+        menuService.myMessage("سکه شما برای ورود به این لیگ کافی نیست", "خطا");
         return;
       }
       if ($rootScope.gamer.level < row.minLevel) {
