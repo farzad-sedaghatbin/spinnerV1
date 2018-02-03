@@ -430,7 +430,11 @@ angular.module('starter.controllers', [])
         });
         return;
       }
-      if ($rootScope.gamer.gem < row.costNum) {
+      if (row.priceType === 'gem' && $rootScope.gamer.gem < row.costNum) {
+        menuService.myMessage("الماس شما برای ورود به این لیگ کافی نیست", "خطا");
+        return;
+      }
+      if (row.priceType === 'coin' && $rootScope.gamer.coinNum < row.costNum) {
         menuService.myMessage("الماس شما برای ورود به این لیگ کافی نیست", "خطا");
         return;
       }
@@ -442,7 +446,14 @@ angular.module('starter.controllers', [])
       $http.post("https://dagala.cfapps.io/api/1/requestLeague", row.id + "," + $rootScope.gamer.user).success(function (data, status, headers, config) {
         menuService.stopLoading();
         if (data === 200) {
-          $rootScope.gamer.gem -= row.costNum;
+          if (row.priceType === 'gem'){
+            $rootScope.gamer.gem -= row.costNum;
+          } else {
+            if ($.isNumeric($rootScope.gamer.coins)) {
+              $rootScope.gamer.coins -= row.costNum;
+            }
+            $rootScope.gamer.coinNum -= row.costNum;
+          }
           menuService.myMessage("شما با موفقیت عضو این لیگ شدید", "پیام");
           row.status = 1;
         } else if (data === 201) {
@@ -1089,7 +1100,7 @@ angular.module('starter.controllers', [])
       };
       $http.post(signUpUrl, d)
         .success(function (data, status, headers, config) {
-          if ($rootScope.gamer.guest) {
+          if (!$rootScope.gamer.guest) {
             menuService.myMessage("شما قبلا ثبت نام کرده اید", "خطا");
             return;
           }
