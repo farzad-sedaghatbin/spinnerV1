@@ -329,12 +329,12 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
             var len = results.rows.length, i, result = '';
             if (results.rows && results.rows.length !== 0) {
-              if (results.rows.item(0).val === "true") {
+              if (results.rows.item(0).val === "true" || results.rows.item(0).val === true) {
                 tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="score"', [], function (tx, results) {
                   var len = results.rows.length, i, result = '';
                   if (results.rows && results.rows.length !== 0) {
                     var vals = results.rows.item(0).val.split(",");
-                    if (vals[0] === "false") {
+                    if (vals[0] === "false" || vals[0] === false) {
                       menuService.startLoading();
                       var serverUrl = "https://dagala.cfapps.io/api/1/endGame";
                       $http.post(serverUrl, vals[1] + "," + vals[2] + "," + vals[3] + "," + vals[5]).success(function (data, status, headers, config) {
