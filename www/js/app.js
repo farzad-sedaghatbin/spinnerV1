@@ -465,7 +465,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         adr: 'meteoric/www.gameeapp.com/game/PrQHx2nBaS.html',
         id: 19
       }, {
-        menuicon: 'img/flight.png',
+        menuicon: 'img/snake.png',
         adr: 'snake/www.gameeapp.com/game/VVXl2nY.html',
         id: 20
       }];
