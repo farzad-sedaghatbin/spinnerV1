@@ -35,17 +35,7 @@ angular.module('starter.controllers', [])
       }
     };
     $scope.refresh = function () {
-      menuService.getDb().transaction(function (tx) {
-        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
-          var len = results.rows.length, i, result = '';
-          if (results.rows && results.rows.length !== 0) {
-            $rootScope.sendToServer();
-            $rootScope.refreshGamer(true, $scope);
-          } else {
-            $rootScope.refreshGamer(true, $scope);
-          }
-        })
-      });
+      $rootScope.refreshGamer(true, $scope);
     };
     function innerChallenge() {
       if ($rootScope.gamer.coinNum < $rootScope.gamer.perGameCoins) {
