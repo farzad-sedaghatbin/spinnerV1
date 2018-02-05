@@ -69,17 +69,7 @@ angular.module('starter.controllers', [])
     $scope.challenge = function () {
       $("#harif").one("transitionend",
         function (event) {
-          menuService.getDb().transaction(function (tx) {
-            tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
-              var len = results.rows.length, i, result = '';
-              if (results.rows && results.rows.length !== 0) {
-                $rootScope.sendToServer();
-                $scope.doChallenge();
-              } else {
-                $scope.doChallenge();
-              }
-            })
-          });
+          $scope.doChallenge();
         });
     };
     $scope.soon = function () {
@@ -132,17 +122,7 @@ angular.module('starter.controllers', [])
       $state.go("battlefield");
     };
     $scope.battlefield = function (gameId) {
-      menuService.getDb().transaction(function (tx) {
-        tx.executeSql('SELECT d.val FROM MYGAME d WHERE d.name="wasInGame"', [], function (tx, results) {
-          var len = results.rows.length, i, result = '';
-          if (results.rows && results.rows.length !== 0) {
-            $rootScope.sendToServer();
-            $scope.goToBattlefield(gameId, $rootScope.listState === "full");
-          } else {
-            $scope.goToBattlefield(gameId, $rootScope.listState === "full");
-          }
-        })
-      });
+      $scope.goToBattlefield(gameId, $rootScope.listState === "full");
     };
     $scope.notification = function () {
       menuService.myMessage($rootScope.gamer.modal);
