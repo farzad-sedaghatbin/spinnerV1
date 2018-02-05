@@ -343,9 +343,11 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
                         $rootScope.saveGamer(data);
                         menuService.stopLoading();
                         $rootScope.checkLevel(false);
-                        tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
-                          tx.executeSql('DELETE FROM MYGAME WHERE name="wasInGame"');
-                        });
+                        menuService.getDb().transaction(function (tx) {
+                          tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
+                            tx.executeSql('DELETE FROM MYGAME WHERE name="wasInGame"');
+                          });
+                        })
                       }).catch(function (err) {
                         menuService.stopLoading();
                         menuService.myHandleError(err);
@@ -357,9 +359,11 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
                         data.token = $rootScope.gamer.token;
                         $rootScope.saveGamer(data);
                         $rootScope.checkLevel(false);
-                        tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
-                          tx.executeSql('DELETE FROM MYGAME WHERE name="wasInGame"');
-                        });
+                        menuService.getDb().transaction(function (tx) {
+                          tx.executeSql('DELETE FROM MYGAME WHERE name="score"', [], function (tx, results) {
+                            tx.executeSql('DELETE FROM MYGAME WHERE name="wasInGame"');
+                          });
+                        })
                       }).catch(function (err) {
                         menuService.myHandleError(err);
                       });
